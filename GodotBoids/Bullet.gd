@@ -14,6 +14,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	move_and_slide(speed)
+	var velocity = speed * transform.basis.z
+	move_and_slide(velocity)
 	pass
 	

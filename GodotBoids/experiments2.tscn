@@ -6,6 +6,7 @@
 [ext_resource path="res://Tank Material.tres" type="Material" id=4]
 [ext_resource path="res://Box.tscn" type="PackedScene" id=5]
 [ext_resource path="res://wall.gd" type="Script" id=6]
+[ext_resource path="res://bullet.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Environment" id=5]
 background_mode = 1
@@ -14,10 +15,6 @@ ambient_light_energy = 0.28
 fog_color = Color( 0, 0, 0, 1 )
 ss_reflections_enabled = true
 ssao_enabled = true
-
-[sub_resource type="BoxShape" id=9]
-
-[sub_resource type="PrismMesh" id=8]
 
 [sub_resource type="BoxShape" id=14]
 
@@ -34,11 +31,14 @@ ssao_enabled = true
 [sub_resource type="Animation" id=13]
 resource_name = "CylANim"
 
+[sub_resource type="Environment" id=15]
+glow_enabled = true
+
 [node name="root" type="Spatial"]
 script = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 8.203 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.278381, 1, 8.203 )
 environment = SubResource( 5 )
 current = true
 near = 0.01
@@ -49,35 +49,25 @@ transform = Transform( 0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.
 shadow_enabled = true
 
 [node name="wall" type="Spatial" parent="."]
-transform = Transform( 0.578598, 0, -0.815613, 0, 1, 0, 0.815613, 0, 0.578598, -6.69852, 0, 28.7632 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 28.763 )
 script = ExtResource( 6 )
 brickScene = ExtResource( 5 )
 
-[node name="RigidBody" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7358, 4.85893, 9.5777 )
-
-[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
-shape = SubResource( 9 )
-
-[node name="pyr" type="MeshInstance" parent="RigidBody"]
-mesh = SubResource( 8 )
-skeleton = NodePath("../..")
-
-[node name="StaticBody" type="StaticBody" parent="."]
+[node name="ground" type="StaticBody" parent="."]
 transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, 0, -1, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="ground"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 shape = SubResource( 14 )
 
-[node name="Ground" type="MeshInstance" parent="StaticBody"]
+[node name="Ground" type="MeshInstance" parent="ground"]
 mesh = SubResource( 2 )
 skeleton = NodePath("../..")
 material/0 = ExtResource( 3 )
 
 [node name="tank" type="KinematicBody" parent="."]
 script = ExtResource( 1 )
-bulletPrefab = ExtResource( 5 )
+bulletPrefab = ExtResource( 7 )
 
 [node name="Turret" type="MeshInstance" parent="tank"]
 transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 2, 0, 1.25, 1 )
@@ -85,7 +75,7 @@ mesh = SubResource( 6 )
 skeleton = NodePath("../tankMesh")
 material/0 = ExtResource( 4 )
 
-[node name="Spatial" type="Spatial" parent="tank/Turret"]
+[node name="bulletSpawn" type="Spatial" parent="tank/Turret"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1922 )
 
 [node name="target" type="Spatial" parent="tank"]
@@ -109,3 +99,6 @@ mesh = SubResource( 12 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Spatial"]
 anims/CylANim = SubResource( 13 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 15 )

@@ -60,3 +60,7 @@ project/assembly_name="Experiments1"
 [physics]
 
 common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/subsurface_scattering/quality=2

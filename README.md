@@ -20,7 +20,7 @@
 * [My website & other ways to contact me](http://bryanduggan.org)
 
 ## Previous years courses
-- https://github.com/skooter500/GE2-2021-2022
+- https://github.com/skooter500/GE2-2021-2022 - This course uses Unity
 - https://github.com/skooter500/GE2-2020-2021
 - https://github.com/skooter500/GE2-2019-2020
 - https://github.com/skooter500/GE2-2018-2019
@@ -38,9 +38,26 @@
 - Week 13 - CA Submission - 50%
 - End of year online test - 30%
 
-## Week 2
+## Week 3 - Steering Behaviours in Godot
+
+## Lab
+Update your fork of this repo to get the Godot project
+
+Watch Godot tutorials on the following:
+
+- Timers
+- Signals
+- Areas
+
+And add the following:
+
+- Bullet cooldown
+- Bullets get removed after a 5 seconds
+- Bullets get removed when they hit a block
+
+## Week 2 - Godot Adventures
 - [Tuesday class](https://tudublin-my.sharepoint.com/:v:/r/personal/bryan_duggan_tudublin_ie/Documents/Recordings/Game%20Engines%202-20230131_130525-Meeting%20Recording.mp4?csf=1&web=1&e=SsAdtg)
-- [Wednesday class]()
+- [Wednesday class](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/Ec_nO-M_A0VJjAvh0mEU3tYB9OdSjMzcFPc6fbEL4gRSLQ?e=88ZLmA)
 
 ## Week 1 - Introduction to the course. Introduction to steering behaviours
 

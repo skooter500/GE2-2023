@@ -17,9 +17,10 @@ func _ready():
 	for j in height:
 		for i in width:				
 			var brick = brickScene.instance()
-			var pos = Vector3(i - half, 1 + j, 0)
+			var s = 2			
+			var pos = Vector3((i - half) * s , 1 + (j * s), 0)
 			brick.transform.origin = pos
-			var mi  = brick.get_node("MeshInstance")
+			# var mi  = brick.get_node("MeshInstance")
 			# var newMaterial = SpatialMaterial.new()
 			# newMaterial.albedo_color = Color.from_hsv(randf(), 1, 1)
 			# mi.set_surface_material(0, newMaterial)

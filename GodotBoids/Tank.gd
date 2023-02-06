@@ -35,8 +35,10 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("ui_select"):
 		var bullet = bulletPrefab.instance()
-		bullet.transform = $Turret/Spatial.transform
 		$"..".add_child(bullet) 
+
+		bullet.set_global_rotation($Turret/bulletSpawn.get_global_rotation())				
+		bullet.set_global_translation($Turret/bulletSpawn.get_global_translation())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
