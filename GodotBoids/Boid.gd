@@ -7,10 +7,15 @@ export var velocity = Vector3.ZERO
 export var speed:float
 export(float) var maxSpeed = 10.0
 
-export var seekEnabled = true
+export var seekEnabled = false
 export var seekTarget: Vector3
 
 export var targetNode: NodePath
+
+export var arriveEnabled = true
+export var arriveTarget: Vector3
+export var slowingDistance = 30
+
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -18,15 +23,17 @@ export var targetNode: NodePath
 
 func _drawGizmos():
 	# DebugDraw.draw_box(box_pos, Vector3(10, 20, 10), Color(0, 1, 0))
-	DebugDraw.draw_line(transform.origin,  seekTarget , Color(1, 1, 0))
+	# DebugDraw.draw_line(transform.origin,  seekTarget , Color(1, 1, 0))
 	
-	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1))
-	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0))
-	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.y * 10.0 , Color(0, 1, 0))
-	DebugDraw.set_text("Forward: ", transform.basis.z)
+	# DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1))
+	# DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0))
+	# DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.y * 10.0 , Color(0, 1, 0))
+	# DebugDraw.set_text("Forward: ", transform.basis.z)
 	# DebugDraw.set_text("Frames drawn", Engine.get_frames_drawn())
 	# DebugDraw.set_text("FPS", Engine.get_frames_per_second())
 	# DebugDraw.set_text("delta", delta)
+	DebugDraw.draw_sphere(get_node(targetNode).transform.origin, slowingDistance)
+	DebugDraw.draw_line(transform.origin, transform.origin + (force * 10), Color(1, 0, 0))
 
 
 # Called when the node enters the scene tree for the first time.
@@ -38,16 +45,30 @@ func _seek(target: Vector3):
 	toTarget = toTarget.normalized()
 	var desired = toTarget * maxSpeed;
 	return desired - velocity
+	
+	
+func arrive(target:Vector3):
+	var toTarget = target - transform.origin
+	var dist = toTarget.length()
+	var ramped = (dist / slowingDistance) * maxSpeed
+	var clamped = min(maxSpeed, ramped)
+	var desired = (toTarget * clamped) / dist 
+	return desired - velocity
+
 
 func _calculate():
 	var f = Vector3.ZERO
 	if seekEnabled:
 		seekTarget = get_node(targetNode).transform.origin	
 		f += _seek(seekTarget)
+	if arriveEnabled:
+		arriveTarget = get_node(targetNode).transform.origin
+		f += arrive(arriveTarget)
 	return f
 	
 func _process(delta):	
-	acceleration = _calculate() / mass
+	force = _calculate()
+	acceleration = force / mass
 	velocity += acceleration * delta
 	speed = velocity.length()
 	if speed > 0:

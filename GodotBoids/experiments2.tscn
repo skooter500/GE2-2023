@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Tank.gd" type="Script" id=1]
 [ext_resource path="res://CamFollow.gd" type="Script" id=2]
@@ -16,7 +16,7 @@ fog_color = Color( 0, 0, 0, 1 )
 ss_reflections_enabled = true
 ssao_enabled = true
 
-[sub_resource type="BoxShape" id=14]
+[sub_resource type="PlaneShape" id=18]
 
 [sub_resource type="PlaneMesh" id=2]
 
@@ -28,17 +28,18 @@ ssao_enabled = true
 
 [sub_resource type="CapsuleMesh" id=12]
 
-[sub_resource type="Animation" id=13]
-resource_name = "CylANim"
-
 [sub_resource type="Environment" id=15]
 glow_enabled = true
+
+[sub_resource type="CubeMesh" id=16]
+
+[sub_resource type="BoxShape" id=17]
 
 [node name="root" type="Spatial"]
 script = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.278381, 1, 8.203 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 8 )
 environment = SubResource( 5 )
 current = true
 near = 0.01
@@ -57,8 +58,7 @@ brickScene = ExtResource( 5 )
 transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, 0, -1, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="ground"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
-shape = SubResource( 14 )
+shape = SubResource( 18 )
 
 [node name="Ground" type="MeshInstance" parent="ground"]
 mesh = SubResource( 2 )
@@ -97,8 +97,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.48212, 0, -12.5338 )
 [node name="MeshInstance" type="MeshInstance" parent="Spatial"]
 mesh = SubResource( 12 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Spatial"]
-anims/CylANim = SubResource( 13 )
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.01769, 11.5043 )
+mesh = SubResource( 16 )
+
+[node name="Area" type="Area" parent="MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/Area"]
+shape = SubResource( 17 )

@@ -1,8 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://MoveTarget.gd" type="Script" id=1]
 [ext_resource path="res://Boid.gd" type="Script" id=2]
-[ext_resource path="res://Wall.gd" type="Script" id=3]
 [ext_resource path="res://Tank Material.tres" type="Material" id=4]
 [ext_resource path="res://Ground.tres" type="Material" id=5]
 
@@ -18,10 +16,12 @@ ssao_enabled = true
 
 [sub_resource type="CubeMesh" id=6]
 
+[sub_resource type="SphereMesh" id=7]
+
 [node name="Spatial" type="Spatial"]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 50, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100, 0 )
 environment = SubResource( 5 )
 current = true
 near = 0.01
@@ -48,10 +48,7 @@ mesh = SubResource( 6 )
 skeleton = NodePath("../..")
 
 [node name="target" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20 )
-script = ExtResource( 1 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 52.2295, 0, -38.3098 )
 
-[node name="Spatial" type="Spatial" parent="."]
-script = ExtResource( 3 )
-width = null
-height = null
+[node name="MeshInstance" type="MeshInstance" parent="target"]
+mesh = SubResource( 7 )
