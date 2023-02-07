@@ -2,9 +2,11 @@ extends KinematicBody
 
 export var speed = 10.0
 export var rotSpeed = 5.0
+export var fireRate = 5;
 
 export (PackedScene) var bulletPrefab
 
+export var canFire = true; 
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -31,15 +33,9 @@ func _drawGizmos():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
-func _input(event):
-	if event.is_action_pressed("ui_select"):
-		var bullet = bulletPrefab.instance()
-		$"..".add_child(bullet) 
-
-		bullet.set_global_rotation($Turret/bulletSpawn.get_global_rotation())				
-		bullet.set_global_translation($Turret/bulletSpawn.get_global_translation())
-
+	
+func enableFire():
+	canFire = true;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):		
@@ -59,6 +55,17 @@ func _process(delta):
 	
 	if abs(move) > 0:     
 		move_and_slide(- transform.basis.z * speed * move)		
+		
+	if canFire and Input.is_action_pressed("ui_select"):
+		var bullet = bulletPrefab.instance()
+		$"..".add_child(bullet) 
+
+		bullet.set_global_rotation($Turret/bulletSpawn.get_global_rotation())				
+		bullet.set_global_translation($Turret/bulletSpawn.get_global_translation())
+		canFire = false;
+		$Timer.connect("timeout", self, "enableFire")
+		$Timer.start(1.0 / fireRate)
+
 		
 	_drawGizmos()
 	
