@@ -32,6 +32,8 @@ func _drawGizmos():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Timer.connect("timeout", self, "enableFire")
+		
 	pass # Replace with function body.
 	
 func enableFire():
@@ -63,7 +65,6 @@ func _process(delta):
 		bullet.set_global_rotation($Turret/bulletSpawn.get_global_rotation())				
 		bullet.set_global_translation($Turret/bulletSpawn.get_global_translation())
 		canFire = false;
-		$Timer.connect("timeout", self, "enableFire")
 		$Timer.start(1.0 / fireRate)
 
 		
