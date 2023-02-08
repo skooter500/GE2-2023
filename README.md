@@ -38,7 +38,9 @@
 - Week 13 - CA Submission - 50%
 - End of year online test - 30%
 
-## Week 3 - Steering Behaviours in Godot
+## Week 3 - Steering Behaviors in Godot
+- [Tuesday class](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EQi22tnprXtJhjnEbwrXCFIBN8uKP1FjXCQtO9AOIC73cg?e=6bl3St)
+- [Wednesday class]()
 
 ## Lab
 Update your fork of this repo to get the Godot project
