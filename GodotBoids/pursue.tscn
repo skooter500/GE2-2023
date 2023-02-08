@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Ground.tres" type="Material" id=1]
 [ext_resource path="res://Tank Material.tres" type="Material" id=2]
@@ -17,6 +17,14 @@ ssao_enabled = true
 [sub_resource type="CubeMesh" id=6]
 
 [sub_resource type="SphereMesh" id=7]
+
+[sub_resource type="Curve3D" id=8]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -44.1882, 0, 7.96831, 0, 0, 0, 0, 0, 0, -40.3465, 0, -15.4667, 0, 0, 0, 0, 0, 0, 14.9755, 0, -41.9751, 0, 0, 0, 0, 0, 0, 74.5234, 0, -1.25201, 0, 0, 0, 0, 0, 0, 66.0715, 0, -36.2124, 0, 0, 0, 0, 0, 0, 104.489, 0, -15.0825, 0, 0, 0, 0, 0, 0, -30.7419, 0, 11.8101, 0, 0, 0, 0, 0, 0, -44.1882, 0, 7.96831 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="CubeMesh" id=9]
 
 [node name="Spatial" type="Spatial"]
 
@@ -52,3 +60,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 52.2295, 0, -38.3098 )
 
 [node name="MeshInstance" type="MeshInstance" parent="target"]
 mesh = SubResource( 7 )
+
+[node name="Path" type="Path" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42.4444, 0, 24.3028 )
+curve = SubResource( 8 )
+
+[node name="PathFollow" type="PathFollow" parent="Path"]
+transform = Transform( -0.622085, 0, -0.78295, 0, 1, 0, 0.78295, 0, -0.622085, -44.1882, 0, 7.96831 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Path/PathFollow"]
+mesh = SubResource( 9 )
