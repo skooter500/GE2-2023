@@ -16,6 +16,8 @@ export var arriveEnabled = true
 export var arriveTarget: Vector3
 export var slowingDistance = 30
 
+export var banking = 0.1
+
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -25,10 +27,10 @@ func _drawGizmos():
 	# DebugDraw.draw_box(box_pos, Vector3(10, 20, 10), Color(0, 1, 0))
 	# DebugDraw.draw_line(transform.origin,  seekTarget , Color(1, 1, 0))
 	
-	# DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1))
-	# DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0))
-	# DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.y * 10.0 , Color(0, 1, 0))
-	# DebugDraw.set_text("Forward: ", transform.basis.z)
+	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1))
+	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0))
+	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.y * 10.0 , Color(0, 1, 0))
+	DebugDraw.set_text("UP: ", transform.basis.y)
 	# DebugDraw.set_text("Frames drawn", Engine.get_frames_drawn())
 	# DebugDraw.set_text("FPS", Engine.get_frames_per_second())
 	# DebugDraw.set_text("delta", delta)
@@ -75,13 +77,13 @@ func _process(delta):
 		# To move a Spatial use any of these:
 		# transform.origin += velocity * delta
 		# translation += velocity * delta 		
-		global_translate(velocity * delta)
-		var theta = Vector3.FORWARD.angle_to(velocity)
-		DebugDraw.set_text("Theta: ", theta)
+		global_translate(velocity * delta)		
+		
 		# print(theta)
 		# rotation = Vector3(0, theta, 0)
 		# rotate_y(theta)
 		# transform.origin += velocity * delta
-		look_at(transform.origin - velocity, Vector3.UP)
+		var tempUp = transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta)
+		look_at(transform.origin - velocity, tempUp)
 	_drawGizmos()	
 		
