@@ -11,8 +11,8 @@ func drawGizmos():
 	for i in range(1, path.get_curve().get_point_count()):
 		var start = path.get_curve().get_point_position(i - 1)
 		var end = path.get_curve().get_point_position(i)
-		DebugDraw.draw_line(start, end , Color(1, 1, 0))
-		DebugDraw.draw_sphere(start, 2)
+		DebugDraw.draw_line(start, end , Color.aqua)
+		DebugDraw.draw_sphere(start, 2, Color.aqua)
 
 
 # Called when the node enters the scene tree for the first time.

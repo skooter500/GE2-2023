@@ -357,7 +357,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GodotBoids"
-run/main_scene="res://experiments3.tscn"
+run/main_scene="res://seek.tscn"
 config/icon="res://icon.png"
 
 [autoload]

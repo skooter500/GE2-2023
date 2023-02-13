@@ -1,6 +1,6 @@
 extends Spatial
 
-onready var target = get_node("tank/target")
+onready var target = find_node("camTarget")
 onready var cam = get_node("Camera")
 
 # Declare member variables here. Examples:
@@ -10,10 +10,7 @@ onready var cam = get_node("Camera")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("Target: ", target.global_translation)
-	print("Camera: ", cam.global_translation)
-
-	# pass # Replace with function body.
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

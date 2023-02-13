@@ -18,12 +18,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	var v  = speed * transform.basis.z
+	# I think this should return true when a collision happens, but it doesnt
 	var collision = move_and_collide(v * delta)		
 	if collision:
 		print("Collision!!!!")
 
 
 func _on_Timer_timeout():
-	print("Timer timed out")
 	destroy()
 	pass # Replace with function body.
