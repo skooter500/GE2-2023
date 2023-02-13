@@ -40,7 +40,7 @@
 
 ## Week 3 - Steering Behaviors in Godot
 - [Tuesday class](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EQi22tnprXtJhjnEbwrXCFIBN8uKP1FjXCQtO9AOIC73cg?e=6bl3St)
-- [Wednesday class]()
+- [Wednesday class](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/ES8FnwW1f4BJltOI_YD1J94BwMVFWhB2d7FPJmEw8VO03g?e=qQq8bH)
 
 ## Lab
 Update your fork of this repo to get the Godot project
