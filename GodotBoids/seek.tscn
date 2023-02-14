@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://MoveTarget.gd" type="Script" id=1]
 [ext_resource path="res://Boid.gd" type="Script" id=2]
-[ext_resource path="res://CamFollow.gd" type="Script" id=3]
+[ext_resource path="res://TrailRender.gd" type="Script" id=3]
 [ext_resource path="res://Tank Material.tres" type="Material" id=4]
 [ext_resource path="res://Ground.tres" type="Material" id=5]
 [ext_resource path="res://Target.tres" type="Material" id=6]
@@ -19,13 +19,15 @@ ssao_enabled = true
 
 [sub_resource type="CubeMesh" id=6]
 
+[sub_resource type="Curve" id=10]
+_data = [ Vector2( 0.000902526, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.481047, 0.50722 ), -1.32075, -1.32075, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
 [sub_resource type="SphereMesh" id=7]
 
 [node name="Spatial" type="Spatial"]
-script = ExtResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 40, 0 )
 environment = SubResource( 5 )
 current = true
 near = 0.01
@@ -54,6 +56,11 @@ skeleton = NodePath("../..")
 
 [node name="camTarget" type="Position3D" parent="boid"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -10 )
+
+[node name="trail" type="Spatial" parent="boid"]
+script = ExtResource( 3 )
+width_curve = SubResource( 10 )
+material = ExtResource( 4 )
 
 [node name="target" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -35.4422, 0, -6.37854 )
