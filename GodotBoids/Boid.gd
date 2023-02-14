@@ -23,6 +23,7 @@ export var banking = 0.1
 export var pathFollowEnabled = false
 var pathIndex = 0
 var path:Curve3D
+var waypointSeekDistance = 2
 
 export var pursueEnabled = false
 export var enemyNodePath:NodePath
@@ -82,7 +83,7 @@ func arrive(target:Vector3):
 func followPath():
 	var target = path.get_point_position(pathIndex)
 	var dist = transform.origin.distance_to(target)
-	if dist < 1:
+	if dist < waypointSeekDistance:
 		pathIndex = (pathIndex + 1) % path.get_point_count()
 	return seek(path.get_point_position(pathIndex))	
 

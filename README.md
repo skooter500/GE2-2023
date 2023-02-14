@@ -40,8 +40,8 @@ Teams:
 - Week 13 - CA Submission - 50%
 - End of year online test - 30%
 
-## Week 4 - Path Following, Pursue Offset Pursue
-
+## Week 4 - Path Following, Pursue, Offset Pursue, Trail Renderer, loading models
+- [Recording of the class](C:\Users\skooter500\Documents\courses\GE2-2023)
 ## Lab
 
 Update your forks to get the path following code and create a branch:
