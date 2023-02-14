@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Spatial",
+"class": "TrailRenderer",
+"language": "GDScript",
+"path": "res://TrailRender.gd"
+} ]
+_global_script_class_icons={
+"TrailRenderer": ""
+}
+
 [application]
 
 config/name="GodotBoids"
