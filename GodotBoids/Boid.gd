@@ -24,6 +24,11 @@ export var pathFollowEnabled = false
 var pathIndex = 0
 var path:Curve3D
 
+export var pursueEnabled = false
+export var enemyNodePath:NodePath
+var enemyBoid:Node
+var pursueTarget:Vector3
+
 func _drawGizmos():
 	
 	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1))
@@ -31,9 +36,19 @@ func _drawGizmos():
 	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.y * 10.0 , Color(0, 1, 0))
 	DebugDraw.draw_line(transform.origin, transform.origin + (force), Color(1, 1, 0))
 	
+	if pursueEnabled:
+		DebugDraw.draw_sphere(pursueTarget, 1, Color.red)
+	
 	if (arriveEnabled):
 		DebugDraw.draw_sphere(targetNode.translation, slowingDistance, Color.blueviolet)
 
+
+func pursue():
+	var toEnemy = enemyBoid.transform.origin - transform.origin	
+	var dist = toEnemy.length()	
+	var time = dist / maxSpeed	
+	pursueTarget = enemyBoid.transform.origin + enemyBoid.velocity * time	
+	return seek(pursueTarget)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():	
@@ -45,12 +60,14 @@ func _ready():
 	targetNode = get_node(targetNodePath)
 	if pathFollowEnabled:
 		path = $"../Path".get_curve()
+		
+	if pursueEnabled:
+		enemyBoid = get_node(enemyNodePath)
 	pass	
-
 func seek(target: Vector3):	
 	var toTarget = target - transform.origin
 	toTarget = toTarget.normalized()
-	var desired = toTarget * maxSpeed;
+	var desired = toTarget * maxSpeed
 	return desired - velocity
 	
 	
@@ -80,6 +97,8 @@ func calculate():
 		f += arrive(arriveTarget)
 	if (pathFollowEnabled):
 		f += followPath()
+	if pursueEnabled:
+		f += pursue()
 	return f
 	
 func _process(delta):			

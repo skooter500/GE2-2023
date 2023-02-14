@@ -78,7 +78,7 @@ material/0 = ExtResource( 4 )
 [node name="bulletSpawn" type="Spatial" parent="tank/Turret"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1922 )
 
-[node name="target" type="Spatial" parent="tank"]
+[node name="camTarget" type="Spatial" parent="tank"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14249, 10, -18.6541 )
 
 [node name="tankMesh" type="MeshInstance" parent="tank"]

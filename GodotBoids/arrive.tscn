@@ -24,7 +24,7 @@ ssao_enabled = true
 transform = Transform( 1, 0, -2.98023e-08, -2.98023e-08, 1, 2.98023e-08, -2.98023e-08, 0, 1, 0, 0, 0 )
 script = ExtResource( 3 )
 targetNodePath = NodePath("../target")
-pathFollowEnabled = false
+arriveEnabled = true
 
 [node name="model" type="MeshInstance" parent="Boid"]
 transform = Transform( 1, 0, 0, 0, -8.74228e-08, -1, 0, 2, -4.37114e-08, 0, 0, 0 )
