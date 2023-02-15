@@ -1,4 +1,4 @@
-extends Spatial
+extends KinematicBody
 
 export var mass = 1
 export var force = Vector3.ZERO
@@ -141,10 +141,12 @@ func _process(delta):
 		# rotate_y(theta)
 		# transform.origin += velocity * delta
 		
+		move_and_slide(velocity)
+		
 		# Implement Banking as described:
 		# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/
-		# var tempUp = transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta)
-		# look_at(transform.origin - velocity, tempUp)
+		var tempUp = transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta)
+		look_at(transform.origin - velocity, tempUp)
 		pass
 	_drawGizmos()	
 		
