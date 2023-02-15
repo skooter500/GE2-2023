@@ -68,24 +68,22 @@ material/0 = ExtResource( 3 )
 mesh = SubResource( 10 )
 material/0 = ExtResource( 3 )
 
-[node name="Follower" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.2345, 0, -58.0337 )
+[node name="Leader" parent="." instance=ExtResource( 2 )]
+transform = Transform( -0.103365, 0, -0.994643, 0, 1, 0, 0.994643, 0, -0.103365, 3.14748, 0, -2.70967 )
 targetNodePath = NodePath("../Position3D")
-arriveEnabled = true
+pathFollowEnabled = true
+pursueEnabled = false
+
+[node name="Follower2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.29496, 0, -58.0338 )
+targetNodePath = NodePath("../Position3D")
 pursueEnabled = false
 offsetPursueEnabled = true
 leaderNodePath = NodePath("../Leader")
 
-[node name="Leader" parent="." instance=ExtResource( 2 )]
+[node name="Follower" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.14748, 0, -29.0169 )
 targetNodePath = NodePath("../Position3D")
-arriveEnabled = true
-pursueEnabled = false
-
-[node name="Follower2" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.2355, 0, -58.0337 )
-targetNodePath = NodePath("../Position3D")
-arriveEnabled = true
 pursueEnabled = false
 offsetPursueEnabled = true
 leaderNodePath = NodePath("../Leader")

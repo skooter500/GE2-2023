@@ -36,5 +36,5 @@ width = 1.0
 width_curve = SubResource( 11 )
 material = SubResource( 13 )
 
-[node name="cobramk3" type="Spatial" parent="." instance=ExtResource( 3 )]
+[node name="cobramk3" parent="." instance=ExtResource( 3 )]
 transform = Transform( 300, 0, 0, 0, 300, 0, 0, 0, 300, 0, 0, 0 )

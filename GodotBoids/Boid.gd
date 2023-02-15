@@ -16,7 +16,7 @@ var targetNode:Node
 
 export var arriveEnabled = false
 export var arriveTarget: Vector3
-export var slowingDistance = 30
+export var slowingDistance = 35
 
 export var banking = 0.1
 
@@ -72,7 +72,7 @@ func _ready():
 	pass	
 	if offsetPursueEnabled:
 		leaderBoid = get_node(leaderNodePath)
-		leaderOffset = transform.origin - leaderBoid.transform.origin
+		leaderOffset = leaderBoid.transform.xform_inv(transform.origin)
 		
 func seek(target: Vector3):	
 	var toTarget = target - transform.origin
@@ -134,7 +134,7 @@ func _process(delta):
 		# To move a Spatial use any of these:
 		# transform.origin += velocity * delta
 		# translation += velocity * delta 		
-		global_translate(velocity * delta)		
+		# global_translate(velocity * delta)		
 		
 		# print(theta)
 		# rotation = Vector3(0, theta, 0)
@@ -143,7 +143,8 @@ func _process(delta):
 		
 		# Implement Banking as described:
 		# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/
-		var tempUp = transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta)
-		look_at(transform.origin - velocity, tempUp)
+		# var tempUp = transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta)
+		# look_at(transform.origin - velocity, tempUp)
+		pass
 	_drawGizmos()	
 		
