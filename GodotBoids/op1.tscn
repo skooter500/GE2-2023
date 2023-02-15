@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Ground.tres" type="Material" id=1]
 [ext_resource path="res://Boid.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Target.tres" type="Material" id=3]
 [ext_resource path="res://Follow.gd" type="Script" id=4]
 [ext_resource path="res://PathDrawer.gd" type="Script" id=5]
 
@@ -22,6 +23,8 @@ ambient_light_energy = 0.28
 fog_color = Color( 0, 0, 0, 1 )
 ss_reflections_enabled = true
 ssao_enabled = true
+
+[sub_resource type="SphereMesh" id=10]
 
 [node name="Spatial" type="Spatial"]
 
@@ -57,14 +60,32 @@ far = 10000.0
 [node name="Position3D" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.14748, 0, 58.1841 )
 
+[node name="MeshInstance" type="MeshInstance" parent="Position3D"]
+mesh = SubResource( 10 )
+material/0 = ExtResource( 3 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Position3D"]
+mesh = SubResource( 10 )
+material/0 = ExtResource( 3 )
+
 [node name="Follower" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.29496, 0, -58.0337 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.2345, 0, -58.0337 )
 targetNodePath = NodePath("../Position3D")
 arriveEnabled = true
 pursueEnabled = false
+offsetPursueEnabled = true
+leaderNodePath = NodePath("../Leader")
 
 [node name="Leader" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.14748, 0, -29.0169 )
 targetNodePath = NodePath("../Position3D")
 arriveEnabled = true
 pursueEnabled = false
+
+[node name="Follower2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.2355, 0, -58.0337 )
+targetNodePath = NodePath("../Position3D")
+arriveEnabled = true
+pursueEnabled = false
+offsetPursueEnabled = true
+leaderNodePath = NodePath("../Leader")

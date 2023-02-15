@@ -120,6 +120,8 @@ func calculate():
 		f += followPath()
 	if pursueEnabled:
 		f += pursue()
+	if offsetPursueEnabled:
+		f += offsetPursue()
 	return f
 	
 func _process(delta):			
