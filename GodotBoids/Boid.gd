@@ -30,6 +30,11 @@ export var enemyNodePath:NodePath
 var enemyBoid:Node
 var pursueTarget:Vector3
 
+export var offsetPursueEnabled = false
+export var leaderNodePath:NodePath
+var leaderBoid:Node
+var leaderOffset:Vector3
+
 func _drawGizmos():
 	
 	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1))
@@ -65,6 +70,10 @@ func _ready():
 	if pursueEnabled:
 		enemyBoid = get_node(enemyNodePath)
 	pass	
+	if offsetPursueEnabled:
+		leaderBoid = get_node(leaderNodePath)
+		leaderOffset = transform.origin - leaderBoid.transform.origin
+		
 func seek(target: Vector3):	
 	var toTarget = target - transform.origin
 	toTarget = toTarget.normalized()
@@ -86,6 +95,17 @@ func followPath():
 	if dist < waypointSeekDistance:
 		pathIndex = (pathIndex + 1) % path.get_point_count()
 	return seek(path.get_point_position(pathIndex))	
+	
+func offsetPursue():
+	var worldTarget = leaderBoid.transform.xform(leaderOffset)
+	var dist = transform.origin.distance_to(worldTarget)
+	var time = dist / maxSpeed
+	
+	var projected = worldTarget + leaderBoid.velocity * time
+	
+	DebugDraw.draw_sphere(projected, 1, Color.red)
+	
+	return arrive(projected)
 
 
 func calculate():
