@@ -27,7 +27,6 @@ transform = Transform( 30, 0, 0, 0, -1.31134e-06, 30, 0, -30, -1.31134e-06, 0, 0
 
 [node name="TrailRenderer" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.696271, -0.104112, -1.52264 )
-visible = false
 script = ExtResource( 2 )
 width = 1.0
 width_curve = SubResource( 10 )

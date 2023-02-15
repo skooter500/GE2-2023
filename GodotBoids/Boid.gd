@@ -35,7 +35,8 @@ export var leaderNodePath:NodePath
 var leaderBoid:Node
 var leaderOffset:Vector3
 
-
+export var playerSteeringEnabled = false
+export var power = 30
 
 func _drawGizmos():
 	
@@ -50,6 +51,7 @@ func _drawGizmos():
 	if (arriveEnabled):
 		DebugDraw.draw_sphere(targetNode.translation, slowingDistance, Color.blueviolet)
 
+	
 
 func pursue():
 	var toEnemy = enemyBoid.transform.origin - transform.origin	
