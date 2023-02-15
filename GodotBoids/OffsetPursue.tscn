@@ -22,7 +22,7 @@ _data = {
 [node name="Spatial" type="Spatial"]
 
 [node name="Follower8" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.5313, -2.28415, -76.6751 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.123, -2.28415, -76.6751 )
 targetNodePath = NodePath("../Position3D")
 offsetPursueEnabled = true
 leaderNodePath = NodePath("../Leader")
@@ -52,7 +52,7 @@ offsetPursueEnabled = true
 leaderNodePath = NodePath("../Leader")
 
 [node name="Follower5" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.6334, 8.18233, -29.694 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.6334, 16.2081, -29.694 )
 targetNodePath = NodePath("../Position3D")
 offsetPursueEnabled = true
 leaderNodePath = NodePath("../Leader")
@@ -111,7 +111,7 @@ pathFollowEnabled = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.5695, -39.5444 )
 
 [node name="camFollower2" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25297, -13.6793, -74.4268 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.85635, 8.83019, -46.5608 )
 script = ExtResource( 6 )
 offsetPursueEnabled = true
 leaderNodePath = NodePath("../Leader")

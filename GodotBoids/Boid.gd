@@ -35,6 +35,8 @@ export var leaderNodePath:NodePath
 var leaderBoid:Node
 var leaderOffset:Vector3
 
+
+
 func _drawGizmos():
 	
 	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1))
