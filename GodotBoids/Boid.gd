@@ -30,6 +30,14 @@ export var enemyNodePath:NodePath
 var enemyBoid:Node
 var pursueTarget:Vector3
 
+export var offsetPursueEnabled = false
+export var leaderNodePath:NodePath
+var leaderBoid:Node
+var leaderOffset:Vector3
+var offsetPursueTarget:Vector3
+
+
+
 func _drawGizmos():
 	
 	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1))
@@ -42,15 +50,7 @@ func _drawGizmos():
 	
 	if (arriveEnabled):
 		DebugDraw.draw_sphere(targetNode.translation, slowingDistance, Color.blueviolet)
-
-
-func pursue():
-	var toEnemy = enemyBoid.transform.origin - transform.origin	
-	var dist = toEnemy.length()	
-	var time = dist / maxSpeed	
-	pursueTarget = enemyBoid.transform.origin + enemyBoid.velocity * time	
-	return seek(pursueTarget)
-
+		
 # Called when the node enters the scene tree for the first time.
 func _ready():	
 	var screen_size = OS.get_screen_size()
@@ -64,7 +64,29 @@ func _ready():
 		
 	if pursueEnabled:
 		enemyBoid = get_node(enemyNodePath)
+	if offsetPursueEnabled:
+		leaderBoid = get_node(leaderNodePath)
+		leaderOffset = leaderBoid.transform.origin - transform.origin
+		leaderOffset = leaderBoid.transform.xform_inv(leaderOffset)
 	pass	
+
+func pursue():
+	var toEnemy = enemyBoid.transform.origin - transform.origin	
+	var dist = toEnemy.length()	
+	var time = dist / maxSpeed	
+	pursueTarget = enemyBoid.transform.origin + enemyBoid.velocity * time	
+	return seek(pursueTarget)
+
+func offsetPursue():
+	var worldTarget = leaderBoid.transform.xform(leaderOffset)
+	var toEnemy = worldTarget - transform.origin	
+	var dist = toEnemy.length()	
+	var time = dist / maxSpeed	
+	var projectedTarget = worldTarget + leaderBoid.velocity * time	
+	DebugDraw.draw_sphere(projectedTarget, 1, Color.red)
+	return arrive(projectedTarget)
+
+
 func seek(target: Vector3):	
 	var toTarget = target - transform.origin
 	toTarget = toTarget.normalized()
@@ -96,10 +118,12 @@ func calculate():
 	if arriveEnabled:
 		arriveTarget = targetNode.transform.origin
 		f += arrive(arriveTarget)
-	if (pathFollowEnabled):
+	if pathFollowEnabled:
 		f += followPath()
 	if pursueEnabled:
 		f += pursue()
+	if offsetPursueEnabled:
+		f += offsetPursue()
 	return f
 	
 func _process(delta):			
