@@ -28,6 +28,14 @@ config/icon="res://icon.png"
 
 DebugDraw="*res://addons/debug_draw_3d/debug_draw.gd"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/debug_draw_3d/plugin.cfg", "res://addons/godot-openxr/plugin.cfg" )
+
+[gdnative]
+
+singletons=[ "res://addons/godot-openxr/config/godot_openxr.gdnlib" ]
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

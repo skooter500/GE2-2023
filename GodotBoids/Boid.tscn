@@ -30,7 +30,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.696271, -0.104112, -1.52264
 script = ExtResource( 2 )
 width = 1.0
 width_curve = SubResource( 10 )
-max_points = 300
 material = SubResource( 12 )
 
 [node name="TrailRenderer2" type="Spatial" parent="."]
@@ -38,7 +37,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.924154, -0.104, -1.523 )
 script = ExtResource( 2 )
 width = 1.0
 width_curve = SubResource( 11 )
-max_points = 300
 material = SubResource( 13 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

@@ -35,8 +35,9 @@ export var leaderNodePath:NodePath
 var leaderBoid:Node
 var leaderOffset:Vector3
 
-export var playerSteeringEnabled = false
+export var controllerSteeringEnabled = false
 export var power = 30
+
 
 func _drawGizmos():
 	
@@ -83,7 +84,17 @@ func seek(target: Vector3):
 	toTarget = toTarget.normalized()
 	var desired = toTarget * maxSpeed
 	return desired - velocity
-	
+
+func controllerSteering():
+	var projectedRight = transform.basis.x
+	projectedRight.y = 0
+	projectedRight = projectedRight.normalized()
+	var turn = - Input.get_axis("turn_left", "turn_right")
+	var move = - Input.get_axis("move_forward", "move_back")
+	var force:Vector3
+	force += move * transform.basis.z * power
+	force += turn * projectedRight * power
+	return force	
 	
 func arrive(target:Vector3):
 	var toTarget = target - transform.origin
@@ -107,7 +118,7 @@ func offsetPursue():
 	
 	var projected = worldTarget + leaderBoid.velocity * time
 	
-	DebugDraw.draw_sphere(projected, 1, Color.red)
+	# DebugDraw.draw_sphere(projected, 1, Color.red)
 	
 	return arrive(projected)
 
@@ -126,6 +137,8 @@ func calculate():
 		f += pursue()
 	if offsetPursueEnabled:
 		f += offsetPursue()
+	if controllerSteeringEnabled:
+		f += controllerSteering()
 	return f
 	
 func _process(delta):			

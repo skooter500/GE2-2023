@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Target.tres" type="Material" id=1]
+
+[sub_resource type="SphereMesh" id=10]
+
+[node name="Position3D" type="Position3D"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.14748, 0, 58.1841 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 10 )
+material/0 = ExtResource( 1 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+mesh = SubResource( 10 )
+material/0 = ExtResource( 1 )

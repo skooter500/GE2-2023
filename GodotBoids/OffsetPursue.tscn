@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Ground.tres" type="Material" id=1]
 [ext_resource path="res://Boid.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Target.tres" type="Material" id=3]
+[ext_resource path="res://test.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Follow.gd" type="Script" id=4]
 [ext_resource path="res://PathDrawer.gd" type="Script" id=5]
 [ext_resource path="res://Boid.gd" type="Script" id=6]
@@ -16,8 +16,6 @@ _data = {
 }
 
 [sub_resource type="PrismMesh" id=9]
-
-[sub_resource type="SphereMesh" id=10]
 
 [node name="Spatial" type="Spatial"]
 
@@ -91,16 +89,7 @@ script = ExtResource( 4 )
 [node name="MeshInstance" type="MeshInstance" parent="Path/PathFollow"]
 mesh = SubResource( 9 )
 
-[node name="Position3D" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.14748, 0, 58.1841 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Position3D"]
-mesh = SubResource( 10 )
-material/0 = ExtResource( 3 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="Position3D"]
-mesh = SubResource( 10 )
-material/0 = ExtResource( 3 )
+[node name="Position3D" parent="." instance=ExtResource( 3 )]
 
 [node name="Leader" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, -2.28415, 12.9662 )
