@@ -21,12 +21,17 @@ _global_script_class_icons={
 [application]
 
 config/name="GodotBoids"
-run/main_scene="res://seek.tscn"
+run/main_scene="res://controllerSteering.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 DebugDraw="*res://addons/debug_draw_3d/debug_draw.gd"
+
+[display]
+
+window/size/width=2000
+window/size/height=1000
 
 [editor_plugins]
 

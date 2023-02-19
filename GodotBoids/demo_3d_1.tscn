@@ -114,5 +114,5 @@ transform = Transform( 1, 0, 0, 0, 1, -8.9407e-08, 0, 1.49012e-07, 1, 0, 1.90735
 visible = false
 material_override = SubResource( 3 )
 mesh = SubResource( 4 )
-material/0 = null
+
 [connection signal="button_down" from="ui/back_btn" to="." method="_on_back_btn_button_down"]
