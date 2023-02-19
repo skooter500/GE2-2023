@@ -1,4 +1,4 @@
-extends Spatial
+extends KinematicBody
 
 export var mass = 1
 export var force = Vector3.ZERO
@@ -16,7 +16,7 @@ var targetNode:Node
 
 export var arriveEnabled = false
 export var arriveTarget: Vector3
-export var slowingDistance = 30
+export var slowingDistance = 35
 
 export var banking = 0.1
 
@@ -29,6 +29,15 @@ export var pursueEnabled = false
 export var enemyNodePath:NodePath
 var enemyBoid:Node
 var pursueTarget:Vector3
+
+export var offsetPursueEnabled = false
+export var leaderNodePath:NodePath
+var leaderBoid:Node
+var leaderOffset:Vector3
+
+export var controllerSteeringEnabled = false
+export var power = 30
+
 
 func _drawGizmos():
 	
@@ -43,6 +52,7 @@ func _drawGizmos():
 	if (arriveEnabled):
 		DebugDraw.draw_sphere(targetNode.translation, slowingDistance, Color.blueviolet)
 
+	
 
 func pursue():
 	var toEnemy = enemyBoid.transform.origin - transform.origin	
@@ -65,12 +75,26 @@ func _ready():
 	if pursueEnabled:
 		enemyBoid = get_node(enemyNodePath)
 	pass	
+	if offsetPursueEnabled:
+		leaderBoid = get_node(leaderNodePath)
+		leaderOffset = leaderBoid.transform.xform_inv(transform.origin)
+		
 func seek(target: Vector3):	
 	var toTarget = target - transform.origin
 	toTarget = toTarget.normalized()
 	var desired = toTarget * maxSpeed
 	return desired - velocity
-	
+
+func controllerSteering():
+	var projectedRight = transform.basis.x
+	projectedRight.y = 0
+	projectedRight = projectedRight.normalized()
+	var turn = - Input.get_axis("turn_left", "turn_right")
+	var move = - Input.get_axis("move_forward", "move_back")
+	var force:Vector3
+	force += move * transform.basis.z * power
+	force += turn * projectedRight * power
+	return force	
 	
 func arrive(target:Vector3):
 	var toTarget = target - transform.origin
@@ -86,6 +110,17 @@ func followPath():
 	if dist < waypointSeekDistance:
 		pathIndex = (pathIndex + 1) % path.get_point_count()
 	return seek(path.get_point_position(pathIndex))	
+	
+func offsetPursue():
+	var worldTarget = leaderBoid.transform.xform(leaderOffset)
+	var dist = transform.origin.distance_to(worldTarget)
+	var time = dist / maxSpeed
+	
+	var projected = worldTarget + leaderBoid.velocity * time
+	
+	# DebugDraw.draw_sphere(projected, 1, Color.red)
+	
+	return arrive(projected)
 
 
 func calculate():
@@ -100,6 +135,10 @@ func calculate():
 		f += followPath()
 	if pursueEnabled:
 		f += pursue()
+	if offsetPursueEnabled:
+		f += offsetPursue()
+	if controllerSteeringEnabled:
+		f += controllerSteering()
 	return f
 	
 func _process(delta):			
@@ -112,16 +151,19 @@ func _process(delta):
 		# To move a Spatial use any of these:
 		# transform.origin += velocity * delta
 		# translation += velocity * delta 		
-		global_translate(velocity * delta)		
+		# global_translate(velocity * delta)		
 		
 		# print(theta)
 		# rotation = Vector3(0, theta, 0)
 		# rotate_y(theta)
 		# transform.origin += velocity * delta
 		
+		move_and_slide(velocity)
+		
 		# Implement Banking as described:
 		# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/
 		var tempUp = transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta)
 		look_at(transform.origin - velocity, tempUp)
+		pass
 	_drawGizmos()	
 		

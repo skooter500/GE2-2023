@@ -21,12 +21,25 @@ _global_script_class_icons={
 [application]
 
 config/name="GodotBoids"
-run/main_scene="res://seek.tscn"
+run/main_scene="res://controllerSteering.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 DebugDraw="*res://addons/debug_draw_3d/debug_draw.gd"
+
+[display]
+
+window/size/width=2000
+window/size/height=1000
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/debug_draw_3d/plugin.cfg", "res://addons/godot-openxr/plugin.cfg" )
+
+[gdnative]
+
+singletons=[ "res://addons/godot-openxr/config/godot_openxr.gdnlib" ]
 
 [gui]
 
@@ -74,3 +87,4 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/subsurface_scattering/quality=2
+quality/filters/msaa=6

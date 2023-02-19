@@ -56,7 +56,7 @@ func _process(delta):
 
 	
 	if abs(move) > 0:     
-		move_and_slide(- transform.basis.z * speed * move)		
+		move_and_slide(- transform.basis.z * speed * move)
 		
 	if canFire and Input.is_action_pressed("ui_select"):
 		var bullet = bulletPrefab.instance()
