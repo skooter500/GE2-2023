@@ -30,8 +30,8 @@ DebugDraw="*res://addons/debug_draw_3d/debug_draw.gd"
 
 [display]
 
-window/size/width=2000
-window/size/height=1000
+window/size/width=1025
+window/size/height=768
 
 [editor_plugins]
 

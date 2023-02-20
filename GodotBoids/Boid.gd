@@ -67,8 +67,9 @@ func _ready():
 	var window_size = OS.get_window_size()
 	
 	OS.set_window_position(screen_size*0.5 - window_size*0.5)
-	
-	targetNode = get_node(targetNodePath)
+
+	if targetNodePath:	
+		targetNode = get_node(targetNodePath)
 	if pathFollowEnabled:
 		path = $"../Path".get_curve()
 		
