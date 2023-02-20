@@ -9,7 +9,8 @@ export var sensitivity = 0.1
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		rotate_y(deg2rad(- event.relative.x * sensitivity))
+		rotate(Vector3.DOWN, deg2rad(event.relative.x * sensitivity))
+		rotate(transform.basis.x,deg2rad(- event.relative.y * sensitivity))
 	if event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 

@@ -4,8 +4,6 @@
 
 ## Join the class on Teams:
 
-Teams:
-
 [![World Videophone](images/wvp.jpg)](https://teams.microsoft.com/l/meetup-join/19%3ameeting_Y2M1ZWM5MmUtMjlhZi00NzM5LThjMTctOTdjMzU3OGQyZDYz%40thread.v2/0?context=%7b%22Tid%22%3a%22766317cb-e948-4e5f-8cec-dabc8e2fd5da%22%2c%22Oid%22%3a%2261aab78b-a857-4647-9668-83d4cca5de03%22%7d)
 
 ## Resources
@@ -40,8 +38,20 @@ Teams:
 - Week 13 - CA Submission - 50%
 - End of year online test - 30%
 
+## Week 5 - More amazing Godot stuff
+
+
+## Lab
+
+- Update your forks of the repo
+- Watch some videos about *Tweens*, *Timers* and the animation system - Super useful nodes. There is an example of their usage in the Seek scene
+- I did a lot of work on the ControllerSteering scene, play around with it. There are three types of Boids in this scene. Understand them.
+- When acceleration is applied suddenly it can result in very sudden turning. Try smoothing the acceleration using lerping and see if this is eliminated
+- Implement damping. Remove a % of velocity each frame  
+- Write a formation generator that sets of formations of leader and follower boids in different configurations like straight line or V. 
+
 ## Week 4 - Path Following, Pursue, Offset Pursue, Trail Renderer, loading models
-- [Recording of the class]()
+- [Recording of the class](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/Ea_J2sR8Em5Js8FTzC4ymkYBXgVJtJ7Pbk8upjMxGCwB7Q?e=BDI2OR)
 ## Lab
 
 Update your forks to get the path following code and create a branch:

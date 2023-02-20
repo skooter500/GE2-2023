@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Models/cobramk3_out/Material_004.material" type="Material" id=1]
-[ext_resource path="res://Models/cobramk3_out/Material_003.material" type="Material" id=2]
-[ext_resource path="res://Models/cobramk3_out/Thruster.material" type="Material" id=3]
-[ext_resource path="res://Models/cobramk3_out/Material_007.material" type="Material" id=4]
-[ext_resource path="res://Models/cobramk3_out/Material_002.material" type="Material" id=5]
+[ext_resource path="res://Models/cobramk3_out/Material_002.material" type="Material" id=1]
+[ext_resource path="res://Models/cobramk3_out/Material_004.material" type="Material" id=2]
+[ext_resource path="res://Models/cobramk3_out/Material_003.material" type="Material" id=3]
+[ext_resource path="res://Models/cobramk3_out/Thruster.material" type="Material" id=4]
+[ext_resource path="res://Models/cobramk3_out/Material_007.material" type="Material" id=5]
 [ext_resource path="res://Models/cobramk3_out/Material_005.material" type="Material" id=6]
 [ext_resource path="res://Models/cobramk3_out/Material_001.material" type="Material" id=7]
 
@@ -17,7 +17,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194691,
 "index_count": 9,
-"material": ExtResource( 5 ),
+"material": ExtResource( 1 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 7
@@ -29,7 +29,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 2194691,
 "index_count": 12,
-"material": ExtResource( 1 ),
+"material": ExtResource( 2 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 8
@@ -53,7 +53,7 @@ surfaces/3 = {
 "blend_shape_data": [  ],
 "format": 2194691,
 "index_count": 6,
-"material": ExtResource( 2 ),
+"material": ExtResource( 3 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 6
@@ -77,7 +77,7 @@ surfaces/5 = {
 "blend_shape_data": [  ],
 "format": 2194691,
 "index_count": 18,
-"material": ExtResource( 3 ),
+"material": ExtResource( 4 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 14
@@ -89,12 +89,12 @@ surfaces/6 = {
 "blend_shape_data": [  ],
 "format": 2194691,
 "index_count": 165,
-"material": ExtResource( 4 ),
+"material": ExtResource( 5 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 37
 }
 
 [node name="CobraMk3" type="MeshInstance"]
-transform = Transform( 0.1, 0, 0, 0, -1.19209e-08, 0.1, 0, -0.1, -1.19209e-08, 0, 0, 0 )
+transform = Transform( 50, 0, 0, 0, -2.18557e-06, 50, 0, -50, -2.18557e-06, 0, 0, 0 )
 mesh = SubResource( 1 )

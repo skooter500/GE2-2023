@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://MoveTarget.gd" type="Script" id=1]
 [ext_resource path="res://Boid.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Coriolis.tscn" type="PackedScene" id=3]
+[ext_resource path="res://CamFollow.gd" type="Script" id=4]
 [ext_resource path="res://Ground.tres" type="Material" id=5]
-[ext_resource path="res://Target.tres" type="Material" id=6]
+[ext_resource path="res://Rotate.gd" type="Script" id=6]
 
 [sub_resource type="Environment" id=5]
 background_mode = 1
@@ -15,12 +17,11 @@ ssao_enabled = true
 
 [sub_resource type="PlaneMesh" id=2]
 
-[sub_resource type="SphereMesh" id=7]
-
 [node name="Spatial" type="Spatial"]
+script = ExtResource( 4 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 40, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 200, 0 )
 environment = SubResource( 5 )
 current = true
 near = 0.01
@@ -40,10 +41,22 @@ shadow_enabled = true
 seekEnabled = true
 targetNodePath = NodePath("../target")
 
-[node name="target" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -35.4422, 0, -6.37854 )
-script = ExtResource( 1 )
+[node name="camTarget" type="Position3D" parent="boid"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.05005, -13.8287 )
 
-[node name="MeshInstance" type="MeshInstance" parent="target"]
-mesh = SubResource( 7 )
-material/0 = ExtResource( 6 )
+[node name="target" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100 )
+script = ExtResource( 1 )
+radius = 200
+
+[node name="Timer" type="Timer" parent="target"]
+wait_time = 10.0
+autostart = true
+
+[node name="Coriolis" parent="target" instance=ExtResource( 3 )]
+transform = Transform( 20, 0, 0, 0, -8.74228e-07, 20, 0, -20, -8.74228e-07, 0, 0, 0 )
+script = ExtResource( 6 )
+
+[node name="Tween" type="Tween" parent="target"]
+
+[connection signal="timeout" from="target/Timer" to="target" method="_on_Timer_timeout"]
