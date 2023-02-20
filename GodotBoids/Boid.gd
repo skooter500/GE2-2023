@@ -38,8 +38,9 @@ var leaderOffset:Vector3
 export var controllerSteeringEnabled = false
 export var power = 30
 
+export var drawGizmos = false
 
-func _drawGizmos():
+func drawGizmos():
 	
 	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1))
 	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0))
@@ -163,8 +164,9 @@ func _process(delta):
 		
 		# Implement Banking as described:
 		# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/
-		var tempUp = transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta)
+		var tempUp = transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta * 5.0)
 		look_at(transform.origin - velocity, tempUp)
 		pass
-	_drawGizmos()	
+	if drawGizmos:
+		drawGizmos()	
 		
