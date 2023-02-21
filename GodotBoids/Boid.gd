@@ -40,6 +40,14 @@ export var power = 30
 
 export var drawGizmos = false
 
+export var jitterWanderEnabled = false
+export var distance:float = 20
+export var radius:float  = 10
+export var jitter:float = 10
+
+var  target:Vector3
+var worldTarget:Vector3
+
 func drawGizmos():
 	
 	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1))
@@ -53,6 +61,25 @@ func drawGizmos():
 	if (arriveEnabled):
 		DebugDraw.draw_sphere(targetNode.translation, slowingDistance, Color.blueviolet)
 
+func jitterWander():
+	var delta = get_process_delta_time()
+	var insideUnitSphere = Vector3(
+		rand_range(-1.0, 1.0)
+		,rand_range(-1.0, 1.0)
+		,rand_range(-1.0, 1.0)
+		)
+	insideUnitSphere = insideUnitSphere.normalized()
+	var disp = jitter * insideUnitSphere * delta
+	target += disp
+	
+	target = Vector3.limit_length(radius)
+
+	var localTarget = (Vector3.FORWARD * distance) + target;
+
+	worldTarget = transform.xform(localTarget)
+	worldTarget.y = 0
+	DebugDraw.draw_line(transform.origin, worldTarget, Color.azure)
+	return worldTarget - transform.origin
 	
 
 func pursue():
@@ -141,6 +168,8 @@ func calculate():
 		f += offsetPursue()
 	if controllerSteeringEnabled:
 		f += controllerSteering()
+	if jitterWanderEnabled:
+		f += jitterWander()
 	return f
 	
 func _process(delta):			
@@ -166,7 +195,6 @@ func _process(delta):
 		# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/
 		var tempUp = transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta * 5.0)
 		look_at(transform.origin - velocity, tempUp)
-		pass
 	if drawGizmos:
 		drawGizmos()	
 		

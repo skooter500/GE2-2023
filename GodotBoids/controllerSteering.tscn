@@ -97,9 +97,7 @@ mesh = SubResource( 9 )
 transform = Transform( 0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, -2.28415, 12.9662 )
 banking = 0.5
 pathFollowEnabled = true
-controllerSteeringEnabled = false
 power = 10
-drawGizmos = true
 
 [node name="camFollower2" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.423, 20, -66.791 )
@@ -107,7 +105,6 @@ script = ExtResource( 3 )
 maxSpeed = 30.0
 offsetPursueEnabled = true
 leaderNodePath = NodePath("../Leader")
-controllerSteeringEnabled = true
 power = 10
 
 [node name="Camera" type="Camera" parent="camFollower2"]

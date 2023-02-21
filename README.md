@@ -38,8 +38,8 @@
 - Week 13 - CA Submission - 50%
 - End of year online test - 30%
 
-## Week 5 - More amazing Godot stuff
-
+## Week 5 - Tweens, Timers, Signals, VR Development, Wandering
+- [Tuesday](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/ERGRGkWGn35EncaM0qcWztsBt1I6LbXjJZ85vQNGYD8Ocg?e=F4dOXZ)
 
 ## Lab
 
