@@ -22,7 +22,7 @@ export var banking = 0.1
 
 export var pathFollowEnabled = false
 var pathIndex = 0
-var path:Curve3D
+var path:Path
 var waypointSeekDistance = 2
 
 export var pursueEnabled = false
@@ -99,7 +99,7 @@ func _ready():
 	if targetNodePath:	
 		targetNode = get_node(targetNodePath)
 	if pathFollowEnabled:
-		path = $"../Path".get_curve()
+		path = $"../Path"
 		
 	if pursueEnabled:
 		enemyBoid = get_node(enemyNodePath)
@@ -134,11 +134,11 @@ func arrive(target:Vector3):
 	return desired - velocity
 
 func followPath():
-	var target = path.get_point_position(pathIndex)
+	var target = path.transform.xform(path.get_curve().get_point_position(pathIndex))
 	var dist = global_transform.origin.distance_to(target)
 	if dist < waypointSeekDistance:
-		pathIndex = (pathIndex + 1) % path.get_point_count()
-	return seek(path.get_point_position(pathIndex))	
+		pathIndex = (pathIndex + 1) % path.get_curve().get_point_count()
+	return seek(path.transform.xform(path.get_curve().get_point_position(pathIndex)))
 	
 func offsetPursue():
 	var worldTarget = leaderBoid.transform.xform(leaderOffset)
