@@ -59,13 +59,15 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100,
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -27.0342 )
 
 [node name="Path" type="Path" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.9879, 0, -27.5175 )
+transform = Transform( 0.948268, 0, -0.31747, 0, 1, 0, 0.31747, 0, 0.948268, 0, 0, -1 )
 curve = SubResource( 2 )
 script = ExtResource( 5 )
 
-[node name="PathFollow" type="PathFollow" parent="Path"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.8201, -5.34058e-05, 14.9069 )
+[node name="follower" type="PathFollow" parent="Path"]
+transform = Transform( 0.999842, -6.43146e-08, -0.0177665, 6.43146e-08, 1, -5.71354e-10, 0.0177665, -5.71354e-10, 0.999842, -28.8201, -5.34058e-05, 14.9069 )
 script = ExtResource( 4 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Path/PathFollow"]
+[node name="MeshInstance" type="MeshInstance" parent="Path/follower"]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0 )
 mesh = SubResource( 3 )
+material/0 = ExtResource( 1 )

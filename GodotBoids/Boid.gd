@@ -135,7 +135,7 @@ func arrive(target:Vector3):
 
 func followPath():
 	var target = path.get_point_position(pathIndex)
-	var dist = transform.origin.distance_to(target)
+	var dist = global_transform.origin.distance_to(target)
 	if dist < waypointSeekDistance:
 		pathIndex = (pathIndex + 1) % path.get_point_count()
 	return seek(path.get_point_position(pathIndex))	
@@ -194,7 +194,7 @@ func _process(delta):
 		# Implement Banking as described:
 		# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/
 		var tempUp = transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta * 5.0)
-		look_at(transform.origin - velocity, tempUp)
+		look_at(global_transform.origin - velocity, tempUp)
 	if drawGizmos:
 		drawGizmos()	
 		
