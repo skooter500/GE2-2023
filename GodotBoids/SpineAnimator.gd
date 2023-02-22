@@ -8,6 +8,7 @@ export var damping:float = 0.1
 var bones = [] 
 var offsets = [] 
 
+
 func calculateOffsets():
 	bones.clear()
 	offsets.clear()	
