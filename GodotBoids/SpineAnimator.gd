@@ -2,12 +2,11 @@ extends Spatial
 
 
 export var bonePaths = []
-export var damping = 20.0
+export var damping:float = 1
+
 
 var bones = [] 
 var offsets = [] 
-
-
 
 func calculateOffsets():
 	bones.clear()
@@ -42,6 +41,5 @@ func _process(delta):
 		
 		# Rotation
 		var wanted = next.transform.looking_at(prev.transform.origin, Vector3.UP).basis
-		next.transform.basis = next.transform.basis.slerp(wanted, delta * damping).orthonormalized()
-		
-		
+		# next.transform.basis = wanted 
+		# next.transform.basis.slerp(wanted, delta * damping).orthonormalized()

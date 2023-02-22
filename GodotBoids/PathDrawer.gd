@@ -9,8 +9,8 @@ func drawGizmos():
 	# DebugDraw.draw_box(box_pos, Vector3(10, 20, 10), Color(0, 1, 0))
 	# DebugDraw.draw_line(transform.origin,  seekTarget , Color(1, 1, 0))
 	for i in range(1, path.get_curve().get_point_count()):
-		var start = path.get_curve().get_point_position(i - 1)
-		var end = path.get_curve().get_point_position(i)
+		var start = transform.xform(path.get_curve().get_point_position(i - 1))
+		var end = transform.xform(path.get_curve().get_point_position(i))
 		DebugDraw.draw_line(start, end , Color.aqua)
 		DebugDraw.draw_sphere(start, 2, Color.aqua)
 

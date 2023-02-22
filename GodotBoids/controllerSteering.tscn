@@ -105,6 +105,7 @@ script = ExtResource( 3 )
 maxSpeed = 30.0
 offsetPursueEnabled = true
 leaderNodePath = NodePath("../Leader")
+controllerSteeringEnabled = true
 power = 10
 
 [node name="Camera" type="Camera" parent="camFollower2"]
