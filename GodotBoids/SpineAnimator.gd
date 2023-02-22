@@ -2,7 +2,7 @@ extends Spatial
 
 
 export var bonePaths = []
-export var damping:float = 1
+export var damping:float = 0.1
 
 
 var bones = [] 
@@ -36,7 +36,7 @@ func _process(delta):
 		var lerped = lerp(next.transform.origin, wantedPos, delta * damping)
 		var clamped = (lerped - prev.transform.origin).limit_length(offsets[i].length())
 		var pos = prev.transform.origin + clamped
-		next.transform.origin = pos
+		next.transform.origin = lerped
 		
 		
 		# Rotation
