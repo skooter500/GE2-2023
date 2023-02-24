@@ -106,7 +106,7 @@ func _ready():
 	pass	
 	if offsetPursueEnabled:
 		leaderBoid = get_node(leaderNodePath)
-		leaderOffset = leaderBoid.transform.xform_inv(transform.origin)
+		leaderOffset = leaderBoid.transform.basis.xform_inv(transform.origin)
 		
 func seek(target: Vector3):	
 	var toTarget = target - transform.origin
@@ -141,7 +141,7 @@ func followPath():
 	return seek(path.transform.xform(path.get_curve().get_point_position(pathIndex)))
 	
 func offsetPursue():
-	var worldTarget = leaderBoid.transform.xform(leaderOffset)
+	var worldTarget = leaderBoid.transform.basis.xform(leaderOffset)
 	var dist = transform.origin.distance_to(worldTarget)
 	var time = dist / maxSpeed
 	
