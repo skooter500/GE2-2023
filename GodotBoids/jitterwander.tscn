@@ -34,7 +34,9 @@ shadow_enabled = true
 
 [node name="boid" parent="." instance=ExtResource( 5 )]
 controllerSteeringEnabled = false
+drawGizmos = true
 jitterWanderEnabled = true
+jitter = 1.0
 
 [node name="camTarget" type="Position3D" parent="boid"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.05005, -13.8287 )

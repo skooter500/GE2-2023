@@ -72,14 +72,13 @@ func jitterWander():
 	var disp = jitter * insideUnitSphere * delta
 	target += disp
 	
-	target = Vector3.limit_length(radius)
+	target = target.limit_length(radius)
+	var localTarget = (Vector3.BACK * distance) + target;
 
-	var localTarget = (Vector3.FORWARD * distance) + target;
-
-	worldTarget = transform.xform(localTarget)
+	worldTarget = global_transform.xform(localTarget)
 	worldTarget.y = 0
-	DebugDraw.draw_line(transform.origin, worldTarget, Color.azure)
-	return worldTarget - transform.origin
+	DebugDraw.draw_line(global_transform.origin, worldTarget, Color.blueviolet)
+	return worldTarget - global_transform.origin
 	
 
 func pursue():
