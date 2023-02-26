@@ -102,7 +102,6 @@ power = 10
 [node name="camFollower2" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.423, 20, -66.791 )
 script = ExtResource( 3 )
-maxSpeed = 30.0
 offsetPursueEnabled = true
 leaderNodePath = NodePath("../Leader")
 controllerSteeringEnabled = true

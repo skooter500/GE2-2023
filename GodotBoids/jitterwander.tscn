@@ -17,7 +17,7 @@ ssao_enabled = true
 [node name="Spatial" type="Spatial"]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 100, 0 )
+transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 5, 20 )
 environment = SubResource( 5 )
 current = true
 near = 0.01
@@ -35,10 +35,11 @@ transform = Transform( 0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.
 shadow_enabled = true
 
 [node name="boid" parent="." instance=ExtResource( 5 )]
+max_speed = 0.1
 controllerSteeringEnabled = false
 drawGizmos = true
 jitterWanderEnabled = true
-jitter = 1.0
+distance = 50.0
 
 [node name="camTarget" type="Position3D" parent="boid"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.05005, -13.8287 )

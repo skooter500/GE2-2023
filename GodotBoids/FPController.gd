@@ -39,3 +39,10 @@ func _process(delta):
 	
 	if abs(move) > 0:     
 		global_translate(global_transform.basis.z * speed * move)
+
+	var up = Input.get_axis("move_up", "move_down")
+	DebugDraw.set_text("up: ", str(up))
+
+	
+	if abs(up) > 0:     
+		global_translate(global_transform.basis.y * speed * move)
