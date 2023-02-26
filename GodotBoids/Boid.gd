@@ -44,16 +44,14 @@ export var jitterWanderEnabled = false
 export var distance:float = 20
 export var radius:float  = 10
 export var jitter:float = 10
-
-var  target:Vector3
-var worldTarget:Vector3
+var wanderTarget:Vector3
 
 func drawGizmos():
 	
-	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1))
-	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0))
-	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.y * 10.0 , Color(0, 1, 0))
-	DebugDraw.draw_line(transform.origin, transform.origin + (force), Color(1, 1, 0))
+	# DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1))
+	#DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0))
+	#DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.y * 10.0 , Color(0, 1, 0))
+	#DebugDraw.draw_line(transform.origin, transform.origin + (force), Color(1, 1, 0))
 	
 	if pursueEnabled:
 		DebugDraw.draw_sphere(pursueTarget, 1, Color.red)
@@ -63,21 +61,21 @@ func drawGizmos():
 
 func jitterWander():
 	var delta = get_process_delta_time()
-	var insideUnitSphere = Vector3(
-		rand_range(-1.0, 1.0)
-		,rand_range(-1.0, 1.0)
-		,rand_range(-1.0, 1.0)
-		)
-	insideUnitSphere = insideUnitSphere.normalized()
-	var disp = jitter * insideUnitSphere * delta
-	target += disp
-	
-	target = target.limit_length(radius)
-	var localTarget = (Vector3.BACK * distance) + target;
 
-	worldTarget = global_transform.xform(localTarget)
-	worldTarget.y = 0
+	var disp = jitter * random_point_in_unit_sphere() * delta
+	wanderTarget += disp
+	
+	wanderTarget = wanderTarget.limit_length(radius)
+	# print("wanderTarget" + str(wanderTarget))
+	var localTarget = (Vector3.BACK * distance) + wanderTarget;
+
+	var worldTarget = global_transform.xform(localTarget)
+	# print("world" + str(worldTarget))
+	
+	var cent = global_transform.xform(Vector3.BACK * distance)
+	DebugDraw.draw_sphere(cent, radius, Color.blueviolet)
 	DebugDraw.draw_line(global_transform.origin, worldTarget, Color.blueviolet)
+	
 	return worldTarget - global_transform.origin
 	
 
@@ -90,6 +88,7 @@ func pursue():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():	
+	randomize()
 	var screen_size = OS.get_screen_size()
 	var window_size = OS.get_window_size()
 	
@@ -106,7 +105,9 @@ func _ready():
 	if offsetPursueEnabled:
 		leaderBoid = get_node(leaderNodePath)
 		leaderOffset = leaderBoid.transform.basis.xform_inv(transform.origin)
-		
+	if jitterWanderEnabled:
+		wanderTarget = random_point_in_unit_sphere() * radius	
+
 func seek(target: Vector3):	
 	var toTarget = target - transform.origin
 	toTarget = toTarget.normalized()
@@ -187,7 +188,7 @@ func _physics_process(var delta):
 		# rotate_y(theta)
 		# transform.origin += velocity * delta
 		
-		move_and_slide(velocity)
+		# move_and_slide(velocity)
 		
 		# Implement Banking as described:
 		# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/
@@ -195,4 +196,14 @@ func _physics_process(var delta):
 		look_at(global_transform.origin - velocity, tempUp)
 	if drawGizmos:
 		drawGizmos()	
+		
+func random_point_in_unit_sphere() -> Vector3:
+	var theta = rand_range(0, 2 * PI)
+	var phi = rand_range(0, PI)
+	var r = pow(rand_range(0, 1), 1.0/3.0)  # Cube root for uniform distribution
+
+	var x = r * sin(phi) * cos(theta)
+	var y = r * sin(phi) * sin(theta)
+	var z = r * cos(phi)
+	return Vector3(x, y, z)
 		
