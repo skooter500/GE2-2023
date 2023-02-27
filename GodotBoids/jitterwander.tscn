@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://FPController.gd" type="Script" id=1]
+[ext_resource path="res://Tank Material.tres" type="Material" id=2]
 [ext_resource path="res://Ground.tres" type="Material" id=3]
-[ext_resource path="res://Boid.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Boid.gd" type="Script" id=4]
+[ext_resource path="res://UberBoid.gd" type="Script" id=5]
 
 [sub_resource type="Environment" id=5]
 background_mode = 1
@@ -14,10 +16,12 @@ ssao_enabled = true
 
 [sub_resource type="PlaneMesh" id=2]
 
+[sub_resource type="CubeMesh" id=6]
+
 [node name="Spatial" type="Spatial"]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 5, 20 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 20 )
 environment = SubResource( 5 )
 current = true
 near = 0.01
@@ -26,7 +30,6 @@ script = ExtResource( 1 )
 
 [node name="Ground" type="MeshInstance" parent="."]
 transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, 0, -1, 0 )
-visible = false
 mesh = SubResource( 2 )
 material/0 = ExtResource( 3 )
 
@@ -34,12 +37,15 @@ material/0 = ExtResource( 3 )
 transform = Transform( 0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, 0, 0, 0 )
 shadow_enabled = true
 
-[node name="boid" parent="." instance=ExtResource( 5 )]
-max_speed = 0.1
-controllerSteeringEnabled = false
-drawGizmos = true
+[node name="boid" type="KinematicBody" parent="."]
+script = ExtResource( 4 )
 jitterWanderEnabled = true
-distance = 50.0
 
-[node name="camTarget" type="Position3D" parent="boid"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.05005, -13.8287 )
+[node name="MeshInstance" type="MeshInstance" parent="boid"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 )
+mesh = SubResource( 6 )
+skeleton = NodePath("")
+material/0 = ExtResource( 2 )
+
+[node name="KinematicBody" type="KinematicBody" parent="."]
+script = ExtResource( 5 )
