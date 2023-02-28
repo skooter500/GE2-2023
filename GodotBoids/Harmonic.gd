@@ -25,7 +25,7 @@ func _ready():
 	
 func _process(delta):
 	if drawGizmos:
-		var cent = boid.global_transform.xform(Vector3.FORWARD * distance)
+		var cent = boid.global_transform.xform(Vector3.BACK * distance)
 		DebugDraw.draw_sphere(cent, radius, Color.deeppink)
 		DebugDraw.draw_line(boid.global_transform.origin, cent, Color.deeppink)
 		DebugDraw.draw_line(cent, worldTarget, Color.blueviolet)
@@ -44,7 +44,7 @@ func calculate():
 	
 	if axis == Axis.Horizontal:
 		target.x = sin(angle)
-		target.z = - cos(angle)
+		target.z =  cos(angle)
 		rot.z = 0
 	else:
 		target.y = sin(angle)
@@ -52,7 +52,7 @@ func calculate():
 	
 	target *= radius
 
-	var localtarget = target + (Vector3.FORWARD * distance)
+	var localtarget = target + (Vector3.BACK * distance)
 	worldTarget = boid.transform.xform(localtarget)
 	
 	theta += frequency * delta * PI * 2.0

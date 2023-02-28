@@ -63,10 +63,10 @@ func _physics_process(var delta):
 	if speed > 0:
 		velocity = velocity.limit_length(max_speed)
 		
-		# move_and_slide(velocity)
+		move_and_slide(velocity)
 		
 		# Implement Banking as described:
 		# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/
 		var tempUp = transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta * 5.0)
-		# look_at(global_transform.origin - velocity, Vector3.UP)
+		look_at(global_transform.origin - velocity, Vector3.UP)
 		
