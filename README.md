@@ -38,8 +38,17 @@
 - Week 13 - CA Submission - 50%
 - End of year online test - 30%
 
+## Week 6 - Refactoring, Spine Animator, Harmonic & Noise Wander
+
+## Lab
+Update your forks
+Wandering!
+Spine animation
+A FPS Controller implementation
+
 ## Week 5 - Tweens, Timers, Signals, VR Development, Wandering
 - [Tuesday](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/ERGRGkWGn35EncaM0qcWztsBt1I6LbXjJZ85vQNGYD8Ocg?e=F4dOXZ)
+- [Wednesday](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/ERFKdBPww_9OhlD239dArMEB-OtEBT5wFw02gOhK6lv5tg?e=ry70rS)
 
 ## Lab
 

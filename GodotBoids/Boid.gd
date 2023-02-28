@@ -205,7 +205,7 @@ func _physics_process(var delta):
 	if drawGizmos:
 		drawGizmos()	
 		
-func random_point_in_unit_sphere() -> Vector3:
+static func random_point_in_unit_sphere() -> Vector3:
 	var theta = rand_range(0, 2 * PI)
 	var phi = rand_range(0, PI)
 	var r = pow(rand_range(0, 1), 1.0/3.0)  # Cube root for uniform distribution
