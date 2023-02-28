@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Tank Material.tres" type="Material" id=1]
 [ext_resource path="res://SpineAnimator.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 
 [sub_resource type="Environment" id=6]
 background_mode = 1
+ambient_light_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="PrismMesh" id=4]
 
@@ -24,6 +25,9 @@ _data = {
 
 [sub_resource type="PrismMesh" id=3]
 
+[sub_resource type="Environment" id=7]
+glow_enabled = true
+
 [node name="spine" type="Spatial"]
 script = ExtResource( 2 )
 bonePaths = [ NodePath("head"), NodePath("MeshInstance2"), NodePath("MeshInstance3"), NodePath("MeshInstance4"), NodePath("Spatial") ]
@@ -37,9 +41,9 @@ script = ExtResource( 6 )
 [node name="head" type="KinematicBody" parent="."]
 script = ExtResource( 3 )
 targetNodePath = NodePath("../Position3D")
+pathFollowEnabled = true
 power = 10
 drawGizmos = true
-jitterWanderEnabled = true
 distance = 50.0
 radius = 30.0
 jitter = 0.1
@@ -98,5 +102,9 @@ script = ExtResource( 3 )
 offsetPursueEnabled = true
 leaderNodePath = NodePath("../head")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 7 )
+
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.532188, -0.386302, -0.753357, 0.587432, 0.809273, 0, 0.609672, -0.442546, 0.657612, 0, 0, 0 )
+transform = Transform( 0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, 0, 0, 0 )
+shadow_enabled = true

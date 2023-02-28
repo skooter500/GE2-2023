@@ -2,7 +2,7 @@ extends Spatial
 
 export var bonePaths = []
 export var damping:float = 0.1
-
+				
 var bones = [] 
 var offsets = [] 
 

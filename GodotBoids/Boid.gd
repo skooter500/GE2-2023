@@ -155,7 +155,6 @@ func offsetPursue():
 	
 	return arrive(projected)
 
-
 func calculate():
 	var f = Vector3.ZERO
 	if seekEnabled:
@@ -173,7 +172,7 @@ func calculate():
 	if controllerSteeringEnabled:
 		f += controllerSteering()
 	if jitterWanderEnabled:
-		f += (jitterWander() *.001)
+		f += (jitterWander())
 	return f
 	
 func _physics_process(var delta):			
@@ -198,7 +197,7 @@ func _physics_process(var delta):
 		# Implement Banking as described:
 		# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/
 		var tempUp = transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta * 5.0)
-		#  look_at(global_transform.origin - velocity, tempUp)
+		look_at(global_transform.origin - velocity, tempUp)
 	if drawGizmos:
 		drawGizmos()	
 		

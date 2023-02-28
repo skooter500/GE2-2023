@@ -27,7 +27,7 @@ func _process(delta):
 	if drawGizmos:
 		var cent = boid.global_transform.xform(Vector3.FORWARD * distance)
 		DebugDraw.draw_sphere(cent, radius, Color.deeppink)
-		DebugDraw.draw_line(boid.global_transform.origin, cent, Color.yellowgreen)
+		DebugDraw.draw_line(boid.global_transform.origin, cent, Color.deeppink)
 		DebugDraw.draw_line(cent, worldTarget, Color.blueviolet)
 	
 		DebugDraw.draw_sphere(worldTarget, 1)	
@@ -51,7 +51,6 @@ func calculate():
 		target.z = cos(angle)
 	
 	target *= radius
-
 
 	var localtarget = target + (Vector3.FORWARD * distance)
 	worldTarget = boid.transform.xform(localtarget)

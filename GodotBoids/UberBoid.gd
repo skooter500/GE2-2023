@@ -37,8 +37,6 @@ func seek_force(target: Vector3):
 	var desired = toTarget * max_speed
 	return desired - velocity
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for i in get_child_count():
@@ -54,6 +52,9 @@ func calculate():
 		force = force.limit_length(max_force)
 	return force
 
+func _process(var delta):
+	print_basis()
+		
 func _physics_process(var delta):
 	force = calculate()
 	acceleration = force / mass
@@ -62,10 +63,10 @@ func _physics_process(var delta):
 	if speed > 0:
 		velocity = velocity.limit_length(max_speed)
 		
-		move_and_slide(velocity)
+		# move_and_slide(velocity)
 		
 		# Implement Banking as described:
 		# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/
 		var tempUp = transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta * 5.0)
-		look_at(global_transform.origin - velocity, Vector3.UP)
+		# look_at(global_transform.origin - velocity, Vector3.UP)
 		
