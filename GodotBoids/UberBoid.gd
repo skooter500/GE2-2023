@@ -9,6 +9,9 @@ export(float) var max_speed = 10.0
 
 export var behaviors = [] 
 export var max_force = 10
+export var banking = 0.1
+export var damping = 0.1
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
