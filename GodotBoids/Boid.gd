@@ -59,9 +59,6 @@ func drawGizmos():
 	if (arriveEnabled):
 		DebugDraw.draw_sphere(targetNode.translation, slowingDistance, Color.blueviolet)
 
-
-
-
 func jitterWander():
 	var delta = get_process_delta_time()
 
