@@ -49,3 +49,4 @@ material/0 = ExtResource( 3 )
 
 [node name="Harmonic" type="Node" parent="uberBoid"]
 script = ExtResource( 5 )
+weight = -1.0
