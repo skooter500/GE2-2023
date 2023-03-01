@@ -22,7 +22,7 @@ _data = {
 "tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0 )
 }
 
-[node name="root2" type="Spatial"]
+[node name="root" type="Spatial"]
 
 [node name="camera follower" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 44.6254, 17.1365, -32.9351 )
