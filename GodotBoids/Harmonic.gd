@@ -40,8 +40,7 @@ func calculate():
 
 	var rot = boid.transform.basis.get_euler()
 	rot.x = 0
-	
-	
+
 	if axis == Axis.Horizontal:
 		target.x = sin(angle)
 		target.z =  cos(angle)
