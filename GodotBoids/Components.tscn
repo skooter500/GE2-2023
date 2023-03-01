@@ -40,16 +40,6 @@ shadow_enabled = true
 
 [node name="uberBoid" type="KinematicBody" parent="."]
 script = ExtResource( 1 )
-mass = null
-force = null
-acceleration = null
-velocity = null
-speed = null
-max_speed = null
-behaviors = null
-max_force = null
-banking = null
-damping = null
 
 [node name="MeshInstance" type="MeshInstance" parent="uberBoid"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 )
@@ -59,3 +49,4 @@ material/0 = ExtResource( 3 )
 
 [node name="Harmonic" type="Node" parent="uberBoid"]
 script = ExtResource( 5 )
+weight = -1.0

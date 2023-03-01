@@ -59,9 +59,6 @@ func drawGizmos():
 	if (arriveEnabled):
 		DebugDraw.draw_sphere(targetNode.translation, slowingDistance, Color.blueviolet)
 
-
-
-
 func jitterWander():
 	var delta = get_process_delta_time()
 
@@ -158,7 +155,6 @@ func offsetPursue():
 	
 	return arrive(projected)
 
-
 func calculate():
 	var f = Vector3.ZERO
 	if seekEnabled:
@@ -176,7 +172,7 @@ func calculate():
 	if controllerSteeringEnabled:
 		f += controllerSteering()
 	if jitterWanderEnabled:
-		f += (jitterWander() *.001)
+		f += (jitterWander())
 	return f
 	
 func _physics_process(var delta):			

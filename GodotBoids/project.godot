@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Behavior",
+"language": "GDScript",
+"path": "res://Behavior.gd"
+}, {
 "base": "Spatial",
 "class": "TrailRenderer",
 "language": "GDScript",
 "path": "res://TrailRender.gd"
 } ]
 _global_script_class_icons={
+"Behavior": "",
 "TrailRenderer": ""
 }
 
