@@ -9,7 +9,7 @@ export var distance = 5
 
 enum Axis { Horizontal, Vertical}
 
-var axis = Axis.Horizontal
+export var axis = Axis.Horizontal
 
 export var weight = 1.0
 
@@ -31,6 +31,8 @@ func _process(delta):
 		DebugDraw.draw_line(cent, worldTarget, Color.blueviolet)
 	
 		DebugDraw.draw_sphere(worldTarget, 1)	
+		DebugDraw.set_text("Radius: " + str(radius))
+		DebugDraw.set_text("Distance: " + str(distance))
 
 func calculate():		
 	var n  = sin(theta)
@@ -52,8 +54,35 @@ func calculate():
 	target *= radius
 
 	var localtarget = target + (Vector3.BACK * distance)
-	worldTarget = boid.transform.xform(localtarget)
 	
+	var projected = Basis(rot)
+	
+	worldTarget = boid.global_transform.origin + (projected * localtarget)	
 	theta += frequency * delta * PI * 2.0
 
 	return boid.seek_force(worldTarget)
+
+
+func _on_HSlider_value_changed(value):
+	distance = value
+	pass # Replace with function body.
+
+
+func _on_HSlider2_value_changed(value):
+	radius =  value
+	pass # Replace with function body.
+
+
+func _on_HSlider4_value_changed(value):
+	frequency = range_lerp(value, 0, 100, 0,2)
+	pass # Replace with function body.
+
+
+func _on_HSlider3_value_changed(value):
+	amplitude = range_lerp(value, 0, 100, 0,180)	
+	pass # Replace with function body.
+
+
+func _on_HSlider5_value_changed(value):
+	weight = range_lerp(value, 0, 100, 0, 10)
+	pass # Replace with function body.

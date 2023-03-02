@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Tank Material.tres" type="Material" id=1]
 [ext_resource path="res://SpineAnimator.gd" type="Script" id=2]
@@ -21,6 +21,8 @@ _data = {
 "points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -11.2065, -9.15527e-05, -29.797, 0, 0, 0, 0, 0, 0, -2.83316, 0.000137329, -9.18577, 0, 0, 0, 0, 0, 0, 16.3011, 23.6271, -8.24546, 0, 0, 0, 0, 0, 0, 46.7083, -5.34058e-05, -27.2299, 0, 0, 0, 0, 0, 0, 52.709, 22.523, -0.299791, 0, 0, 0, 0, 0, 0, 61.4845, 0, 43.691, 0, 0, 0, 0, 0, 0, 41.071, 9.53445, 8.45671, 0, 0, 0, 0, 0, 0, 2.29026, 0, 45.1004, 0, 0, 0, 0, 0, 0, 24.8938, -17.113, 20.9767 ),
 "tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0 )
 }
+
+[sub_resource type="Theme" id=9]
 
 [node name="root" type="Spatial"]
 
@@ -86,6 +88,7 @@ frequency = 0.1
 radius = 20.0
 amplitude = 45
 distance = 10
+axis = 1
 
 [node name="Spatial" type="Spatial" parent="."]
 
@@ -102,3 +105,110 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 12.0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="DirectionalLight"]
 transform = Transform( 0.646177, 0.763187, 2.01452e-08, 6.97809e-09, -3.23043e-08, 1, 0.763187, -0.646177, -2.61999e-08, 0, 12.0512, 0.23691 )
+
+[node name="Controls" type="Node" parent="."]
+
+[node name="HSlider" type="HSlider" parent="Controls"]
+anchor_right = 0.272
+anchor_bottom = 0.28
+margin_left = 829.0
+margin_top = 3.0
+margin_right = 703.2
+margin_bottom = -147.04
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Controls"]
+anchor_right = 0.354
+anchor_bottom = 0.108
+margin_left = 725.0
+margin_top = 24.0
+margin_right = 440.15
+margin_bottom = -41.944
+theme = SubResource( 9 )
+text = "Distance:"
+
+[node name="HSlider2" type="HSlider" parent="Controls"]
+anchor_right = 0.272
+anchor_bottom = 0.28
+margin_left = 830.0
+margin_top = 63.0
+margin_right = 704.2
+margin_bottom = -87.04
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Controls"]
+anchor_right = 0.354
+anchor_bottom = 0.108
+margin_left = 726.0
+margin_top = 84.0
+margin_right = 441.15
+margin_bottom = 18.056
+theme = SubResource( 9 )
+text = "Radius:"
+
+[node name="HSlider3" type="HSlider" parent="Controls"]
+anchor_right = 0.272
+anchor_bottom = 0.28
+margin_left = 830.0
+margin_top = 119.0
+margin_right = 704.2
+margin_bottom = -31.04
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Controls"]
+anchor_right = 0.354
+anchor_bottom = 0.108
+margin_left = 726.0
+margin_top = 140.0
+margin_right = 441.15
+margin_bottom = 74.056
+theme = SubResource( 9 )
+text = "Amplitude:"
+
+[node name="HSlider4" type="HSlider" parent="Controls"]
+anchor_right = 0.272
+anchor_bottom = 0.28
+margin_left = 831.0
+margin_top = 172.0
+margin_right = 705.2
+margin_bottom = 21.96
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="Controls"]
+anchor_right = 0.354
+anchor_bottom = 0.108
+margin_left = 727.0
+margin_top = 193.0
+margin_right = 442.15
+margin_bottom = 127.056
+theme = SubResource( 9 )
+text = "Speed:
+"
+
+[node name="HSlider5" type="HSlider" parent="Controls"]
+anchor_right = 0.272
+anchor_bottom = 0.28
+margin_left = 832.0
+margin_top = 223.0
+margin_right = 706.2
+margin_bottom = 72.96
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="Controls"]
+anchor_right = 0.354
+anchor_bottom = 0.108
+margin_left = 728.0
+margin_top = 244.0
+margin_right = 443.15
+margin_bottom = 178.056
+theme = SubResource( 9 )
+text = "Weight:
+"
+
+[node name="MenuButton" type="MenuButton" parent="Controls"]
+anchor_right = 0.174
+anchor_bottom = 0.151
+margin_right = 232.65
+margin_bottom = 48.032
+text = "Horizontal"
+
+[connection signal="value_changed" from="Controls/HSlider" to="creature/boid/Harmonic" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="Controls/HSlider2" to="creature/boid/Harmonic" method="_on_HSlider2_value_changed"]
+[connection signal="value_changed" from="Controls/HSlider3" to="creature/boid/Harmonic" method="_on_HSlider3_value_changed"]
+[connection signal="value_changed" from="Controls/HSlider4" to="creature/boid/Harmonic" method="_on_HSlider4_value_changed"]
+[connection signal="value_changed" from="Controls/HSlider5" to="creature/boid/Harmonic" method="_on_HSlider5_value_changed"]
