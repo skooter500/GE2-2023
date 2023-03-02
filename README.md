@@ -39,6 +39,8 @@
 - End of year online test - 30%
 
 ## Week 6 - Refactoring, Spine Animator, Harmonic & Noise Wander
+- [Wednesday](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/ETsrpB5Y_41LnHzhHt8chfABkflJ5r7D82HmEXXbCVL4FQ?e=RqBjaS)
+- [Tuesday](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EaOGZdKE6n9Nqo2fqhXwLYwBZX8Art1k4kYWn8uspbkJag?e=ZvHne2)
 
 ## Lab
 Update your forks
