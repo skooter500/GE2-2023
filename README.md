@@ -38,6 +38,19 @@
 - Week 13 - CA Submission - 50%
 - End of year online test - 30%
 
+## Week 7 
+
+## Lab
+- [Submit your assignment teams](https://forms.office.com/Pages/ResponsePage.aspx?id=yxdjdkjpX06M7Nq8ji_V2ou3qmFXqEdGlmiD1Myl3gNUMUZWTzVSQldVVVpONDBFTTdYQUtNWExNTC4u)
+
+Update your forks and take a look at the SpineAnimator scene. There is a little spiney wriggling creature and a boid that the camera is attached to that has offset pursue. 
+
+Things to try:
+
+- Use the Remote scene and the debugging tools in Godot to track down the bug in the SpineAnimator system that is rotating the spine elements by 180 degrees
+- Make a copy of the  SpineAnimator scene and call it NoiseWander 
+- Create a new Behavior called NoiseWander that uses Perlin noise, instead of a sin function to generate the force. You can base it on [the NoiseWander code here](https://github.com/skooter500/GE2-2021-2022/blob/master/GE2%202022/Assets/NoiseWander.cs)
+
 ## Week 6 - Refactoring, Spine Animator, Harmonic & Noise Wander
 - [Wednesday](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/ETsrpB5Y_41LnHzhHt8chfABkflJ5r7D82HmEXXbCVL4FQ?e=RqBjaS)
 - [Tuesday](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EaOGZdKE6n9Nqo2fqhXwLYwBZX8Art1k4kYWn8uspbkJag?e=ZvHne2)
