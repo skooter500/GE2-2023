@@ -29,8 +29,6 @@ func print_basis():
 	DebugDraw.set_text("Vector3.UP: ", Vector3.UP)
 	DebugDraw.set_text("Vector3.DOWN: ", Vector3.DOWN)
 
-
-
 func seek_force(target: Vector3):	
 	var toTarget = target - transform.origin
 	toTarget = toTarget.normalized()
