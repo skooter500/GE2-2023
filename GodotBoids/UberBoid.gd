@@ -7,7 +7,7 @@ export var velocity = Vector3.ZERO
 export var speed:float
 export(float) var max_speed = 10.0
 
-export var behaviors = [] 
+var behaviors = [] 
 export var max_force = 10
 export var banking = 0.1
 export var damping = 0.1

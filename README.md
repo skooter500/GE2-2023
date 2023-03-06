@@ -38,7 +38,11 @@
 - Week 13 - CA Submission - 50%
 - End of year online test - 30%
 
-## Week 7 
+## Week 7 - Controllers, Noise Wander, Obstacle Avoidance
+- Create a controller node to connect Harmonic & UI - MVC
+- Gang of 4
+- Raycasting
+- Obstacle avoidance
 
 ## Lab
 - [Submit your assignment teams](https://forms.office.com/Pages/ResponsePage.aspx?id=yxdjdkjpX06M7Nq8ji_V2ou3qmFXqEdGlmiD1Myl3gNUMUZWTzVSQldVVVpONDBFTTdYQUtNWExNTC4u)
