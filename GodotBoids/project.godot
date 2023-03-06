@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GodotBoids"
-run/main_scene="res://controllerSteering.tscn"
+run/main_scene="res://BigGiantHead.tscn"
 config/icon="res://icon.png"
 
 [autoload]

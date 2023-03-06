@@ -25,7 +25,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
-	look_at($"../../creature/boid".global_transform.origin, Vector3.UP)
+	# look_at($"../../creature/boid".global_transform.origin, Vector3.UP)
 	var turn = Input.get_axis("turn_left", "turn_right")
 	DebugDraw.set_text("turn: ", str(turn))
 	
