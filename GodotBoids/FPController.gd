@@ -8,6 +8,7 @@ extends Camera
 export var sensitivity = 0.1
 export var speed:float = 1.0
 
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		rotate(Vector3.DOWN, deg2rad(event.relative.x * sensitivity))
@@ -18,7 +19,7 @@ func _input(event):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pass # Replace with function body.
 
 

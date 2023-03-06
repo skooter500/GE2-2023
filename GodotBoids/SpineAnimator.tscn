@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Tank Material.tres" type="Material" id=1]
 [ext_resource path="res://SpineAnimator.gd" type="Script" id=2]
@@ -7,8 +7,8 @@
 [ext_resource path="res://PathDrawer.gd" type="Script" id=5]
 [ext_resource path="res://FPController.gd" type="Script" id=6]
 [ext_resource path="res://OffsetPursue.gd" type="Script" id=7]
-
-[sub_resource type="Environment" id=6]
+[ext_resource path="res://Controller.gd" type="Script" id=8]
+[ext_resource path="res://FollowPath.gd" type="Script" id=9]
 
 [sub_resource type="PrismMesh" id=8]
 
@@ -24,17 +24,13 @@ _data = {
 
 [sub_resource type="Theme" id=9]
 
+[sub_resource type="Environment" id=6]
+
 [node name="root" type="Spatial"]
 
 [node name="camera follower" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 44.6254, 17.1365, -32.9351 )
 script = ExtResource( 3 )
-
-[node name="Camera" type="Camera" parent="camera follower"]
-transform = Transform( -1, -6.14883e-10, -8.74185e-08, 6.14883e-10, 0.999901, -0.0140669, 8.74185e-08, -0.0140669, -0.999901, 0, 1.80403, 1.28862 )
-environment = SubResource( 6 )
-far = 10000.0
-script = ExtResource( 6 )
 
 [node name="OffsetPursue" type="Node" parent="camera follower"]
 script = ExtResource( 7 )
@@ -90,6 +86,9 @@ amplitude = 45
 distance = 10
 axis = 1
 
+[node name="FollowPath" type="Node" parent="creature/boid"]
+script = ExtResource( 9 )
+
 [node name="Spatial" type="Spatial" parent="."]
 
 [node name="Position3D" type="Position3D" parent="."]
@@ -107,8 +106,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 12.0
 transform = Transform( 0.646177, 0.763187, 2.01452e-08, 6.97809e-09, -3.23043e-08, 1, 0.763187, -0.646177, -2.61999e-08, 0, 12.0512, 0.23691 )
 
 [node name="Controls" type="Node" parent="."]
+script = ExtResource( 8 )
 
-[node name="HSlider" type="HSlider" parent="Controls"]
+[node name="distance" type="HSlider" parent="Controls"]
 anchor_right = 0.272
 anchor_bottom = 0.28
 margin_left = 829.0
@@ -126,7 +126,7 @@ margin_bottom = -41.944
 theme = SubResource( 9 )
 text = "Distance:"
 
-[node name="HSlider2" type="HSlider" parent="Controls"]
+[node name="radius" type="HSlider" parent="Controls"]
 anchor_right = 0.272
 anchor_bottom = 0.28
 margin_left = 830.0
@@ -144,13 +144,14 @@ margin_bottom = 18.056
 theme = SubResource( 9 )
 text = "Radius:"
 
-[node name="HSlider3" type="HSlider" parent="Controls"]
+[node name="amplitude" type="HSlider" parent="Controls"]
 anchor_right = 0.272
 anchor_bottom = 0.28
 margin_left = 830.0
 margin_top = 119.0
 margin_right = 704.2
 margin_bottom = -31.04
+max_value = 180.0
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="Controls"]
 anchor_right = 0.354
@@ -162,13 +163,14 @@ margin_bottom = 74.056
 theme = SubResource( 9 )
 text = "Amplitude:"
 
-[node name="HSlider4" type="HSlider" parent="Controls"]
+[node name="Frequency" type="HSlider" parent="Controls"]
 anchor_right = 0.272
 anchor_bottom = 0.28
 margin_left = 831.0
 margin_top = 172.0
 margin_right = 705.2
 margin_bottom = 21.96
+max_value = 2.0
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="Controls"]
 anchor_right = 0.354
@@ -178,16 +180,18 @@ margin_top = 193.0
 margin_right = 442.15
 margin_bottom = 127.056
 theme = SubResource( 9 )
-text = "Speed:
+text = "Frequency:
+
 "
 
-[node name="HSlider5" type="HSlider" parent="Controls"]
+[node name="weight" type="HSlider" parent="Controls"]
 anchor_right = 0.272
 anchor_bottom = 0.28
 margin_left = 832.0
 margin_top = 223.0
 margin_right = 706.2
 margin_bottom = 72.96
+max_value = 10.0
 
 [node name="RichTextLabel5" type="RichTextLabel" parent="Controls"]
 anchor_right = 0.354
@@ -200,15 +204,14 @@ theme = SubResource( 9 )
 text = "Weight:
 "
 
-[node name="MenuButton" type="MenuButton" parent="Controls"]
-anchor_right = 0.174
-anchor_bottom = 0.151
-margin_right = 232.65
-margin_bottom = 48.032
-text = "Horizontal"
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -1, -6.14885e-10, -8.74185e-08, 6.14883e-10, 0.999901, -0.0140669, 8.74185e-08, -0.0140669, -0.999901, 44.6254, 17.1365, -32.9351 )
+environment = SubResource( 6 )
+far = 10000.0
+script = ExtResource( 6 )
 
-[connection signal="value_changed" from="Controls/HSlider" to="creature/boid/Harmonic" method="_on_HSlider_value_changed"]
-[connection signal="value_changed" from="Controls/HSlider2" to="creature/boid/Harmonic" method="_on_HSlider2_value_changed"]
-[connection signal="value_changed" from="Controls/HSlider3" to="creature/boid/Harmonic" method="_on_HSlider3_value_changed"]
-[connection signal="value_changed" from="Controls/HSlider4" to="creature/boid/Harmonic" method="_on_HSlider4_value_changed"]
-[connection signal="value_changed" from="Controls/HSlider5" to="creature/boid/Harmonic" method="_on_HSlider5_value_changed"]
+[connection signal="value_changed" from="Controls/distance" to="creature/boid/Harmonic" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="Controls/radius" to="creature/boid/Harmonic" method="_on_HSlider2_value_changed"]
+[connection signal="value_changed" from="Controls/amplitude" to="creature/boid/Harmonic" method="_on_HSlider3_value_changed"]
+[connection signal="value_changed" from="Controls/Frequency" to="creature/boid/Harmonic" method="_on_HSlider4_value_changed"]
+[connection signal="value_changed" from="Controls/weight" to="creature/boid/Harmonic" method="_on_HSlider5_value_changed"]

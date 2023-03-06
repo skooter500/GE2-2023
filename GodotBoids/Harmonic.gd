@@ -61,28 +61,3 @@ func calculate():
 	theta += frequency * delta * PI * 2.0
 
 	return boid.seek_force(worldTarget)
-
-
-func _on_HSlider_value_changed(value):
-	distance = value
-	pass # Replace with function body.
-
-
-func _on_HSlider2_value_changed(value):
-	radius =  value
-	pass # Replace with function body.
-
-
-func _on_HSlider4_value_changed(value):
-	frequency = range_lerp(value, 0, 100, 0,2)
-	pass # Replace with function body.
-
-
-func _on_HSlider3_value_changed(value):
-	amplitude = range_lerp(value, 0, 100, 0,180)	
-	pass # Replace with function body.
-
-
-func _on_HSlider5_value_changed(value):
-	weight = range_lerp(value, 0, 100, 0, 10)
-	pass # Replace with function body.
