@@ -56,7 +56,9 @@ func calculate():
 	for i in behaviors.size():
 		force = Vector3.ZERO
 		force += behaviors[i].calculate() * behaviors[i].weight
-		force = force.limit_length(max_force)
+		if force.length() > max_force:
+			force = force.limit_length(max_force)
+			break
 	return force
 
 func _process(var delta):
@@ -70,7 +72,7 @@ func _physics_process(var delta):
 	if speed > 0:
 		velocity = velocity.limit_length(max_speed)
 		
-		move_and_slide(velocity)
+		# move_and_slide(velocity)
 		
 		# Implement Banking as described:
 		# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/
