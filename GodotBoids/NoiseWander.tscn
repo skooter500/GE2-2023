@@ -100,10 +100,12 @@ environment = SubResource( 6 )
 far = 10000.0
 script = ExtResource( 3 )
 
-[node name="Controls" type="Node" parent="."]
+[node name="Control" type="Control" parent="."]
+margin_right = 1050.0
+margin_bottom = 768.0
 script = ExtResource( 6 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Controls"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
 margin_left = 501.0
 margin_top = 44.0
 margin_right = 684.0
@@ -111,86 +113,84 @@ margin_bottom = 84.0
 text = "Octaves:
 "
 
-[node name="octaves" type="HSlider" parent="Controls"]
+[node name="octaves" type="HSlider" parent="Control"]
 margin_left = 704.0
 margin_top = 10.0
 margin_right = 1010.0
 margin_bottom = 106.0
 max_value = 9.0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="Controls"]
-margin_left = 465.0
-margin_top = 592.0
-margin_right = 648.0
-margin_bottom = 632.0
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control"]
+margin_left = 491.0
+margin_top = 441.0
+margin_right = 674.0
+margin_bottom = 481.0
 text = "Distance:
 "
 
-[node name="period" type="HSlider" parent="Controls"]
+[node name="period" type="HSlider" parent="Control"]
 margin_left = 707.0
 margin_top = 88.0
 margin_right = 1013.0
 margin_bottom = 184.0
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="Controls"]
-margin_left = 490.0
-margin_top = 498.0
-margin_right = 673.0
-margin_bottom = 538.0
+[node name="RichTextLabel3" type="RichTextLabel" parent="Control"]
+margin_left = 488.0
+margin_top = 329.0
+margin_right = 649.0
+margin_bottom = 369.0
 text = "Amplitude:
 
 "
 
-[node name="persistance" type="HSlider" parent="Controls"]
-margin_left = 695.0
-margin_top = 389.0
-margin_right = 1001.0
-margin_bottom = 485.0
+[node name="persistance" type="HSlider" parent="Control"]
+margin_left = 701.0
+margin_top = 225.0
+margin_right = 1007.0
+margin_bottom = 321.0
 max_value = 1.0
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="Controls"]
-margin_left = 494.0
-margin_top = 416.0
-margin_right = 677.0
-margin_bottom = 456.0
-text = "Persistance:
-"
+[node name="distance" type="HSlider" parent="Control"]
+margin_left = 702.0
+margin_top = 415.0
+margin_right = 1008.0
+margin_bottom = 511.0
 
-[node name="distance" type="HSlider" parent="Controls"]
-margin_left = 691.0
-margin_top = 567.0
-margin_right = 997.0
-margin_bottom = 663.0
-
-[node name="RichTextLabel5" type="RichTextLabel" parent="Controls"]
-margin_left = 507.0
-margin_top = 246.0
-margin_right = 690.0
-margin_bottom = 286.0
+[node name="RichTextLabel5" type="RichTextLabel" parent="Control"]
+margin_left = 499.0
+margin_top = 187.0
+margin_right = 682.0
+margin_bottom = 227.0
 text = "Radius:
 
 "
 
-[node name="radius" type="HSlider" parent="Controls"]
-margin_left = 703.0
-margin_top = 217.0
-margin_right = 1009.0
-margin_bottom = 313.0
+[node name="radius" type="HSlider" parent="Control"]
+margin_left = 709.0
+margin_top = 152.0
+margin_right = 1015.0
+margin_bottom = 248.0
 
-[node name="RichTextLabel6" type="RichTextLabel" parent="Controls"]
-margin_left = 499.0
-margin_top = 126.0
-margin_right = 682.0
-margin_bottom = 166.0
+[node name="RichTextLabel6" type="RichTextLabel" parent="Control"]
+margin_left = 497.0
+margin_top = 117.0
+margin_right = 680.0
+margin_bottom = 157.0
 text = "Period:
 "
 
-[node name="amplitude" type="HSlider" parent="Controls"]
-margin_left = 701.0
-margin_top = 462.0
-margin_right = 1007.0
-margin_bottom = 558.0
+[node name="amplitude" type="HSlider" parent="Control"]
+margin_left = 696.0
+margin_top = 314.0
+margin_right = 1002.0
+margin_bottom = 410.0
 max_value = 180.0
 
-[connection signal="value_changed" from="Controls/octaves" to="Controls" method="_on_octaves_value_changed"]
-[connection signal="value_changed" from="Controls/period" to="creature/boid/NoiseWander" method="_on_period_value_changed"]
+[node name="RichTextLabel4" type="RichTextLabel" parent="Control"]
+margin_left = 489.0
+margin_top = 263.0
+margin_right = 672.0
+margin_bottom = 303.0
+text = "Amplitude:
+
+"

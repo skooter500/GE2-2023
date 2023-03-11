@@ -50,7 +50,11 @@ func _ready():
 		var child = get_child(i)
 		if child.has_method("calculate"):
 			behaviors.push_back(child)
-			
+	var screen_size = OS.get_screen_size()
+	var window_size = OS.get_window_size()
+	
+	OS.set_window_position(screen_size*0.5 - window_size*0.5)
+
 func calculate():	
 	# WPTRS	
 	for i in behaviors.size():
@@ -72,7 +76,7 @@ func _physics_process(var delta):
 	if speed > 0:
 		velocity = velocity.limit_length(max_speed)
 		
-		# move_and_slide(velocity)
+		move_and_slide(velocity)
 		
 		# Implement Banking as described:
 		# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/

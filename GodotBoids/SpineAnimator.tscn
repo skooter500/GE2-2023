@@ -42,7 +42,7 @@ leaderNodePath = NodePath("../../creature/boid")
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.504121 )
 
 [node name="MeshInstance" type="MeshInstance" parent="creature/tail2"]
-transform = Transform( 1, 0, 0, 0, -8.74228e-08, -1, 0, 2, -4.37114e-08, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, -8.74228e-08, 1, 0, -2, -4.37114e-08, 0, 0, 0 )
 mesh = SubResource( 8 )
 material/0 = ExtResource( 1 )
 
@@ -80,7 +80,7 @@ bonePaths = [ NodePath(".."), NodePath("../../MeshInstance4"), NodePath("../../M
 
 [node name="Harmonic" type="Node" parent="creature/boid"]
 script = ExtResource( 4 )
-frequency = 0.1
+frequency = 0.5
 radius = 20.0
 amplitude = 45
 distance = 10
@@ -111,74 +111,74 @@ script = ExtResource( 8 )
 [node name="distance" type="HSlider" parent="Controls"]
 anchor_right = 0.272
 anchor_bottom = 0.28
-margin_left = 829.0
-margin_top = 3.0
-margin_right = 703.2
-margin_bottom = -147.04
+margin_left = 689.0
+margin_top = 14.0
+margin_right = 563.2
+margin_bottom = -136.04
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Controls"]
 anchor_right = 0.354
 anchor_bottom = 0.108
-margin_left = 725.0
-margin_top = 24.0
-margin_right = 440.15
-margin_bottom = -41.944
+margin_left = 612.0
+margin_top = 11.0
+margin_right = 828.8
+margin_bottom = -23.8
 theme = SubResource( 9 )
 text = "Distance:"
 
 [node name="radius" type="HSlider" parent="Controls"]
 anchor_right = 0.272
 anchor_bottom = 0.28
-margin_left = 830.0
-margin_top = 63.0
-margin_right = 704.2
-margin_bottom = -87.04
+margin_left = 690.0
+margin_top = 74.0
+margin_right = 564.2
+margin_bottom = -76.04
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="Controls"]
 anchor_right = 0.354
 anchor_bottom = 0.108
-margin_left = 726.0
-margin_top = 84.0
-margin_right = 441.15
-margin_bottom = 18.056
+margin_left = 616.0
+margin_top = 126.0
+margin_right = 832.8
+margin_bottom = 91.2
 theme = SubResource( 9 )
 text = "Radius:"
 
 [node name="amplitude" type="HSlider" parent="Controls"]
 anchor_right = 0.272
 anchor_bottom = 0.28
-margin_left = 830.0
-margin_top = 119.0
-margin_right = 704.2
-margin_bottom = -31.04
+margin_left = 690.0
+margin_top = 130.0
+margin_right = 564.2
+margin_bottom = -20.04
 max_value = 180.0
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="Controls"]
 anchor_right = 0.354
 anchor_bottom = 0.108
-margin_left = 726.0
-margin_top = 140.0
-margin_right = 441.15
-margin_bottom = 74.056
+margin_left = 594.0
+margin_top = 180.0
+margin_right = 810.8
+margin_bottom = 145.2
 theme = SubResource( 9 )
 text = "Amplitude:"
 
 [node name="Frequency" type="HSlider" parent="Controls"]
 anchor_right = 0.272
 anchor_bottom = 0.28
-margin_left = 831.0
-margin_top = 172.0
-margin_right = 705.2
-margin_bottom = 21.96
+margin_left = 691.0
+margin_top = 183.0
+margin_right = 565.2
+margin_bottom = 32.96
 max_value = 2.0
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="Controls"]
 anchor_right = 0.354
 anchor_bottom = 0.108
-margin_left = 727.0
-margin_top = 193.0
-margin_right = 442.15
-margin_bottom = 127.056
+margin_left = 595.0
+margin_top = 76.0
+margin_right = 811.8
+margin_bottom = 41.2
 theme = SubResource( 9 )
 text = "Frequency:
 
@@ -187,19 +187,19 @@ text = "Frequency:
 [node name="weight" type="HSlider" parent="Controls"]
 anchor_right = 0.272
 anchor_bottom = 0.28
-margin_left = 832.0
-margin_top = 223.0
-margin_right = 706.2
-margin_bottom = 72.96
+margin_left = 692.0
+margin_top = 234.0
+margin_right = 566.2
+margin_bottom = 83.96
 max_value = 10.0
 
-[node name="RichTextLabel5" type="RichTextLabel" parent="Controls"]
+[node name="RichTextLabel6" type="RichTextLabel" parent="Controls"]
 anchor_right = 0.354
 anchor_bottom = 0.108
-margin_left = 728.0
-margin_top = 244.0
-margin_right = 443.15
-margin_bottom = 178.056
+margin_left = 627.0
+margin_top = 229.0
+margin_right = 843.8
+margin_bottom = 194.2
 theme = SubResource( 9 )
 text = "Weight:
 "
