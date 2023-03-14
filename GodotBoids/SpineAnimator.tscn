@@ -1,14 +1,15 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Tank Material.tres" type="Material" id=1]
 [ext_resource path="res://SpineAnimator.gd" type="Script" id=2]
 [ext_resource path="res://UberBoid.gd" type="Script" id=3]
-[ext_resource path="res://Harmonic.gd" type="Script" id=4]
+[ext_resource path="res://controller_steering.gd" type="Script" id=4]
 [ext_resource path="res://PathDrawer.gd" type="Script" id=5]
-[ext_resource path="res://FPController.gd" type="Script" id=6]
 [ext_resource path="res://OffsetPursue.gd" type="Script" id=7]
 [ext_resource path="res://Controller.gd" type="Script" id=8]
 [ext_resource path="res://FollowPath.gd" type="Script" id=9]
+
+[sub_resource type="Environment" id=6]
 
 [sub_resource type="PrismMesh" id=8]
 
@@ -24,17 +25,19 @@ _data = {
 
 [sub_resource type="Theme" id=9]
 
-[sub_resource type="Environment" id=6]
-
 [node name="root" type="Spatial"]
 
 [node name="camera follower" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 44.6254, 17.1365, -32.9351 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -50 )
 script = ExtResource( 3 )
 
 [node name="OffsetPursue" type="Node" parent="camera follower"]
 script = ExtResource( 7 )
 leaderNodePath = NodePath("../../creature/boid")
+
+[node name="Camera" type="Camera" parent="camera follower"]
+environment = SubResource( 6 )
+far = 10000.0
 
 [node name="creature" type="Spatial" parent="."]
 
@@ -65,7 +68,7 @@ skeleton = NodePath("../..")
 material/0 = ExtResource( 1 )
 
 [node name="boid" type="KinematicBody" parent="creature"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.4253 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.5154 )
 script = ExtResource( 3 )
 
 [node name="MeshInstance5" type="MeshInstance" parent="creature/boid"]
@@ -78,16 +81,11 @@ material/0 = ExtResource( 1 )
 script = ExtResource( 2 )
 bonePaths = [ NodePath(".."), NodePath("../../MeshInstance4"), NodePath("../../MeshInstance3"), NodePath("../../MeshInstance2"), NodePath("../../tail2") ]
 
-[node name="Harmonic" type="Node" parent="creature/boid"]
-script = ExtResource( 4 )
-frequency = 0.5
-radius = 20.0
-amplitude = 45
-distance = 10
-axis = 1
-
 [node name="FollowPath" type="Node" parent="creature/boid"]
 script = ExtResource( 9 )
+
+[node name="controllersteering" type="Node" parent="creature/boid"]
+script = ExtResource( 4 )
 
 [node name="Spatial" type="Spatial" parent="."]
 
@@ -203,15 +201,3 @@ margin_bottom = 194.2
 theme = SubResource( 9 )
 text = "Weight:
 "
-
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( -1, -6.14885e-10, -8.74185e-08, 6.14883e-10, 0.999901, -0.0140669, 8.74185e-08, -0.0140669, -0.999901, 44.6254, 17.1365, -32.9351 )
-environment = SubResource( 6 )
-far = 10000.0
-script = ExtResource( 6 )
-
-[connection signal="value_changed" from="Controls/distance" to="creature/boid/Harmonic" method="_on_HSlider_value_changed"]
-[connection signal="value_changed" from="Controls/radius" to="creature/boid/Harmonic" method="_on_HSlider2_value_changed"]
-[connection signal="value_changed" from="Controls/amplitude" to="creature/boid/Harmonic" method="_on_HSlider3_value_changed"]
-[connection signal="value_changed" from="Controls/Frequency" to="creature/boid/Harmonic" method="_on_HSlider4_value_changed"]
-[connection signal="value_changed" from="Controls/weight" to="creature/boid/Harmonic" method="_on_HSlider5_value_changed"]

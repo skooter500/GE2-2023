@@ -33,11 +33,12 @@ func _on_HSlider5_value_changed(value):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$distance.value = harmonic.distance
-	$radius.value = harmonic.radius
-	$amplitude.value = harmonic.amplitude
-	$Frequency.value = harmonic.frequency
-	$weight.value = harmonic.weight
+	pass
+	# $distance.value = harmonic.distance
+	# $radius.value = harmonic.radius
+	# $amplitude.value = harmonic.amplitude
+	# $Frequency.value = harmonic.frequency
+	# $weight.value = harmonic.weight
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
