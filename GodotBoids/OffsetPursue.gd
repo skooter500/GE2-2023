@@ -20,8 +20,7 @@ func _ready():
 	
 func _process(delta):
 	if drawGizmos:
-		DebugDraw.draw_sphere(worldTarget, 1, Color.red)
-		DebugDraw.draw_box(projected, Vector3.ONE, Color.aliceblue)			
+		DebugDraw.draw_line(projected, worldTarget, Color.aliceblue)			
 
 func calculate():		
 	worldTarget = leaderBoid.global_transform.xform(leaderOffset)
@@ -35,4 +34,4 @@ func calculate():
 	
 	# return arrive(projected)
 
-	return boid.seek_force(projected)
+	return boid.arrive_force(projected, 50)

@@ -1,15 +1,14 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Tank Material.tres" type="Material" id=1]
 [ext_resource path="res://SpineAnimator.gd" type="Script" id=2]
 [ext_resource path="res://UberBoid.gd" type="Script" id=3]
-[ext_resource path="res://controller_steering.gd" type="Script" id=4]
+[ext_resource path="res://Harmonic.gd" type="Script" id=4]
 [ext_resource path="res://PathDrawer.gd" type="Script" id=5]
+[ext_resource path="res://FPController.gd" type="Script" id=6]
 [ext_resource path="res://OffsetPursue.gd" type="Script" id=7]
 [ext_resource path="res://Controller.gd" type="Script" id=8]
 [ext_resource path="res://FollowPath.gd" type="Script" id=9]
-
-[sub_resource type="Environment" id=6]
 
 [sub_resource type="PrismMesh" id=8]
 
@@ -25,19 +24,17 @@ _data = {
 
 [sub_resource type="Theme" id=9]
 
+[sub_resource type="Environment" id=6]
+
 [node name="root" type="Spatial"]
 
 [node name="camera follower" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -50 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.1888, 7.1029, -12.5125 )
 script = ExtResource( 3 )
 
 [node name="OffsetPursue" type="Node" parent="camera follower"]
 script = ExtResource( 7 )
 leaderNodePath = NodePath("../../creature/boid")
-
-[node name="Camera" type="Camera" parent="camera follower"]
-environment = SubResource( 6 )
-far = 10000.0
 
 [node name="creature" type="Spatial" parent="."]
 
@@ -84,7 +81,7 @@ bonePaths = [ NodePath(".."), NodePath("../../MeshInstance4"), NodePath("../../M
 [node name="FollowPath" type="Node" parent="creature/boid"]
 script = ExtResource( 9 )
 
-[node name="controllersteering" type="Node" parent="creature/boid"]
+[node name="Node" type="Node" parent="creature/boid"]
 script = ExtResource( 4 )
 
 [node name="Spatial" type="Spatial" parent="."]
@@ -201,3 +198,10 @@ margin_bottom = 194.2
 theme = SubResource( 9 )
 text = "Weight:
 "
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.1888, 7.1029, -12.5125 )
+environment = SubResource( 6 )
+far = 10000.0
+script = ExtResource( 6 )
+move = true

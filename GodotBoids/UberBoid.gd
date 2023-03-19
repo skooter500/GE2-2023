@@ -39,6 +39,10 @@ func seek_force(target: Vector3):
 func arrive_force(target:Vector3, slowingDistance:float):
 	var toTarget = target - transform.origin
 	var dist = toTarget.length()
+	
+	if dist == 0:
+		return Vector3.ZERO;
+	
 	var ramped = (dist / slowingDistance) * max_speed
 	var clamped = min(max_speed, ramped)
 	var desired = (toTarget * clamped) / dist 
@@ -56,10 +60,13 @@ func _ready():
 	OS.set_window_position(screen_size*0.5 - window_size*0.5)
 
 func calculate():	
-	# WPTRS	
+	# 
+	force = Vector3.ZERO
 	for i in behaviors.size():
-		force = Vector3.ZERO
-		force += behaviors[i].calculate() * behaviors[i].weight
+		var f = behaviors[i].calculate();
+		if is_nan(f.x) or is_nan(f.y) or is_nan(f.z):
+			print(f)
+		force += f * behaviors[i].weight
 		if force.length() > max_force:
 			force = force.limit_length(max_force)
 			break
