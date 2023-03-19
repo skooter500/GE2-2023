@@ -29,18 +29,18 @@ _data = {
 [node name="root" type="Spatial"]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.1888, 7.1029, -12.5125 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.1888, 7.1029, 48.8781 )
 environment = SubResource( 6 )
 far = 10000.0
 script = ExtResource( 6 )
-move = true
 
 [node name="Camera Controller" type="Node" parent="Camera"]
 script = ExtResource( 9 )
-camera_boid_path = NodePath("../../camera follower")
+boid_camera_path = NodePath("../../camera follower")
+boid_path = NodePath("../../creature/boid")
 
 [node name="camera follower" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.1888, 7.1029, -12.5125 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.3768, 10.8322, 38.2638 )
 script = ExtResource( 3 )
 
 [node name="OffsetPursue" type="Node" parent="camera follower"]

@@ -25,7 +25,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	print(delta)
 	for i in offsets.size():
 		var prev = bones[i]
 		var next = bones[i + 1]
@@ -40,7 +39,7 @@ func _physics_process(delta):
 		
 		var prevRot = prev.global_transform.basis
 		var nextRot = next.global_transform.basis
-		var targetRot = nextRot.slerp(prevRot, angular_damping * delta)
-		next.global_transform.basis = targetRot
+		# var targetRot = nextRot.slerp(prevRot, angular_damping * delta).orthonormalized()
+		# next.global_transform.basis = targetRot
 		
 
