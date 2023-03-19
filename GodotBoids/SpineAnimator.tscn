@@ -10,6 +10,8 @@
 [ext_resource path="res://Controller.gd" type="Script" id=8]
 [ext_resource path="res://CameraController.gd" type="Script" id=9]
 
+[sub_resource type="Environment" id=6]
+
 [sub_resource type="PrismMesh" id=8]
 
 [sub_resource type="CubeMesh" id=1]
@@ -24,9 +26,18 @@ _data = {
 
 [sub_resource type="Theme" id=9]
 
-[sub_resource type="Environment" id=6]
-
 [node name="root" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.1888, 7.1029, -12.5125 )
+environment = SubResource( 6 )
+far = 10000.0
+script = ExtResource( 6 )
+move = true
+
+[node name="Camera Controller" type="Node" parent="Camera"]
+script = ExtResource( 9 )
+camera_boid_path = NodePath("../../camera follower")
 
 [node name="camera follower" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.1888, 7.1029, -12.5125 )
@@ -212,16 +223,6 @@ margin_left = 120.0
 margin_top = 145.0
 margin_right = 236.0
 margin_bottom = 165.0
-
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.1888, 7.1029, -12.5125 )
-environment = SubResource( 6 )
-far = 10000.0
-script = ExtResource( 6 )
-move = true
-
-[node name="Camera Controller" type="Node" parent="Camera"]
-script = ExtResource( 9 )
 
 [connection signal="value_changed" from="Controls/GridContainer2/distance" to="Controls" method="_on_distance_value_changed"]
 [connection signal="value_changed" from="Controls/GridContainer2/radius" to="Controls" method="_on_radius_value_changed"]

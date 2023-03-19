@@ -12,23 +12,25 @@ export var max_force = 10
 export var banking = 0.1
 export var damping = 0.1
 
-func print_basis():
+export var draw_gizmos = true
+
+func draw_gizmos():
 	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1))
 	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0))
 	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.y * 10.0 , Color(0, 1, 0))
 	DebugDraw.draw_line(transform.origin,  transform.origin + force * 10.0 , Color(1, 1, 0))
-	DebugDraw.set_text("transform.origin", transform.origin)
-	DebugDraw.set_text("translation", translation)
-	DebugDraw.set_text("rotation", rotation)
-	DebugDraw.set_text("rotation_degrees", rotation_degrees)
-	DebugDraw.set_text("transform.basis.x", transform.basis.x)
-	DebugDraw.set_text("transform.basis.y", transform.basis.y)
-	DebugDraw.set_text("transform.basis.z", transform.basis.z)
+	# set_text("transform.origin", transform.origin)
+	# DebugDraw.set_text("translation", translation)
+	# DebugDraw.set_text("rotation", rotation)
+	# DebugDraw.set_text("rotation_degrees", rotation_degrees)
+	# DebugDraw.set_text("transform.basis.x", transform.basis.x)
+	# DebugDraw.set_text("transform.basis.y", transform.basis.y)
+	# DebugDraw.set_text("transform.basis.z", transform.basis.z)
 
-	DebugDraw.set_text("Vector3.FORWARD", Vector3.FORWARD)
-	DebugDraw.set_text("Vector3.BACK", Vector3.BACK)
-	DebugDraw.set_text("Vector3.UP", Vector3.UP)
-	DebugDraw.set_text("Vector3.DOWN", Vector3.DOWN)
+	#DebugDraw.set_text("Vector3.FORWARD", Vector3.FORWARD)
+	# DebugDraw.set_text("Vector3.BACK", Vector3.BACK)
+	#DebugDraw.set_text("Vector3.UP", Vector3.UP)
+	# DebugDraw.set_text("Vector3.DOWN", Vector3.DOWN)
 
 func seek_force(target: Vector3):	
 	var toTarget = target - transform.origin
@@ -65,8 +67,8 @@ func calculate():
 	for i in behaviors.size():
 		var f = behaviors[i].calculate();
 		if is_nan(f.x) or is_nan(f.y) or is_nan(f.z):
-			print(behaviors[i])
-			print(f)
+			print(behaviors[i] + " is NAN")
+			f = Vector3.ZERO
 		force += f * behaviors[i].weight
 		if force.length() > max_force:
 			force = force.limit_length(max_force)
@@ -74,7 +76,8 @@ func calculate():
 	return force
 
 func _process(var delta):
-	print_basis()
+	if draw_gizmos:
+		draw_gizmos()
 		
 func _physics_process(var delta):
 	force = calculate()

@@ -43,7 +43,6 @@ func enableFire():
 func _process(delta):		
 	# rotate_y(0.1)
 	var turn = Input.get_axis("turn_left", "turn_right")
-	DebugDraw.set_text("turn: ", str(turn))
 	
 	if abs(turn) > 0:     
 		# rotate()
@@ -52,7 +51,6 @@ func _process(delta):
 	# rotate_y(0.1)
 	# rotate_x(0.1)
 	var move = Input.get_axis("move_forward", "move_back")
-	DebugDraw.set_text("move: ", str(move))
 
 	
 	if abs(move) > 0:     

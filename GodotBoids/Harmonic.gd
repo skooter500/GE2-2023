@@ -31,9 +31,7 @@ func _process(delta):
 		DebugDraw.draw_line(cent, worldTarget, Color.blueviolet)
 	
 		DebugDraw.draw_sphere(worldTarget, 1)	
-		DebugDraw.set_text("Radius: " + str(radius))
-		DebugDraw.set_text("Distance: " + str(distance))
-
+		
 func calculate():		
 	var n  = sin(theta)
 	var angle = deg2rad(n * amplitude)

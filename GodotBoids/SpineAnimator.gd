@@ -2,7 +2,7 @@ extends Node
 
 export var bonePaths = []
 export var damping:float = 10
-export var angular_damping:float = 25
+export var angular_damping:float = 10
 				
 var bones = [] 
 var offsets = [] 

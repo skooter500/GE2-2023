@@ -10,7 +10,6 @@ export var radius = 30
 
 func moveTarget():
 	var newTarget = Vector3(rand_range(-radius, radius), 0, rand_range(-radius, radius))
-	print("starting tween")
 	$Tween.interpolate_property($"."
 		, "translation"
 		, $".".transform.origin

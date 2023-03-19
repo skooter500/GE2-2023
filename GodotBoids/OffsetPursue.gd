@@ -26,12 +26,7 @@ func calculate():
 	worldTarget = leaderBoid.global_transform.xform(leaderOffset)
 	var dist = boid.global_transform.origin.distance_to(worldTarget)
 	var time = dist / boid.max_speed
-	DebugDraw.set_text("Time", time)
-	DebugDraw.set_text("leaderBoid.velocity", leaderBoid.velocity)
 	projected = worldTarget + leaderBoid.velocity * time
 	
-	# DebugDraw.draw_sphere(projected, 1, Color.red)
-	
-	# return arrive(projected)
 
-	return boid.arrive_force(projected, 50)
+	return boid.arrive_force(projected, 5)

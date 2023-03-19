@@ -41,8 +41,6 @@ func _process(delta):
 		DebugDraw.draw_line(cent, worldTarget, Color.blueviolet)
 	
 		DebugDraw.draw_sphere(worldTarget, 1)	
-		DebugDraw.set_text("Radius: " + str(radius))
-		DebugDraw.set_text("Distance: " + str(distance))
 
 func calculate():		
 	var n  = noise.get_noise_1d(theta)
