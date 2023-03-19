@@ -8,13 +8,18 @@ extends Camera
 export var sensitivity = 0.1
 export var speed:float = 1.0
 
+var controlling = true
 
 func _input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and controlling:
 		rotate(Vector3.DOWN, deg2rad(event.relative.x * sensitivity))
 		rotate(transform.basis.x,deg2rad(- event.relative.y * sensitivity))
 	if event.is_action_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		if controlling:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		controlling = ! controlling
 
 
 # Called when the node enters the scene tree for the first time.

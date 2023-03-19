@@ -81,7 +81,7 @@ bonePaths = [ NodePath(".."), NodePath("../../MeshInstance4"), NodePath("../../M
 [node name="FollowPath" type="Node" parent="creature/boid"]
 script = ExtResource( 9 )
 
-[node name="Node" type="Node" parent="creature/boid"]
+[node name="Harmonic" type="Node" parent="creature/boid"]
 script = ExtResource( 4 )
 
 [node name="Spatial" type="Spatial" parent="."]
@@ -205,3 +205,9 @@ environment = SubResource( 6 )
 far = 10000.0
 script = ExtResource( 6 )
 move = true
+
+[connection signal="value_changed" from="Controls/distance" to="Controls" method="_on_distance_value_changed"]
+[connection signal="value_changed" from="Controls/radius" to="Controls" method="_on_radius_value_changed"]
+[connection signal="value_changed" from="Controls/amplitude" to="Controls" method="_on_amplitude_value_changed"]
+[connection signal="value_changed" from="Controls/Frequency" to="Controls" method="_on_Frequency_value_changed"]
+[connection signal="value_changed" from="Controls/weight" to="Controls" method="_on_weight_value_changed"]

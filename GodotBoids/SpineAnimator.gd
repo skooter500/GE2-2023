@@ -39,7 +39,7 @@ func _physics_process(delta):
 		next.global_transform.origin = lerped
 		
 		var prevRot = prev.global_transform.basis
-		var nextRot = prev.global_transform.basis
+		var nextRot = next.global_transform.basis
 		var targetRot = nextRot.slerp(prevRot, angular_damping * delta)
 		next.global_transform.basis = targetRot
 		
