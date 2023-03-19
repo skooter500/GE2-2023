@@ -1,7 +1,8 @@
 extends Node
 
 export var bonePaths = []
-export var damping:float = 0.1
+export var damping:float = 10
+export var angular_damping:float = 25
 				
 var bones = [] 
 var offsets = [] 
@@ -24,6 +25,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	print(delta)
 	for i in offsets.size():
 		var prev = bones[i]
 		var next = bones[i + 1]
@@ -34,8 +36,11 @@ func _physics_process(delta):
 		var lerped = lerp(next.global_transform.origin, wantedPos, delta * damping)
 		var clamped = (lerped - prev.global_transform.origin).normalized() * offsets[i].length()
 		var pos = prev.global_transform.origin + clamped
-		next.global_transform.origin = pos
+		next.global_transform.origin = lerped
 		
-		# Rotation
-		var wanted = next.global_transform.looking_at(prev.global_transform.origin, prev.global_transform.basis.y).basis		
-		next.global_transform.basis = wanted # next.global_transform.basis.slerp(wanted, delta * damping).orthonormalized()
+		var prevRot = prev.global_transform.basis
+		var nextRot = prev.global_transform.basis
+		var targetRot = nextRot.slerp(prevRot, angular_damping * delta)
+		next.global_transform.basis = targetRot
+		
+
