@@ -46,8 +46,10 @@ func calculate():
 	if axis == Axis.Horizontal:
 		target.x = sin(angle)
 		target.z =  cos(angle)
+		target.y = 0
 		rot.z = 0
 	else:
+		target.x = 0
 		target.y = sin(angle)
 		target.z = cos(angle)
 	
@@ -61,9 +63,5 @@ func calculate():
 	theta += frequency * delta * PI * 2.0
 	
 	var f = boid.seek_force(worldTarget)  
-	
-	if is_nan(f.x):
-		print("XXX")
-	
-	
+
 	return f
