@@ -65,6 +65,7 @@ func calculate():
 	for i in behaviors.size():
 		var f = behaviors[i].calculate();
 		if is_nan(f.x) or is_nan(f.y) or is_nan(f.z):
+			print(behaviors[i])
 			print(f)
 		force += f * behaviors[i].weight
 		if force.length() > max_force:

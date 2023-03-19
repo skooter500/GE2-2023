@@ -59,5 +59,11 @@ func calculate():
 	
 	worldTarget = boid.global_transform.origin + (projected * localtarget)	
 	theta += frequency * delta * PI * 2.0
-
-	return boid.seek_force(worldTarget)
+	
+	var f = boid.seek_force(worldTarget)  
+	
+	if is_nan(f.x):
+		print("XXX")
+	
+	
+	return f
