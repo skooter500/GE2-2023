@@ -192,7 +192,7 @@ func _physics_process(var delta):
 		# rotate_y(theta)
 		# transform.origin += velocity * delta
 		
-		move_and_slide(velocity)
+		# move_and_slide(velocity)
 		
 		# Implement Banking as described:
 		# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/

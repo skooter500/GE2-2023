@@ -39,5 +39,5 @@ func _physics_process(delta):
 		next.global_transform.origin = pos
 		
 		# Rotation
-		var wanted = next.global_transform.looking_at(prev.global_transform.origin, prev.global_transform.basis.y).basis		
+		var wanted = next.global_transform.looking_at(-prev.global_transform.origin, prev.global_transform.basis.y).basis		
 		next.global_transform.basis = wanted # next.global_transform.basis.slerp(wanted, delta * damping).orthonormalized()
