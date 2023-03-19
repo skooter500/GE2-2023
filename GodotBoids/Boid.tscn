@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Boid.gd" type="Script" id=1]
+[ext_resource path="res://BigBoid.gd" type="Script" id=1]
 [ext_resource path="res://TrailRender.gd" type="Script" id=2]
 [ext_resource path="res://CobraMk3.tscn" type="PackedScene" id=3]
 

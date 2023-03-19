@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://UberBoid.gd" type="Script" id=1]
+[ext_resource path="res://Boid.gd" type="Script" id=1]
 [ext_resource path="res://Tank Material.tres" type="Material" id=2]
 [ext_resource path="res://SpineAnimator.gd" type="Script" id=3]
 [ext_resource path="res://Harmonic.gd" type="Script" id=4]

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Boid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://FPController.gd" type="Script" id=2]
-[ext_resource path="res://Boid.gd" type="Script" id=3]
+[ext_resource path="res://BigBoid.gd" type="Script" id=3]
 [ext_resource path="res://Follow.gd" type="Script" id=4]
 [ext_resource path="res://PathDrawer.gd" type="Script" id=5]
 [ext_resource path="res://Models/cobramk3_out/Material_007.material" type="Material" id=6]
