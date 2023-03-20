@@ -12,7 +12,6 @@ onready var boid_camera = get_node(boid_camera_path)
 export var boid_path:NodePath
 onready var boid = get_node(boid_path) 
 
-
 enum Mode { Free, Follow}
 
 export var mode = Mode.Follow
@@ -23,7 +22,7 @@ func _ready():
 	pass # Replace with function body.
 	
 func _input(event):
-	if event is InputEventKey and event.pressed:
+	if event is InputEventKey and event.scancode == KEY_E and event.pressed:
 		if mode == Mode.Free:
 			camera.move = false
 			mode = Mode.Follow
@@ -37,9 +36,8 @@ func _physics_process(delta):
 
 		var desired = camera.global_transform.looking_at(boid.global_transform.origin, Vector3.UP)		
 		camera.global_transform.basis = camera.global_transform.basis.slerp(desired.basis, delta).orthonormalized()
-		# camera.global_transform.basis.slerp(desired, delta)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	DebugDraw.set_text("mode", mode)
+	DebugDraw.set_text("mode", str(mode))
 	pass

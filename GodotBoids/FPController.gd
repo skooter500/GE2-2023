@@ -44,12 +44,10 @@ func _process(delta):
 		# rotate_y(0.1)
 		# rotate_x(0.1)
 		var move = Input.get_axis("move_forward", "move_back")
-		DebugDraw.set_text("move: ", str(move))
 
 		if abs(move) > 0:     
 			global_translate(global_transform.basis.z * speed * move)
 		
 		var upanddown = Input.get_axis("move_up", "move_down")
-		DebugDraw.set_text("upanddown: ", str(upanddown))
 		if abs(upanddown) > 0:     
 			global_translate(- global_transform.basis.y * speed * upanddown)
