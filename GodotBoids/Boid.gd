@@ -62,17 +62,17 @@ func _ready():
 	OS.set_window_position(screen_size*0.5 - window_size*0.5)
 
 func calculate():	
-	# 
 	force = Vector3.ZERO
 	for i in behaviors.size():
-		var f = behaviors[i].calculate();
-		if is_nan(f.x) or is_nan(f.y) or is_nan(f.z):
-			print(behaviors[i] + " is NAN")
-			f = Vector3.ZERO
-		force += f * behaviors[i].weight
-		if force.length() > max_force:
-			force = force.limit_length(max_force)
-			break
+		if behaviors[i].is_processing():
+			var f = behaviors[i].calculate()
+			if is_nan(f.x) or is_nan(f.y) or is_nan(f.z):
+				print(behaviors[i] + " is NAN")
+				f = Vector3.ZERO
+			force += f * behaviors[i].weight
+			if force.length() > max_force:
+				force = force.limit_length(max_force)
+				break
 	return force
 
 func _process(var delta):

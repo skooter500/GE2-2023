@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Tank Material.tres" type="Material" id=1]
 [ext_resource path="res://SpineAnimator.gd" type="Script" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://Controller.gd" type="Script" id=8]
 [ext_resource path="res://CameraController.gd" type="Script" id=9]
 [ext_resource path="res://Constrain.gd" type="Script" id=10]
+[ext_resource path="res://BoidController.gd" type="Script" id=11]
+[ext_resource path="res://NoiseWander.gd" type="Script" id=12]
 
 [sub_resource type="Environment" id=6]
 background_mode = 1
@@ -98,6 +100,18 @@ script = ExtResource( 4 )
 
 [node name="Constrain" type="Node" parent="creature/boid"]
 script = ExtResource( 10 )
+weight = 0.1
+center_path = NodePath("../../../Path")
+
+[node name="BoidController" type="Node" parent="creature/boid"]
+script = ExtResource( 11 )
+
+[node name="NoiseWander" type="Node" parent="creature/boid"]
+script = ExtResource( 12 )
+radius = 50.0
+amplitude = 90
+distance = 100
+weight = 20.0
 
 [node name="Spatial" type="Spatial" parent="."]
 

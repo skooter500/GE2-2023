@@ -7,15 +7,15 @@ export var theta = 0
 export var amplitude = 80
 export var distance = 5
 
-enum Axis { Horizontal, Vertical}
-
-export var axis = Axis.Horizontal
 
 export var weight = 1.0
-
 export var draw_gizmos = true
-
+export var enabled = true
 var boid
+
+
+enum Axis { Horizontal, Vertical}
+export var axis = Axis.Horizontal
 var target:Vector3
 var worldTarget:Vector3
 	
