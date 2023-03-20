@@ -1,8 +1,8 @@
 extends Node
 
 export var bonePaths = []
-export var damping:float = 10
-export var angular_damping:float = 10
+export var damping:float = 7
+export var angular_damping:float = 20
 				
 var bones = [] 
 var offsets = [] 
@@ -38,9 +38,11 @@ func _physics_process(delta):
 		next.global_transform.origin = lerped
 		
 		var prevRot = prev.global_transform.basis.orthonormalized()
-		var nextRot = next.global_transform.basis.orthonormalized()
-		var targetRot = nextRot.slerp(prevRot, angular_damping * delta).orthonormalized()
-			 
-		next.global_transform.basis = targetRot
+		var nextRot = prev.global_transform.looking_at(next.global_transform.origin, Vector3.UP).basis.orthonormalized()
+		
+		
+		# var targetRot = nextRot.slerp(prevRot, angular_damping * delta).orthonormalized()
+		 
+		next.global_transform.basis = nextRot
 		
 

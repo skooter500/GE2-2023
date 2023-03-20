@@ -56,7 +56,7 @@ func _ready():
 		var child = get_child(i)
 		if child.has_method("calculate"):
 			behaviors.push_back(child)
-
+			child.set_process(child.enabled) 
 	# enable_all(false)
 	
 func enable_all(enabled):
