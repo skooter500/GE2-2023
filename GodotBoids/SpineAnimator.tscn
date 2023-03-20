@@ -103,7 +103,6 @@ bonePaths = [ NodePath(".."), NodePath("../../MeshInstance4"), NodePath("../../M
 [node name="Harmonic" type="Node" parent="creature/boid"]
 script = ExtResource( 4 )
 weight = 6.0
-enabled = false
 frequency = 0.5
 distance = 10
 axis = 1
@@ -111,7 +110,6 @@ axis = 1
 [node name="Constrain" type="Node" parent="creature/boid"]
 script = ExtResource( 10 )
 weight = 10.0
-enabled = false
 center_path = NodePath("../../../Path")
 
 [node name="NoiseWander" type="Node" parent="creature/boid"]

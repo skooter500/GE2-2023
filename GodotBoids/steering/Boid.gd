@@ -82,7 +82,8 @@ func _process(var delta):
 		draw_gizmos()
 		
 func _physics_process(var delta):
-	force = calculate()
+	# lerp in the new forces
+	force = lerp(force, calculate(), delta)
 	acceleration = force / mass
 	velocity += acceleration * delta
 	speed = velocity.length()
