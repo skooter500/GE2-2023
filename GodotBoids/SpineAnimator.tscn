@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Tank Material.tres" type="Material" id=1]
 [ext_resource path="res://SpineAnimator.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://BoidController.gd" type="Script" id=11]
 [ext_resource path="res://steering/NoiseWander.gd" type="Script" id=12]
 [ext_resource path="res://PathFollow.gd" type="Script" id=13]
+[ext_resource path="res://Seek.gd" type="Script" id=14]
 
 [sub_resource type="Environment" id=6]
 background_mode = 1
@@ -45,6 +46,9 @@ script = ExtResource( 6 )
 script = ExtResource( 9 )
 boid_camera_path = NodePath("../../camera follower")
 boid_path = NodePath("../../creature/boid")
+
+[node name="Position3D" type="Position3D" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100 )
 
 [node name="camera follower" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.3768, 10.8322, 38.2638 )
@@ -103,13 +107,14 @@ bonePaths = [ NodePath(".."), NodePath("../../MeshInstance4"), NodePath("../../M
 [node name="Harmonic" type="Node" parent="creature/boid"]
 script = ExtResource( 4 )
 weight = 6.0
+enabled = false
 frequency = 0.5
 distance = 10
 axis = 1
 
 [node name="Constrain" type="Node" parent="creature/boid"]
 script = ExtResource( 10 )
-weight = 10.0
+weight = 2.0
 center_path = NodePath("../../../Path")
 
 [node name="NoiseWander" type="Node" parent="creature/boid"]
@@ -125,6 +130,10 @@ script = ExtResource( 13 )
 weight = 3.0
 enabled = false
 waypointSeekDistance = 5
+
+[node name="Seek" type="Node" parent="creature/boid"]
+script = ExtResource( 14 )
+target_node = NodePath("../../../Camera/Position3D")
 
 [node name="Spatial" type="Spatial" parent="."]
 
