@@ -13,7 +13,7 @@ export var axis = Axis.Horizontal
 
 export var weight = 1.0
 
-export var drawGizmos = true
+export var draw_gizmos = true
 
 var boid
 var target:Vector3
@@ -24,7 +24,7 @@ func _ready():
 	boid = get_parent()
 	
 func _process(delta):
-	if drawGizmos:
+	if draw_gizmos:
 		var cent = boid.global_transform.xform(Vector3.BACK * distance)
 		DebugDraw.draw_sphere(cent, radius, Color.deeppink)
 		DebugDraw.draw_line(boid.global_transform.origin, cent, Color.deeppink)
