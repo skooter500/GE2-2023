@@ -38,6 +38,8 @@ func _physics_process(delta):
 		next.global_transform.origin = lerped
 		
 		var prevRot = prev.global_transform.basis.orthonormalized()
+		
+		# Why?
 		var nextRot = prev.global_transform.looking_at(next.global_transform.origin, Vector3.UP).basis.orthonormalized()
 		
 		
