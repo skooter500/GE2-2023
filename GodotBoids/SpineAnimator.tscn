@@ -108,6 +108,7 @@ enabled = false
 [node name="Constrain" type="Node" parent="creature/boid"]
 script = ExtResource( 10 )
 weight = 0.1
+enabled = false
 center_path = NodePath("../../../Path")
 
 [node name="NoiseWander" type="Node" parent="creature/boid"]

@@ -57,7 +57,7 @@ func _ready():
 		if child.has_method("calculate"):
 			behaviors.push_back(child)
 
-	enable_all(false)
+	# enable_all(false)
 	
 func enable_all(enabled):
 	for i in behaviors.size():
@@ -86,8 +86,11 @@ func _physics_process(var delta):
 	acceleration = force / mass
 	velocity += acceleration * delta
 	speed = velocity.length()
-	if speed > 0:
+	if speed > 0:		
 		velocity = velocity.limit_length(max_speed)
+		
+		# Damping
+		velocity -= velocity * delta * damping
 		
 		move_and_slide(velocity)
 		
