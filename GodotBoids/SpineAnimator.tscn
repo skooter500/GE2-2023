@@ -108,10 +108,10 @@ script = ExtResource( 11 )
 
 [node name="NoiseWander" type="Node" parent="creature/boid"]
 script = ExtResource( 12 )
+weight = 20.0
 radius = 50.0
 amplitude = 90
 distance = 100
-weight = 20.0
 
 [node name="Spatial" type="Spatial" parent="."]
 

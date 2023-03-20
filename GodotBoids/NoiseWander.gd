@@ -1,4 +1,4 @@
-extends Node
+extends SteeringBehavior
 
 export var frequency = 0.3
 export var radius = 10.0
@@ -10,12 +10,6 @@ export var distance = 5
 enum Axis { Horizontal, Vertical}
 
 export var axis = Axis.Horizontal
-
-export var weight = 1.0
-
-export var draw_gizmos = true
-
-var boid
 var target:Vector3
 var world_target:Vector3
 

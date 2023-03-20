@@ -1,13 +1,8 @@
-extends Node
+extends SteeringBehavior
 
 export var leaderNodePath:NodePath
 var leaderBoid:Node
 var leaderOffset:Vector3
-
-export var weight = 1.0
-export var drawGizmos = true
-
-var boid
 var target:Vector3
 var worldTarget:Vector3
 var projected:Vector3
