@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Boid.gd" type="Script" id=1]
+[ext_resource path="res://steering/Boid.gd" type="Script" id=1]
 [ext_resource path="res://FPController.gd" type="Script" id=2]
 [ext_resource path="res://Tank Material.tres" type="Material" id=3]
 [ext_resource path="res://Ground.tres" type="Material" id=4]
