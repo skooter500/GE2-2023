@@ -56,15 +56,17 @@ func _ready():
 		var child = get_child(i)
 		if child.has_method("calculate"):
 			behaviors.push_back(child)
-	var screen_size = OS.get_screen_size()
-	var window_size = OS.get_window_size()
+
+	enable_all(false)
 	
-	OS.set_window_position(screen_size*0.5 - window_size*0.5)
+func enable_all(enabled):
+	for i in behaviors.size():
+		behaviors[i].enabled = enabled
 
 func calculate():	
 	force = Vector3.ZERO
 	for i in behaviors.size():
-		if behaviors[i].is_processing():
+		if behaviors[i].enabled:
 			var f = behaviors[i].calculate()
 			if is_nan(f.x) or is_nan(f.y) or is_nan(f.z):
 				print(behaviors[i] + " is NAN")

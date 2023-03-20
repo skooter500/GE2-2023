@@ -103,6 +103,7 @@ angular_damping = 4.0
 
 [node name="Harmonic" type="Node" parent="creature/boid"]
 script = ExtResource( 4 )
+enabled = false
 
 [node name="Constrain" type="Node" parent="creature/boid"]
 script = ExtResource( 10 )
@@ -112,6 +113,7 @@ center_path = NodePath("../../../Path")
 [node name="NoiseWander" type="Node" parent="creature/boid"]
 script = ExtResource( 12 )
 weight = 20.0
+enabled = false
 radius = 50.0
 amplitude = 90
 distance = 100

@@ -13,8 +13,6 @@ func set_enabled(var behavior, var enabled):
 
 
 func _ready():
-	$"../Harmonic".set_process(false)
-	$"../NoiseWander".set_process(true)
 	pass # Replace with function body.
 
 

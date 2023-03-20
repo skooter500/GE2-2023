@@ -1,19 +1,9 @@
-extends Node
+extends SteeringBehavior
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-export var weight:float = 1
 export var radius:float = 100
-
-export var draw_gizmos:bool = true
 
 export var center_path:NodePath
 onready var center = get_node(center_path)  
-
-onready var boid = get_parent()
 
 func draw_gizmos():
 	DebugDraw.draw_sphere(center.global_transform.origin, radius, Color.beige)

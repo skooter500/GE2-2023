@@ -1,20 +1,10 @@
-extends Node
+extends SteeringBehavior
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-var boid
-
-
-export var weight = 1
 export var power = 10
 	
 func _ready():
 	boid = get_parent()
-
-
+	
 func calculate():
 	var projectedRight = boid.global_transform.basis.x
 	projectedRight.y = 0
@@ -25,7 +15,3 @@ func calculate():
 	force += move * boid.global_transform.basis.z * power
 	force += turn * projectedRight * power
 	return force	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
