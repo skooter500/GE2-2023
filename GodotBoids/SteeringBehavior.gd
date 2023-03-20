@@ -7,8 +7,8 @@ var boid
 
 export var enabled = true setget set_enabled, is_enabled
 
-func set_enabled(var enabled):
-	enabled = false 
+func set_enabled(var e):
+	enabled = e 
 	set_process(enabled)
 
 func is_enabled():
