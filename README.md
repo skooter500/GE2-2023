@@ -38,6 +38,12 @@
 - Week 13 - CA Submission - 50%
 - End of year online test - 30%
 
+## Week 9
+- [Recording of the class](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EUocszsvUHNMk6yyyObXZOgBmTjvZ5ZQ8X8mwscsW2eheg?e=gc5GPq)
+
+## Week 8
+- Review Week
+
 ## Week 7 - Controllers, Noise Wander, Obstacle Avoidance
 - Create a controller node to connect Harmonic & UI - MVC
 - Gang of 4

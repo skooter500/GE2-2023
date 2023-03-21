@@ -18,9 +18,9 @@ func _ready():
 func _process(delta):
 	if draw_gizmos:
 		var cent = boid.global_transform.xform(Vector3.BACK * distance)
-		DebugDraw.draw_sphere(cent, radius, Color.deeppink)
-		DebugDraw.draw_line(boid.global_transform.origin, cent, Color.deeppink)
-		DebugDraw.draw_line(cent, worldTarget, Color.blueviolet)
+		DebugDraw.draw_sphere(cent, radius, Color.aqua)
+		DebugDraw.draw_line(boid.global_transform.origin, cent, Color.aqua)
+		DebugDraw.draw_line(cent, worldTarget, Color.aqua)
 	
 		DebugDraw.draw_sphere(worldTarget, 1)	
 		
