@@ -13,3 +13,10 @@ func set_enabled(var e):
 
 func is_enabled():
 	return enabled
+	
+func draw_gizmos():
+	pass
+	
+func _process(delta):	
+	if draw_gizmos:
+		draw_gizmos()

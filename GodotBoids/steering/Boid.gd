@@ -43,7 +43,7 @@ func arrive_force(target:Vector3, slowingDistance:float):
 	var dist = toTarget.length()
 	
 	if dist == 0:
-		return Vector3.ZERO;
+		return Vector3.ZERO
 	
 	var ramped = (dist / slowingDistance) * max_speed
 	var clamped = min(max_speed, ramped)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Tank Material.tres" type="Material" id=1]
 [ext_resource path="res://SpineAnimator.gd" type="Script" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://steering/NoiseWander.gd" type="Script" id=12]
 [ext_resource path="res://PathFollow.gd" type="Script" id=13]
 [ext_resource path="res://Seek.gd" type="Script" id=14]
+[ext_resource path="res://Arrive.gd" type="Script" id=15]
+[ext_resource path="res://root.gd" type="Script" id=16]
 
 [sub_resource type="Environment" id=6]
 background_mode = 1
@@ -35,6 +37,7 @@ _data = {
 [sub_resource type="Theme" id=9]
 
 [node name="root" type="Spatial"]
+script = ExtResource( 16 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.1888, 7.1029, 48.8781 )
@@ -42,13 +45,13 @@ environment = SubResource( 6 )
 far = 10000.0
 script = ExtResource( 6 )
 
+[node name="Position3D2" type="Position3D" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100 )
+
 [node name="Camera Controller" type="Node" parent="Camera"]
 script = ExtResource( 9 )
 boid_camera_path = NodePath("../../camera follower")
 boid_path = NodePath("../../creature/boid")
-
-[node name="Position3D" type="Position3D" parent="Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100 )
 
 [node name="camera follower" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.3768, 10.8322, 38.2638 )
@@ -90,6 +93,7 @@ material/0 = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.5154 )
 script = ExtResource( 3 )
 max_force = 50
+damping = 0.3
 
 [node name="BoidController" type="Node" parent="creature/boid"]
 script = ExtResource( 11 )
@@ -115,6 +119,7 @@ axis = 1
 [node name="Constrain" type="Node" parent="creature/boid"]
 script = ExtResource( 10 )
 weight = 2.0
+enabled = false
 center_path = NodePath("../../../Path")
 
 [node name="NoiseWander" type="Node" parent="creature/boid"]
@@ -133,7 +138,12 @@ waypointSeekDistance = 5
 
 [node name="Seek" type="Node" parent="creature/boid"]
 script = ExtResource( 14 )
-target_node = NodePath("../../../Camera/Position3D")
+enabled = false
+target_node = NodePath("../../../Camera/Position3D2")
+
+[node name="Arrive" type="Node" parent="creature/boid"]
+script = ExtResource( 15 )
+target_node = NodePath("../../../Camera/Position3D2")
 
 [node name="Spatial" type="Spatial" parent="."]
 

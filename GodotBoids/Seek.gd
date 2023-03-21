@@ -9,7 +9,8 @@ export var target_node:NodePath
 onready var target = get_node(target_node)
 
 func draw_gizmos():
-	DebugDraw.draw_line(boid.global_transform.origin, target.global_transform.origin)
+	DebugDraw.draw_arrow_line(boid.global_transform.origin, target.global_transform.origin)
+	
 
 func calculate():	
 	return boid.seek_force(target.global_transform.origin)
@@ -19,6 +20,4 @@ func _ready():
 	boid = get_parent()
 	pass # Replace with function body.
 
-func _process(delta):	
-	if draw_gizmos:
-		draw_gizmos()
+

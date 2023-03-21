@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GodotBoids"
-run/main_scene="res://BigGiantHead.tscn"
+run/main_scene="res://SpineAnimator.tscn"
 config/icon="res://icon.png"
 
 [autoload]
