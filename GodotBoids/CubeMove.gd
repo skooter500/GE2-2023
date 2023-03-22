@@ -9,9 +9,11 @@ export var speed:float = 1.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	# translate(Vector3.RIGHT * speed * delta)
+	translate(Vector3.FORWARD * speed * delta)
+	self.rotation
+	global_transform.tra
 	# translate_object_local(Vector3.RIGHT * speed * delta)
-	
-	transform.origin += Vector3.RIGHT * speed * delta
-	global_transform.origin  += Vector3.RIGHT * speed * delta
+	# 
+	# transform.origin += Vector3.FORWARD * speed * delta
+	##  global_transform.origin  += Vector3.RIGHT * speed * delta
 	pass
