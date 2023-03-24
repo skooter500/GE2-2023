@@ -45,6 +45,15 @@ leader_node_path = NodePath("../../creature/boid")
 
 [node name="creature" parent="." instance=ExtResource( 1 )]
 
+[node name="Constrain" parent="creature/boid" index="4"]
+center_path = NodePath("../../../Center")
+
+[node name="Seek" parent="creature/boid" index="7"]
+target_node = NodePath("")
+
+[node name="Arrive" parent="creature/boid" index="8"]
+target_node = NodePath("")
+
 [node name="Spatial" type="Spatial" parent="."]
 
 [node name="Position3D" type="Position3D" parent="."]
@@ -205,6 +214,8 @@ margin_bottom = 165.0
 max_value = 10.0
 step = 0.1
 
+[node name="Center" type="Position3D" parent="."]
+
 [connection signal="value_changed" from="Controls/GridContainer2/distance" to="Controls" method="_on_distance_value_changed"]
 [connection signal="value_changed" from="Controls/GridContainer2/radius" to="Controls" method="_on_radius_value_changed"]
 [connection signal="value_changed" from="Controls/GridContainer2/amplitude" to="Controls" method="_on_amplitude_value_changed"]
@@ -213,3 +224,5 @@ step = 0.1
 [connection signal="item_selected" from="Controls/GridContainer2/OptionButton" to="Controls" method="_on_OptionButton_item_selected"]
 [connection signal="value_changed" from="Controls/GridContainer2/damping" to="Controls" method="_on_damping_value_changed"]
 [connection signal="value_changed" from="Controls/GridContainer2/angularDamping" to="Controls" method="_on_angularDamping_value_changed"]
+
+[editable path="creature"]
