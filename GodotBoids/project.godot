@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "TrailRenderer",
 "language": "GDScript",
 "path": "res://TrailRender.gd"
+}, {
+"base": "Node",
+"class": "Utils",
+"language": "GDScript",
+"path": "res://Utils.gd"
 } ]
 _global_script_class_icons={
 "Behavior": "",
 "SteeringBehavior": "",
-"TrailRenderer": ""
+"TrailRenderer": "",
+"Utils": ""
 }
 
 [application]

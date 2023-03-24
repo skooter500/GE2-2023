@@ -3,7 +3,7 @@ extends SteeringBehavior
 export var radius:float = 100
 
 export var center_path:NodePath
-onready var center = get_node(center_path)  
+var center  
 
 func draw_gizmos():
 	DebugDraw.draw_sphere(center.global_transform.origin, radius, Color.beige)
@@ -21,6 +21,7 @@ func _process(delta):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	boid = get_parent()
+	center = get_node(center_path)
 	# boid.transform.rotated()
 	pass # Replace with function body.
 
