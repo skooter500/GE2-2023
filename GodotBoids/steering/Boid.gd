@@ -15,10 +15,10 @@ export var damping = 0.1
 export var draw_gizmos = true
 
 func draw_gizmos():
-	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1))
-	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0))
-	DebugDraw.draw_line(transform.origin,  transform.origin + transform.basis.y * 10.0 , Color(0, 1, 0))
-	DebugDraw.draw_line(transform.origin,  transform.origin + force * 10.0 , Color(1, 1, 0))
+	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1), 0.1)
+	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0), 0.1)
+	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.y * 10.0 , Color(0, 1, 0), 0.1)
+	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + force * 10.0 , Color(1, 1, 0), 0.1)
 	# set_text("transform.origin", transform.origin)
 	# DebugDraw.set_text("translation", translation)
 	# DebugDraw.set_text("rotation", rotation)
@@ -93,9 +93,9 @@ func _physics_process(var delta):
 		# Damping
 		velocity -= velocity * delta * damping
 		
-		move_and_slide(velocity)
+		# move_and_slide(velocity)
 		
 		# Implement Banking as described:
 		# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/
 		var tempUp = transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta * 5.0)
-		look_at(global_transform.origin - velocity, Vector3.UP)
+		# look_at(global_transform.origin - velocity, Vector3.UP)

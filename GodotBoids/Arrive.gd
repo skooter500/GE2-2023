@@ -1,4 +1,4 @@
-extends SteeringBehavior
+class_name Arrive extends SteeringBehavior
 
 export var target_node:NodePath
 onready var target = get_node(target_node)
@@ -16,8 +16,3 @@ func calculate():
 func _ready():
 	boid = get_parent()
 	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

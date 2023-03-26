@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "SteeringBehavior",
+"class": "Arrive",
+"language": "GDScript",
+"path": "res://Arrive.gd"
+}, {
+"base": "SteeringBehavior",
+"class": "Avoidance",
+"language": "GDScript",
+"path": "res://Avoidance.gd"
+}, {
 "base": "Node",
 "class": "Behavior",
 "language": "GDScript",
@@ -30,6 +40,8 @@ _global_script_classes=[ {
 "path": "res://Utils.gd"
 } ]
 _global_script_class_icons={
+"Arrive": "",
+"Avoidance": "",
 "Behavior": "",
 "SteeringBehavior": "",
 "TrailRenderer": "",

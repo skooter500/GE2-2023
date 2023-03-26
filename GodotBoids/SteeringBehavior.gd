@@ -18,5 +18,5 @@ func draw_gizmos():
 	pass
 	
 func _process(delta):	
-	if draw_gizmos:
+	if draw_gizmos and enabled:
 		draw_gizmos()
