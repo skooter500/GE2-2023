@@ -65,6 +65,12 @@ draw_gizmos = false
 weight = 5.0
 feeler_angle = 45
 feeler_length = 10
+updates_per_second = 60
+
+[node name="Harmonic" parent="creature/boid" index="5"]
+frequency = 0.3
+distance = 15
+axis = 0
 
 [node name="Constrain" parent="creature/boid" index="6"]
 weight = 1.0
