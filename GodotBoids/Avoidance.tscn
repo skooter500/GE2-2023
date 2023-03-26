@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://OffsetPursue.gd" type="Script" id=1]
 [ext_resource path="res://root.gd" type="Script" id=2]
 [ext_resource path="res://FPController.gd" type="Script" id=3]
 [ext_resource path="res://steering/Boid.gd" type="Script" id=4]
+[ext_resource path="res://PathDrawer.gd" type="Script" id=5]
 [ext_resource path="res://Controller.gd" type="Script" id=6]
 [ext_resource path="res://CameraController.gd" type="Script" id=7]
 [ext_resource path="res://creature.tscn" type="PackedScene" id=8]
@@ -49,22 +50,32 @@ script = ExtResource( 4 )
 
 [node name="OffsetPursue" type="Node" parent="camera follower"]
 script = ExtResource( 1 )
+draw_gizmos = false
 leader_node_path = NodePath("../../creature/boid")
 
 [node name="creature" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -58.8162 )
 
 [node name="boid" parent="creature" index="4"]
+max_force = 10
+draw_gizmos = false
+
+[node name="Avoidance" parent="creature/boid" index="4"]
+weight = 5.0
 draw_gizmos = false
 
 [node name="Harmonic" parent="creature/boid" index="5"]
-enabled = false
+draw_gizmos = false
 
 [node name="Constrain" parent="creature/boid" index="6"]
 weight = 1.0
 center_path = NodePath("../../../Center")
 
-[node name="Seek" parent="creature/boid" index="9"]
+[node name="PathFollow" parent="creature/boid" index="8"]
+draw_gizmos = true
 enabled = true
+
+[node name="Seek" parent="creature/boid" index="9"]
 target_node = NodePath("../../../Target")
 
 [node name="Arrive" parent="creature/boid" index="10"]
@@ -79,6 +90,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -90.1317 )
 [node name="Path" type="Path" parent="."]
 transform = Transform( 0.029265, 0, -0.999572, 0, 1, 0, 0.999572, 0, 0.029265, -27.7878, -4.57764e-05, -12.9541 )
 curve = SubResource( 2 )
+script = ExtResource( 5 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 12.0512, 0.23691 )
@@ -233,23 +245,55 @@ step = 0.1
 
 [node name="Center" type="Position3D" parent="."]
 
-[node name="Obstacle" type="KinematicBody" parent="."]
-transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, -2, 0, 23.0287 )
+[node name="Obstacles" type="Node" parent="."]
 
-[node name="CollisionShape" type="CollisionShape" parent="Obstacle"]
+[node name="Obstacle" type="KinematicBody" parent="Obstacles"]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, -8.03407, 8.89342, 18.813 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Obstacles/Obstacle"]
 shape = SubResource( 10 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Obstacle"]
+[node name="MeshInstance" type="MeshInstance" parent="Obstacles/Obstacle"]
 mesh = SubResource( 11 )
 material/0 = SubResource( 12 )
 
-[node name="Obstacle2" type="KinematicBody" parent="."]
-transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0.171143, 0, 78.7438 )
+[node name="Obstacle2" type="KinematicBody" parent="Obstacles"]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, -31.2979, 10.6037, 40.4337 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Obstacle2"]
+[node name="CollisionShape" type="CollisionShape" parent="Obstacles/Obstacle2"]
 shape = SubResource( 10 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Obstacle2"]
+[node name="MeshInstance" type="MeshInstance" parent="Obstacles/Obstacle2"]
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
+
+[node name="Obstacle3" type="KinematicBody" parent="Obstacles"]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, -44.2919, 8.89342, 18.813 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Obstacles/Obstacle3"]
+shape = SubResource( 10 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Obstacles/Obstacle3"]
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
+
+[node name="Obstacle4" type="KinematicBody" parent="Obstacles"]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, -41.5554, 8.89342, -16.0766 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Obstacles/Obstacle4"]
+shape = SubResource( 10 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Obstacles/Obstacle4"]
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
+
+[node name="Obstacle5" type="KinematicBody" parent="Obstacles"]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, -8.03409, 13.2341, -16.7607 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Obstacles/Obstacle5"]
+shape = SubResource( 10 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Obstacles/Obstacle5"]
 mesh = SubResource( 11 )
 material/0 = SubResource( 12 )
 

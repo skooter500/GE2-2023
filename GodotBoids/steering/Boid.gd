@@ -19,6 +19,7 @@ func draw_gizmos():
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0), 0.1)
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.y * 10.0 , Color(0, 1, 0), 0.1)
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + force , Color(1, 1, 0), 0.1)
+	DebugDraw.set_text("Force mag", force.length())
 	# set_text("transform.origin", transform.origin)
 	# DebugDraw.set_text("translation", translation)
 	# DebugDraw.set_text("rotation", rotation)
@@ -64,18 +65,19 @@ func enable_all(enabled):
 		behaviors[i].enabled = enabled
 
 func calculate():	
-	force = Vector3.ZERO
+	var force_acc = Vector3.ZERO
 	for i in behaviors.size():
 		if behaviors[i].enabled:
 			var f = behaviors[i].calculate()
 			if is_nan(f.x) or is_nan(f.y) or is_nan(f.z):
 				print(behaviors[i] + " is NAN")
 				f = Vector3.ZERO
-			force += f * behaviors[i].weight
-			if force.length() > max_force:
-				force = force.limit_length(max_force)
+			force_acc += f * behaviors[i].weight
+			if force_acc.length() > max_force:
+				force_acc = force.limit_length(max_force)
+				DebugDraw.set_text("Limiting force", force_acc.length())
 				break
-	return force
+	return force_acc
 
 func _process(var delta):
 	if draw_gizmos:
@@ -93,9 +95,9 @@ func _physics_process(var delta):
 		# Damping
 		velocity -= velocity * delta * damping
 		
-		# move_and_slide(velocity)
+		move_and_slide(velocity)
 		
 		# Implement Banking as described:
 		# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/
 		var tempUp = transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta * 5.0)
-		# look_at(global_transform.origin - velocity, Vector3.UP)
+		look_at(global_transform.origin - velocity, Vector3.UP)

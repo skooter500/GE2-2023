@@ -12,46 +12,58 @@ export var updates_per_second = 10
 
 var force = Vector3.ZERO
 var feelers = []
+var space_state
 
 func draw_gizmos():
-	
 	for i in feelers.size():
 		var feeler = feelers[i]		
-		DebugDraw.draw_line(boid.global_transform.origin, feeler.end, Color.aqua)
+		
 		if feeler.hit:
+			DebugDraw.draw_line(boid.global_transform.origin, feeler.hit_target, Color.aqua)
 			DebugDraw.draw_arrow_line(feeler.hit_target, feeler.hit_target + feeler.force, Color.red, 0.1)
+		else:
+			DebugDraw.draw_line(boid.global_transform.origin, feeler.end, Color.aqua)
 
 func _physics_process(var delta):
-	update_feelers()
-		
+	update_feelers()		
 
 func feel(local_ray):
-	var ray_end = boid.global_transform.xform()
-
-
-func update_feelers():
-	force = Vector3.ZERO
-	feelers.clear()
-	var space_state = boid.get_world().direct_space_state
-	var forwards = Vector3.AXIS_Z * feeler_length
-	
-	
-	# Forwards feeler			
+	var feeler = {}
+	var ray_end = boid.global_transform.xform(local_ray)
 	var result = space_state.intersect_ray(boid.global_transform.origin, ray_end)
-	
+	feeler.end = ray_end
+	feeler.hit = result
 	if result:
-		hit_target = result.position
+		feeler.hit_target = result.position
 		var to_boid = result.position - boid.global_transform.origin
 		var force_mag = to_boid.length()
 		match direction:
 			ForceDirection.Normal:
-				force = result.normal * force_mag
+				feeler.force = result.normal * force_mag
 			ForceDirection.Incident:
-				force = to_boid.reflect(result.normal) * force_mag
+				feeler.force = to_boid.reflect(result.normal) * force_mag
 			ForceDirection.Up:
-				force = Vector3.UP * force_mag
+				feeler.force = Vector3.UP * force_mag
 			ForceDirection.Braking:
-				force = to_boid * force_mag
+				feeler.force = to_boid * force_mag
+		force += feeler.force
+	return feeler
+
+func update_feelers():
+	force = Vector3.ZERO
+	feelers.clear()
+	var forwards = Vector3.BACK * feeler_length
+	feelers.push_back(feel(forwards))
+	feelers.push_back(feel(Quat(Vector3.UP, 45) * forwards))
+	feelers.push_back(feel(Quat(Vector3.UP, -45) * forwards))
+
+	feelers.push_back(feel(Quat(Vector3.RIGHT, 45) * forwards))
+	feelers.push_back(feel(Quat(Vector3.RIGHT, -45) * forwards))
+
+	# Forwards feeler			
+	
+	
+	
 	
 	# 
 	
@@ -82,6 +94,7 @@ func calculate():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	boid = get_parent()
+	space_state = boid.get_world().direct_space_state
 	pass # Replace with function body.
 
 
