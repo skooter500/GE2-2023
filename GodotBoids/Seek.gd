@@ -9,7 +9,7 @@ export var target_node:NodePath
 onready var target = get_node(target_node)
 
 func draw_gizmos():
-	DebugDraw.draw_arrow_line(boid.global_transform.origin, target.global_transform.origin)
+	DebugDraw.draw_arrow_line(boid.global_transform.origin, target.global_transform.origin, Color.aliceblue, 0.1)
 	
 
 func calculate():	
