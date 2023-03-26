@@ -12,7 +12,7 @@ onready var boid_camera = get_node(boid_camera_path)
 export var boid_path:NodePath
 onready var boid = get_node(boid_path) 
 
-enum Mode { Free, Follow}
+enum Mode { Free, Follow, Boid}
 
 export var mode = Mode.Free
 
@@ -23,20 +23,27 @@ func _ready():
 	
 func _input(event):
 	if event is InputEventKey and event.scancode == KEY_C and event.pressed:
-		if mode == Mode.Free:
-			camera.move = false
-			mode = Mode.Follow
-		else:
-			camera.move = true
-			mode = Mode.Free
+		match mode:
+			Mode.Free:
+				camera.move = false
+				mode = Mode.Follow
+			Mode.Follow:
+				camera.move = false
+				mode = Mode.Boid
+			Mode.Boid:
+				camera.move = true
+				mode = Mode.Free
 
 func _physics_process(delta):
-	if mode == Mode.Follow:	
-		camera.global_transform.origin = lerp(camera.global_transform.origin, boid_camera.global_transform.origin, delta * 5.0)
-
-		var desired = camera.global_transform.looking_at(boid.global_transform.origin, Vector3.UP)		
-		camera.global_transform.basis = camera.global_transform.basis.slerp(desired.basis, delta).orthonormalized()
-
+	match mode:
+		Mode.Follow:	
+			camera.global_transform.origin = lerp(camera.global_transform.origin, boid_camera.global_transform.origin, delta * 5.0)
+			var desired = camera.global_transform.looking_at(boid.global_transform.origin, Vector3.UP)		
+			camera.global_transform.basis = camera.global_transform.basis.slerp(desired.basis, delta).orthonormalized()
+		Mode.Boid:
+			camera.global_transform.origin = lerp(camera.global_transform.origin, boid.global_transform.origin, delta * 5.0)
+			var desired = camera.global_transform.looking_at(boid.global_transform.origin + boid.global_transform.basis.z , Vector3.UP)
+			camera.global_transform.basis = camera.global_transform.basis.slerp(desired.basis, delta * 5).orthonormalized()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	DebugDraw.set_text("mode", str(mode))

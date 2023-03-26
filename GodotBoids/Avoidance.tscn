@@ -34,7 +34,7 @@ albedo_color = Color( 0.0235294, 0.329412, 0.976471, 0.0392157 )
 script = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.769834, 0, 0.638244, 0, 1, 0, -0.638244, 0, 0.769834, 36.1888, 7.1029, 48.8781 )
+transform = Transform( 0.769834, 0, 0.638244, 0, 1, 0, -0.638244, 0, 0.769834, 4.62029, 7.1029, 29.1478 )
 environment = SubResource( 6 )
 far = 10000.0
 script = ExtResource( 3 )
@@ -47,6 +47,7 @@ boid_path = NodePath("../../creature/boid")
 [node name="camera follower" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.3768, 10.8322, 38.2638 )
 script = ExtResource( 4 )
+draw_gizmos = false
 
 [node name="OffsetPursue" type="Node" parent="camera follower"]
 script = ExtResource( 1 )
@@ -54,21 +55,20 @@ draw_gizmos = false
 leader_node_path = NodePath("../../creature/boid")
 
 [node name="creature" parent="." instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -58.8162 )
 
 [node name="boid" parent="creature" index="4"]
-max_force = 10
+max_force = 100
+banking = 0.1
 draw_gizmos = false
 
 [node name="Avoidance" parent="creature/boid" index="4"]
 weight = 5.0
-draw_gizmos = false
-
-[node name="Harmonic" parent="creature/boid" index="5"]
-draw_gizmos = false
+feeler_angle = 45
+feeler_length = 10
 
 [node name="Constrain" parent="creature/boid" index="6"]
 weight = 1.0
+enabled = false
 center_path = NodePath("../../../Center")
 
 [node name="PathFollow" parent="creature/boid" index="8"]
@@ -288,7 +288,7 @@ mesh = SubResource( 11 )
 material/0 = SubResource( 12 )
 
 [node name="Obstacle5" type="KinematicBody" parent="Obstacles"]
-transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, -8.03409, 13.2341, -16.7607 )
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, -8.03409, 1.0013, -31.7558 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Obstacles/Obstacle5"]
 shape = SubResource( 10 )

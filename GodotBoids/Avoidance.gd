@@ -7,25 +7,32 @@ class_name Avoidance extends SteeringBehavior
 enum ForceDirection {Normal, Incident, Up, Braking}
 export var direction = ForceDirection.Normal
 export var feeler_angle = 60
-export var feeler_length = 10
-export var updates_per_second = 10
+export var feeler_length = 45
+export var updates_per_second = 5
 
 var force = Vector3.ZERO
 var feelers = []
 var space_state
+
+var needs_updating = true
 
 func draw_gizmos():
 	for i in feelers.size():
 		var feeler = feelers[i]		
 		
 		if feeler.hit:
-			DebugDraw.draw_line(boid.global_transform.origin, feeler.hit_target, Color.aqua)
+			DebugDraw.draw_line(boid.global_transform.origin, feeler.hit_target, Color.chartreuse)
 			DebugDraw.draw_arrow_line(feeler.hit_target, feeler.hit_target + feeler.force, Color.red, 0.1)
 		else:
-			DebugDraw.draw_line(boid.global_transform.origin, feeler.end, Color.aqua)
+			DebugDraw.draw_line(boid.global_transform.origin, feeler.end, Color.chartreuse)
+
+func needs_updating():
+	needs_updating = true
 
 func _physics_process(var delta):
-	update_feelers()		
+	if needs_updating:
+		update_feelers()
+		needs_updating = false		
 
 func feel(local_ray):
 	var feeler = {}
@@ -54,11 +61,11 @@ func update_feelers():
 	feelers.clear()
 	var forwards = Vector3.BACK * feeler_length
 	feelers.push_back(feel(forwards))
-	feelers.push_back(feel(Quat(Vector3.UP, 45) * forwards))
-	feelers.push_back(feel(Quat(Vector3.UP, -45) * forwards))
+	feelers.push_back(feel(Quat(Vector3.UP, feeler_angle) * forwards))
+	feelers.push_back(feel(Quat(Vector3.UP, -feeler_angle) * forwards))
 
-	feelers.push_back(feel(Quat(Vector3.RIGHT, 45) * forwards))
-	feelers.push_back(feel(Quat(Vector3.RIGHT, -45) * forwards))
+	feelers.push_back(feel(Quat(Vector3.RIGHT, feeler_angle) * forwards))
+	feelers.push_back(feel(Quat(Vector3.RIGHT, -feeler_angle) * forwards))
 
 	# Forwards feeler			
 	
@@ -95,6 +102,13 @@ func calculate():
 func _ready():
 	boid = get_parent()
 	space_state = boid.get_world().direct_space_state
+	
+	var timer = Timer.new()
+	add_child(timer)
+	timer.wait_time = 1.0 / updates_per_second
+	timer.connect("timeout", self, "needs_updating")
+	timer.start()
+	
 	pass # Replace with function body.
 
 

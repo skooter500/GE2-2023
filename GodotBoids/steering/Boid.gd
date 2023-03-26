@@ -66,17 +66,21 @@ func enable_all(enabled):
 
 func calculate():	
 	var force_acc = Vector3.ZERO
+	var behaviors_active = ""
 	for i in behaviors.size():
 		if behaviors[i].enabled:
-			var f = behaviors[i].calculate()
+			var f = behaviors[i].calculate() * behaviors[i].weight
 			if is_nan(f.x) or is_nan(f.y) or is_nan(f.z):
 				print(behaviors[i] + " is NAN")
 				f = Vector3.ZERO
-			force_acc += f * behaviors[i].weight
+			behaviors_active += behaviors[i].name + ": " + str(round(f.length())) + " "
+			force_acc += f 
 			if force_acc.length() > max_force:
-				force_acc = force.limit_length(max_force)
-				DebugDraw.set_text("Limiting force", force_acc.length())
+				force_acc = force_acc.limit_length(max_force)
+				behaviors_active += " Limiting force"
 				break
+	DebugDraw.set_text(behaviors_active)
+	DebugDraw.set_text(str(force_acc.length()))
 	return force_acc
 
 func _process(var delta):
@@ -99,5 +103,5 @@ func _physics_process(var delta):
 		
 		# Implement Banking as described:
 		# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/
-		var tempUp = transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta * 5.0)
-		look_at(global_transform.origin - velocity, Vector3.UP)
+		var temp_up = global_transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta * 5.0)
+		look_at(global_transform.origin - velocity, temp_up)
