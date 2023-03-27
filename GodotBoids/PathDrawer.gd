@@ -11,11 +11,10 @@ func draw_gizmos():
 	for i in range(1, path.get_curve().get_point_count()):
 		var start = transform.xform(path.get_curve().get_point_position(i - 1))
 		var end = transform.xform(path.get_curve().get_point_position(i))
-		DebugDraw.draw_line(start, end , Color.aqua)
-		DebugDraw.draw_sphere(start, 2, Color.aqua)
+		DebugDraw.draw_line(start, end , Color.cyan)
 
 
-# Called when the node enters the scene tree for the first time.
+# Called when the node enters the scene tree for the first time.c
 func _ready():
 	path = $"."
 	pass # Replace with function body.

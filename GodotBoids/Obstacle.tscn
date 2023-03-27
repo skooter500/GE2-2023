@@ -4,25 +4,28 @@
 [ext_resource path="res://Wander.gd" type="Script" id=2]
 [ext_resource path="res://steering/Constrain.gd" type="Script" id=3]
 
-[sub_resource type="SphereShape" id=10]
+[sub_resource type="BoxShape" id=13]
 
-[sub_resource type="SphereMesh" id=11]
+[sub_resource type="CubeMesh" id=14]
 
 [sub_resource type="SpatialMaterial" id=12]
 flags_transparent = true
-albedo_color = Color( 0.537255, 0.988235, 0, 0.196078 )
+albedo_color = Color( 0.537255, 0.988235, 0, 1 )
+metallic_specular = 0.9
 
 [node name="Obstacle2" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0681, 0, -0.06809 )
 script = ExtResource( 1 )
+max_speed = 0.0
 draw_gizmos = false
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0 )
-shape = SubResource( 10 )
+shape = SubResource( 13 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0 )
-mesh = SubResource( 11 )
+mesh = SubResource( 14 )
 material/0 = SubResource( 12 )
 
 [node name="Wander" type="Node" parent="."]
@@ -34,4 +37,4 @@ jitter = 100.0
 [node name="Constrain" type="Node" parent="."]
 script = ExtResource( 3 )
 draw_gizmos = false
-radius = 20.0
+radius = 30.0
