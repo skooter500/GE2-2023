@@ -19,16 +19,12 @@ func draw_gizmos():
 	var cent = boid.global_transform.xform(Vector3.BACK * distance)
 	DebugDraw.draw_sphere(cent, radius, Color.darkslateblue)
 	DebugDraw.draw_line(boid.global_transform.origin, cent, Color.darkslateblue)
-	DebugDraw.draw_line(cent, world_target, Color.darkslateblue)
-
-	DebugDraw.draw_sphere(world_target, 1)
-			
+	DebugDraw.draw_arrow_line(cent, world_target, Color.darkslateblue, 0.1)			
 
 func calculate():		
 	var delta = get_process_delta_time()
 	var disp = jitter * Utils.random_point_in_unit_sphere() * delta
 	wander_target += disp
-	wander_target.y = 0
 	wander_target = wander_target.limit_length(radius)
 	var local_target = (Vector3.BACK * distance) + wander_target
 

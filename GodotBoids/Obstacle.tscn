@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://steering/Boid.gd" type="Script" id=1]
 [ext_resource path="res://Wander.gd" type="Script" id=2]
 [ext_resource path="res://steering/Constrain.gd" type="Script" id=3]
-[ext_resource path="res://Avoidance.gd" type="Script" id=4]
 
 [sub_resource type="SphereShape" id=10]
 
@@ -11,10 +10,11 @@
 
 [sub_resource type="SpatialMaterial" id=12]
 flags_transparent = true
-albedo_color = Color( 0.0235294, 0.329412, 0.976471, 0.784314 )
+albedo_color = Color( 0.537255, 0.988235, 0, 0.196078 )
 
 [node name="Obstacle2" type="KinematicBody"]
 script = ExtResource( 1 )
+draw_gizmos = false
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0 )
@@ -27,13 +27,11 @@ material/0 = SubResource( 12 )
 
 [node name="Wander" type="Node" parent="."]
 script = ExtResource( 2 )
+draw_gizmos = false
 radius = 20.0
-jitter = 50.0
+jitter = 100.0
 
 [node name="Constrain" type="Node" parent="."]
 script = ExtResource( 3 )
-radius = 50.0
-
-[node name="Avoidance" type="Node" parent="."]
-script = ExtResource( 4 )
-feeler_length = 2
+draw_gizmos = false
+radius = 20.0

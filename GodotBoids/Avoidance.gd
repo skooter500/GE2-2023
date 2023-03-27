@@ -64,8 +64,8 @@ func update_feelers():
 	feelers.push_back(feel(Quat(Vector3.UP, deg2rad(feeler_angle)) * forwards))
 	feelers.push_back(feel(Quat(Vector3.UP, deg2rad(-feeler_angle)) * forwards))
 
-	feelers.push_back(feel(Quat(Vector3.RIGHT, deg2rad(feeler_angle) * forwards))
-	feelers.push_back(feel(Quat(Vector3.RIGHT, deg2rad(-feeler_angle) * forwards)))
+	feelers.push_back(feel(Quat(Vector3.RIGHT, deg2rad(feeler_angle)) * forwards))
+	feelers.push_back(feel(Quat(Vector3.RIGHT, deg2rad(-feeler_angle)) * forwards))
 
 	# Forwards feeler			
 	
