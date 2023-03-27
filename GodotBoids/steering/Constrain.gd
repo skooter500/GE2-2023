@@ -1,9 +1,9 @@
-extends SteeringBehavior
+class_name Constrain extends SteeringBehavior
 
 export var radius:float = 100
 
 export var center_path:NodePath
-var center  
+var center
 
 func draw_gizmos():
 	DebugDraw.draw_sphere(center.global_transform.origin, radius, Color.beige)

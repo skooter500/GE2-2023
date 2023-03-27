@@ -9,19 +9,20 @@ export var obstacle_scene:PackedScene
 
 export var count = 5
 
-export var radius = 100
-export var bubble_radius = 10 
-
-onready var cent = $"../Center"
+export var radius = 5
+export var bubble_radius = 5 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for i in count:
 		var o = obstacle_scene.instance()		
-		var pos = Utils.random_point_in_unit_sphere() * radius
-		o.global_transform.origin = pos
-		o.global_transform.basis = o.global_transform.basis.scaled(Utils.random_point_in_unit_sphere() * bubble_radius)
 		add_child(o)
+		var pos = Utils.random_point_in_unit_sphere() * radius
+		pos = pos.normalized() * radius
+		o.transform.origin = pos
+		o.get_node("Constrain").center = $"../Center"
+		# o.global_transform.basis = o.global_transform.basis.scaled(Utils.random_point_in_unit_sphere() * bubble_radius)
+		
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

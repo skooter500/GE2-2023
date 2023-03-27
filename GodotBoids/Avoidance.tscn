@@ -248,6 +248,7 @@ step = 0.1
 [node name="Obstacles" type="Spatial" parent="."]
 script = ExtResource( 9 )
 obstacle_scene = ExtResource( 10 )
+radius = 20
 
 [connection signal="value_changed" from="Controls/GridContainer2/distance" to="Controls" method="_on_distance_value_changed"]
 [connection signal="value_changed" from="Controls/GridContainer2/radius" to="Controls" method="_on_radius_value_changed"]
