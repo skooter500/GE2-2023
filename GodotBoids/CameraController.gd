@@ -37,7 +37,7 @@ func _input(event):
 func _physics_process(delta):
 	match mode:
 		Mode.Follow:	
-			camera.global_transform.origin = lerp(camera.global_transform.origin, boid_camera.global_transform.origin, delta * 5.0)
+			camera.global_transform.origin = lerp(camera.global_transform.origin, boid_camera.global_transform.origin, delta * 20.0)
 			var desired = camera.global_transform.looking_at(boid.global_transform.origin, Vector3.UP)		
 			camera.global_transform.basis = camera.global_transform.basis.slerp(desired.basis, delta).orthonormalized()
 		Mode.Boid:

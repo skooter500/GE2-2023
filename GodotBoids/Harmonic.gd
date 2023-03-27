@@ -20,7 +20,7 @@ func _process(delta):
 		var cent = boid.global_transform.xform(Vector3.BACK * distance)
 		DebugDraw.draw_sphere(cent, radius, Color.hotpink)
 		DebugDraw.draw_line(boid.global_transform.origin, cent, Color.hotpink)
-		DebugDraw.draw_line(cent, worldTarget, Color.hotpink)
+		DebugDraw.draw_arrow_line(cent, worldTarget, Color.hotpink, 0.1)
 			
 func calculate():		
 	var n  = sin(theta)

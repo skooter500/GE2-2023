@@ -14,24 +14,13 @@ export var damping = 0.1
 
 export var draw_gizmos = true
 
+
 func draw_gizmos():
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1), 0.1)
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0), 0.1)
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.y * 10.0 , Color(0, 1, 0), 0.1)
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + force , Color(1, 1, 0), 0.1)
 	DebugDraw.set_text("Force mag", force.length())
-	# set_text("transform.origin", transform.origin)
-	# DebugDraw.set_text("translation", translation)
-	# DebugDraw.set_text("rotation", rotation)
-	# DebugDraw.set_text("rotation_degrees", rotation_degrees)
-	# DebugDraw.set_text("transform.basis.x", transform.basis.x)
-	# DebugDraw.set_text("transform.basis.y", transform.basis.y)
-	# DebugDraw.set_text("transform.basis.z", transform.basis.z)
-
-	#DebugDraw.set_text("Vector3.FORWARD", Vector3.FORWARD)
-	# DebugDraw.set_text("Vector3.BACK", Vector3.BACK)
-	#DebugDraw.set_text("Vector3.UP", Vector3.UP)
-	# DebugDraw.set_text("Vector3.DOWN", Vector3.DOWN)
 
 func seek_force(target: Vector3):	
 	var toTarget = target - transform.origin
@@ -80,7 +69,6 @@ func calculate():
 				behaviors_active += " Limiting force"
 				break
 	DebugDraw.set_text(behaviors_active)
-	DebugDraw.set_text(str(force_acc.length()))
 	return force_acc
 
 func _process(var delta):
@@ -98,6 +86,7 @@ func _physics_process(var delta):
 		
 		# Damping
 		velocity -= velocity * delta * damping
+		
 		
 		move_and_slide(velocity)
 		

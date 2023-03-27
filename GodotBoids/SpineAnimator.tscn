@@ -46,18 +46,18 @@ leader_node_path = NodePath("../../creature/boid")
 
 [node name="creature" parent="." instance=ExtResource( 1 )]
 
-[node name="Constrain" parent="creature/boid" index="4"]
+[node name="Constrain" parent="creature/boid" index="6"]
 weight = 1.0
 center_path = NodePath("../../../Center")
 
-[node name="Seek" parent="creature/boid" index="7"]
-target_node = NodePath("")
-
-[node name="Arrive" parent="creature/boid" index="8"]
-target_node = NodePath("")
-
 [node name="Avoidance" type="Node" parent="creature/boid" index="9"]
 script = ExtResource( 2 )
+
+[node name="Seek" parent="creature/boid" index="10"]
+target_node = NodePath("")
+
+[node name="Arrive" parent="creature/boid" index="11"]
+target_node = NodePath("")
 
 [node name="Spatial" type="Spatial" parent="."]
 
