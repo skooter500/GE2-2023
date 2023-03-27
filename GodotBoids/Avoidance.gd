@@ -6,8 +6,8 @@ class_name Avoidance extends SteeringBehavior
 
 enum ForceDirection {Normal, Incident, Up, Braking}
 export var direction = ForceDirection.Normal
-export var feeler_angle = 60
-export var feeler_length = 45
+export var feeler_angle = 45
+export var feeler_length = 10
 export var updates_per_second = 5
 
 var force = Vector3.ZERO
@@ -61,11 +61,11 @@ func update_feelers():
 	feelers.clear()
 	var forwards = Vector3.BACK * feeler_length
 	feelers.push_back(feel(forwards))
-	feelers.push_back(feel(Quat(Vector3.UP, feeler_angle) * forwards))
-	feelers.push_back(feel(Quat(Vector3.UP, -feeler_angle) * forwards))
+	feelers.push_back(feel(Quat(Vector3.UP, deg2rad(feeler_angle)) * forwards))
+	feelers.push_back(feel(Quat(Vector3.UP, deg2rad(-feeler_angle)) * forwards))
 
-	feelers.push_back(feel(Quat(Vector3.RIGHT, feeler_angle) * forwards))
-	feelers.push_back(feel(Quat(Vector3.RIGHT, -feeler_angle) * forwards))
+	feelers.push_back(feel(Quat(Vector3.RIGHT, deg2rad(feeler_angle) * forwards))
+	feelers.push_back(feel(Quat(Vector3.RIGHT, deg2rad(-feeler_angle) * forwards)))
 
 	# Forwards feeler			
 	

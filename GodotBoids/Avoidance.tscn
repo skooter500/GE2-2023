@@ -57,8 +57,11 @@ draw_gizmos = false
 
 [node name="Avoidance" parent="creature/boid" index="4"]
 weight = 5.0
-feeler_angle = 45
-feeler_length = 10
+draw_gizmos = null
+enabled = null
+direction = null
+feeler_angle = null
+feeler_length = null
 updates_per_second = 60
 
 [node name="Harmonic" parent="creature/boid" index="5"]
