@@ -64,9 +64,13 @@ draw_gizmos = false
 [node name="creature" parent="." instance=ExtResource( 8 )]
 
 [node name="boid" parent="creature" index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 12.5154 )
 max_force = 100
 banking = 0.1
 draw_gizmos = false
+
+[node name="MeshInstance5" parent="creature/boid" index="2"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 
 [node name="Avoidance" parent="creature/boid" index="4"]
 weight = 5.0
@@ -79,13 +83,12 @@ axis = 0
 
 [node name="Constrain" parent="creature/boid" index="6"]
 weight = 1.0
-enabled = false
 center_path = NodePath("../../../Center")
 
 [node name="PathFollow" parent="creature/boid" index="8"]
 draw_gizmos = true
 enabled = true
-waypoint_seek_distance = 5
+waypoint_seek_distance = 7
 
 [node name="Seek" parent="creature/boid" index="9"]
 target_node = NodePath("../../../Target")
