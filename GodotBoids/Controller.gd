@@ -18,8 +18,8 @@ func _ready():
 	$GridContainer2/Frequency.value = harmonic.frequency
 	$GridContainer2/weight.value = harmonic.weight
 	
-	$GridContainer2/damping.value = $"../creature/boid/spineanimator".damping
-	$GridContainer2/angularDamping.value = $"../creature/boid/spineanimator".damping
+	$GridContainer2/damping.value = $"../creature/spineanimator".damping
+	$GridContainer2/angularDamping.value = $"../creature/spineanimator".damping
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -56,10 +56,10 @@ func _on_OptionButton_item_selected(index):
 
 
 func _on_damping_value_changed(value):
-	$"../creature/boid/spineanimator".damping = value	
+	$"../creature/spineanimator".damping = value	
 	pass # Replace with function body.
 
 
 func _on_angularDamping_value_changed(value):
-	$"../creature/boid/spineanimator".angular_damping = value
+	$"../creature/spineanimator".angular_damping = value
 	pass # Replace with function body.
