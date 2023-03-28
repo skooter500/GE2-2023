@@ -35,7 +35,7 @@ func _physics_process(delta):
 		var lerped = lerp(next.global_transform.origin, wantedPos, delta * damping)
 		var clamped = (lerped - prev.global_transform.origin).normalized() * offsets[i].length()
 		var pos = prev.global_transform.origin + clamped
-		next.global_transform.origin = lerped
+		next.global_transform.origin = pos
 		
 		var prevRot = prev.global_transform.basis.orthonormalized()
 		
