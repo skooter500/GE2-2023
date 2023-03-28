@@ -62,13 +62,13 @@ leader_node_path = NodePath("../../creature/boid")
 
 [node name="Avoidance" type="Node" parent="camera follower"]
 script = ExtResource( 6 )
+updates_per_second = 1
 
 [node name="creature" parent="." instance=ExtResource( 11 )]
 
 [node name="boid" parent="creature" index="1"]
 max_force = 100
 banking = 0.1
-draw_gizmos = false
 
 [node name="MeshInstance5" parent="creature/boid" index="1"]
 transform = Transform( 1, 0, 0, 0, -8.74228e-08, -1, 0, 2, -4.37114e-08, 0, 0, 0 )
