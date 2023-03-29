@@ -23,6 +23,7 @@ func draw_gizmos():
 		if feeler.hit:
 			DebugDraw.draw_line(boid.global_transform.origin, feeler.hit_target, Color.chartreuse)
 			DebugDraw.draw_arrow_line(feeler.hit_target, feeler.hit_target + feeler.force, Color.red, 0.1)
+			DebugDraw.draw_arrow_line(feeler.hit_target, feeler.hit_target + feeler.normal, Color.aqua, 0.1)
 		else:
 			DebugDraw.draw_line(boid.global_transform.origin, feeler.end, Color.chartreuse)
 
@@ -42,6 +43,7 @@ func feel(local_ray):
 	feeler.hit = result
 	if result:
 		feeler.hit_target = result.position
+		feeler.normal = result.normal
 		var to_boid = boid.global_transform.origin - result.position
 		var force_mag = 1.0 / to_boid.length()
 		match direction:
