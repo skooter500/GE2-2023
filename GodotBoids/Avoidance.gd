@@ -43,7 +43,7 @@ func feel(local_ray):
 	if result:
 		feeler.hit_target = result.position
 		var to_boid = result.position - boid.global_transform.origin
-		var force_mag = to_boid.length()
+		var force_mag = 1.0 / to_boid.length() 
 		match direction:
 			ForceDirection.Normal:
 				feeler.force = result.normal * force_mag

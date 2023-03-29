@@ -7,7 +7,7 @@ export var waypoint_seek_distance = 3
 var target
 
 func draw_gizmos():
-	DebugDraw.draw_sphere(target, waypoint_seek_distance, Color.cyan)
+	# DebugDraw.draw_sphere(target, waypoint_seek_distance, Color.cyan)
 
 func calculate():
 	target = path.transform.xform(path.get_curve().get_point_position(pathIndex))
