@@ -70,14 +70,12 @@ updates_per_second = 1
 max_force = 100
 banking = 0.1
 
-[node name="MeshInstance5" parent="creature/boid" index="1"]
-transform = Transform( 1, 0, 0, 0, -8.74228e-08, -1, 0, 2, -4.37114e-08, 0, 0, 0 )
-
 [node name="CollisionShape" parent="creature/boid" index="2"]
 transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Avoidance" parent="creature/boid" index="3"]
 weight = 5.0
+direction = 3
 updates_per_second = 60
 
 [node name="Harmonic" parent="creature/boid" index="4"]
@@ -95,7 +93,7 @@ enabled = true
 waypoint_seek_distance = 7
 
 [node name="Seek" parent="creature/boid" index="8"]
-target_node = NodePath("../../../Target")
+target_node = NodePath("")
 
 [node name="Arrive" parent="creature/boid" index="9"]
 target_node = NodePath("")
@@ -109,10 +107,7 @@ target_node = NodePath("")
 [node name="body" type="KinematicBody" parent="creature"]
 transform = Transform( 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 9.5 )
 
-[node name="Target" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 124.311 )
-
-[node name="Position3D" type="Position3D" parent="."]
+[node name="Target" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -90.1317 )
 
 [node name="Path" type="Path" parent="."]

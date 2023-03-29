@@ -14,6 +14,12 @@ export var damping = 0.1
 
 export var draw_gizmos = true
 
+export var pause = false
+
+func _input(event):
+	if event is InputEventKey and event.scancode == KEY_P and event.pressed:
+			pause = ! pause
+	print(event)
 
 func draw_gizmos():
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1), 0.1)
@@ -79,18 +85,20 @@ func _physics_process(var delta):
 	# lerp in the new forces
 	force = lerp(force, calculate(), delta)
 	acceleration = force / mass
-	velocity += acceleration * delta
-	speed = velocity.length()
-	if speed > 0:		
-		velocity = velocity.limit_length(max_speed)
-		
-		# Damping
-		velocity -= velocity * delta * damping
-		
-		
-		move_and_slide(velocity)
-		
-		# Implement Banking as described:
-		# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/
-		var temp_up = global_transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta * 5.0)
-		look_at(global_transform.origin - velocity, temp_up)
+	
+	if not pause:
+		velocity += acceleration * delta
+		speed = velocity.length()
+		if speed > 0:		
+			velocity = velocity.limit_length(max_speed)
+			
+			# Damping
+			velocity -= velocity * delta * damping
+			
+			
+			move_and_slide(velocity)
+			
+			# Implement Banking as described:
+			# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/
+			var temp_up = global_transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta * 5.0)
+			look_at(global_transform.origin - velocity, temp_up)
