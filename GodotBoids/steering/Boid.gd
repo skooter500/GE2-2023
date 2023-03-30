@@ -16,7 +16,8 @@ export var draw_gizmos = true
 export var pause = false
 
 func _input(event):
-	print(event)
+	if event is InputEventKey and event.scancode == KEY_P and event.pressed:
+		pause = ! pause
 
 func draw_gizmos():
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1), 0.1)

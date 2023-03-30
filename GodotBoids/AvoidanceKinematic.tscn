@@ -66,7 +66,6 @@ script = ExtResource( 6 )
 [node name="creature" parent="." instance=ExtResource( 11 )]
 
 [node name="boid" parent="creature" index="1"]
-max_force = 20
 banking = 0.1
 draw_gizmos = false
 
@@ -74,10 +73,12 @@ draw_gizmos = false
 transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Avoidance" parent="creature/boid" index="3"]
-weight = 5.0
+weight = 0.0
+direction = 1
 updates_per_second = 60
 
 [node name="Harmonic" parent="creature/boid" index="4"]
+weight = 0.0
 frequency = 0.3
 distance = 15
 axis = 0
