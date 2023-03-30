@@ -50,14 +50,13 @@ boid_path = NodePath("../../creature/boid")
 [node name="FPController" parent="Camera" instance=ExtResource( 12 )]
 
 [node name="camera follower" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.345284, 0.453297, 42.9221 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5143, 0.453297, 24.3148 )
 script = ExtResource( 9 )
-max_speed = 30.0
 max_force = 30
 
 [node name="OffsetPursue" type="Node" parent="camera follower"]
 script = ExtResource( 1 )
-weight = 10.0
+weight = 5.0
 leader_node_path = NodePath("../../creature/boid")
 
 [node name="Avoidance" type="Node" parent="camera follower"]
@@ -66,6 +65,7 @@ script = ExtResource( 6 )
 [node name="creature" parent="." instance=ExtResource( 11 )]
 
 [node name="boid" parent="creature" index="1"]
+speed = 1.0
 banking = 0.1
 draw_gizmos = false
 
@@ -74,11 +74,9 @@ transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Avoidance" parent="creature/boid" index="3"]
 weight = 0.0
-direction = 1
 updates_per_second = 60
 
 [node name="Harmonic" parent="creature/boid" index="4"]
-weight = 0.0
 frequency = 0.3
 distance = 15
 axis = 0

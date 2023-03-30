@@ -22,9 +22,9 @@ func draw_gizmos():
 		
 		if feeler.hit:
 			DebugDraw.draw_line(boid.global_transform.origin, feeler.hit_target, Color.chartreuse)
-			DebugDraw.draw_arrow_line(feeler.hit_target, feeler.hit_target + feeler.force * 10, Color.red, 0.1)
 			DebugDraw.draw_arrow_line(feeler.hit_target, feeler.hit_target + feeler.normal, Color.blue, 0.1)
-
+			DebugDraw.draw_arrow_line(feeler.hit_target, feeler.hit_target + feeler.force * 10, Color.red, 0.1)
+			
 		else:
 			DebugDraw.draw_line(boid.global_transform.origin, feeler.end, Color.chartreuse)
 
