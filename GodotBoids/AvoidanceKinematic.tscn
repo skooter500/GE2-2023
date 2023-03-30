@@ -62,7 +62,6 @@ leader_node_path = NodePath("../../creature/boid")
 
 [node name="Avoidance" type="Node" parent="camera follower"]
 script = ExtResource( 6 )
-updates_per_second = 1
 
 [node name="creature" parent="." instance=ExtResource( 11 )]
 
@@ -91,6 +90,8 @@ center_path = NodePath("../../../Center")
 draw_gizmos = true
 
 [node name="PathFollow" parent="creature/boid" index="7"]
+draw_gizmos = true
+enabled = true
 waypoint_seek_distance = 7
 
 [node name="Seek" parent="creature/boid" index="8"]
