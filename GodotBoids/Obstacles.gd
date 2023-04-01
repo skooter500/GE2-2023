@@ -19,8 +19,10 @@ func _ready():
 		add_child(o)
 		var pos = Utils.random_point_in_unit_sphere() * radius
 		pos = pos.normalized() * radius
-		o.transform.origin = pos
-		o.get_node("Constrain").center = $"../Center"
+		o.global_transform.origin = pos
+		var constrain = o.find_node("Constrain", true)
+			
+		constrain.center = $"../Center"
 		# o.global_transform.basis = o.global_transform.basis.scaled(Utils.random_point_in_unit_sphere() * bubble_radius)
 		
 	pass # Replace with function body.

@@ -30,7 +30,7 @@ func _physics_process(delta):
 		var next = bones[i + 1]
 		
 		var wantedPos = prev.global_transform.xform(offsets[i])
-	
+		
 		# Clamp it, so they dont get too far apart
 		var lerped = lerp(next.global_transform.origin, wantedPos, delta * damping)
 		var clamped = (lerped - prev.global_transform.origin).normalized() * offsets[i].length()

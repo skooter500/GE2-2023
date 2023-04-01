@@ -18,13 +18,17 @@ export var pause = false
 func _input(event):
 	if event is InputEventKey and event.scancode == KEY_P and event.pressed:
 		pause = ! pause
+		
+func set_enabled(var behavior, var enabled):
+	behavior.enabled = enabled
+	behavior.set_process(enabled)
 
 func draw_gizmos():
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1), 0.1)
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0), 0.1)
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.y * 10.0 , Color(0, 1, 0), 0.1)
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + force , Color(1, 1, 0), 0.1)
-	DebugDraw.set_text("Force mag", force.length())
+	DebugDraw.set_text("Pos", global_transform.origin)
 
 func seek_force(target: Vector3):	
 	var toTarget = target - transform.origin
@@ -72,7 +76,7 @@ func calculate():
 				force_acc = force_acc.limit_length(max_force)
 				behaviors_active += " Limiting force"
 				break
-	DebugDraw.set_text(behaviors_active)
+	# DebugDraw.set_text(behaviors_active)
 	return force_acc
 
 func _process(var delta):

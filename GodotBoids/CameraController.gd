@@ -46,5 +46,5 @@ func _physics_process(delta):
 			camera.global_transform.basis = camera.global_transform.basis.slerp(desired.basis, delta * 5).orthonormalized()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	DebugDraw.set_text("mode", str(mode))
+	# DebugDraw.set_text("mode", str(mode))
 	pass

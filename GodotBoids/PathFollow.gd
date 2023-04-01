@@ -1,4 +1,4 @@
-extends SteeringBehavior
+class_name FollowPath extends SteeringBehavior
 
 var pathIndex = 0
 onready var path:Path = get_node("../../../Path")

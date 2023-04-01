@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://steering/Boid.gd" type="Script" id=1]
-[ext_resource path="res://Wander.gd" type="Script" id=2]
+[ext_resource path="res://steering/Wander.gd" type="Script" id=2]
 [ext_resource path="res://steering/Constrain.gd" type="Script" id=3]
 
 [sub_resource type="SphereShape" id=13]

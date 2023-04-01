@@ -12,22 +12,42 @@ _global_script_classes=[ {
 "base": "SteeringBehavior",
 "class": "Arrive",
 "language": "GDScript",
-"path": "res://Arrive.gd"
+"path": "res://steering/Arrive.gd"
 }, {
 "base": "SteeringBehavior",
 "class": "Avoidance",
 "language": "GDScript",
-"path": "res://Avoidance.gd"
-}, {
-"base": "Node",
-"class": "Behavior",
-"language": "GDScript",
-"path": "res://Behavior.gd"
+"path": "res://steering/Avoidance.gd"
 }, {
 "base": "SteeringBehavior",
 "class": "Constrain",
 "language": "GDScript",
 "path": "res://steering/Constrain.gd"
+}, {
+"base": "SteeringBehavior",
+"class": "FollowPath",
+"language": "GDScript",
+"path": "res://PathFollow.gd"
+}, {
+"base": "SteeringBehavior",
+"class": "Harmonic",
+"language": "GDScript",
+"path": "res://steering/Harmonic.gd"
+}, {
+"base": "SteeringBehavior",
+"class": "NoiseWander",
+"language": "GDScript",
+"path": "res://steering/NoiseWander.gd"
+}, {
+"base": "SteeringBehavior",
+"class": "OffsetPursue",
+"language": "GDScript",
+"path": "res://steering/OffsetPursue.gd"
+}, {
+"base": "SteeringBehavior",
+"class": "Seek",
+"language": "GDScript",
+"path": "res://steering/Seek.gd"
 }, {
 "base": "Node",
 "class": "SteeringBehavior",
@@ -39,23 +59,33 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://TrailRender.gd"
 }, {
+"base": "SteeringBehavior",
+"class": "UserSteering",
+"language": "GDScript",
+"path": "res://steering/UserSteering.gd"
+}, {
 "base": "Node",
 "class": "Utils",
 "language": "GDScript",
-"path": "res://Utils.gd"
+"path": "res://steering/Utils.gd"
 }, {
 "base": "SteeringBehavior",
 "class": "Wander",
 "language": "GDScript",
-"path": "res://Wander.gd"
+"path": "res://steering/Wander.gd"
 } ]
 _global_script_class_icons={
 "Arrive": "",
 "Avoidance": "",
-"Behavior": "",
 "Constrain": "",
+"FollowPath": "",
+"Harmonic": "",
+"NoiseWander": "",
+"OffsetPursue": "",
+"Seek": "",
 "SteeringBehavior": "",
 "TrailRenderer": "",
+"UserSteering": "",
 "Utils": "",
 "Wander": ""
 }
@@ -63,7 +93,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GodotBoids"
-run/main_scene="res://AvoidanceKinematic.tscn"
+run/main_scene="res://scenes/AvoidanceKinematic.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -73,7 +103,6 @@ DebugDraw="*res://addons/debug_draw_3d/debug_draw.gd"
 [display]
 
 window/size/width=800
-window/size/fullscreen=true
 
 [editor_plugins]
 

@@ -1,4 +1,4 @@
-extends SteeringBehavior
+class_name OffsetPursue extends SteeringBehavior
 
 export var leader_node_path:NodePath
 var leader_boid:Node

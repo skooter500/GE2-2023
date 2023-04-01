@@ -1,4 +1,4 @@
-extends SteeringBehavior
+class_name Harmonic extends SteeringBehavior
 
 export var frequency = 0.3
 export var radius = 10.0

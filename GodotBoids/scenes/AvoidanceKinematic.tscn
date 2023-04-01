@@ -1,16 +1,17 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://OffsetPursue.gd" type="Script" id=1]
+[ext_resource path="res://steering/OffsetPursue.gd" type="Script" id=1]
 [ext_resource path="res://root.gd" type="Script" id=2]
-[ext_resource path="res://FPController.gd" type="Script" id=3]
-[ext_resource path="res://steering/Boid.gd" type="Script" id=4]
-[ext_resource path="res://PathDrawer.gd" type="Script" id=5]
-[ext_resource path="res://Controller.gd" type="Script" id=6]
-[ext_resource path="res://CameraController.gd" type="Script" id=7]
-[ext_resource path="res://creature.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Obstacles.gd" type="Script" id=9]
+[ext_resource path="res://Obstacles.gd" type="Script" id=3]
+[ext_resource path="res://PathDrawer.gd" type="Script" id=4]
+[ext_resource path="res://CameraController.gd" type="Script" id=5]
+[ext_resource path="res://steering/Avoidance.gd" type="Script" id=6]
+[ext_resource path="res://Controller.gd" type="Script" id=7]
+[ext_resource path="res://FPController.gd" type="Script" id=8]
+[ext_resource path="res://steering/Boid.gd" type="Script" id=9]
 [ext_resource path="res://Obstacle.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Avoidance.gd" type="Script" id=11]
+[ext_resource path="res://creature.tscn" type="PackedScene" id=11]
+[ext_resource path="res://addons/godot-openxr/scenes/first_person_controller_vr.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Environment" id=6]
 background_mode = 1
@@ -37,31 +38,70 @@ script = ExtResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.13334, -19.3311, 39.7214 )
 environment = SubResource( 6 )
 far = 10000.0
-script = ExtResource( 3 )
+script = ExtResource( 8 )
 
 [node name="Camera Controller" type="Node" parent="Camera"]
-script = ExtResource( 7 )
+script = ExtResource( 5 )
 boid_camera_path = NodePath("../../camera follower")
 boid_path = NodePath("../../creature/boid")
 
 [node name="Listener" type="Listener" parent="Camera"]
 
+[node name="FPController" parent="Camera" instance=ExtResource( 12 )]
+
 [node name="camera follower" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 87.6568, 0.453297, 58.3141 )
-script = ExtResource( 4 )
-max_speed = 30.0
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.973738, -15.0557, 41.7624 )
+script = ExtResource( 9 )
 max_force = 30
 
 [node name="OffsetPursue" type="Node" parent="camera follower"]
 script = ExtResource( 1 )
-weight = 10.0
+weight = 5.0
 leader_node_path = NodePath("../../creature/boid")
 
 [node name="Avoidance" type="Node" parent="camera follower"]
-script = ExtResource( 11 )
-draw_gizmos = false
+script = ExtResource( 6 )
 
-[node name="creature" parent="." instance=ExtResource( 8 )]
+[node name="creature" parent="." instance=ExtResource( 11 )]
+
+[node name="boid" parent="creature" index="1"]
+speed = 1.0
+max_speed = 20.0
+banking = 0.1
+
+[node name="CollisionShape" parent="creature/boid" index="1"]
+transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="Avoidance" parent="creature/boid" index="2"]
+weight = 5.0
+direction = 2
+updates_per_second = 60
+
+[node name="Harmonic" parent="creature/boid" index="3"]
+frequency = 0.3
+distance = 30
+axis = 0
+
+[node name="Constrain" parent="creature/boid" index="4"]
+weight = 1.0
+center_path = NodePath("../../../Center")
+
+[node name="NoiseWander" parent="creature/boid" index="5"]
+draw_gizmos = true
+
+[node name="PathFollow" parent="creature/boid" index="6"]
+draw_gizmos = true
+enabled = true
+waypoint_seek_distance = 7
+
+[node name="Seek" parent="creature/boid" index="7"]
+targetNodePath = NodePath("../../../Position3D")
+
+[node name="Arrive" parent="creature/boid" index="8"]
+target_node = NodePath("../../../Position3D")
+
+[node name="UserSteering" parent="creature/boid" index="9"]
+weight = 50.0
 
 [node name="body2" type="KinematicBody" parent="creature"]
 
@@ -72,41 +112,6 @@ draw_gizmos = false
 [node name="body" type="KinematicBody" parent="creature"]
 transform = Transform( 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 9.5 )
 
-[node name="boid" parent="creature" index="8"]
-max_force = 100
-banking = 0.1
-draw_gizmos = false
-
-[node name="MeshInstance5" parent="creature/boid" index="2"]
-transform = Transform( 1, 0, 0, 0, -8.74228e-08, -1, 0, 2, -4.37114e-08, 0, 0, 0 )
-
-[node name="CollisionShape" parent="creature/boid" index="3"]
-transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="Avoidance" parent="creature/boid" index="4"]
-weight = 5.0
-updates_per_second = 60
-
-[node name="Harmonic" parent="creature/boid" index="5"]
-frequency = 0.3
-distance = 15
-axis = 0
-
-[node name="Constrain" parent="creature/boid" index="6"]
-weight = 1.0
-center_path = NodePath("../../../Center")
-
-[node name="PathFollow" parent="creature/boid" index="8"]
-draw_gizmos = true
-enabled = true
-waypoint_seek_distance = 7
-
-[node name="Seek" parent="creature/boid" index="9"]
-target_node = NodePath("../../../Target")
-
-[node name="Arrive" parent="creature/boid" index="10"]
-target_node = NodePath("")
-
 [node name="Target" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 124.311 )
 
@@ -116,7 +121,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -90.1317 )
 [node name="Path" type="Path" parent="."]
 transform = Transform( 0.029265, 0, -0.999572, 0, 1, 0, 0.999572, 0, 0.029265, 6.28377, -4.57764e-05, -18.2004 )
 curve = SubResource( 2 )
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 12.0512, 0.23691 )
@@ -125,10 +130,9 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 12.0
 transform = Transform( 0.646177, 0.763187, 2.01452e-08, 6.97809e-09, -3.23043e-08, 1, 0.763187, -0.646177, -2.61999e-08, 0, 12.0512, 0.23691 )
 
 [node name="Controls" type="Node" parent="."]
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 
 [node name="GridContainer2" type="GridContainer" parent="Controls"]
-visible = false
 margin_left = 562.0
 margin_top = 23.0
 margin_right = 798.0
@@ -273,8 +277,10 @@ step = 0.1
 [node name="Center" type="Position3D" parent="."]
 
 [node name="Obstacles" type="Spatial" parent="."]
-script = ExtResource( 9 )
+visible = false
+script = ExtResource( 3 )
 obstacle_scene = ExtResource( 10 )
+count = -170
 radius = 30
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
@@ -284,6 +290,13 @@ transform = Transform( 30, 0, 0, 0, 1, 0, 0, 0, 30, 0, -35.9149, 0 )
 visible = false
 mesh = SubResource( 10 )
 material/0 = SubResource( 11 )
+
+[node name="Obstacles2" type="Spatial" parent="."]
+script = ExtResource( 3 )
+obstacle_scene = ExtResource( 11 )
+count = 100
+radius = 30
+bubble_radius = 10
 
 [connection signal="value_changed" from="Controls/GridContainer2/distance" to="Controls" method="_on_distance_value_changed"]
 [connection signal="value_changed" from="Controls/GridContainer2/radius" to="Controls" method="_on_radius_value_changed"]

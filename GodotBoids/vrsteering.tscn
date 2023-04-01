@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Ground.tres" type="Material" id=1]
-[ext_resource path="res://BigBoid.gd" type="Script" id=2]
+[ext_resource path="res://steering/BigBoid.gd" type="Script" id=2]
 [ext_resource path="res://Follow.gd" type="Script" id=3]
 [ext_resource path="res://PathDrawer.gd" type="Script" id=4]
 [ext_resource path="res://Boid.tscn" type="PackedScene" id=5]
