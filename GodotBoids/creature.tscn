@@ -38,7 +38,6 @@ bonePaths = [ NodePath("../boid"), NodePath("../body1"), NodePath("../body2"), N
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.5154 )
 script = ExtResource( 3 )
 max_force = 50
-banking = 0.5
 damping = 0.3
 draw_gizmos = false
 

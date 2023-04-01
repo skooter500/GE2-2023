@@ -1,4 +1,4 @@
-extends KinematicBody
+class_name Boid extends KinematicBody
 
 export var mass = 1
 export var force = Vector3.ZERO
@@ -14,6 +14,11 @@ export var damping = 0.1
 
 export var draw_gizmos = true
 export var pause = false
+
+var neighbours = []
+
+func count_neighbours():
+	pass
 
 func _input(event):
 	if event is InputEventKey and event.scancode == KEY_P and event.pressed:
