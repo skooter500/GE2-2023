@@ -20,6 +20,7 @@ func _ready():
 		var pos = Utils.random_point_in_unit_sphere() * radius
 		pos = pos.normalized() * radius
 		o.global_transform.origin = pos
+		o.global_transform.basis = Basis(Vector3.UP, rand_range(0, PI * 2.0))
 		var constrain = o.find_node("Constrain", true)
 			
 		constrain.center = $"../Center"
