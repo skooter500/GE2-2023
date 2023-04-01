@@ -15,9 +15,17 @@ export var damping = 0.1
 export var draw_gizmos = true
 export var pause = false
 
-var neighbours = []
+export var count_neighbors = false
+var neighbors = [] 
 
-func count_neighbours():
+func count_neighbors():
+	neighbors.clear()
+	var school = get_parent()
+	if school is School:
+		for i in school.boids.size():
+			var boid = school.boids[i]
+			if global_transform.origin.distance_to(boid) < school.neighbour_distance:
+				neighbors.push_back(boid)
 	pass
 
 func _input(event):
@@ -87,6 +95,8 @@ func calculate():
 func _process(var delta):
 	if draw_gizmos:
 		draw_gizmos()
+	if count_neighbors:
+		count_neighbors()
 		
 func _physics_process(var delta):
 	# lerp in the new forces
