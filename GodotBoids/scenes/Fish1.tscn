@@ -15,6 +15,7 @@
 
 [node name="Boid" type="KinematicBody"]
 script = ExtResource( 2 )
+max_speed = 0.0
 max_force = 100
 damping = 0.3
 draw_gizmos = false

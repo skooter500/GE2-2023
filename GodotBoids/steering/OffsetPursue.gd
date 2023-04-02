@@ -6,7 +6,6 @@ var leader_offset:Vector3
 var target:Vector3
 var world_target:Vector3
 var projected:Vector3
-	
 func _ready():
 	boid = get_parent()
 	leader_boid = get_node(leader_node_path)

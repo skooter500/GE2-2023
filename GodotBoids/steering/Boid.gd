@@ -72,8 +72,6 @@ func arrive_force(target:Vector3, slowingDistance:float):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-		
-	
 	# Check for a variable
 	if "weights" in get_parent():
 		school = get_parent()
@@ -96,8 +94,8 @@ func update_weights(weights):
 			b.weight = weights[behavior]
 
 func calculate():
-	if school:
-		update_weights(school.weights)
+	# if school:
+		# update_weights(school.weights)
 	var force_acc = Vector3.ZERO	
 	var behaviors_active = ""
 	for i in behaviors.size():
