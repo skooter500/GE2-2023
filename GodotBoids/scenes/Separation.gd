@@ -7,7 +7,9 @@ func _ready():
 	boid.count_neighbors = true
 
 func draw_gizmos():
-	DebugDraw.draw_arrow_line(boid.global_transform.origin, boid.global_transform.origin + force * 10.0, Color.yellow, 0.1)
+	for i in boid.neighbors.size():
+		var other = boid.neighbors[i]
+		DebugDraw.draw_arrow_line(boid.global_transform.origin, other.transform.origin, Color.darkseagreen, 0.1)
 
 func calculate():
 	force = Vector3.ZERO

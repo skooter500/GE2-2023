@@ -47,4 +47,4 @@ material/0 = SubResource( 11 )
 script = ExtResource( 1 )
 fish_scene = ExtResource( 2 )
 count = 100
-neighbor_distance = 30
+neighbor_distance = 10

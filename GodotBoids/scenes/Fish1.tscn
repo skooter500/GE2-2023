@@ -45,7 +45,6 @@ draw_gizmos = false
 
 [node name="Constrain" type="Node" parent="."]
 script = ExtResource( 4 )
-draw_gizmos = false
 
 [node name="Avoidance" type="Node" parent="."]
 script = ExtResource( 5 )
