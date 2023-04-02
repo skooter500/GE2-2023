@@ -16,6 +16,7 @@
 [node name="Boid" type="KinematicBody"]
 script = ExtResource( 2 )
 max_force = 100
+damping = 0.3
 draw_gizmos = false
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
@@ -29,7 +30,6 @@ shape = SubResource( 2 )
 
 [node name="Separation" type="Node" parent="."]
 script = ExtResource( 6 )
-draw_gizmos = false
 
 [node name="Alignment" type="Node" parent="."]
 script = ExtResource( 8 )
@@ -38,7 +38,6 @@ draw_gizmos = false
 [node name="Cohesion" type="Node" parent="."]
 script = ExtResource( 7 )
 weight = 2.0
-draw_gizmos = false
 
 [node name="Wander" type="Node" parent="."]
 script = ExtResource( 3 )

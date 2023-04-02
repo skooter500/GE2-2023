@@ -48,8 +48,8 @@ fish_scene = ExtResource( 2 )
 count = 100
 neighbor_distance = 1
 weights = {
-"Alignment": 0,
-"Cohesion": 0,
-"Separation": 0.0,
-"Wander": 0.0
+"Alignment": 10,
+"Cohesion": 1,
+"Separation": 10.0,
+"Wander": 10.0
 }

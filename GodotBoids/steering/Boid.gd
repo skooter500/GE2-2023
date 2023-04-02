@@ -72,9 +72,6 @@ func arrive_force(target:Vector3, slowingDistance:float):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	for i in 10:
-		var p = Utils.random_point_in_unit_sphere()
-		print(str(p) + "\t" + str(p.length()))
 		
 	
 	# Check for a variable
