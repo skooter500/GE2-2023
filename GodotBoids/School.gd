@@ -1,15 +1,12 @@
 class_name School extends Node
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 export var fish_scene:PackedScene
 
 export var count = 5
 
 export var radius = 100
+
+export var neighbor_distance = 10
 
 var boids = []
 
@@ -19,7 +16,7 @@ func _ready():
 		var fish = fish_scene.instance()		
 		add_child(fish)
 		var pos = Utils.random_point_in_unit_sphere() * radius
-		pos = pos.normalized() * radius
+		pos = pos.normalized() * 20
 		fish.global_transform.origin = pos
 		fish.global_transform.basis = Basis(Vector3.UP, rand_range(0, PI * 2.0))
 		

@@ -21,12 +21,11 @@ var neighbors = []
 func count_neighbors():
 	neighbors.clear()
 	var school = get_parent()
-	if school is School:
-		for i in school.boids.size():
-			var boid = school.boids[i]
-			if global_transform.origin.distance_to(boid) < school.neighbour_distance:
-				neighbors.push_back(boid)
-	pass
+	for i in school.boids.size():
+		var boid = school.boids[i]
+		if boid != self and global_transform.origin.distance_to(boid.global_transform.origin) < school.neighbor_distance:
+			neighbors.push_back(boid)
+	return neighbors.size()
 
 func _input(event):
 	if event is InputEventKey and event.scancode == KEY_P and event.pressed:

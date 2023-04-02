@@ -21,7 +21,8 @@ func _process(delta):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	boid = get_parent()
-	center = get_node(center_path)
+	if center_path:
+		center = get_node(center_path)
 	# boid.transform.rotated()
 	pass # Replace with function body.
 
