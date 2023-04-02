@@ -6,7 +6,7 @@ export var count = 5
 
 export var radius = 100
 
-export var neighbor_distance = 10
+export var neighbor_distance = 20
 
 var boids = []
 
@@ -25,6 +25,8 @@ func _ready():
 			boid = fish
 		else:
 			boid = fish.find_node("Boid", true)
+		if boids.size() == 0:
+			boid.draw_gizmos = true
 		boids.push_back(boid)		
 		
 		var constrain = boid.get_node("Constrain")

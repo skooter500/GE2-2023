@@ -18,6 +18,8 @@ export var pause = false
 export var count_neighbors = false
 var neighbors = [] 
 
+var max_neighbors = 10
+
 func count_neighbors():
 	neighbors.clear()
 	var school = get_parent()
@@ -25,6 +27,8 @@ func count_neighbors():
 		var boid = school.boids[i]
 		if boid != self and global_transform.origin.distance_to(boid.global_transform.origin) < school.neighbor_distance:
 			neighbors.push_back(boid)
+			if neighbors.size() == max_neighbors:
+				break
 	return neighbors.size()
 
 func _input(event):
@@ -40,8 +44,13 @@ func draw_gizmos():
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0), 0.1)
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.y * 10.0 , Color(0, 1, 0), 0.1)
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + force , Color(1, 1, 0), 0.1)
-	DebugDraw.set_text("Pos", global_transform.origin)
-
+	
+	if count_neighbors:
+		var school = get_parent()
+		DebugDraw.draw_sphere(transform.origin, school.neighbor_distance, Color.cadetblue)
+		for neighbor in neighbors:
+			DebugDraw.draw_line(transform.origin, neighbor.transform.origin, Color.cadetblue)
+			
 func seek_force(target: Vector3):	
 	var toTarget = target - transform.origin
 	toTarget = toTarget.normalized()
