@@ -15,8 +15,8 @@
 
 [node name="Boid" type="KinematicBody"]
 script = ExtResource( 2 )
-max_speed = 40.0
-max_force = 100
+max_speed = 60.0
+max_force = 200
 damping = 0.3
 draw_gizmos = false
 
@@ -31,12 +31,12 @@ shape = SubResource( 2 )
 
 [node name="Separation" type="Node" parent="."]
 script = ExtResource( 6 )
-weight = 3.0
+weight = 5.0
 draw_gizmos = false
 
 [node name="Alignment" type="Node" parent="."]
 script = ExtResource( 8 )
-weight = 15.0
+weight = 12.0
 draw_gizmos = false
 
 [node name="Cohesion" type="Node" parent="."]

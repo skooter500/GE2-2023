@@ -27,6 +27,7 @@ script = ExtResource( 3 )
 script = ExtResource( 1 )
 fish_scene = ExtResource( 2 )
 count = 100
+neighbor_distance = 30
 max_neighbors = 15
 
 [node name="config" type="Node" parent="."]
@@ -62,7 +63,7 @@ mesh = SubResource( 10 )
 material/0 = SubResource( 11 )
 
 [node name="camera follower" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 1.45153 )
 script = ExtResource( 5 )
 max_force = 30
 
