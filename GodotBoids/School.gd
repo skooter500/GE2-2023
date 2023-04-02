@@ -8,6 +8,8 @@ export var radius = 100
 
 export var neighbor_distance = 20
 
+export var weights = {"Separation" : 1.0, "Alignment" : 2, "Cohesion" : 1}
+
 var boids = []
 
 # Called when the node enters the scene tree for the first time.

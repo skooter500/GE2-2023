@@ -20,6 +20,8 @@ var neighbors = []
 
 var max_neighbors = 10
 
+var school = null
+
 func count_neighbors():
 	neighbors.clear()
 	var school = get_parent()
@@ -47,9 +49,9 @@ func draw_gizmos():
 	
 	if count_neighbors:
 		var school = get_parent()
-		DebugDraw.draw_sphere(transform.origin, school.neighbor_distance, Color.cadetblue)
+		DebugDraw.draw_sphere(transform.origin, school.neighbor_distance, Color.chartreuse)
 		for neighbor in neighbors:
-			DebugDraw.draw_line(transform.origin, neighbor.transform.origin, Color.cadetblue)
+			DebugDraw.draw_line(transform.origin, neighbor.transform.origin, Color.chartreuse)
 			
 func seek_force(target: Vector3):	
 	var toTarget = target - transform.origin
@@ -71,6 +73,10 @@ func arrive_force(target:Vector3, slowingDistance:float):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Check for a variable
+	if "weights" in get_parent():
+		school = get_parent()
+	
 	for i in get_child_count():
 		var child = get_child(i)
 		if child.has_method("calculate"):
@@ -81,9 +87,17 @@ func _ready():
 func enable_all(enabled):
 	for i in behaviors.size():
 		behaviors[i].enabled = enabled
+		
+func update_weights(weights):
+	for behavior in weights:
+		var b = get_node(behavior)
+		if b: 
+			b.weight = weights[behavior]
 
-func calculate():	
-	var force_acc = Vector3.ZERO
+func calculate():
+	if school:
+		update_weights(school.weights)
+	var force_acc = Vector3.ZERO	
 	var behaviors_active = ""
 	for i in behaviors.size():
 		if behaviors[i].enabled:
