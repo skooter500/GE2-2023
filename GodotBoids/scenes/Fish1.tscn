@@ -28,23 +28,24 @@ shape = SubResource( 2 )
 
 [node name="Wander" type="Node" parent="."]
 script = ExtResource( 3 )
-enabled = false
+draw_gizmos = false
 
 [node name="Constrain" type="Node" parent="."]
 script = ExtResource( 4 )
-enabled = false
+draw_gizmos = false
 
 [node name="Avoidance" type="Node" parent="."]
 script = ExtResource( 5 )
-enabled = false
+draw_gizmos = false
 
 [node name="Separation" type="Node" parent="."]
 script = ExtResource( 6 )
-enabled = false
+draw_gizmos = false
 
 [node name="Cohesion" type="Node" parent="."]
 script = ExtResource( 7 )
+draw_gizmos = false
 
 [node name="Alignment" type="Node" parent="."]
 script = ExtResource( 8 )
-enabled = false
+draw_gizmos = false
