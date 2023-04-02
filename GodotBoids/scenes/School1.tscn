@@ -27,18 +27,13 @@ script = ExtResource( 3 )
 script = ExtResource( 1 )
 fish_scene = ExtResource( 2 )
 count = 100
-neighbor_distance = 10
-weights = {
-"Alignment": 10,
-"Cohesion": 1,
-"Separation": 10.0,
-"Wander": 10.0
-}
+max_neighbors = 15
 
 [node name="config" type="Node" parent="."]
 script = ExtResource( 7 )
 
 [node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5 )
 environment = SubResource( 6 )
 far = 10000.0
 script = ExtResource( 12 )
@@ -67,7 +62,7 @@ mesh = SubResource( 10 )
 material/0 = SubResource( 11 )
 
 [node name="camera follower" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.973738, -15.0557, 41.7624 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 5 )
 script = ExtResource( 5 )
 max_force = 30
 
