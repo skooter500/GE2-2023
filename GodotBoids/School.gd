@@ -7,18 +7,18 @@ export var count = 5
 export var radius = 100
 
 export var neighbor_distance = 20
-
+export var max_neighbors = 10
 export var weights = {"Separation" : 1.0, "Alignment" : 2, "Cohesion" : 1}
 
 var boids = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	for i in count:
 		var fish = fish_scene.instance()		
 		add_child(fish)
 		var pos = Utils.random_point_in_unit_sphere() * radius
-		pos = pos.normalized() * 20
 		fish.global_transform.origin = pos
 		fish.global_transform.basis = Basis(Vector3.UP, rand_range(0, PI * 2.0))
 		

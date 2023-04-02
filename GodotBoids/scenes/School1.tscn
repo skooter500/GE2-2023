@@ -19,7 +19,6 @@ albedo_color = Color( 0.960784, 0.717647, 0, 1 )
 script = ExtResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.13334, -19.3311, 39.7214 )
 environment = SubResource( 6 )
 far = 10000.0
 script = ExtResource( 12 )
@@ -46,7 +45,7 @@ material/0 = SubResource( 11 )
 [node name="School" type="Spatial" parent="."]
 script = ExtResource( 1 )
 fish_scene = ExtResource( 2 )
-count = 200
+count = 100
 neighbor_distance = 1
 weights = {
 "Alignment": 0,

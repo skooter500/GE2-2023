@@ -18,8 +18,6 @@ export var pause = false
 export var count_neighbors = false
 var neighbors = [] 
 
-var max_neighbors = 10
-
 var school = null
 
 func count_neighbors():
@@ -29,7 +27,7 @@ func count_neighbors():
 		var boid = school.boids[i]
 		if boid != self and global_transform.origin.distance_to(boid.global_transform.origin) < school.neighbor_distance:
 			neighbors.push_back(boid)
-			if neighbors.size() == max_neighbors:
+			if neighbors.size() == school.max_neighbors:
 				break
 	return neighbors.size()
 
@@ -73,6 +71,12 @@ func arrive_force(target:Vector3, slowingDistance:float):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	for i in 10:
+		var p = Utils.random_point_in_unit_sphere()
+		print(str(p) + "\t" + str(p.length()))
+		
+	
 	# Check for a variable
 	if "weights" in get_parent():
 		school = get_parent()
