@@ -34,3 +34,4 @@ func _ready():
 		var constrain = boid.get_node("Constrain")
 		if constrain:
 			constrain.center = $"../Center"	
+			constrain.radius = radius

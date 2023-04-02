@@ -49,9 +49,9 @@ func draw_gizmos():
 	
 	if count_neighbors:
 		var school = get_parent()
-		DebugDraw.draw_sphere(transform.origin, school.neighbor_distance, Color.chartreuse)
+		DebugDraw.draw_sphere(transform.origin, school.neighbor_distance, Color.webpurple)
 		for neighbor in neighbors:
-			DebugDraw.draw_line(transform.origin, neighbor.transform.origin, Color.chartreuse)
+			DebugDraw.draw_sphere(neighbor.transform.origin, 3, Color.webpurple)
 			
 func seek_force(target: Vector3):	
 	var toTarget = target - transform.origin
