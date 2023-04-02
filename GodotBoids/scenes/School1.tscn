@@ -46,10 +46,11 @@ material/0 = SubResource( 11 )
 [node name="School" type="Spatial" parent="."]
 script = ExtResource( 1 )
 fish_scene = ExtResource( 2 )
-count = 100
-radius = 50
+count = 200
+neighbor_distance = 1
 weights = {
 "Alignment": 0,
 "Cohesion": 0,
-"Separation": 0.0
+"Separation": 0.0,
+"Wander": 0.0
 }
