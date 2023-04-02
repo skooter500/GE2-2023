@@ -88,7 +88,7 @@ func calculate():
 				force_acc = force_acc.limit_length(max_force)
 				behaviors_active += " Limiting force"
 				break
-	# DebugDraw.set_text(behaviors_active)
+	DebugDraw.set_text(behaviors_active)
 	return force_acc
 
 func _process(var delta):

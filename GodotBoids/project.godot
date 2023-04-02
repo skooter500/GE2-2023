@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "SteeringBehavior",
+"class": "Alignment",
+"language": "GDScript",
+"path": "res://scenes/Alignment.gd"
+}, {
+"base": "SteeringBehavior",
 "class": "Arrive",
 "language": "GDScript",
 "path": "res://steering/Arrive.gd"
@@ -23,6 +28,11 @@ _global_script_classes=[ {
 "class": "Boid",
 "language": "GDScript",
 "path": "res://steering/Boid.gd"
+}, {
+"base": "SteeringBehavior",
+"class": "Cohesion",
+"language": "GDScript",
+"path": "res://Cohesion.gd"
 }, {
 "base": "SteeringBehavior",
 "class": "Constrain",
@@ -90,9 +100,11 @@ _global_script_classes=[ {
 "path": "res://steering/Wander.gd"
 } ]
 _global_script_class_icons={
+"Alignment": "",
 "Arrive": "",
 "Avoidance": "",
 "Boid": "",
+"Cohesion": "",
 "Constrain": "",
 "FollowPath": "",
 "Harmonic": "",

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Tank Material.tres" type="Material" id=1]
 [ext_resource path="res://steering/Boid.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://steering/Constrain.gd" type="Script" id=4]
 [ext_resource path="res://steering/Avoidance.gd" type="Script" id=5]
 [ext_resource path="res://scenes/Separation.gd" type="Script" id=6]
+[ext_resource path="res://Cohesion.gd" type="Script" id=7]
+[ext_resource path="res://scenes/Alignment.gd" type="Script" id=8]
 
 [sub_resource type="PrismMesh" id=1]
 
@@ -38,7 +40,11 @@ enabled = false
 
 [node name="Separation" type="Node" parent="."]
 script = ExtResource( 6 )
+enabled = false
 
 [node name="Cohesion" type="Node" parent="."]
+script = ExtResource( 7 )
 
 [node name="Alignment" type="Node" parent="."]
+script = ExtResource( 8 )
+enabled = false
