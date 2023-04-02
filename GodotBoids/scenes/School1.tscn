@@ -48,9 +48,8 @@ script = ExtResource( 1 )
 fish_scene = ExtResource( 2 )
 count = 100
 radius = 50
-neighbor_distance = 10
 weights = {
-"Alignment": 2,
-"Cohesion": 5,
-"Separation": 1.0
+"Alignment": 0,
+"Cohesion": 0,
+"Separation": 0.0
 }
