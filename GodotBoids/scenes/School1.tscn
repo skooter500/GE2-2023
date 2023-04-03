@@ -27,7 +27,7 @@ script = ExtResource( 3 )
 [node name="School" type="Spatial" parent="."]
 script = ExtResource( 1 )
 fish_scene = ExtResource( 2 )
-count = 300
+count = 100
 radius = 200
 neighbor_distance = 25
 max_neighbors = 25
