@@ -49,10 +49,12 @@ func count_neighbors_partitioned():
 				if school.cells.has(key):
 					var cell = school.cells[key]
 					for boid in cell:
-						if draw_gizmos:
-							DebugDraw.draw_sphere(boid.transform.origin, 5)
+						# if draw_gizmos:
+							# DebugDraw.draw_sphere(boid.transform.origin, 2, Color.gray)
 						if boid != self and boid.transform.origin.distance_to(transform.origin) < school.neighbor_distance:
 							neighbors.push_back(boid)
+							if neighbors.size() == school.max_neighbors:
+								return neighbors.size()					
 	return neighbors.size()
 	
 func count_neighbors():
