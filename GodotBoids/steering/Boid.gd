@@ -136,7 +136,7 @@ func _process(var delta):
 			count_neighbors_partitioned()
 		else:
 			count_neighbors()
-		
+	# DebugDraw.set_text("neighbours:" + str(self), str(neighbors.size()))	
 func _physics_process(var delta):
 	# lerp in the new forces
 	force = lerp(force, calculate(), delta)
