@@ -11,7 +11,13 @@ export var max_neighbors = 10
 
 var boids = []
 
+export var cell_size = 10
+export var partition = true
 var cells = {}
+
+func draw_gizmos():
+	if partition:
+		DebugDraw.draw_grid(Vector3.ZERO, Vector3.RIGHT * cell_size, Vector3.UP * cell_size, Vector2(50, 50), Color.aquamarine)
 
 func position_to_cell(pos, cell_size, grid_size = 10000):        
 	var p = Vector3( 
@@ -21,15 +27,20 @@ func position_to_cell(pos, cell_size, grid_size = 10000):
 	)
 	return p
 	
-export var cell_size = 10
+
 
 func partition():
 	cells.clear()	
 	for boid in boids:
 		var key = position_to_cell(boid.transform.origin, cell_size)
-		if ! cells[key]:
+		if ! cells.has(key):
 			cells[key] = []	
 		cells[key].push_back(boid)
+
+func _process(delta):
+	if partition:
+		partition()
+	draw_gizmos()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
