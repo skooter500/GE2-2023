@@ -16,18 +16,8 @@ export var grid_size = 10000
 export var partition = true
 var cells = {}
 
-func draw_gizmos():
-	if partition:
-		var size = 100
-		var sub_divisions = size / cell_size
-		var half = sub_divisions / 2
-		for slice in range (- half, half + 1):
-			var p = Vector3(0, 0, slice * cell_size)
-			DebugDraw.draw_grid(p, Vector3.UP * size, Vector3.RIGHT * size, Vector2(sub_divisions, sub_divisions), Color.aquamarine, true)
-			p = Vector3(0, slice * cell_size, 0)
-			# DebugDraw.draw_grid(p, Vector3.FORWARD * size, Vector3.RIGHT * size, Vector2(sub_divisions, sub_divisions), Color.aquamarine)
-
 func position_to_cell(p): 
+	# Get rid of nagatives!
 	var pos = p + Vector3(10000, 10000, 10000)
 	var f = floor(pos.x / cell_size)       
 	var r = floor(pos.x / cell_size) + (floor(pos.y / cell_size) * grid_size) + (floor(pos.z / cell_size) * grid_size * grid_size)
@@ -53,7 +43,6 @@ func partition():
 func _process(delta):
 	if partition:
 		partition()
-	draw_gizmos()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

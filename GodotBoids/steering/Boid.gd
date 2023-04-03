@@ -41,6 +41,11 @@ func count_neighbors_partitioned():
 				var pos = transform.origin + Vector3(col * school.cell_size, row * school.cell_size, slice * school.cell_size)
 				var key = school.position_to_cell(pos)
 				
+				if draw_gizmos:
+					var a = school.cell_to_position(key)
+					var b = a + Vector3(school.cell_size, school.cell_size, school.cell_size)
+					DebugDraw.draw_aabb_ab(a, b, Color.cyan)
+				
 				if school.cells.has(key):
 					var cell = school.cells[key]
 					for boid in cell:
