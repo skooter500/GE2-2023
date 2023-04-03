@@ -153,7 +153,7 @@ func _process(var delta):
 		else:
 			count_neighbors()
 	# if draw_gizmos:
-	DebugDraw.set_text("neighbours:" + str(self), str(neighbors.size()))	
+	# DebugDraw.set_text("neighbours:" + str(self), str(neighbors.size()))	
 func _physics_process(var delta):
 	# lerp in the new forces
 	force = lerp(force, calculate(), delta)

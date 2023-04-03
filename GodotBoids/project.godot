@@ -123,7 +123,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GodotBoids"
-run/main_scene="res://scenes/School1.tscn"
+run/main_scene="res://scenes/AvoidanceKinematic.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -133,7 +133,6 @@ DebugDraw="*res://addons/debug_draw_3d/debug_draw.gd"
 [display]
 
 window/size/width=800
-window/size/fullscreen=true
 
 [editor_plugins]
 
