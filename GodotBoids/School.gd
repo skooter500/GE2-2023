@@ -17,7 +17,7 @@ export var partition = true
 var cells = {}
 
 func position_to_cell(p): 
-	# Get rid of nagatives!
+	# Get rid of negatives!
 	var pos = p + Vector3(10000, 10000, 10000)
 	var f = floor(pos.x / cell_size)       
 	var r = floor(pos.x / cell_size) + (floor(pos.y / cell_size) * grid_size) + (floor(pos.z / cell_size) * grid_size * grid_size)
