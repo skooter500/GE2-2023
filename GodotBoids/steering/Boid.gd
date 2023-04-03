@@ -22,7 +22,19 @@ var school = null
 
 func count_neighbors_partitioned():
 	neighbors.clear()
-	var cell = school.position_to_cell(transform.origin)
+	var cells_around = 1
+	var my_cell = school.position_to_cell(transform.origin, school.cell_size)
+	for slice in range(-cells_around, cells_around):
+		for row in range(-cells_around, cells_around):
+			for col in range(-cells_around, cells_around):
+				var key = my_cell + Vector3(col, row, slice)
+				if school.cells.has(key):
+					var cell = school.cells[key]
+					for boid in cell:
+						if boid.transform.origin.distance_to(transform.origin) < school.neighbor_distance:
+							neighbors.push_back(boid)
+	return neighbors.size()
+	
 func count_neighbors():
 	neighbors.clear()
 	var school = get_parent()
@@ -76,7 +88,7 @@ func arrive_force(target:Vector3, slowingDistance:float):
 func _ready():
 	
 	# Check for a variable
-	if "weights" in get_parent():
+	if "partition" in get_parent():
 		school = get_parent()
 	
 	for i in get_child_count():
@@ -120,7 +132,10 @@ func _process(var delta):
 	if draw_gizmos:
 		draw_gizmos()
 	if count_neighbors:
-		count_neighbors()
+		if school and school.partition:
+			count_neighbors_partitioned()
+		else:
+			count_neighbors()
 		
 func _physics_process(var delta):
 	# lerp in the new forces

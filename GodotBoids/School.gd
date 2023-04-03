@@ -17,7 +17,7 @@ var cells = {}
 
 func draw_gizmos():
 	if partition:
-		DebugDraw.draw_grid(Vector3.ZERO, Vector3.RIGHT * cell_size, Vector3.UP * cell_size, Vector2(50, 50), Color.aquamarine)
+		DebugDraw.draw_grid(Vector3.ZERO, Vector3.RIGHT * cell_size, Vector3.BACK * cell_size, Vector2(50, 50), Color.aquamarine)
 
 func position_to_cell(pos, cell_size, grid_size = 10000):        
 	var p = Vector3( 
