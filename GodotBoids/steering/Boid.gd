@@ -24,10 +24,18 @@ func count_neighbors_partitioned():
 	neighbors.clear()
 	var cells_around = 1
 	var my_cell = school.position_to_cell(transform.origin, school.cell_size)
+	
+	#if draw_gizmos:
+		#var a = my_cell * school.cell_size
+		#var b = my_cell + Vector3(school.cell_size, school.cell_size, school.cell_size)
+		# DebugDraw.draw_aabb_ab(a, b, Color.aqua)
+	
 	for slice in range(-cells_around, cells_around):
 		for row in range(-cells_around, cells_around):
 			for col in range(-cells_around, cells_around):
-				var key = my_cell + Vector3(col, row, slice)
+				var pos = transform.origin + Vector3(col * school.cell_size, slice * school.cell_size, row * school.cell_size)
+				var key = school.position_to_cell(pos)
+				
 				if school.cells.has(key):
 					var cell = school.cells[key]
 					for boid in cell:

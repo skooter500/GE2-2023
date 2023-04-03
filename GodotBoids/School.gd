@@ -12,6 +12,7 @@ export var max_neighbors = 10
 var boids = []
 
 export var cell_size = 10
+export var grid_size = 10000
 export var partition = true
 var cells = {}
 
@@ -22,18 +23,19 @@ func draw_gizmos():
 		DebugDraw.draw_grid(Vector3.ZERO, Vector3.RIGHT * size, Vector3.BACK * size, Vector2(sub_divisions, sub_divisions), Color.aquamarine)
 		DebugDraw.draw_grid(Vector3.ZERO, Vector3.UP * size, Vector3.BACK * size, Vector2(sub_divisions, sub_divisions), Color.aquamarine)
 
-func position_to_cell(pos, cell_size, grid_size = 10000):        
-	var p = Vector3( 
-		floor(pos.x / cell_size)
-		,floor(pos.y / cell_size) * grid_size
-		,floor(pos.z / cell_size) * grid_size * grid_size
-	)
-	return p
+func position_to_cell(pos):        
+	return (floor(pos.x / cell_size)) + (floor(pos.z / cell_size)) * grid_size + (floor(pos.y / cell_size)) * grid_size * grid_size
+
+# Bugsss!!
+func cell_to_position(cell):
+	var row = floor(cell / grid_size)
+	var col = floor(cell - (row * grid_size))
+	return Vector3(col * cell_size, 0, row * cell_size)
 
 func partition():
 	cells.clear()	
 	for boid in boids:
-		var key = position_to_cell(boid.transform.origin, cell_size)
+		var key = position_to_cell(boid.transform.origin)
 		if ! cells.has(key):
 			cells[key] = []	
 		cells[key].push_back(boid)
