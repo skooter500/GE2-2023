@@ -16,6 +16,13 @@ export var grid_size = 10000
 export var partition = true
 var cells = {}
 
+func draw_gizmos():
+	var size = 1000
+	var sub_divisions = size / cell_size
+	DebugDraw.draw_grid(Vector3.ZERO, Vector3.RIGHT * size, Vector3.BACK * size, Vector2(sub_divisions, sub_divisions), Color.aquamarine)
+	# DebugDraw.draw_grid(Vector3.ZERO, Vector3.UP * size, Vector3.BACK * size, Vector2(sub_divisions, sub_divisions), Color.aquamarine)
+
+
 func position_to_cell(p): 
 	# Get rid of negatives!
 	var pos = p + Vector3(10000, 10000, 10000)
@@ -27,6 +34,7 @@ func cell_to_position(cell):
 	var z = floor(cell / (grid_size * grid_size))
 	var y = floor((cell - (z * grid_size * grid_size)) / grid_size)
 	var x = cell - (y * grid_size + (z * grid_size * grid_size)) 
+	
 	
 	var p = Vector3(x, y, z) * cell_size
 	p -= Vector3(10000, 10000, 10000) 
@@ -41,6 +49,8 @@ func partition():
 		cells[key].push_back(boid)
 
 func _process(delta):
+	#if draw_gizmos:
+	draw_gizmos()
 	if partition:
 		partition()
 
