@@ -18,19 +18,23 @@ var cells = {}
 
 func draw_gizmos():
 	if partition:
-		var size = 1000
+		var size = 200
 		var sub_divisions = size / cell_size
-		DebugDraw.draw_grid(Vector3.ZERO, Vector3.RIGHT * size, Vector3.BACK * size, Vector2(sub_divisions, sub_divisions), Color.aquamarine)
-		DebugDraw.draw_grid(Vector3.ZERO, Vector3.UP * size, Vector3.BACK * size, Vector2(sub_divisions, sub_divisions), Color.aquamarine)
+		var half = sub_divisions / 2
+		for slice in range (- half, half + 1):
+			var p = Vector3(0, 0, slice * cell_size)
+			DebugDraw.draw_grid(p, Vector3.UP * size, Vector3.RIGHT * size, Vector2(sub_divisions, sub_divisions), Color.aquamarine, true)
+			p = Vector3(0, slice * cell_size, 0)
+			DebugDraw.draw_grid(p, Vector3.FORWARD * size, Vector3.RIGHT * size, Vector2(sub_divisions, sub_divisions), Color.aquamarine)
 
-func position_to_cell(pos):        
-	return (floor(pos.x / cell_size)) + (floor(pos.z / cell_size)) * grid_size + (floor(pos.y / cell_size)) * grid_size * grid_size
-
+func position_to_cell(pos): 
+	pos += Vector3(10000, 10000, 10000)       
+	return floor(pos.x / cell_size) + (floor(pos.y / cell_size) * grid_size) + (floor(pos.z / cell_size) * grid_size * grid_size)
+	# return 0
 # Bugsss!!
 func cell_to_position(cell):
-	var row = floor(cell / grid_size)
-	var col = floor(cell - (row * grid_size))
-	return Vector3(col * cell_size, 0, row * cell_size)
+	pass
+	# var z = 
 
 func partition():
 	cells.clear()	

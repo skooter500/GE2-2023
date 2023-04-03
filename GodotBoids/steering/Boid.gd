@@ -23,22 +23,27 @@ var school = null
 func count_neighbors_partitioned():
 	neighbors.clear()
 	var cells_around = 1
-	var my_cell = school.position_to_cell(transform.origin, school.cell_size)
+	var my_cell = school.position_to_cell(transform.origin)
 	
 	#if draw_gizmos:
 		#var a = my_cell * school.cell_size
 		#var b = my_cell + Vector3(school.cell_size, school.cell_size, school.cell_size)
 		# DebugDraw.draw_aabb_ab(a, b, Color.aqua)
-	
-	for slice in range(-cells_around, cells_around):
-		for row in range(-cells_around, cells_around):
-			for col in range(-cells_around, cells_around):
-				var pos = transform.origin + Vector3(col * school.cell_size, slice * school.cell_size, row * school.cell_size)
+
+	if draw_gizmos:
+		DebugDraw.draw_sphere(transform.origin, 5)
+						
+	for slice in range(-2, 2):
+		for row in range(-cells_around, cells_around + 1):
+			for col in range(-cells_around, cells_around + 1):
+				var pos = transform.origin + Vector3(col * school.cell_size, row * school.cell_size, slice * school.cell_size)
 				var key = school.position_to_cell(pos)
 				
 				if school.cells.has(key):
 					var cell = school.cells[key]
 					for boid in cell:
+						if draw_gizmos:
+							DebugDraw.draw_sphere(boid.transform.origin, 5)
 						if boid != self and boid.transform.origin.distance_to(transform.origin) < school.neighbor_distance:
 							neighbors.push_back(boid)
 	return neighbors.size()
@@ -94,7 +99,6 @@ func arrive_force(target:Vector3, slowingDistance:float):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	# Check for a variable
 	if "partition" in get_parent():
 		school = get_parent()
@@ -144,7 +148,8 @@ func _process(var delta):
 			count_neighbors_partitioned()
 		else:
 			count_neighbors()
-	# DebugDraw.set_text("neighbours:" + str(self), str(neighbors.size()))	
+	if draw_gizmos:
+		DebugDraw.set_text("neighbours:" + str(self), str(neighbors.size()))	
 func _physics_process(var delta):
 	# lerp in the new forces
 	force = lerp(force, calculate(), delta)
