@@ -31,7 +31,9 @@ func count_neighbors_partitioned():
 		# DebugDraw.draw_aabb_ab(a, b, Color.aqua)
 
 	if draw_gizmos:
-		DebugDraw.draw_sphere(transform.origin, 5)
+		var a = school.cell_to_position(my_cell)
+		var b = a + Vector3(school.cell_size, school.cell_size, school.cell_size)
+		DebugDraw.draw_aabb_ab(a, b, Color.cyan)
 						
 	for slice in range(-2, 2):
 		for row in range(-cells_around, cells_around + 1):

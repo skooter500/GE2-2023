@@ -18,24 +18,29 @@ var cells = {}
 
 func draw_gizmos():
 	if partition:
-		var size = 200
+		var size = 100
 		var sub_divisions = size / cell_size
 		var half = sub_divisions / 2
 		for slice in range (- half, half + 1):
 			var p = Vector3(0, 0, slice * cell_size)
 			DebugDraw.draw_grid(p, Vector3.UP * size, Vector3.RIGHT * size, Vector2(sub_divisions, sub_divisions), Color.aquamarine, true)
 			p = Vector3(0, slice * cell_size, 0)
-			DebugDraw.draw_grid(p, Vector3.FORWARD * size, Vector3.RIGHT * size, Vector2(sub_divisions, sub_divisions), Color.aquamarine)
+			# DebugDraw.draw_grid(p, Vector3.FORWARD * size, Vector3.RIGHT * size, Vector2(sub_divisions, sub_divisions), Color.aquamarine)
 
 func position_to_cell(pos): 
 	pos += Vector3(10000, 10000, 10000)       
 	return floor(pos.x / cell_size) + (floor(pos.y / cell_size) * grid_size) + (floor(pos.z / cell_size) * grid_size * grid_size)
 	# return 0
-# Bugsss!!
+	
 func cell_to_position(cell):
-	pass
-	# var z = 
-
+	var z = floor(cell / (grid_size * grid_size)
+	var y = floor((cell - (z * grid_size * grid_size)) / grid_size)
+	var x = cell - (y * grid_size + (z * grid_size * grid_size)) 
+	
+	var p = Vector3(x, y, z) * cell_size
+	p -= Vector3(10000, 10000, 10000) 
+	return p
+	
 func partition():
 	cells.clear()	
 	for boid in boids:
