@@ -22,14 +22,10 @@ var school = null
 
 func count_neighbors_partitioned():
 	neighbors.clear()
+
 	var cells_around = 1
 	var my_cell = school.position_to_cell(transform.origin)
-	
-	#if draw_gizmos:
-		#var a = my_cell * school.cell_size
-		#var b = my_cell + Vector3(school.cell_size, school.cell_size, school.cell_size)
-		# DebugDraw.draw_aabb_ab(a, b, Color.aqua)
-
+		
 	if draw_gizmos:
 		var a = school.cell_to_position(my_cell)
 		var b = a + Vector3(school.cell_size, school.cell_size, school.cell_size)
@@ -49,8 +45,6 @@ func count_neighbors_partitioned():
 				if school.cells.has(key):
 					var cell = school.cells[key]
 					for boid in cell:
-						# if draw_gizmos:
-							# DebugDraw.draw_sphere(boid.transform.origin, 2, Color.gray)
 						if boid != self and boid.transform.origin.distance_to(transform.origin) < school.neighbor_distance:
 							neighbors.push_back(boid)
 							if neighbors.size() == school.max_neighbors:
@@ -155,10 +149,11 @@ func _process(var delta):
 	if count_neighbors:
 		if school and school.partition:
 			count_neighbors_partitioned()
+
 		else:
 			count_neighbors()
-	if draw_gizmos:
-		DebugDraw.set_text("neighbours:" + str(self), str(neighbors.size()))	
+	# if draw_gizmos:
+	DebugDraw.set_text("neighbours:" + str(self), str(neighbors.size()))	
 func _physics_process(var delta):
 	# lerp in the new forces
 	force = lerp(force, calculate(), delta)
