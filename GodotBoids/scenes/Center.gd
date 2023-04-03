@@ -14,3 +14,4 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	DebugDraw.draw_arrow_line(transform.origin, Vector3.BACK * 100, Color.blue)
+	DebugDraw.set_text("FPS", str(Engine.get_frames_per_second()))

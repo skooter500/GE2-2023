@@ -22,6 +22,15 @@ func _ready():
 	pass # Replace with function body.
 	
 func _input(event):
+	if event is InputEventKey and event.scancode == KEY_O and event.pressed:
+		match mode:
+			Mode.Free:
+				camera.move = false
+				mode = Mode.Follow
+			Mode.Follow, Mode.Boid:
+				camera.move = true
+				mode = Mode.Free
+			
 	if event is InputEventKey and event.scancode == KEY_C and event.pressed:
 		match mode:
 			Mode.Free:
