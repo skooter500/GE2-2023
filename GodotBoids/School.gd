@@ -11,6 +11,26 @@ export var max_neighbors = 10
 
 var boids = []
 
+var cells = {}
+
+func position_to_cell(pos, cell_size, grid_size = 10000):        
+	var p = Vector3( 
+		floor(pos.x / cell_size)
+		,floor(pos.y / cell_size) * grid_size
+		,floor(pos.z / cell_size) * grid_size * grid_size
+	)
+	return p
+	
+export var cell_size = 10
+
+func partition():
+	cells.clear()	
+	for boid in boids:
+		var key = position_to_cell(boid.transform.origin, cell_size)
+		if ! cells[key]:
+			cells[key] = []	
+		cells[key].push_back(boid)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
