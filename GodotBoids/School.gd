@@ -63,7 +63,7 @@ func _ready():
 		else:
 			boid = fish.find_node("Boid", true)
 		if boids.size() == 0:
-			# boid.draw_gizmos = true
+			boid.draw_gizmos = true
 			pass
 		boids.push_back(boid)		
 		
