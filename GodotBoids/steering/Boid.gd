@@ -31,7 +31,7 @@ func count_neighbors_partitioned():
 				if school.cells.has(key):
 					var cell = school.cells[key]
 					for boid in cell:
-						if boid.transform.origin.distance_to(transform.origin) < school.neighbor_distance:
+						if boid != self and boid.transform.origin.distance_to(transform.origin) < school.neighbor_distance:
 							neighbors.push_back(boid)
 	return neighbors.size()
 	
@@ -117,7 +117,7 @@ func calculate():
 		if behaviors[i].enabled:
 			var f = behaviors[i].calculate() * behaviors[i].weight
 			if is_nan(f.x) or is_nan(f.y) or is_nan(f.z):
-				print(behaviors[i] + " is NAN")
+				print(str(behaviors[i]) + " is NAN")
 				f = Vector3.ZERO
 			behaviors_active += behaviors[i].name + ": " + str(round(f.length())) + " "
 			force_acc += f 
