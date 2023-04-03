@@ -28,7 +28,7 @@ script = ExtResource( 1 )
 fish_scene = ExtResource( 2 )
 count = 100
 neighbor_distance = 30
-max_neighbors = 15
+max_neighbors = 20
 
 [node name="config" type="Node" parent="."]
 script = ExtResource( 7 )

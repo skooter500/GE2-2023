@@ -8,7 +8,7 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var boid = $"../../School/Boid"
+	var boid = $"../School/Boid"
 	$"../camera follower".transform.origin = boid.transform.origin + boid.transform.basis.z * 10.0
 	$"../camera follower/OffsetPursue".leader_node_path = "../../School/Boid"
 	$"../Camera/Control".boid_path = "../../School/Boid"
