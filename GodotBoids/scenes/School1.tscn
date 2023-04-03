@@ -31,6 +31,7 @@ count = 150
 radius = 200
 neighbor_distance = 30
 max_neighbors = 50
+cell_size = 50
 grid_size = 1000
 
 [node name="config" type="Node" parent="."]

@@ -35,7 +35,7 @@ func count_neighbors_partitioned():
 		var b = a + Vector3(school.cell_size, school.cell_size, school.cell_size)
 		DebugDraw.draw_aabb_ab(a, b, Color.cyan)
 						
-	for slice in range(-2, 2):
+	for slice in range(-cells_around, cells_around + 1):
 		for row in range(-cells_around, cells_around + 1):
 			for col in range(-cells_around, cells_around + 1):
 				var pos = transform.origin + Vector3(col * school.cell_size, row * school.cell_size, slice * school.cell_size)

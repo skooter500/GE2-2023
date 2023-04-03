@@ -27,13 +27,14 @@ func draw_gizmos():
 			p = Vector3(0, slice * cell_size, 0)
 			# DebugDraw.draw_grid(p, Vector3.FORWARD * size, Vector3.RIGHT * size, Vector2(sub_divisions, sub_divisions), Color.aquamarine)
 
-func position_to_cell(pos): 
-	pos += Vector3(10000, 10000, 10000)       
-	return floor(pos.x / cell_size) + (floor(pos.y / cell_size) * grid_size) + (floor(pos.z / cell_size) * grid_size * grid_size)
-	# return 0
+func position_to_cell(p): 
+	var pos = p + Vector3(10000, 10000, 10000)
+	var f = floor(pos.x / cell_size)       
+	var r = floor(pos.x / cell_size) + (floor(pos.y / cell_size) * grid_size) + (floor(pos.z / cell_size) * grid_size * grid_size)
+	return r
 	
 func cell_to_position(cell):
-	var z = floor(cell / (grid_size * grid_size)
+	var z = floor(cell / (grid_size * grid_size))
 	var y = floor((cell - (z * grid_size * grid_size)) / grid_size)
 	var x = cell - (y * grid_size + (z * grid_size * grid_size)) 
 	
@@ -57,6 +58,9 @@ func _process(delta):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
+	
+	var cell = position_to_cell(Vector3(-60, 59, 80))
+	var p = cell_to_position(cell)
 	for i in count:
 		var fish = fish_scene.instance()		
 		add_child(fish)
