@@ -20,6 +20,9 @@ var neighbors = []
 
 var school = null
 
+func count_neighbors_partitioned():
+	neighbors.clear()
+	var cell = school.position_to_cell(transform.origin)
 func count_neighbors():
 	neighbors.clear()
 	var school = get_parent()

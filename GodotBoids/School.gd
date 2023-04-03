@@ -26,8 +26,6 @@ func position_to_cell(pos, cell_size, grid_size = 10000):
 		,floor(pos.z / cell_size) * grid_size * grid_size
 	)
 	return p
-	
-
 
 func partition():
 	cells.clear()	
