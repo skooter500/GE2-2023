@@ -1,18 +1,10 @@
 # Unity - Godot API Quick Reference
 
 | Unity  C# | GDScript | Note |
-|----------|------|
-| Random.Range | rand_range() |  in Godot call randomize() once in your program to se the random seed |
+|----------|------|----|    
+| Random.Range | rand_range() |  In Godot, call randomize() once in your program to set the random seed |
 | Random.insideUnitCircle | ? | Random Vector2 of unit length |
-| Random.insideUnitSphere |``` static func random_point_in_unit_sphere() -> Vector3:
-	var theta = rand_range(0, 2 * PI)
-	var phi = rand_range(0, PI)
-	var r = pow(rand_range(0, 1), 1.0/3.0)  # Cube root for uniform distribution
-
-	var x = r * sin(phi) * cos(theta)
-	var y = r * sin(phi) * sin(theta)
-	var z = r * cos(phi)
-	return Vector3(x, y, z) ```` | Random Vector3 of unit length in Unity, in Godot will not be of unit length, but can be normalized |
+| Random.insideUnitSphere | ? |  Random Vector3 of unit length in Unity, in Godot will not be of unit length, but can be normalized |
 | transform.position | global_transform.origin | World space position |
 | transform.rotation | global_transform.basis | In Unity, a quaternion, in Godot rotation is a 3x3 matrix containing scale and rotation. It can be extracted into a quaternion for quaternion operations with ```get_rotation_quat()``` |
 | transform.localScale | transform.basis.get_scale() transform.basis.scaled |  Relative to the parent |
