@@ -6,12 +6,16 @@ var leader_offset:Vector3
 var target:Vector3
 var world_target:Vector3
 var projected:Vector3
+
+func calculate_offset():
+	leader_offset = boid.global_transform.origin - leader_boid.global_transform.origin
+	leader_offset = leader_boid.global_transform.basis.xform_inv(leader_offset)	
+
 func _ready():
 	boid = get_parent()
 	leader_boid = get_node(leader_node_path)
-	leader_offset = boid.global_transform.origin - leader_boid.global_transform.origin
-	leader_offset = leader_boid.global_transform.basis.xform_inv(leader_offset)
-	
+	calculate_offset()
+		
 func _process(delta):
 	if draw_gizmos:
 		DebugDraw.draw_line(projected, world_target, Color.aliceblue)			
