@@ -491,30 +491,30 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="H" type="HBoxContainer" parent="Settings/VB"]
-margin_right = 386.0
+margin_right = 242.0
 margin_bottom = 24.0
 
 [node name="FPSEnabled" type="CheckBox" parent="Settings/VB/H"]
-margin_right = 291.0
+margin_right = 147.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "FPS Graph enabled"
 
 [node name="Button" type="Button" parent="Settings/VB/H"]
-margin_left = 295.0
-margin_right = 386.0
+margin_left = 151.0
+margin_right = 242.0
 margin_bottom = 24.0
 text = "Switch to C#"
 
 [node name="FPSMS" type="CheckBox" parent="Settings/VB"]
 margin_top = 28.0
-margin_right = 386.0
+margin_right = 242.0
 margin_bottom = 52.0
 text = "FPS Graph ms or FPS"
 
 [node name="HSlider" type="HSlider" parent="Settings/VB"]
 margin_top = 56.0
-margin_right = 386.0
+margin_right = 242.0
 margin_bottom = 72.0
 min_value = 50.0
 max_value = 1000.0
@@ -522,7 +522,7 @@ value = 50.0
 
 [node name="HSlider2" type="HSlider" parent="Settings/VB"]
 margin_top = 76.0
-margin_right = 386.0
+margin_right = 242.0
 margin_bottom = 92.0
 min_value = 50.0
 max_value = 1000.0

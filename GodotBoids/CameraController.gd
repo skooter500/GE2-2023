@@ -14,14 +14,23 @@ onready var boid = get_node(boid_path)
 
 enum Mode { Free, Follow, Boid}
 
-export var mode = Mode.Follow
+export var mode = Mode.Free
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	camera.move = false
+	camera.move = true
 	pass # Replace with function body.
 	
 func _input(event):
+	if event is InputEventKey and event.scancode == KEY_O and event.pressed:
+		match mode:
+			Mode.Free:
+				camera.move = false
+				mode = Mode.Follow
+			Mode.Follow, Mode.Boid:
+				camera.move = true
+				mode = Mode.Free
+			
 	if event is InputEventKey and event.scancode == KEY_C and event.pressed:
 		match mode:
 			Mode.Free:

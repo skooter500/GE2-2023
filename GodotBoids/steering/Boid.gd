@@ -1,4 +1,4 @@
-extends KinematicBody
+class_name Boid extends KinematicBody
 
 export var mass = 1
 export var force = Vector3.ZERO
@@ -15,6 +15,53 @@ export var damping = 0.1
 export var draw_gizmos = true
 export var pause = false
 
+export var count_neighbors = false
+var neighbors = [] 
+
+var school = null
+
+func count_neighbors_partitioned():
+	neighbors.clear()
+
+	var cells_around = 1
+	var my_cell = school.position_to_cell(transform.origin)
+		
+	if draw_gizmos:
+		var a = school.cell_to_position(my_cell)
+		var b = a + Vector3(school.cell_size, school.cell_size, school.cell_size)
+		DebugDraw.draw_aabb_ab(a, b, Color.cyan)
+						
+	for slice in range(-cells_around, cells_around + 1):
+		for row in range(-cells_around, cells_around + 1):
+			for col in range(-cells_around, cells_around + 1):
+				var pos = transform.origin + Vector3(col * school.cell_size, row * school.cell_size, slice * school.cell_size)
+				var key = school.position_to_cell(pos)
+				
+				if draw_gizmos:
+					var a = school.cell_to_position(key)
+					var b = a + Vector3(school.cell_size, school.cell_size, school.cell_size)
+					DebugDraw.draw_aabb_ab(a, b, Color.cyan)
+				
+				if school.cells.has(key):
+					var cell = school.cells[key]
+					for boid in cell:
+						if boid != self and boid.transform.origin.distance_to(transform.origin) < school.neighbor_distance:
+							neighbors.push_back(boid)
+							if neighbors.size() == school.max_neighbors:
+								return neighbors.size()					
+	return neighbors.size()
+	
+func count_neighbors():
+	neighbors.clear()
+	var school = get_parent()
+	for i in school.boids.size():
+		var boid = school.boids[i]
+		if boid != self and global_transform.origin.distance_to(boid.global_transform.origin) < school.neighbor_distance:
+			neighbors.push_back(boid)
+			if neighbors.size() == school.max_neighbors:
+				break
+	return neighbors.size()
+
 func _input(event):
 	if event is InputEventKey and event.scancode == KEY_P and event.pressed:
 		pause = ! pause
@@ -23,13 +70,20 @@ func set_enabled(var behavior, var enabled):
 	behavior.enabled = enabled
 	behavior.set_process(enabled)
 
+
+	rand_range()
 func draw_gizmos():
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1), 0.1)
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0), 0.1)
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.y * 10.0 , Color(0, 1, 0), 0.1)
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + force , Color(1, 1, 0), 0.1)
-	DebugDraw.set_text("Pos", global_transform.origin)
-
+	
+	if count_neighbors:
+		var school = get_parent()
+		DebugDraw.draw_sphere(transform.origin, school.neighbor_distance, Color.webpurple)
+		for neighbor in neighbors:
+			DebugDraw.draw_sphere(neighbor.transform.origin, 3, Color.webpurple)
+			
 func seek_force(target: Vector3):	
 	var toTarget = target - transform.origin
 	toTarget = toTarget.normalized()
@@ -50,6 +104,10 @@ func arrive_force(target:Vector3, slowingDistance:float):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Check for a variable
+	if "partition" in get_parent():
+		school = get_parent()
+	
 	for i in get_child_count():
 		var child = get_child(i)
 		if child.has_method("calculate"):
@@ -60,15 +118,23 @@ func _ready():
 func enable_all(enabled):
 	for i in behaviors.size():
 		behaviors[i].enabled = enabled
+		
+func update_weights(weights):
+	for behavior in weights:
+		var b = get_node(behavior)
+		if b: 
+			b.weight = weights[behavior]
 
-func calculate():	
-	var force_acc = Vector3.ZERO
+func calculate():
+	# if school:
+		# update_weights(school.weights)
+	var force_acc = Vector3.ZERO	
 	var behaviors_active = ""
 	for i in behaviors.size():
 		if behaviors[i].enabled:
 			var f = behaviors[i].calculate() * behaviors[i].weight
 			if is_nan(f.x) or is_nan(f.y) or is_nan(f.z):
-				print(behaviors[i] + " is NAN")
+				print(str(behaviors[i]) + " is NAN")
 				f = Vector3.ZERO
 			behaviors_active += behaviors[i].name + ": " + str(round(f.length())) + " "
 			force_acc += f 
@@ -82,7 +148,14 @@ func calculate():
 func _process(var delta):
 	if draw_gizmos:
 		draw_gizmos()
-		
+	if count_neighbors:
+		if school and school.partition:
+			count_neighbors_partitioned()
+
+		else:
+			count_neighbors()
+	# if draw_gizmos:
+	# DebugDraw.set_text("neighbours:" + str(self), str(neighbors.size()))	
 func _physics_process(var delta):
 	# lerp in the new forces
 	force = lerp(force, calculate(), delta)

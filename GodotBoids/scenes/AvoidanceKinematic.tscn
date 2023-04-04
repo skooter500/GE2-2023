@@ -67,7 +67,6 @@ script = ExtResource( 6 )
 [node name="boid" parent="creature" index="1"]
 speed = 1.0
 max_speed = 20.0
-banking = 0.1
 
 [node name="CollisionShape" parent="creature/boid" index="1"]
 transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
