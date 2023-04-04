@@ -32,10 +32,16 @@ func _input(event):
 			Mode.Follow:
 				camera.move = false
 				mode = Mode.Boid
+
+	if event is InputEventKey and event.scancode == KEY_B and event.pressed:
+		match mode:
+			Mode.Follow, Mode.Free:
+				camera.move = false
+				mode = Mode.Boid
 			Mode.Boid:
 				camera.move = true
-				mode = Mode.Free		
-				
+				mode = Mode.Free
+						
 func _physics_process(delta):
 	match mode:
 		Mode.Follow:	

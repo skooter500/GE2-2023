@@ -92,3 +92,5 @@ script = ExtResource( 12 )
 obstacle_scene = ExtResource( 11 )
 radius = 200
 bubble_radius = 80
+
+[node name="Timer" type="Timer" parent="."]

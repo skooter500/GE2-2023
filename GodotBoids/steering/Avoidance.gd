@@ -25,8 +25,16 @@ func draw_gizmos():
 			DebugDraw.draw_arrow_line(feeler.hit_target, feeler.hit_target + feeler.normal, Color.blue, 0.1)
 			DebugDraw.draw_arrow_line(feeler.hit_target, feeler.hit_target + feeler.force * weight, Color.red, 0.1)
 			
-		else:
-			DebugDraw.draw_line(boid.global_transform.origin, feeler.end, Color.chartreuse)
+		# else:
+		#	DebugDraw.draw_line(boid.global_transform.origin, feeler.end, Color.chartreuse)
+
+func start_updating():
+	var timer = get_child(0)
+	timer.wait_time = 1.0 / updates_per_second
+	timer.connect("timeout", self, "needs_updating")
+	timer.one_shot = false
+	timer.start()
+
 
 func needs_updating():
 	needs_updating = true
@@ -108,8 +116,9 @@ func _ready():
 	
 	var timer = Timer.new()
 	add_child(timer)
-	timer.wait_time = 1.0 / updates_per_second
-	timer.connect("timeout", self, "needs_updating")
+	timer.wait_time = rand_range(0.0, 1.0)
+	timer.one_shot = true
+	timer.connect("timeout", self, "start_updating")
 	timer.start()
 	
 	pass # Replace with function body.

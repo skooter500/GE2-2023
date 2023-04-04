@@ -50,7 +50,8 @@ func count_neighbors_partitioned():
 					# print(key)
 					for boid in cell:
 						if draw_gizmos:
-							DebugDraw.draw_box(boid.transform.origin, Vector3(3, 3, 3), Color.darkgoldenrod, true)
+							if boid != self:
+								DebugDraw.draw_box(boid.transform.origin, Vector3(3, 3, 3), Color.darkgoldenrod, true)
 						if boid != self and boid.transform.origin.distance_to(transform.origin) < school.neighbor_distance:
 							neighbors.push_back(boid)
 							if neighbors.size() == school.max_neighbors:
