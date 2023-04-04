@@ -29,9 +29,15 @@ material/0 = ExtResource( 5 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 )
 shape = SubResource( 2 )
 
+[node name="Avoidance" type="Node" parent="."]
+script = ExtResource( 8 )
+weight = 100.0
+feeler_angle = 60
+feeler_length = 30
+
 [node name="Separation" type="Node" parent="."]
 script = ExtResource( 2 )
-weight = 10.0
+weight = 20.0
 draw_gizmos = false
 
 [node name="Alignment" type="Node" parent="."]
@@ -50,8 +56,4 @@ draw_gizmos = false
 
 [node name="Constrain" type="Node" parent="."]
 script = ExtResource( 6 )
-draw_gizmos = false
-
-[node name="Avoidance" type="Node" parent="."]
-script = ExtResource( 8 )
 draw_gizmos = false

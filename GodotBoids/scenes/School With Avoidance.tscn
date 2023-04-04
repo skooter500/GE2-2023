@@ -82,10 +82,13 @@ draw_gizmos = false
 
 [node name="Avoidance" type="Node" parent="camera follower"]
 script = ExtResource( 9 )
-draw_gizmos = false
+weight = 10.0
+feeler_angle = 90
+feeler_length = 20
+updates_per_second = 10
 
 [node name="Obstacles" type="Spatial" parent="."]
 script = ExtResource( 12 )
 obstacle_scene = ExtResource( 11 )
 radius = 200
-bubble_radius = 20
+bubble_radius = 80
