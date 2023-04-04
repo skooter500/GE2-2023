@@ -31,23 +31,19 @@ func _ready():
 export var move:bool = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	
-	# look_at($"../../creature/boid".global_transform.origin, Vector3.UP)
-	var turn = Input.get_axis("turn_left", "turn_right")
-	
-	if move:	
+func _process(delta):	
+	if move:
+		var mult = 1
+		if Input.is_key_pressed(KEY_SHIFT):
+			mult = 3
+		var turn = Input.get_axis("turn_left", "turn_right")	
 		if abs(turn) > 0:     
-			# rotate()
-			global_translate(global_transform.basis.x * speed * turn)
+			global_translate(global_transform.basis.x * speed * turn * mult * delta)
 		
-		# rotate_y(0.1)
-		# rotate_x(0.1)
 		var move = Input.get_axis("move_forward", "move_back")
-
 		if abs(move) > 0:     
-			global_translate(global_transform.basis.z * speed * move)
+			global_translate(global_transform.basis.z * speed * move * mult * delta)
 		
 		var upanddown = Input.get_axis("move_up", "move_down")
 		if abs(upanddown) > 0:     
-			global_translate(- global_transform.basis.y * speed * upanddown)
+			global_translate(- global_transform.basis.y * speed * upanddown * mult * delta)

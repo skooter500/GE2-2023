@@ -32,6 +32,7 @@ shape = SubResource( 2 )
 [node name="Avoidance" type="Node" parent="."]
 script = ExtResource( 8 )
 weight = 100.0
+draw_gizmos = false
 feeler_angle = 60
 feeler_length = 30
 

@@ -8,7 +8,7 @@ func _ready():
 	boid.count_neighbors = true
 
 func draw_gizmos():
-	DebugDraw.draw_arrow_line(boid.transform.origin, boid.transform.origin + desired * weight * 10, Color.gainsboro)
+	DebugDraw.draw_arrow_line(boid.transform.origin, boid.transform.origin + desired * weight, Color.gainsboro, 0.1)
 	
 func calculate():
 	desired = Vector3.ZERO

@@ -75,6 +75,7 @@ transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Avoidance" parent="creature/boid" index="2"]
 weight = 5.0
+enabled = false
 direction = 2
 updates_per_second = 60
 

@@ -43,7 +43,7 @@ script = ExtResource( 5 )
 environment = SubResource( 6 )
 far = 10000.0
 script = ExtResource( 10 )
-speed = 5.0
+speed = 30.0
 move = true
 
 [node name="Listener" type="Listener" parent="Camera"]
@@ -72,6 +72,7 @@ material/0 = SubResource( 11 )
 [node name="camera follower" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 1.45153 )
 script = ExtResource( 1 )
+max_speed = 20.0
 max_force = 30
 draw_gizmos = false
 
@@ -91,6 +92,6 @@ updates_per_second = 10
 script = ExtResource( 12 )
 obstacle_scene = ExtResource( 11 )
 radius = 200
-bubble_radius = 80
+bubble_radius = 50
 
 [node name="Timer" type="Timer" parent="."]

@@ -17,13 +17,13 @@ func _ready():
 	for i in count:
 		var o = obstacle_scene.instance()		
 		add_child(o)
-		var pos = Utils.random_point_in_unit_sphere() * radius
-		pos = pos.normalized() * radius
+		var pos = Utils.random_point_in_unit_sphere() * radius		
 		o.global_transform.origin = pos
 		o.global_transform.basis = Basis(Vector3.UP, rand_range(0, PI * 2.0))
 		var constrain = o.find_node("Constrain", true)
 			
 		constrain.center = $"../Center"
+		constrain.radius = radius
 		o.global_transform.basis = o.global_transform.basis.scaled(Vector3(bubble_radius, bubble_radius, bubble_radius))		
 	pass # Replace with function body.
 
