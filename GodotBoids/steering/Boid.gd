@@ -23,7 +23,7 @@ var school = null
 func count_neighbors_partitioned():
 	neighbors.clear()
 
-	var cells_around = 1
+	# var cells_around = 1
 	var my_cell = school.position_to_cell(transform.origin)
 		
 	if draw_gizmos:
@@ -31,9 +31,10 @@ func count_neighbors_partitioned():
 		var b = a + Vector3(school.cell_size, school.cell_size, school.cell_size)
 		DebugDraw.draw_aabb_ab(a, b, Color.cyan)
 						
-	for slice in range(-cells_around, cells_around + 1):
-		for row in range(-cells_around, cells_around + 1):
-			for col in range(-cells_around, cells_around + 1):
+	# Check center cell first
+	for slice in [0, -1, 1]:
+		for row in [0, -1, 1]:
+			for col in [0, -1, 1]:
 				var pos = transform.origin + Vector3(col * school.cell_size, row * school.cell_size, slice * school.cell_size)
 				var key = school.position_to_cell(pos)
 				
@@ -45,6 +46,8 @@ func count_neighbors_partitioned():
 				if school.cells.has(key):
 					var cell = school.cells[key]
 					for boid in cell:
+						if draw_gizmos:
+							DebugDraw.draw_sphere(boid.transform.origin, 3, Color.darkgoldenrod)
 						if boid != self and boid.transform.origin.distance_to(transform.origin) < school.neighbor_distance:
 							neighbors.push_back(boid)
 							if neighbors.size() == school.max_neighbors:
@@ -71,7 +74,6 @@ func set_enabled(var behavior, var enabled):
 	behavior.set_process(enabled)
 
 
-	rand_range()
 func draw_gizmos():
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1), 0.1)
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0), 0.1)
@@ -142,7 +144,8 @@ func calculate():
 				force_acc = force_acc.limit_length(max_force)
 				behaviors_active += " Limiting force"
 				break
-	# DebugDraw.set_text(behaviors_active)
+	if draw_gizmos:
+		DebugDraw.set_text(str(self) + " " + behaviors_active)
 	return force_acc
 
 func _process(var delta):

@@ -14,6 +14,7 @@ var worldTarget:Vector3
 	
 func _ready():
 	boid = get_parent()
+	# theta = rand_range(0, PI * 2.0)
 	
 func _process(delta):
 	if draw_gizmos:

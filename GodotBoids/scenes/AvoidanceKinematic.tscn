@@ -31,7 +31,7 @@ _data = {
 [sub_resource type="SpatialMaterial" id=11]
 albedo_color = Color( 0.960784, 0.717647, 0, 1 )
 
-[node name="root" type="Spatial"]
+[node name="root2" type="Spatial"]
 script = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
@@ -53,6 +53,7 @@ boid_path = NodePath("../../creature/boid")
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.973738, -15.0557, 41.7624 )
 script = ExtResource( 9 )
 max_force = 30
+draw_gizmos = false
 
 [node name="OffsetPursue" type="Node" parent="camera follower"]
 script = ExtResource( 1 )
@@ -61,12 +62,13 @@ leader_node_path = NodePath("../../creature/boid")
 
 [node name="Avoidance" type="Node" parent="camera follower"]
 script = ExtResource( 6 )
+draw_gizmos = false
 
 [node name="creature" parent="." instance=ExtResource( 11 )]
 
 [node name="boid" parent="creature" index="1"]
 speed = 1.0
-max_speed = 20.0
+draw_gizmos = true
 
 [node name="CollisionShape" parent="creature/boid" index="1"]
 transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
@@ -77,16 +79,15 @@ direction = 2
 updates_per_second = 60
 
 [node name="Harmonic" parent="creature/boid" index="3"]
+weight = 8.0
 frequency = 0.3
-distance = 30
-axis = 0
 
 [node name="Constrain" parent="creature/boid" index="4"]
 weight = 1.0
 center_path = NodePath("../../../Center")
 
 [node name="NoiseWander" parent="creature/boid" index="5"]
-draw_gizmos = true
+enabled = false
 
 [node name="PathFollow" parent="creature/boid" index="6"]
 draw_gizmos = true
@@ -105,11 +106,6 @@ weight = 50.0
 [node name="body2" type="KinematicBody" parent="creature"]
 
 [node name="body3" type="KinematicBody" parent="creature"]
-
-[node name="body4" type="KinematicBody" parent="creature"]
-
-[node name="body" type="KinematicBody" parent="creature"]
-transform = Transform( 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 9.5 )
 
 [node name="Target" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 124.311 )
@@ -132,10 +128,13 @@ transform = Transform( 0.646177, 0.763187, 2.01452e-08, 6.97809e-09, -3.23043e-0
 script = ExtResource( 7 )
 
 [node name="GridContainer2" type="GridContainer" parent="Controls"]
-margin_left = 562.0
-margin_top = 23.0
-margin_right = 798.0
-margin_bottom = 188.0
+anchor_top = 0.621
+anchor_right = 0.61
+anchor_bottom = 1.0
+margin_left = 17.0
+margin_top = 93.072
+margin_right = -332.64
+margin_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -143,57 +142,57 @@ size_flags_vertical = 3
 columns = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Controls/GridContainer2"]
-margin_right = 116.0
-margin_bottom = 17.0
+margin_right = 136.0
+margin_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource( 9 )
 text = "Distance:"
 
 [node name="distance" type="HSlider" parent="Controls/GridContainer2"]
-margin_left = 120.0
-margin_right = 236.0
+margin_left = 140.0
+margin_right = 275.0
 margin_bottom = 16.0
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="Controls/GridContainer2"]
-margin_top = 21.0
-margin_right = 116.0
-margin_bottom = 38.0
+margin_top = 25.0
+margin_right = 136.0
+margin_bottom = 45.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource( 9 )
 text = "Radius:"
 
 [node name="radius" type="HSlider" parent="Controls/GridContainer2"]
-margin_left = 120.0
-margin_top = 21.0
-margin_right = 236.0
-margin_bottom = 38.0
+margin_left = 140.0
+margin_top = 25.0
+margin_right = 275.0
+margin_bottom = 45.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="Controls/GridContainer2"]
-margin_top = 42.0
-margin_right = 116.0
-margin_bottom = 59.0
+margin_top = 49.0
+margin_right = 136.0
+margin_bottom = 69.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource( 9 )
 text = "Amplitude:"
 
 [node name="amplitude" type="HSlider" parent="Controls/GridContainer2"]
-margin_left = 120.0
-margin_top = 42.0
-margin_right = 236.0
-margin_bottom = 59.0
+margin_left = 140.0
+margin_top = 49.0
+margin_right = 275.0
+margin_bottom = 69.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 180.0
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="Controls/GridContainer2"]
-margin_top = 63.0
-margin_right = 116.0
-margin_bottom = 80.0
+margin_top = 73.0
+margin_right = 136.0
+margin_bottom = 93.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource( 9 )
@@ -202,19 +201,19 @@ text = "Frequency:
 scroll_active = false
 
 [node name="Frequency" type="HSlider" parent="Controls/GridContainer2"]
-margin_left = 120.0
-margin_top = 63.0
-margin_right = 236.0
-margin_bottom = 80.0
+margin_left = 140.0
+margin_top = 73.0
+margin_right = 275.0
+margin_bottom = 93.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 2.0
 step = 0.01
 
 [node name="RichTextLabel6" type="RichTextLabel" parent="Controls/GridContainer2"]
-margin_top = 84.0
-margin_right = 116.0
-margin_bottom = 101.0
+margin_top = 97.0
+margin_right = 136.0
+margin_bottom = 117.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource( 9 )
@@ -223,53 +222,53 @@ text = "Weight:
 scroll_active = false
 
 [node name="weight" type="HSlider" parent="Controls/GridContainer2"]
-margin_left = 120.0
-margin_top = 84.0
-margin_right = 236.0
-margin_bottom = 101.0
+margin_left = 140.0
+margin_top = 97.0
+margin_right = 275.0
+margin_bottom = 117.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 10.0
 step = 0.1
 
 [node name="RichTextLabel5" type="RichTextLabel" parent="Controls/GridContainer2"]
-margin_top = 105.0
-margin_right = 116.0
-margin_bottom = 125.0
+margin_top = 121.0
+margin_right = 136.0
+margin_bottom = 141.0
 text = "Axis:
 "
 scroll_active = false
 
 [node name="OptionButton" type="OptionButton" parent="Controls/GridContainer2"]
-margin_left = 120.0
-margin_top = 105.0
-margin_right = 236.0
-margin_bottom = 125.0
+margin_left = 140.0
+margin_top = 121.0
+margin_right = 275.0
+margin_bottom = 141.0
 
 [node name="RichTextLabel7" type="RichTextLabel" parent="Controls/GridContainer2"]
-margin_top = 129.0
-margin_right = 116.0
-margin_bottom = 145.0
+margin_top = 145.0
+margin_right = 136.0
+margin_bottom = 161.0
 text = "Damping"
 
 [node name="damping" type="HSlider" parent="Controls/GridContainer2"]
-margin_left = 120.0
-margin_top = 129.0
-margin_right = 236.0
-margin_bottom = 145.0
+margin_left = 140.0
+margin_top = 145.0
+margin_right = 275.0
+margin_bottom = 161.0
 max_value = 50.0
 
 [node name="RichTextLabel8" type="RichTextLabel" parent="Controls/GridContainer2"]
-margin_top = 149.0
-margin_right = 116.0
-margin_bottom = 165.0
+margin_top = 165.0
+margin_right = 136.0
+margin_bottom = 181.0
 text = "Angular Damping"
 
 [node name="angularDamping" type="HSlider" parent="Controls/GridContainer2"]
-margin_left = 120.0
-margin_top = 149.0
-margin_right = 236.0
-margin_bottom = 165.0
+margin_left = 140.0
+margin_top = 165.0
+margin_right = 275.0
+margin_bottom = 181.0
 max_value = 10.0
 step = 0.1
 
@@ -289,13 +288,6 @@ transform = Transform( 30, 0, 0, 0, 1, 0, 0, 0, 30, 0, -35.9149, 0 )
 visible = false
 mesh = SubResource( 10 )
 material/0 = SubResource( 11 )
-
-[node name="Obstacles2" type="Spatial" parent="."]
-script = ExtResource( 3 )
-obstacle_scene = ExtResource( 11 )
-count = 100
-radius = 30
-bubble_radius = 10
 
 [connection signal="value_changed" from="Controls/GridContainer2/distance" to="Controls" method="_on_distance_value_changed"]
 [connection signal="value_changed" from="Controls/GridContainer2/radius" to="Controls" method="_on_radius_value_changed"]
