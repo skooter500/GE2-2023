@@ -29,9 +29,12 @@ func draw_gizmos():
 		#	DebugDraw.draw_line(boid.global_transform.origin, feeler.end, Color.chartreuse)
 
 func start_updating():
+	
 	var timer = get_child(0)
-	timer.wait_time = 1.0 / updates_per_second
+	timer.disconnect("timeout", self, "start_updating")
+	timer.wait_time = 1.0 / updates_per_second	
 	timer.connect("timeout", self, "needs_updating")
+	
 	timer.one_shot = false
 	timer.start()
 

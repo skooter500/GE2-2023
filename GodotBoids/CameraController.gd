@@ -30,15 +30,17 @@ func _input(event):
 				boid_camera.transform.origin = camera.transform.origin
 				boid_camera.get_node("OffsetPursue").calculate_offset()
 			Mode.Follow:
-				camera.move = false
-				mode = Mode.Boid
+				camera.move = true
+				mode = Mode.Free
 
 	if event is InputEventKey and event.scancode == KEY_B and event.pressed:
 		match mode:
 			Mode.Follow, Mode.Free:
 				camera.move = false
+				boid.get_node("MeshInstance").set_process(false)
 				mode = Mode.Boid
 			Mode.Boid:
+				boid.get_node("MeshInstance").set_process(true)				
 				camera.move = true
 				mode = Mode.Free
 						
