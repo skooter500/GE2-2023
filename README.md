@@ -33,10 +33,8 @@
 - https://github.com/skooter500/GAILabTest12017
 	
 ## Assessment Schedule	
-- Week 6 - CA proposal & Git repo
-- Week 12 - Lab Test - 20%
-- Week 13 - CA Submission - 50%
-- End of year online test - 30%
+- Lab test 25 April - 2 hours
+- Assignment - 2 May - In person demos 
 
 ## Week 9
 - [Recording of the class](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EUocszsvUHNMk6yyyObXZOgBmTjvZ5ZQ8X8mwscsW2eheg?e=gc5GPq)
