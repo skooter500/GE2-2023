@@ -70,6 +70,8 @@ func set_enabled(var behavior, var enabled):
 	behavior.enabled = enabled
 	behavior.set_process(enabled)
 
+
+	rand_range()
 func draw_gizmos():
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1), 0.1)
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0), 0.1)
