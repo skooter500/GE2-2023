@@ -19,6 +19,9 @@ func _process(delta):
 	var g = _create_graph("FPS", true, false, DebugDraw.BlockPosition_LeftTop if Engine.editor_hint else DebugDraw.BlockPosition_RightTop, DebugDraw.GraphTextFlags_Current | DebugDraw.GraphTextFlags_Avarage | DebugDraw.GraphTextFlags_Max | DebugDraw.GraphTextFlags_Min, Vector2(200, 80), null)
 	if g:
 		g.buffer_size = 300
+		var cfg = DebugDraw.get_graph_config("FPS")
+		if cfg:
+			cfg.frame_time_mode = false
 
 
 func _create_graph(title, is_fps, show_title, pos, flags, size = Vector2(256, 60), font = null) -> DebugDraw.GraphParameters:

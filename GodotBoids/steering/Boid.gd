@@ -19,6 +19,8 @@ export var count_neighbors = false
 var neighbors = [] 
 
 var school = null
+var new_force = Vector3.ZERO
+var should_calculate = false
 
 func count_neighbors_partitioned():
 	neighbors.clear()
@@ -31,7 +33,7 @@ func count_neighbors_partitioned():
 		var b = a + Vector3(school.cell_size, school.cell_size, school.cell_size)
 		DebugDraw.draw_aabb_ab(a, b, Color.cyan)
 						
-	# Check center cell first
+	# Check center cell first!
 	for slice in [0, -1, 1]:
 		for row in [0, -1, 1]:
 			for col in [0, -1, 1]:
@@ -45,9 +47,10 @@ func count_neighbors_partitioned():
 				
 				if school.cells.has(key):
 					var cell = school.cells[key]
+					# print(key)
 					for boid in cell:
 						if draw_gizmos:
-							DebugDraw.draw_sphere(boid.transform.origin, 3, Color.darkgoldenrod)
+							DebugDraw.draw_box(boid.transform.origin, Vector3(3, 3, 3), Color.darkgoldenrod, true)
 						if boid != self and boid.transform.origin.distance_to(transform.origin) < school.neighbor_distance:
 							neighbors.push_back(boid)
 							if neighbors.size() == school.max_neighbors:
@@ -128,8 +131,6 @@ func update_weights(weights):
 			b.weight = weights[behavior]
 
 func calculate():
-	# if school:
-		# update_weights(school.weights)
 	var force_acc = Vector3.ZERO	
 	var behaviors_active = ""
 	for i in behaviors.size():
@@ -148,7 +149,9 @@ func calculate():
 		DebugDraw.set_text(str(self) + " " + behaviors_active)
 	return force_acc
 
+
 func _process(var delta):
+	should_calculate = true
 	if draw_gizmos:
 		draw_gizmos()
 	if count_neighbors:
@@ -159,9 +162,13 @@ func _process(var delta):
 			count_neighbors()
 	# if draw_gizmos:
 	# DebugDraw.set_text("neighbours:" + str(self), str(neighbors.size()))	
+
 func _physics_process(var delta):
 	# lerp in the new forces
-	force = lerp(force, calculate(), delta)
+	if should_calculate:
+		new_force = calculate()
+		should_calculate = false		
+	force = lerp(force, new_force, delta)
 	if ! pause:
 		acceleration = force / mass
 		velocity += acceleration * delta
