@@ -24,8 +24,7 @@ func _ready():
 		var constrain = o.find_node("Constrain", true)
 			
 		constrain.center = $"../Center"
-		# o.global_transform.basis = o.global_transform.basis.scaled(Utils.random_point_in_unit_sphere() * bubble_radius)
-		
+		o.global_transform.basis = o.global_transform.basis.scaled(Vector3(bubble_radius, bubble_radius, bubble_radius))		
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

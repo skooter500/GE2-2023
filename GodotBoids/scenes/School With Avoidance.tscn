@@ -87,5 +87,5 @@ draw_gizmos = false
 [node name="Obstacles" type="Spatial" parent="."]
 script = ExtResource( 12 )
 obstacle_scene = ExtResource( 11 )
-radius = 500
-bubble_radius = 200
+radius = 200
+bubble_radius = 20

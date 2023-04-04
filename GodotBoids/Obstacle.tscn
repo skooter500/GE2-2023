@@ -19,11 +19,9 @@ script = ExtResource( 1 )
 draw_gizmos = false
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0 )
 shape = SubResource( 13 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0 )
 mesh = SubResource( 14 )
 material/0 = SubResource( 12 )
 

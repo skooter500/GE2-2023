@@ -54,3 +54,4 @@ draw_gizmos = false
 
 [node name="Avoidance" type="Node" parent="."]
 script = ExtResource( 8 )
+draw_gizmos = false
