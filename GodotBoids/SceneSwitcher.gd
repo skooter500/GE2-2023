@@ -5,14 +5,14 @@ extends Node
 # var a = 2
 # var b = "text"
 
-export(Array, PackedScene) var scenes
+export(Array, String) var scenes
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 func _input(event):
-	if event is InputEventKey:
+	if event is InputEventKey and event.pressed and ! event.echo:
 		if event.scancode == KEY_Q:
 			get_tree().quit()
 		var i = event.scancode - KEY_0

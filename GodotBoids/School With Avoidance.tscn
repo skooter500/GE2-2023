@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Boid.gd" type="Script" id=1]
 [ext_resource path="res://CameraController.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://OffsetPursue.gd" type="Script" id=10]
 [ext_resource path="res://Avoidance.gd" type="Script" id=11]
 [ext_resource path="res://FPController.gd" type="Script" id=12]
+[ext_resource path="res://SceneSwitcher.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Environment" id=6]
 background_mode = 1
@@ -95,3 +96,5 @@ radius = 200
 bubble_radius = 50
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="SceneSwitcher" parent="." instance=ExtResource( 13 )]

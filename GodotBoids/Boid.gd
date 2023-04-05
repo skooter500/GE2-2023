@@ -175,6 +175,8 @@ func _physics_process(var delta):
 		velocity += acceleration * delta
 		speed = velocity.length()
 		if speed > 0:		
+			if max_speed == 0:
+				print("USER ERROR!!!")
 			velocity = velocity.limit_length(max_speed)
 			
 			# Damping

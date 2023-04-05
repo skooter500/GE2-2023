@@ -1,12 +1,10 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Boid.gd" type="Script" id=1]
 [ext_resource path="res://CameraController.gd" type="Script" id=2]
 [ext_resource path="res://Obstacle.tscn" type="PackedScene" id=3]
-[ext_resource path="res://School2.tscn" type="PackedScene" id=5]
-[ext_resource path="res://addons/godot-openxr/scenes/first_person_controller_vr.tscn" type="PackedScene" id=6]
+[ext_resource path="res://SceneSwitcher.tscn" type="PackedScene" id=4]
 [ext_resource path="res://creature.tscn" type="PackedScene" id=7]
-[ext_resource path="res://SceneSwitcher.gd" type="Script" id=8]
 [ext_resource path="res://root.gd" type="Script" id=9]
 [ext_resource path="res://PathDrawer.gd" type="Script" id=10]
 [ext_resource path="res://Obstacles.gd" type="Script" id=11]
@@ -49,8 +47,6 @@ boid_camera_path = NodePath("../../camera follower")
 boid_path = NodePath("../../creature/boid")
 
 [node name="Listener" type="Listener" parent="Camera"]
-
-[node name="FPController" parent="Camera" instance=ExtResource( 6 )]
 
 [node name="camera follower" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.973738, -15.0557, 41.7624 )
@@ -115,9 +111,6 @@ weight = 50.0
 [node name="body2" type="KinematicBody" parent="creature"]
 
 [node name="body3" type="KinematicBody" parent="creature"]
-
-[node name="Target" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 124.311 )
 
 [node name="Position3D" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -90.1317 )
@@ -296,9 +289,7 @@ visible = false
 mesh = SubResource( 10 )
 material/0 = SubResource( 11 )
 
-[node name="SceneSwitcher" type="Node" parent="."]
-script = ExtResource( 8 )
-scenes = [ null, ExtResource( 5 ) ]
+[node name="SceneSwitcher" parent="." instance=ExtResource( 4 )]
 
 [connection signal="value_changed" from="Controls/GridContainer2/distance" to="Controls" method="_on_distance_value_changed"]
 [connection signal="value_changed" from="Controls/GridContainer2/radius" to="Controls" method="_on_radius_value_changed"]
