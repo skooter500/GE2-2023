@@ -99,9 +99,6 @@ draw_gizmos = true
 enabled = true
 waypoint_seek_distance = 7
 
-[node name="Seek" parent="creature/boid" index="7"]
-targetNodePath = NodePath("../../../Position3D")
-
 [node name="Arrive" parent="creature/boid" index="8"]
 target_node = NodePath("../../../Position3D")
 

@@ -13,8 +13,10 @@ func calculate_offset():
 
 func _ready():
 	boid = get_parent()
-	leader_boid = get_node(leader_node_path)
-	calculate_offset()
+	if enabled:
+		
+		leader_boid = get_node(leader_node_path)
+		calculate_offset()
 		
 func _process(delta):
 	if draw_gizmos:

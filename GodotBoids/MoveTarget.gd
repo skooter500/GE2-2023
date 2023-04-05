@@ -5,34 +5,18 @@ extends Position3D
 # var a = 2
 # var b = "text"
 
-export var interval = 3
-export var radius = 30
+export var radius = 100
 
 func moveTarget():
-	var newTarget = Vector3(rand_range(-radius, radius), 0, rand_range(-radius, radius))
-	$Tween.interpolate_property($"."
-		, "translation"
-		, $".".transform.origin
-		, newTarget
-		, 7
-		, Tween.TRANS_BACK
-		, Tween.EASE_IN_OUT
-		)
-	$Tween.start();
+	var new_target = Utils.random_point_in_unit_sphere() * radius
+	global_transform.origin = new_target
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	moveTarget()
-#	while true:
-#		yield(get_tree().create_timer(interval), "timeout")
-#		translation = Vector3(rand_range(-radius, radius), 0, rand_range(-radius, radius))
-#		
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 
 func _on_Timer_timeout():
 	moveTarget()
+

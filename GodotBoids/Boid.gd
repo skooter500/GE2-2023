@@ -15,7 +15,7 @@ export var damping = 0.1
 export var draw_gizmos = true
 export var pause = false
 
-export var count_neighbors = false
+var count_neighbors = false
 var neighbors = [] 
 
 var school = null
@@ -158,12 +158,9 @@ func _process(var delta):
 	if count_neighbors:
 		if school and school.partition:
 			count_neighbors_partitioned()
-
 		else:
 			count_neighbors()
-	# if draw_gizmos:
-	# DebugDraw.set_text("neighbours:" + str(self), str(neighbors.size()))	
-
+			
 func _physics_process(var delta):
 	# lerp in the new forces
 	if should_calculate:
@@ -176,7 +173,7 @@ func _physics_process(var delta):
 		speed = velocity.length()
 		if speed > 0:		
 			if max_speed == 0:
-				print("USER ERROR!!!")
+				print("max_speed is 0")
 			velocity = velocity.limit_length(max_speed)
 			
 			# Damping

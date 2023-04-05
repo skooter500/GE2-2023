@@ -1,28 +1,25 @@
 extends Spatial
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"q
+func draw_gizmos():
+	var size = 200
+	var sub_divisions = size / 20
+	DebugDraw.draw_grid(Vector3.ZERO, Vector3.RIGHT * size, Vector3.BACK * size, Vector2(sub_divisions, sub_divisions), Color.aquamarine)
+	# DebugDraw.draw_grid(Vector3.ZERO, Vector3.UP * size, Vector3.BACK * size, Vector2(sub_divisions, sub_divisions), Color.aquamarine)
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	OS.set_current_screen(0)
 	var screen_size = OS.get_screen_size()
 	var window_size = OS.get_window_size()
-	# print(OS.get_screen_count())
 	
 	OS.set_window_position(screen_size*0.5 - window_size*0.5) 	
+	
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var g = _create_graph("FPS", true, false, DebugDraw.BlockPosition_LeftTop if Engine.editor_hint else DebugDraw.BlockPosition_RightTop, DebugDraw.GraphTextFlags_Current | DebugDraw.GraphTextFlags_Avarage | DebugDraw.GraphTextFlags_Max | DebugDraw.GraphTextFlags_Min, Vector2(200, 80), null)
-	if g:
-		g.buffer_size = 300
-		var cfg = DebugDraw.get_graph_config("FPS")
-		if cfg:
-			cfg.frame_time_mode = false
-
+	draw_gizmos()
+	
 
 func _create_graph(title, is_fps, show_title, pos, flags, size = Vector2(256, 60), font = null) -> DebugDraw.GraphParameters:
 	var graph = DebugDraw.get_graph_config(title)
