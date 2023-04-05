@@ -41,7 +41,7 @@ max_force = 50
 damping = 0.3
 draw_gizmos = false
 
-[node name="mesh" type="MeshInstance" parent="boid"]
+[node name="MeshInstance" type="MeshInstance" parent="boid"]
 transform = Transform( 1, 0, 0, 0, -8.74228e-08, -1, 0, 2, -4.37114e-08, 0, 0, 0 )
 mesh = SubResource( 5 )
 skeleton = NodePath("../../..")
