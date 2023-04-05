@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://steering/OffsetPursue.gd" type="Script" id=1]
 [ext_resource path="res://root.gd" type="Script" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://Obstacle.tscn" type="PackedScene" id=10]
 [ext_resource path="res://creature.tscn" type="PackedScene" id=11]
 [ext_resource path="res://addons/godot-openxr/scenes/first_person_controller_vr.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/SceneSwitcher.gd" type="Script" id=13]
+[ext_resource path="res://scenes/School2.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Environment" id=6]
 background_mode = 1
@@ -293,6 +295,10 @@ transform = Transform( 30, 0, 0, 0, 1, 0, 0, 0, 30, 0, -35.9149, 0 )
 visible = false
 mesh = SubResource( 10 )
 material/0 = SubResource( 11 )
+
+[node name="SceneSwitcher" type="Node" parent="."]
+script = ExtResource( 13 )
+scenes = [ null, ExtResource( 14 ) ]
 
 [connection signal="value_changed" from="Controls/GridContainer2/distance" to="Controls" method="_on_distance_value_changed"]
 [connection signal="value_changed" from="Controls/GridContainer2/radius" to="Controls" method="_on_radius_value_changed"]
