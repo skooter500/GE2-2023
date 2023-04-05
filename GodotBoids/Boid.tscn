@@ -15,7 +15,6 @@ albedo_color = Color( 1, 0.960784, 0, 1 )
 
 [node name="boid" type="KinematicBody"]
 script = ExtResource( 1 )
-maxSpeed = 30.0
 controllerSteeringEnabled = true
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

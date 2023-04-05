@@ -62,7 +62,7 @@ func drawGizmos():
 func jitterWander():
 	var delta = get_process_delta_time()
 
-	var disp = jitter * random_point_in_unit_sphere() * delta
+	var disp = jitter * Utils.random_point_in_unit_sphere() * delta
 	wanderTarget += disp
 	wanderTarget.y = 0;
 	wanderTarget = wanderTarget.limit_length(radius)
@@ -110,7 +110,7 @@ func _ready():
 		leaderBoid = get_node(leaderNodePath)
 		leaderOffset = leaderBoid.transform.basis.xform_inv(transform.origin)
 	if jitterWanderEnabled:
-		wanderTarget = random_point_in_unit_sphere() * radius	
+		wanderTarget = Utils.random_point_in_unit_sphere() * radius	
 
 func seek(target: Vector3):	
 	var toTarget = target - transform.origin
