@@ -4,4 +4,4 @@
 
 [node name="SceneSwitcher" type="Node"]
 script = ExtResource( 1 )
-scenes = [ "TankGame.tscn", "AvoidanceKinematic.tscn", "School With Avoidance.tscn" ]
+scenes = [ "TankGame.tscn", "Seek", "Arrive", "PathFollow", "Pursue", "OffsetPursue", "Wander", "Harmonic", "Combined1", "SchoolAvoidance" ]
