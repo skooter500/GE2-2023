@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Spawner.gd" type="Script" id=1]
 [ext_resource path="res://creature.tscn" type="PackedScene" id=2]
-[ext_resource path="res://steering/Boid.gd" type="Script" id=3]
+[ext_resource path="res://Boid.gd" type="Script" id=3]
 [ext_resource path="res://FPController.gd" type="Script" id=7]
 [ext_resource path="res://root.gd" type="Script" id=13]
 

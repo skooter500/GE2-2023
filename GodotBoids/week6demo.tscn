@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://steering/Boid.gd" type="Script" id=1]
+[ext_resource path="res://Boid.gd" type="Script" id=1]
 [ext_resource path="res://Tank Material.tres" type="Material" id=2]
 [ext_resource path="res://SpineAnimator.gd" type="Script" id=3]
-[ext_resource path="res://steering/Harmonic.gd" type="Script" id=4]
+[ext_resource path="res://Harmonic.gd" type="Script" id=4]
 [ext_resource path="res://FPController.gd" type="Script" id=5]
 
 [sub_resource type="CubeMesh" id=2]

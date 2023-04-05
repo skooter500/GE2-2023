@@ -1,17 +1,15 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://steering/Boid.gd" type="Script" id=1]
-[ext_resource path="res://CameraController.gd" type="Script" id=2]
-[ext_resource path="res://scenes/Fish2.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Center.gd" type="Script" id=4]
-[ext_resource path="res://scenes/school_config.gd" type="Script" id=5]
-[ext_resource path="res://root.gd" type="Script" id=6]
-[ext_resource path="res://School.gd" type="Script" id=7]
-[ext_resource path="res://steering/OffsetPursue.gd" type="Script" id=8]
-[ext_resource path="res://steering/Avoidance.gd" type="Script" id=9]
-[ext_resource path="res://FPController.gd" type="Script" id=10]
-[ext_resource path="res://Obstacle.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Obstacles.gd" type="Script" id=12]
+[ext_resource path="res://School.gd" type="Script" id=1]
+[ext_resource path="res://Fish1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://root.gd" type="Script" id=3]
+[ext_resource path="res://OffsetPursue.gd" type="Script" id=4]
+[ext_resource path="res://Boid.gd" type="Script" id=5]
+[ext_resource path="res://Avoidance.gd" type="Script" id=6]
+[ext_resource path="res://school_config.gd" type="Script" id=7]
+[ext_resource path="res://CameraController.gd" type="Script" id=8]
+[ext_resource path="res://Center.gd" type="Script" id=9]
+[ext_resource path="res://FPController.gd" type="Script" id=12]
 
 [sub_resource type="Environment" id=6]
 background_mode = 1
@@ -24,11 +22,11 @@ ambient_light_energy = 2.0
 albedo_color = Color( 0.960784, 0.717647, 0, 1 )
 
 [node name="root" type="Spatial"]
-script = ExtResource( 6 )
+script = ExtResource( 3 )
 
 [node name="School" type="Spatial" parent="."]
-script = ExtResource( 7 )
-fish_scene = ExtResource( 3 )
+script = ExtResource( 1 )
+fish_scene = ExtResource( 2 )
 count = 200
 radius = 150
 neighbor_distance = 25
@@ -37,19 +35,19 @@ cell_size = 20
 grid_size = 1000
 
 [node name="config" type="Node" parent="."]
-script = ExtResource( 5 )
+script = ExtResource( 7 )
 
 [node name="Camera" type="Camera" parent="."]
 environment = SubResource( 6 )
 far = 10000.0
-script = ExtResource( 10 )
-speed = 30.0
+script = ExtResource( 12 )
+speed = 5.0
 move = true
 
 [node name="Listener" type="Listener" parent="Camera"]
 
 [node name="Control" type="Node" parent="Camera"]
-script = ExtResource( 2 )
+script = ExtResource( 8 )
 boid_camera_path = NodePath("../../camera follower")
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
@@ -59,7 +57,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 12.0
 transform = Transform( 0.646177, 0.763187, 2.01452e-08, 6.97809e-09, -3.23043e-08, 1, 0.763187, -0.646177, -2.61999e-08, 0, 12.0512, 0.23691 )
 
 [node name="Center" type="Position3D" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 
@@ -71,27 +69,15 @@ material/0 = SubResource( 11 )
 
 [node name="camera follower" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 1.45153 )
-script = ExtResource( 1 )
-max_speed = 20.0
+script = ExtResource( 5 )
 max_force = 30
 draw_gizmos = false
 
 [node name="OffsetPursue" type="Node" parent="camera follower"]
-script = ExtResource( 8 )
+script = ExtResource( 4 )
 weight = 5.0
 draw_gizmos = false
 
 [node name="Avoidance" type="Node" parent="camera follower"]
-script = ExtResource( 9 )
-weight = 10.0
-feeler_angle = 90
-feeler_length = 20
-updates_per_second = 10
-
-[node name="Obstacles" type="Spatial" parent="."]
-script = ExtResource( 12 )
-obstacle_scene = ExtResource( 11 )
-radius = 200
-bubble_radius = 50
-
-[node name="Timer" type="Timer" parent="."]
+script = ExtResource( 6 )
+draw_gizmos = false
