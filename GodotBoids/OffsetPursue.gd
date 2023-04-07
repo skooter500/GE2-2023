@@ -13,8 +13,8 @@ func calculate_offset():
 
 func _ready():
 	boid = get_parent()
-	if enabled:
 		
+	if leader_node_path:
 		leader_boid = get_node(leader_node_path)
 		calculate_offset()
 		

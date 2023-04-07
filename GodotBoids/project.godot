@@ -42,7 +42,7 @@ _global_script_classes=[ {
 "base": "SteeringBehavior",
 "class": "FollowPath",
 "language": "GDScript",
-"path": "res://PathFollow.gd"
+"path": "res://FollowPath.gd"
 }, {
 "base": "SteeringBehavior",
 "class": "Harmonic",
@@ -58,6 +58,11 @@ _global_script_classes=[ {
 "class": "OffsetPursue",
 "language": "GDScript",
 "path": "res://OffsetPursue.gd"
+}, {
+"base": "SteeringBehavior",
+"class": "PlayerSteering",
+"language": "GDScript",
+"path": "res://PlayerSteering.gd"
 }, {
 "base": "Node",
 "class": "School",
@@ -84,11 +89,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://TrailRender.gd"
 }, {
-"base": "SteeringBehavior",
-"class": "UserSteering",
-"language": "GDScript",
-"path": "res://UserSteering.gd"
-}, {
 "base": "Node",
 "class": "Utils",
 "language": "GDScript",
@@ -110,12 +110,12 @@ _global_script_class_icons={
 "Harmonic": "",
 "NoiseWander": "",
 "OffsetPursue": "",
+"PlayerSteering": "",
 "School": "",
 "Seek": "",
 "Separation": "",
 "SteeringBehavior": "",
 "TrailRenderer": "",
-"UserSteering": "",
 "Utils": "",
 "Wander": ""
 }

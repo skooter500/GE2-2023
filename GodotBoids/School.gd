@@ -16,6 +16,9 @@ export var grid_size = 10000
 export var partition = true
 var cells = {}
 
+export var center_path:NodePath
+var center
+
 func draw_gizmos():
 	var size = 200
 	var sub_divisions = size / cell_size
@@ -57,16 +60,15 @@ func _process(delta):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-	
+	center = get_node(center_path)
 	var cell = position_to_cell(Vector3(-60, 59, 80))
 	var p = cell_to_position(cell)
 	for i in count:
 		var fish = fish_scene.instance()		
-		add_child(fish)
 		var pos = Utils.random_point_in_unit_sphere() * radius
+		add_child(fish)
 		fish.global_transform.origin = pos
 		fish.global_transform.basis = Basis(Vector3.UP, rand_range(0, PI * 2.0))
-		
 		var boid
 		if fish is Boid:
 			boid = fish
@@ -79,5 +81,8 @@ func _ready():
 		
 		var constrain = boid.get_node("Constrain")
 		if constrain:
-			constrain.center = $"../Center"	
+			# constrain.center_path = center_path
+			constrain.center = center
 			constrain.radius = radius
+		
+		

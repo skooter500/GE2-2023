@@ -18,7 +18,13 @@ export var mode = Mode.Free
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	camera.move = true
+	match mode:
+		Mode.Free:
+			boid_camera.get_node("OffsetPursue").enabled = false
+			camera.move = true
+		Mode.Follow:
+			boid_camera.get_node("OffsetPursue").enabled = true
+			camera.move = false
 	pass # Replace with function body.
 	
 func _input(event):

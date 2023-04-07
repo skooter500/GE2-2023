@@ -1,4 +1,4 @@
-class_name UserSteering extends SteeringBehavior
+class_name PlayerSteering extends SteeringBehavior
 
 var force:Vector3
 
@@ -14,7 +14,9 @@ func calculate():
 	projectedRight = projectedRight.normalized()
 	var turn = - Input.get_axis("turn_left", "turn_right")
 	var move = - Input.get_axis("move_forward", "move_back")
+	var upanddown = Input.get_axis("move_up", "move_down")
 	var force:Vector3
 	force += move * boid.global_transform.basis.z
 	force += turn * projectedRight
+	force += Vector3.UP * upanddown
 	return force	

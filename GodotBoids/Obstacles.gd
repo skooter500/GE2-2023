@@ -12,21 +12,22 @@ export var count = 5
 export var radius = 5
 export var bubble_radius = 5 
 
+export var center_path:NodePath
+var center
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	center = get_node(center_path)
 	for i in count:
 		var o = obstacle_scene.instance()		
-		add_child(o)
+		
 		var pos = Utils.random_point_in_unit_sphere() * radius		
 		o.global_transform.origin = pos
 		o.global_transform.basis = Basis(Vector3.UP, rand_range(0, PI * 2.0))
 		var constrain = o.find_node("Constrain", true)
 			
-		constrain.center = $"../Center"
+		constrain.center = center
 		constrain.radius = radius
 		o.global_transform.basis = o.global_transform.basis.scaled(Vector3(bubble_radius, bubble_radius, bubble_radius))		
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+		add_child(o)
+	pass

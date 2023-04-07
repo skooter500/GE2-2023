@@ -53,7 +53,6 @@ shadow_enabled = true
 [node name="Enemy" type="Spatial" parent="."]
 transform = Transform( -0.423298, 0, -0.90599, 0, 1, 0, 0.90599, 0, -0.423298, 0.0900289, 0, 29.8159 )
 script = ExtResource( 5 )
-maxSpeed = 15.0
 pathFollowEnabled = true
 
 [node name="ferdelance" parent="Enemy" instance=ExtResource( 2 )]

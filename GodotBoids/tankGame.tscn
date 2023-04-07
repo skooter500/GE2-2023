@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://CamFollow.gd" type="Script" id=1]
 [ext_resource path="res://wall.gd" type="Script" id=2]
@@ -22,12 +22,10 @@ ssao_enabled = true
 [sub_resource type="Environment" id=15]
 glow_enabled = true
 
-[sub_resource type="CubeMesh" id=16]
-
-[sub_resource type="BoxShape" id=17]
-
 [node name="root" type="Spatial"]
 script = ExtResource( 1 )
+
+[node name="SceneSwitcher" parent="." instance=ExtResource( 5 )]
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 8 )
@@ -60,14 +58,3 @@ material/0 = ExtResource( 3 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 15 )
-
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.01769, 11.5043 )
-mesh = SubResource( 16 )
-
-[node name="Area" type="Area" parent="MeshInstance"]
-
-[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/Area"]
-shape = SubResource( 17 )
-
-[node name="SceneSwitcher" parent="." instance=ExtResource( 5 )]

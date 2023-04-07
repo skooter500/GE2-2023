@@ -24,7 +24,7 @@ material/0 = ExtResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1922 )
 
 [node name="camTarget" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14249, 10, -18.6541 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -30 )
 
 [node name="tankMesh" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )

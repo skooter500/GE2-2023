@@ -1,7 +1,9 @@
 class_name FollowPath extends SteeringBehavior
 
 var pathIndex = 0
-onready var path:Path = get_node("../../../Path")
+
+export var path_path:NodePath
+onready var path:Path = get_node(path_path)
 export var waypoint_seek_distance = 3
 
 var target
@@ -16,8 +18,6 @@ func calculate():
 	if dist < waypoint_seek_distance:
 		pathIndex = (pathIndex + 1) % path.get_curve().get_point_count()
 	return boid.seek_force(target)
-
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

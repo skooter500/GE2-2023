@@ -1,17 +1,17 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://Boid.gd" type="Script" id=1]
-[ext_resource path="res://CameraController.gd" type="Script" id=2]
-[ext_resource path="res://Obstacle.tscn" type="PackedScene" id=3]
-[ext_resource path="res://SceneSwitcher.tscn" type="PackedScene" id=4]
-[ext_resource path="res://creature.tscn" type="PackedScene" id=7]
-[ext_resource path="res://root.gd" type="Script" id=9]
-[ext_resource path="res://PathDrawer.gd" type="Script" id=10]
-[ext_resource path="res://Obstacles.gd" type="Script" id=11]
-[ext_resource path="res://Controller.gd" type="Script" id=12]
-[ext_resource path="res://OffsetPursue.gd" type="Script" id=13]
-[ext_resource path="res://Avoidance.gd" type="Script" id=14]
-[ext_resource path="res://FPController.gd" type="Script" id=15]
+[ext_resource path="res://Avoidance.gd" type="Script" id=1]
+[ext_resource path="res://PathDrawer.gd" type="Script" id=2]
+[ext_resource path="res://Controller.gd" type="Script" id=3]
+[ext_resource path="res://Obstacle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://SceneSwitcher.tscn" type="PackedScene" id=5]
+[ext_resource path="res://creature.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Obstacles.gd" type="Script" id=7]
+[ext_resource path="res://CameraController.gd" type="Script" id=8]
+[ext_resource path="res://Boid.gd" type="Script" id=9]
+[ext_resource path="res://FPController.gd" type="Script" id=10]
+[ext_resource path="res://OffsetPursue.gd" type="Script" id=11]
+[ext_resource path="res://root.gd" type="Script" id=12]
 
 [sub_resource type="Environment" id=6]
 background_mode = 1
@@ -32,17 +32,17 @@ _data = {
 albedo_color = Color( 0.960784, 0.717647, 0, 1 )
 
 [node name="root2" type="Spatial"]
-script = ExtResource( 9 )
+script = ExtResource( 12 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.13334, -19.3311, 39.7214 )
 environment = SubResource( 6 )
 far = 10000.0
-script = ExtResource( 15 )
+script = ExtResource( 10 )
 speed = 30.0
 
 [node name="Camera Controller" type="Node" parent="Camera"]
-script = ExtResource( 2 )
+script = ExtResource( 8 )
 boid_camera_path = NodePath("../../camera follower")
 boid_path = NodePath("../../creature/boid")
 
@@ -50,20 +50,20 @@ boid_path = NodePath("../../creature/boid")
 
 [node name="camera follower" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.973738, -15.0557, 41.7624 )
-script = ExtResource( 1 )
+script = ExtResource( 9 )
 max_force = 30
 draw_gizmos = false
 
 [node name="OffsetPursue" type="Node" parent="camera follower"]
-script = ExtResource( 13 )
+script = ExtResource( 11 )
 weight = 5.0
 leader_node_path = NodePath("../../creature/boid")
 
 [node name="Avoidance" type="Node" parent="camera follower"]
-script = ExtResource( 14 )
+script = ExtResource( 1 )
 draw_gizmos = false
 
-[node name="creature" parent="." instance=ExtResource( 7 )]
+[node name="creature" parent="." instance=ExtResource( 6 )]
 
 [node name="spineanimator" parent="creature" index="0"]
 angular_damping = 50.0
@@ -116,7 +116,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -90.1317 )
 [node name="Path" type="Path" parent="."]
 transform = Transform( 0.029265, 0, -0.999572, 0, 1, 0, 0.999572, 0, 0.029265, 6.28377, -4.57764e-05, -18.2004 )
 curve = SubResource( 2 )
-script = ExtResource( 10 )
+script = ExtResource( 2 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 12.0512, 0.23691 )
@@ -125,7 +125,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 12.0
 transform = Transform( 0.646177, 0.763187, 2.01452e-08, 6.97809e-09, -3.23043e-08, 1, 0.763187, -0.646177, -2.61999e-08, 0, 12.0512, 0.23691 )
 
 [node name="Controls" type="Node" parent="."]
-script = ExtResource( 12 )
+script = ExtResource( 3 )
 
 [node name="GridContainer2" type="GridContainer" parent="Controls"]
 anchor_top = 0.621
@@ -275,8 +275,8 @@ step = 0.1
 [node name="Center" type="Position3D" parent="."]
 
 [node name="Obstacles" type="Spatial" parent="."]
-script = ExtResource( 11 )
-obstacle_scene = ExtResource( 3 )
+script = ExtResource( 7 )
+obstacle_scene = ExtResource( 4 )
 radius = 30
 center_path = NodePath("../Center")
 
@@ -288,7 +288,7 @@ visible = false
 mesh = SubResource( 10 )
 material/0 = SubResource( 11 )
 
-[node name="SceneSwitcher" parent="." instance=ExtResource( 4 )]
+[node name="SceneSwitcher" parent="." instance=ExtResource( 5 )]
 
 [connection signal="value_changed" from="Controls/GridContainer2/distance" to="Controls" method="_on_distance_value_changed"]
 [connection signal="value_changed" from="Controls/GridContainer2/radius" to="Controls" method="_on_radius_value_changed"]

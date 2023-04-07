@@ -16,6 +16,7 @@ metallic_specular = 0.9
 [node name="Obstacle2" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0681, 0, -0.06809 )
 script = ExtResource( 1 )
+max_speed = 3.0
 draw_gizmos = false
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
