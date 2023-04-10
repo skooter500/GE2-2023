@@ -28,39 +28,21 @@ script = ExtResource( 8 )
 
 [node name="Fish" parent="." instance=ExtResource( 12 )]
 
-[node name="Boid" parent="Fish" index="0"]
+[node name="SpineAnimator" parent="Fish" index="0"]
+damping = 4.0
+angular_damping = 7.0
+
+[node name="Boid" parent="Fish" index="3"]
 max_speed = 15.0
 max_force = 100
-
-[node name="Avoidance" parent="Fish/Boid" index="2"]
-draw_gizmos = true
-
-[node name="Separation" parent="Fish/Boid" index="3"]
-enabled = true
-
-[node name="Alignment" parent="Fish/Boid" index="4"]
-enabled = true
-
-[node name="Cohesion" parent="Fish/Boid" index="5"]
-enabled = true
-
-[node name="Harmonic" parent="Fish/Boid" index="6"]
-weight = 5.0
-frequency = 0.3
-radius = 10.0
-distance = 20
 
 [node name="Constrain" parent="Fish/Boid" index="7"]
 weight = 0.17
 
-[node name="SpineAnimator" parent="Fish" index="1"]
-damping = 4.0
-angular_damping = 7.0
-
 [node name="School" type="Spatial" parent="."]
 script = ExtResource( 1 )
 fish_scene = ExtResource( 12 )
-count = 0
+count = 1
 radius = 150
 neighbor_distance = 25
 max_neighbors = 5
@@ -116,6 +98,7 @@ leader_node_path = NodePath("../../Fish/Boid")
 [node name="Avoidance" type="Node" parent="camera follower"]
 script = ExtResource( 2 )
 weight = 10.0
+draw_gizmos = false
 feeler_angle = 90
 feeler_length = 20
 updates_per_second = 10

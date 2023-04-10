@@ -10,7 +10,6 @@ func draw_gizmos():
 	var center_pos = center.global_transform.origin if center else Vector3.ZERO 
 #
 	DebugDraw.draw_sphere(center_pos, radius, Color.beige)
-	c
 
 
 func calculate():
