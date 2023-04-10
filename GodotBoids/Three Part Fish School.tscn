@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://School.gd" type="Script" id=1]
 [ext_resource path="res://Avoidance.gd" type="Script" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://FPController.gd" type="Script" id=6]
 [ext_resource path="res://OffsetPursue.gd" type="Script" id=7]
 [ext_resource path="res://root.gd" type="Script" id=8]
-[ext_resource path="res://school_config.gd" type="Script" id=9]
 [ext_resource path="res://Center.gd" type="Script" id=10]
 [ext_resource path="res://Obstacle.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Fish3.tscn" type="PackedScene" id=12]
@@ -27,10 +26,41 @@ albedo_color = Color( 0.960784, 0.717647, 0, 1 )
 [node name="root" type="Spatial"]
 script = ExtResource( 8 )
 
+[node name="Fish" parent="." instance=ExtResource( 12 )]
+
+[node name="Boid" parent="Fish" index="0"]
+max_speed = 15.0
+max_force = 100
+
+[node name="Avoidance" parent="Fish/Boid" index="2"]
+draw_gizmos = true
+
+[node name="Separation" parent="Fish/Boid" index="3"]
+enabled = true
+
+[node name="Alignment" parent="Fish/Boid" index="4"]
+enabled = true
+
+[node name="Cohesion" parent="Fish/Boid" index="5"]
+enabled = true
+
+[node name="Harmonic" parent="Fish/Boid" index="6"]
+weight = 5.0
+frequency = 0.3
+radius = 10.0
+distance = 20
+
+[node name="Constrain" parent="Fish/Boid" index="7"]
+weight = 0.17
+
+[node name="SpineAnimator" parent="Fish" index="1"]
+damping = 4.0
+angular_damping = 7.0
+
 [node name="School" type="Spatial" parent="."]
 script = ExtResource( 1 )
 fish_scene = ExtResource( 12 )
-count = 10
+count = 0
 radius = 150
 neighbor_distance = 25
 max_neighbors = 5
@@ -38,9 +68,6 @@ cell_size = 20
 grid_size = 1000
 partition = false
 center_path = NodePath("../Center")
-
-[node name="config" type="Node" parent="."]
-script = ExtResource( 9 )
 
 [node name="Camera" type="Camera" parent="."]
 environment = SubResource( 6 )
@@ -54,6 +81,7 @@ move = true
 [node name="Control" type="Node" parent="Camera"]
 script = ExtResource( 3 )
 boid_camera_path = NodePath("../../camera follower")
+boid_path = NodePath("../../Fish/Boid")
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 12.0512, 0.23691 )
@@ -83,6 +111,7 @@ draw_gizmos = false
 script = ExtResource( 7 )
 weight = 5.0
 draw_gizmos = false
+leader_node_path = NodePath("../../Fish/Boid")
 
 [node name="Avoidance" type="Node" parent="camera follower"]
 script = ExtResource( 2 )
@@ -101,3 +130,5 @@ center_path = NodePath("../Center")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="SceneSwitcher" parent="." instance=ExtResource( 13 )]
+
+[editable path="Fish"]

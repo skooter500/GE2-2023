@@ -6,10 +6,7 @@ extends Node
 # var b = "text"
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var boid = get_tree().get_root().get_node("../Fish/Boid")
-	$"../camera follower".transform.origin = boid.transform.origin + boid.transform.basis.z * 10.0
-	$"../camera follower/OffsetPursue".leader_node_path = "../../School/Boid"
-	$"../Camera/Control".boid_path = "../../School/Boid"
+	
 	pass # Replace with function body.
 
 

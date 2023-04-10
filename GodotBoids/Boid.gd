@@ -182,4 +182,4 @@ func _physics_process(var delta):
 			# Implement Banking as described:
 			# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/
 			var temp_up = global_transform.basis.y.linear_interpolate(Vector3.UP + (acceleration * banking), delta * 5.0)
-			look_at(global_transform.origin - velocity, temp_up)
+			look_at(global_transform.origin - velocity.normalized(), temp_up)

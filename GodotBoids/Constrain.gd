@@ -7,8 +7,10 @@ export var center_path:NodePath
 var center
 
 func draw_gizmos():
-	DebugDraw.draw_sphere(center.global_transform.origin, radius, Color.beige)
-	pass
+	var center_pos = center.global_transform.origin if center else Vector3.ZERO 
+#
+	DebugDraw.draw_sphere(center_pos, radius, Color.beige)
+	c
 
 
 func calculate():

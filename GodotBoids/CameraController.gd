@@ -20,10 +20,8 @@ export var mode = Mode.Free
 func _ready():
 	match mode:
 		Mode.Free:
-			boid_camera.get_node("OffsetPursue").enabled = false
 			camera.move = true
 		Mode.Follow:
-			boid_camera.get_node("OffsetPursue").enabled = true
 			camera.move = false
 	pass # Replace with function body.
 	

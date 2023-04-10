@@ -26,7 +26,6 @@ func _ready():
 
 
 func _on_distance_value_changed(value):
-	print(value)
 	
 	harmonic.distance = value
 	pass # Replace with function body.

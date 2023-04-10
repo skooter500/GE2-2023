@@ -11,6 +11,9 @@ func calculate_offset():
 	leader_offset = boid.global_transform.origin - leader_boid.global_transform.origin
 	leader_offset = leader_boid.global_transform.basis.xform_inv(leader_offset)	
 
+
+
+
 func _ready():
 	boid = get_parent()
 		
