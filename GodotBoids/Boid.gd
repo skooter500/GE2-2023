@@ -37,7 +37,7 @@ func count_neighbors_partitioned():
 	for slice in [0, -1, 1]:
 		for row in [0, -1, 1]:
 			for col in [0, -1, 1]:
-				var pos = transform.origin + Vector3(col * school.cell_size, row * school.cell_size, slice * school.cell_size)
+				var pos = global_transform.origin + Vector3(col * school.cell_size, row * school.cell_size, slice * school.cell_size)
 				var key = school.position_to_cell(pos)
 				
 				if draw_gizmos:
@@ -51,8 +51,8 @@ func count_neighbors_partitioned():
 					for boid in cell:
 						if draw_gizmos:
 							if boid != self:
-								DebugDraw.draw_box(boid.transform.origin, Vector3(3, 3, 3), Color.darkgoldenrod, true)
-						if boid != self and boid.transform.origin.distance_to(transform.origin) < school.neighbor_distance:
+								DebugDraw.draw_box(boid.global_transform.origin, Vector3(3, 3, 3), Color.darkgoldenrod, true)
+						if boid != self and boid.global_transform.origin.distance_to(global_transform.origin) < school.neighbor_distance:
 							neighbors.push_back(boid)
 							if neighbors.size() == school.max_neighbors:
 								return neighbors.size()					
@@ -78,24 +78,24 @@ func set_enabled(var behavior, var enabled):
 
 
 func draw_gizmos():
-	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1), 0.1)
-	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0), 0.1)
-	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.y * 10.0 , Color(0, 1, 0), 0.1)
-	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + force * 5, Color(1, 1, 0), 0.1)
+	DebugDraw.draw_arrow_line(global_transform.origin,  global_transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1), 0.1)
+	DebugDraw.draw_arrow_line(global_transform.origin,  global_transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0), 0.1)
+	DebugDraw.draw_arrow_line(global_transform.origin,  global_transform.origin + transform.basis.y * 10.0 , Color(0, 1, 0), 0.1)
+	DebugDraw.draw_arrow_line(global_transform.origin,  global_transform.origin + force * 5, Color(1, 1, 0), 0.1)
 	
 	if school and count_neighbors:
-		DebugDraw.draw_sphere(transform.origin, school.neighbor_distance, Color.webpurple)
+		DebugDraw.draw_sphere(global_transform.origin, school.neighbor_distance, Color.webpurple)
 		for neighbor in neighbors:
-			DebugDraw.draw_sphere(neighbor.transform.origin, 3, Color.webpurple)
+			DebugDraw.draw_sphere(neighbor.global_transform.origin, 3, Color.webpurple)
 			
 func seek_force(target: Vector3):	
-	var toTarget = target - transform.origin
+	var toTarget = target - global_transform.origin
 	toTarget = toTarget.normalized()
 	var desired = toTarget * max_speed
 	return desired - velocity
 	
 func arrive_force(target:Vector3, slowingDistance:float):
-	var toTarget = target - transform.origin
+	var toTarget = target - global_transform.origin
 	var dist = toTarget.length()
 	
 	if dist == 0:

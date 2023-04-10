@@ -9,7 +9,7 @@ func _ready():
 func draw_gizmos():
 	for i in boid.neighbors.size():
 		var other = boid.neighbors[i]
-		var to_other = boid.neighbors[i].transform.origin - boid.transform.origin
+		var to_other = boid.neighbors[i].global_transform.origin - boid.global_transform.origin
 		to_other = to_other.normalized()
 		DebugDraw.draw_arrow_line(boid.global_transform.origin, boid.global_transform.origin + to_other * force.length() * weight * 5, Color.darkseagreen, 0.1)
 

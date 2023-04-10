@@ -38,7 +38,7 @@ func calculate():
 	
 	var delta = get_process_delta_time()
 
-	var rot = boid.transform.basis.get_euler()
+	var rot = boid.global_transform.basis.get_euler()
 	rot.x = 0
 
 	if axis == Axis.Horizontal:
