@@ -66,7 +66,7 @@ draw_gizmos = false
 [node name="creature" parent="." instance=ExtResource( 6 )]
 
 [node name="spineanimator" parent="creature" index="0"]
-angular_damping = 50.0
+angular_damping = 5.0
 
 [node name="boid" parent="creature" index="1"]
 speed = 1.0
@@ -77,25 +77,26 @@ transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Avoidance" parent="creature/boid" index="2"]
 weight = 5.0
-enabled = false
+draw_gizmos = false
 direction = 2
 updates_per_second = 60
 
 [node name="Harmonic" parent="creature/boid" index="3"]
-weight = 8.0
+weight = 5.0
+draw_gizmos = false
 frequency = 0.3
 distance = 20
 axis = 0
 
 [node name="Constrain" parent="creature/boid" index="4"]
 weight = 1.0
+draw_gizmos = false
 center_path = NodePath("../../../Center")
 
 [node name="NoiseWander" parent="creature/boid" index="5"]
 enabled = false
 
 [node name="PathFollow" parent="creature/boid" index="6"]
-draw_gizmos = true
 enabled = true
 path_path = NodePath("../../../Path")
 waypoint_seek_distance = 7

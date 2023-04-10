@@ -80,6 +80,11 @@ _global_script_classes=[ {
 "path": "res://Separation.gd"
 }, {
 "base": "Node",
+"class": "SpineAnimator",
+"language": "GDScript",
+"path": "res://SpineAnimator.gd"
+}, {
+"base": "Node",
 "class": "SteeringBehavior",
 "language": "GDScript",
 "path": "res://SteeringBehavior.gd"
@@ -114,6 +119,7 @@ _global_script_class_icons={
 "School": "",
 "Seek": "",
 "Separation": "",
+"SpineAnimator": "",
 "SteeringBehavior": "",
 "TrailRenderer": "",
 "Utils": "",

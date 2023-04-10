@@ -1,4 +1,4 @@
-extends Node
+class_name SpineAnimator extends Node
 
 export var bonePaths = []
 export var damping:float = 7

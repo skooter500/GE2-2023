@@ -20,7 +20,7 @@ func _ready():
 	center = get_node(center_path)
 	for i in count:
 		var o = obstacle_scene.instance()		
-		
+		add_child(o)
 		var pos = Utils.random_point_in_unit_sphere() * radius		
 		o.global_transform.origin = pos
 		o.global_transform.basis = Basis(Vector3.UP, rand_range(0, PI * 2.0))
@@ -29,5 +29,5 @@ func _ready():
 		constrain.center = center
 		constrain.radius = radius
 		o.global_transform.basis = o.global_transform.basis.scaled(Vector3(bubble_radius, bubble_radius, bubble_radius))		
-		add_child(o)
+		
 	pass

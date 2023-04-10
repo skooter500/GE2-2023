@@ -60,7 +60,6 @@ func count_neighbors_partitioned():
 	
 func count_neighbors():
 	neighbors.clear()
-	var school = get_parent()
 	for i in school.boids.size():
 		var boid = school.boids[i]
 		if boid != self and global_transform.origin.distance_to(boid.global_transform.origin) < school.neighbor_distance:
@@ -84,8 +83,7 @@ func draw_gizmos():
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + transform.basis.y * 10.0 , Color(0, 1, 0), 0.1)
 	DebugDraw.draw_arrow_line(transform.origin,  transform.origin + force * 5, Color(1, 1, 0), 0.1)
 	
-	if count_neighbors:
-		var school = get_parent()
+	if school and count_neighbors:
 		DebugDraw.draw_sphere(transform.origin, school.neighbor_distance, Color.webpurple)
 		for neighbor in neighbors:
 			DebugDraw.draw_sphere(neighbor.transform.origin, 3, Color.webpurple)
@@ -155,8 +153,8 @@ func _process(var delta):
 	should_calculate = true
 	if draw_gizmos:
 		draw_gizmos()
-	if count_neighbors:
-		if school and school.partition:
+	if school and count_neighbors:
+		if school.partition:
 			count_neighbors_partitioned()
 		else:
 			count_neighbors()
@@ -178,7 +176,6 @@ func _physics_process(var delta):
 			
 			# Damping
 			velocity -= velocity * delta * damping
-			
 			
 			move_and_slide(velocity)
 			
