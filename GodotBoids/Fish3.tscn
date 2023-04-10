@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Wander.gd" type="Script" id=1]
 [ext_resource path="res://Avoidance.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Tank Material.tres" type="Material" id=8]
 [ext_resource path="res://Harmonic.gd" type="Script" id=9]
 [ext_resource path="res://SpineAnimator.gd" type="Script" id=10]
+[ext_resource path="res://NoiseWander.gd" type="Script" id=11]
 
 [sub_resource type="PrismMesh" id=1]
 
@@ -41,6 +42,8 @@ material/0 = ExtResource( 8 )
 
 [node name="Boid" type="KinematicBody" parent="."]
 script = ExtResource( 6 )
+max_force = 100
+draw_gizmos = false
 
 [node name="MeshInstance" type="MeshInstance" parent="Boid"]
 transform = Transform( 1, 0, 0, 0, -8.74228e-08, -1, 0, 2, -4.37114e-08, 0, 0, 0 )
@@ -65,7 +68,8 @@ draw_gizmos = false
 
 [node name="Alignment" type="Node" parent="Boid"]
 script = ExtResource( 5 )
-weight = 20.0
+weight = 70.0
+draw_gizmos = false
 
 [node name="Cohesion" type="Node" parent="Boid"]
 script = ExtResource( 4 )
@@ -83,6 +87,11 @@ draw_gizmos = false
 
 [node name="Harmonic" type="Node" parent="Boid"]
 script = ExtResource( 9 )
-weight = 30.0
+weight = 10.0
 draw_gizmos = false
+distance = 20
+axis = 1
+
+[node name="NoiseWander" type="Node" parent="Boid"]
+script = ExtResource( 11 )
 distance = 20

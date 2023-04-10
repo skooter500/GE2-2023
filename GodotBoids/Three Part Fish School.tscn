@@ -34,7 +34,6 @@ angular_damping = 7.0
 
 [node name="Boid" parent="Fish" index="3"]
 max_speed = 15.0
-max_force = 100
 
 [node name="Constrain" parent="Fish/Boid" index="7"]
 weight = 0.17
@@ -42,8 +41,7 @@ weight = 0.17
 [node name="School" type="Spatial" parent="."]
 script = ExtResource( 1 )
 fish_scene = ExtResource( 12 )
-count = 1
-radius = 150
+count = 100
 neighbor_distance = 25
 max_neighbors = 5
 cell_size = 20
@@ -106,6 +104,7 @@ updates_per_second = 10
 [node name="Obstacles" type="Spatial" parent="."]
 script = ExtResource( 5 )
 obstacle_scene = ExtResource( 11 )
+count = 0
 radius = 200
 bubble_radius = 50
 center_path = NodePath("../Center")
