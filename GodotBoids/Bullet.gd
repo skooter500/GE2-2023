@@ -18,6 +18,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	var v  = speed * transform.basis.z
+	
+	# Add a noise 
+	
 	# I think this should return true when a collision happens, but it doesnt
 	var collision = move_and_collide(v * delta)		
 	if collision:

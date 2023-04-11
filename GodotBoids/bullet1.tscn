@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Bullet.gd" type="Script" id=1]
+[ext_resource path="res://TrailRender.gd" type="Script" id=2]
+[ext_resource path="res://trail_width_curve.tres" type="Curve" id=3]
+
+[sub_resource type="BoxShape" id=2]
+
+[node name="bullet" type="KinematicBody"]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+script = ExtResource( 1 )
+speed = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="Trail" type="Node" parent="."]
+script = ExtResource( 2 )
+width_curve = ExtResource( 3 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

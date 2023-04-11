@@ -106,8 +106,11 @@ script = ExtResource( 14 )
 transform = Transform( -8.74228e-05, 0, -2000, 0, 2000, 0, 2000, 0, -8.74228e-05, 0, 0, 0 )
 
 [node name="Attacker" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 153.779, 0, 169.736 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 54.8713, 0, 114.787 )
 script = ExtResource( 17 )
+max_speed = 5.0
+max_force = 5
+banking = 0.5
 
 [node name="AttackState" type="Node" parent="Attacker"]
 script = ExtResource( 28 )
@@ -124,7 +127,6 @@ enabled = false
 [node name="Wander" type="Node" parent="Attacker"]
 script = ExtResource( 26 )
 draw_gizmos = false
-enabled = false
 
 [node name="Flee" type="Node" parent="Attacker"]
 script = ExtResource( 21 )
