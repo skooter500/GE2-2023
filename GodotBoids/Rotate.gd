@@ -1,4 +1,4 @@
-extends MeshInstance
+extends Spatial
 
 
 # Declare member variables here. Examples:
@@ -10,8 +10,8 @@ extends MeshInstance
 func _ready():
 	pass # Replace with function body.
 
-export var speed:float = 1
+export var speed:float = - 0.1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	rotate_x(speed * delta)
+	rotate_z(speed * delta)

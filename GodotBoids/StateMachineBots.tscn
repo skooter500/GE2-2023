@@ -1,0 +1,89 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Models/krait_out/krait.gltf" type="PackedScene" id=1]
+[ext_resource path="res://Models/sidewinder_out/sidewinder.gltf" type="PackedScene" id=2]
+[ext_resource path="res://Models/Shuttle_out/Shuttle.gltf" type="PackedScene" id=3]
+[ext_resource path="res://Models/cobramk1_out/cobramk1.gltf" type="PackedScene" id=4]
+[ext_resource path="res://Models/ferdelance_out/ferdelance.gltf" type="PackedScene" id=5]
+[ext_resource path="res://Models/monkey_out/monkey.gltf" type="PackedScene" id=6]
+[ext_resource path="res://Models/adder_out/adder.gltf" type="PackedScene" id=7]
+[ext_resource path="res://Models/python_out/python.gltf" type="PackedScene" id=8]
+[ext_resource path="res://Models/coriolis_out/coriolis.gltf" type="PackedScene" id=9]
+[ext_resource path="res://Models/viper_out/viper.gltf" type="PackedScene" id=10]
+[ext_resource path="res://Models/boa_out/boa.gltf" type="PackedScene" id=11]
+[ext_resource path="res://Models/cobramk3_out/cobramk3.gltf" type="PackedScene" id=12]
+[ext_resource path="res://Models/anaconda_out/anaconda.gltf" type="PackedScene" id=13]
+[ext_resource path="res://Rotate.gd" type="Script" id=14]
+[ext_resource path="res://root.gd" type="Script" id=15]
+[ext_resource path="res://FPController.gd" type="Script" id=16]
+[ext_resource path="res://Boid.gd" type="Script" id=17]
+
+[sub_resource type="Environment" id=1]
+background_mode = 1
+
+[node name="root" type="Spatial"]
+script = ExtResource( 15 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2, 43.7198 )
+environment = SubResource( 1 )
+script = ExtResource( 16 )
+speed = 10.0
+move = true
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.146447, -0.853553, 0.5, 0.5, 0.5, 0.707107, -0.853553, 0.146447, 0.5, 0, 0, 0 )
+
+[node name="Spatial" type="Spatial" parent="."]
+transform = Transform( 1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, 0 )
+script = ExtResource( 17 )
+
+[node name="monkey" parent="Spatial" instance=ExtResource( 6 )]
+visible = false
+
+[node name="sidewinder" parent="Spatial" instance=ExtResource( 2 )]
+visible = false
+
+[node name="sidewinder2" parent="Spatial" instance=ExtResource( 2 )]
+visible = false
+
+[node name="ferdelance" parent="Spatial" instance=ExtResource( 5 )]
+visible = false
+
+[node name="monkey2" parent="Spatial" instance=ExtResource( 6 )]
+visible = false
+
+[node name="python" parent="Spatial" instance=ExtResource( 8 )]
+visible = false
+
+[node name="viper" parent="Spatial" instance=ExtResource( 10 )]
+
+[node name="Shuttle" parent="Spatial" instance=ExtResource( 3 )]
+visible = false
+
+[node name="adder" parent="Spatial" instance=ExtResource( 7 )]
+visible = false
+
+[node name="cobramk1" parent="Spatial" instance=ExtResource( 4 )]
+visible = false
+
+[node name="anaconda" parent="Spatial" instance=ExtResource( 13 )]
+visible = false
+
+[node name="boa" parent="Spatial" instance=ExtResource( 11 )]
+visible = false
+
+[node name="cobramk3" parent="Spatial" instance=ExtResource( 12 )]
+visible = false
+
+[node name="krait" parent="Spatial" instance=ExtResource( 1 )]
+visible = false
+
+[node name="Base" type="Spatial" parent="."]
+script = ExtResource( 14 )
+
+[node name="coriolis" parent="Base" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-05, 0, -1000, 0, 1000, 0, 1000, 0, -4.37114e-05, 0, 0, 0 )
+
+[node name="Boid" type="KinematicBody" parent="."]
+script = ExtResource( 17 )
