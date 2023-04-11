@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Models/krait_out/krait.gltf" type="PackedScene" id=1]
 [ext_resource path="res://Models/sidewinder_out/sidewinder.gltf" type="PackedScene" id=2]
@@ -17,18 +17,37 @@
 [ext_resource path="res://root.gd" type="Script" id=15]
 [ext_resource path="res://FPController.gd" type="Script" id=16]
 [ext_resource path="res://Boid.gd" type="Script" id=17]
+[ext_resource path="res://PlayerSteering.gd" type="Script" id=18]
+[ext_resource path="res://Avoidance.gd" type="Script" id=19]
+[ext_resource path="res://Arrive.gd" type="Script" id=20]
+[ext_resource path="res://Flee.gd" type="Script" id=21]
+[ext_resource path="res://Pursue.gd" type="Script" id=22]
 
 [sub_resource type="Environment" id=1]
 background_mode = 1
 
+[sub_resource type="ConvexPolygonShape" id=2]
+
 [node name="root" type="Spatial"]
 script = ExtResource( 15 )
 
+[node name="pig" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.42281, 0, 42.5677 )
+script = ExtResource( 17 )
+
+[node name="viper" parent="pig" instance=ExtResource( 10 )]
+transform = Transform( 80, 0, 0, 0, 80, 0, 0, 0, 80, 0, 0, 0 )
+
+[node name="Pursue" type="Node" parent="pig"]
+script = ExtResource( 22 )
+enemy_node_path = NodePath("../../Attacker")
+
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2, 43.7198 )
+transform = Transform( 0.665621, 0.373145, -0.646306, 3.26214e-08, 0.866025, 0.5, 0.74629, -0.332811, 0.576445, -20.7317, 13.4915, 69.4458 )
 environment = SubResource( 1 )
+far = 10000.0
 script = ExtResource( 16 )
-speed = 10.0
+speed = 50.0
 move = true
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
@@ -36,7 +55,6 @@ transform = Transform( 0.146447, -0.853553, 0.5, 0.5, 0.5, 0.707107, -0.853553, 
 
 [node name="Spatial" type="Spatial" parent="."]
 transform = Transform( 1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, 0 )
-script = ExtResource( 17 )
 
 [node name="monkey" parent="Spatial" instance=ExtResource( 6 )]
 visible = false
@@ -56,8 +74,6 @@ visible = false
 [node name="python" parent="Spatial" instance=ExtResource( 8 )]
 visible = false
 
-[node name="viper" parent="Spatial" instance=ExtResource( 10 )]
-
 [node name="Shuttle" parent="Spatial" instance=ExtResource( 3 )]
 visible = false
 
@@ -73,9 +89,6 @@ visible = false
 [node name="boa" parent="Spatial" instance=ExtResource( 11 )]
 visible = false
 
-[node name="cobramk3" parent="Spatial" instance=ExtResource( 12 )]
-visible = false
-
 [node name="krait" parent="Spatial" instance=ExtResource( 1 )]
 visible = false
 
@@ -83,7 +96,38 @@ visible = false
 script = ExtResource( 14 )
 
 [node name="coriolis" parent="Base" instance=ExtResource( 9 )]
-transform = Transform( -4.37114e-05, 0, -1000, 0, 1000, 0, 1000, 0, -4.37114e-05, 0, 0, 0 )
+transform = Transform( -8.74228e-05, 0, -2000, 0, 2000, 0, 2000, 0, -8.74228e-05, 0, 0, 0 )
 
-[node name="Boid" type="KinematicBody" parent="."]
+[node name="Attacker" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.42484, 0, 59.0057 )
 script = ExtResource( 17 )
+
+[node name="Flee" type="Node" parent="Attacker"]
+script = ExtResource( 21 )
+weight = 10.0
+enemy_path = NodePath("../../pig")
+flee_range = 10
+
+[node name="Avoidance" type="Node" parent="Attacker"]
+script = ExtResource( 19 )
+weight = 10.0
+
+[node name="PlayerSteering" type="Node" parent="Attacker"]
+script = ExtResource( 18 )
+weight = 10.0
+draw_gizmos = false
+enabled = false
+
+[node name="cobramk3" parent="Attacker" instance=ExtResource( 12 )]
+transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Attacker"]
+shape = SubResource( 2 )
+
+[node name="CamTarget" type="Position3D" parent="Attacker"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9533, -6.65113 )
+
+[node name="Arrive" type="Node" parent="Attacker"]
+script = ExtResource( 20 )
+draw_gizmos = false
+enabled = false

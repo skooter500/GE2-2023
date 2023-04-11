@@ -40,6 +40,11 @@ _global_script_classes=[ {
 "path": "res://Constrain.gd"
 }, {
 "base": "SteeringBehavior",
+"class": "Flee",
+"language": "GDScript",
+"path": "res://Flee.gd"
+}, {
+"base": "SteeringBehavior",
 "class": "FollowPath",
 "language": "GDScript",
 "path": "res://FollowPath.gd"
@@ -63,6 +68,11 @@ _global_script_classes=[ {
 "class": "PlayerSteering",
 "language": "GDScript",
 "path": "res://PlayerSteering.gd"
+}, {
+"base": "SteeringBehavior",
+"class": "Pursue",
+"language": "GDScript",
+"path": "res://Pursue.gd"
 }, {
 "base": "Node",
 "class": "School",
@@ -111,11 +121,13 @@ _global_script_class_icons={
 "Boid": "",
 "Cohesion": "",
 "Constrain": "",
+"Flee": "",
 "FollowPath": "",
 "Harmonic": "",
 "NoiseWander": "",
 "OffsetPursue": "",
 "PlayerSteering": "",
+"Pursue": "",
 "School": "",
 "Seek": "",
 "Separation": "",

@@ -1,5 +1,6 @@
 class_name Utils extends Node
 
+# http://www.elitehomepage.org/playguide.htm#A22
 
 func find_node_from(root: Node, name:String) -> Node:
 	# Check if the current node is the one we're looking for
