@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Models/krait_out/krait.gltf" type="PackedScene" id=1]
 [ext_resource path="res://Models/sidewinder_out/sidewinder.gltf" type="PackedScene" id=2]
@@ -26,6 +26,9 @@
 [ext_resource path="res://CobraTrail.tres" type="Material" id=24]
 [ext_resource path="res://trail_width_curve.tres" type="Curve" id=25]
 [ext_resource path="res://Wander.gd" type="Script" id=26]
+[ext_resource path="res://StateMachine.gd" type="Script" id=27]
+[ext_resource path="res://AttackState.gd" type="Script" id=28]
+[ext_resource path="res://Seek.gd" type="Script" id=29]
 
 [sub_resource type="Environment" id=1]
 background_mode = 1
@@ -97,32 +100,54 @@ visible = false
 visible = false
 
 [node name="Base" type="Spatial" parent="."]
-visible = false
 script = ExtResource( 14 )
 
 [node name="coriolis" parent="Base" instance=ExtResource( 9 )]
 transform = Transform( -8.74228e-05, 0, -2000, 0, 2000, 0, 2000, 0, -8.74228e-05, 0, 0, 0 )
 
 [node name="Attacker" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.42484, 0, 59.0057 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 153.779, 0, 169.736 )
 script = ExtResource( 17 )
+
+[node name="AttackState" type="Node" parent="Attacker"]
+script = ExtResource( 28 )
+
+[node name="StateMachine" type="Node" parent="Attacker"]
+script = ExtResource( 27 )
+initial_state = NodePath("../AttackState")
+
+[node name="Seek" type="Node" parent="Attacker"]
+script = ExtResource( 29 )
+draw_gizmos = false
+enabled = false
 
 [node name="Wander" type="Node" parent="Attacker"]
 script = ExtResource( 26 )
+draw_gizmos = false
+enabled = false
 
 [node name="Flee" type="Node" parent="Attacker"]
 script = ExtResource( 21 )
 weight = 10.0
+draw_gizmos = false
+enabled = false
 enemy_path = NodePath("../../pig")
 flee_range = 30
 
 [node name="Avoidance" type="Node" parent="Attacker"]
 script = ExtResource( 19 )
 weight = 10.0
+draw_gizmos = false
+enabled = false
 
 [node name="PlayerSteering" type="Node" parent="Attacker"]
 script = ExtResource( 18 )
 weight = 10.0
+draw_gizmos = false
+enabled = false
+
+[node name="Arrive" type="Node" parent="Attacker"]
+script = ExtResource( 20 )
 draw_gizmos = false
 enabled = false
 
@@ -134,11 +159,6 @@ shape = SubResource( 2 )
 
 [node name="CamTarget" type="Position3D" parent="Attacker"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9533, -6.65113 )
-
-[node name="Arrive" type="Node" parent="Attacker"]
-script = ExtResource( 20 )
-draw_gizmos = false
-enabled = false
 
 [node name="TrailRenderer" type="Spatial" parent="Attacker"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.269, -0.043, -0.485001 )

@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Arrive.gd"
 }, {
+"base": "State",
+"class": "AttackState",
+"language": "GDScript",
+"path": "res://AttackState.gd"
+}, {
 "base": "SteeringBehavior",
 "class": "Avoidance",
 "language": "GDScript",
@@ -95,6 +100,16 @@ _global_script_classes=[ {
 "path": "res://SpineAnimator.gd"
 }, {
 "base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://State.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://StateMachine.gd"
+}, {
+"base": "Node",
 "class": "SteeringBehavior",
 "language": "GDScript",
 "path": "res://SteeringBehavior.gd"
@@ -117,6 +132,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Alignment": "",
 "Arrive": "",
+"AttackState": "",
 "Avoidance": "",
 "Boid": "",
 "Cohesion": "",
@@ -132,6 +148,8 @@ _global_script_class_icons={
 "Seek": "",
 "Separation": "",
 "SpineAnimator": "",
+"State": "",
+"StateMachine": "",
 "SteeringBehavior": "",
 "TrailRenderer": "",
 "Utils": "",

@@ -119,7 +119,7 @@ func _ready():
 			child.set_process(child.enabled) 
 	# enable_all(false)
 	
-func enable_all(enabled):
+func set_enabled_all(enabled):
 	for i in behaviors.size():
 		behaviors[i].enabled = enabled
 		
