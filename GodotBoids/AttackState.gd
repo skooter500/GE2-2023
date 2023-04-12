@@ -24,7 +24,7 @@ func _enter():
 	
 	timer = Timer.new()
 	add_child(timer)	
-	timer.wait_time = 1.0
+	timer.wait_time = 0.5
 	timer.one_shot = false
 	timer.start()
 	timer.connect("timeout", self, "timeout")	
@@ -38,6 +38,7 @@ func _think():
 	if can_fire and angle < deg2rad(45) and to_pig.length() < 100:
 		var bullet = bullet_scene.instance()
 		get_tree().get_current_scene().add_child(bullet)
-		bullet.global_transform.origin = boid.global_transform.xform(Vector3.BACK * 1.7)
+		bullet.global_transform.origin = boid.global_transform.xform(Vector3.BACK * 1.25)
 		bullet.global_transform.basis = boid.global_transform.basis
-		can_fire = false		
+		can_fire = false	
+		pass	

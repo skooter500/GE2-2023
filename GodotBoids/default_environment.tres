@@ -4,10 +4,12 @@
 sun_longitude = 180.0
 
 [resource]
-background_mode = 2
+background_mode = 1
 background_sky = SubResource( 1 )
+background_color = Color( 0.0352941, 0.0352941, 0.0352941, 1 )
+background_energy = 0.5
 ambient_light_color = Color( 1, 1, 1, 1 )
-ambient_light_energy = 0.84
+ambient_light_energy = 0.2
 glow_enabled = true
 glow_blend_mode = 1
 glow_hdr_threshold = 1.3

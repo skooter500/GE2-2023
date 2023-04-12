@@ -15,7 +15,7 @@ func _ready():
 		
 func _process(delta):
 	if draw_gizmos:
-		DebugDraw.draw_arrow_line(boid.global_transform.origin, projected, Color.bisque, 0.1)			
+		DebugDraw.draw_arrow_line(boid.global_transform.origin, projected, Color.bisque, 0.1)
 
 func calculate():		
 	var to_enemy = enemy_boid.global_transform.origin - boid.global_transform.origin	

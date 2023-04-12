@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Constrain.gd"
 }, {
+"base": "State",
+"class": "DockedState",
+"language": "GDScript",
+"path": "res://DockedState.gd"
+}, {
 "base": "SteeringBehavior",
 "class": "Flee",
 "language": "GDScript",
@@ -58,6 +63,11 @@ _global_script_classes=[ {
 "class": "Harmonic",
 "language": "GDScript",
 "path": "res://Harmonic.gd"
+}, {
+"base": "State",
+"class": "LaunchState",
+"language": "GDScript",
+"path": "res://LaunchState.gd"
 }, {
 "base": "SteeringBehavior",
 "class": "NoiseWander",
@@ -137,9 +147,11 @@ _global_script_class_icons={
 "Boid": "",
 "Cohesion": "",
 "Constrain": "",
+"DockedState": "",
 "Flee": "",
 "FollowPath": "",
 "Harmonic": "",
+"LaunchState": "",
 "NoiseWander": "",
 "OffsetPursue": "",
 "PlayerSteering": "",

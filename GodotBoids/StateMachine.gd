@@ -14,8 +14,10 @@ var previous_state:State
 func change_state(var new_state):
 	if current_state:
 		current_state._exit()
+		remove_child(current_state)
 	current_state = new_state
 	if current_state:
+		add_child(current_state)
 		current_state._enter()
 	
 func _ready():

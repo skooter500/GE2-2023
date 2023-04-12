@@ -5,11 +5,14 @@ var target
 var world_target:Vector3
 
 func draw_gizmos():
-	DebugDraw.draw_sphere(target.global_transform.origin, 3, Color.aqua)
+	if target:
+		world_target = target.global_transform.origin
+	DebugDraw.draw_sphere(world_target, 3, Color.aqua)
 	DebugDraw.draw_line(boid.global_transform.origin, target.global_transform.origin, Color.aqua)
 
 func calculate():
-	world_target = target.global_transform.origin
+	if target:		
+		world_target = target.global_transform.origin
 	return boid.seek_force(world_target)
 
 
