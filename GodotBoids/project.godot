@@ -159,7 +159,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GodotBoids"
-run/main_scene="res://AvoidanceKinematic.tscn"
+run/main_scene="res://StateMachineBots.tscn"
 config/icon="res://icon.png"
 
 [autoload]
