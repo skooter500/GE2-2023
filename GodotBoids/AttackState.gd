@@ -19,7 +19,11 @@ var can_fire = true
 func _enter():
 	boid.set_enabled_all(false)
 	boid.get_node("Wander").enabled = true
-	boid.get_node("Seek").target = base
+	
+	# seek target
+	var to_base = base.global_transform.origin - boid.global_transform.origin
+	to_base = to_base.normalized()
+	var target = base.global_transform.origin + (to_base * 50)	
 	boid.get_node("Seek").enabled = true
 	
 	timer = Timer.new()
@@ -33,9 +37,9 @@ func timeout():
 	can_fire = true
 
 func _think():
-	var to_pig = pig.global_transform.origin - boid.global_transform.origin
-	var angle = boid.global_transform.basis.z.angle_to(to_pig)
-	if can_fire and angle < deg2rad(45) and to_pig.length() < 100:
+	var to_base = base.global_transform.origin - boid.global_transform.origin
+	var angle = boid.global_transform.basis.z.angle_to(to_base)
+	if can_fire and angle < deg2rad(45) and to_base.length() < 50:
 		var bullet = bullet_scene.instance()
 		get_tree().get_current_scene().add_child(bullet)
 		bullet.global_transform.origin = boid.global_transform.xform(Vector3.BACK * 1.25)

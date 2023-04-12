@@ -136,7 +136,6 @@ initial_state = NodePath("../AttackState")
 
 [node name="Seek" type="Node" parent="Attacker"]
 script = ExtResource( 29 )
-draw_gizmos = false
 enabled = false
 
 [node name="Wander" type="Node" parent="Attacker"]

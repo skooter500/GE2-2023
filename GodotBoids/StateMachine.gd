@@ -16,10 +16,10 @@ var boid
 func change_state(var new_state):
 	if current_state:
 		current_state._exit()
-		boid.remove_child(current_state)
+		boid.call_deferred("remove_child", current_state);
 	current_state = new_state
 	if current_state:
-		boid.add_child(current_state)
+		boid.add_child(current_state);
 		current_state._enter()
 	
 func _ready():

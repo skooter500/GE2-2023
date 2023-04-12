@@ -1,6 +1,6 @@
 class_name LaunchState extends State
 
-onready var base = get_node("../../Base")
+var base 
 
 var boid
 var target
@@ -22,6 +22,7 @@ func _think():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	boid = get_parent()
+	base = get_node("../../Base")
 	pass # Replace with function body.
 
 
