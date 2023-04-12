@@ -6,6 +6,10 @@ onready var enemy = get_node("../../Attacker")
 
 onready var bullet_scene:PackedScene
 
+
+func get_class():
+	return "DefendState"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	boid = get_parent()

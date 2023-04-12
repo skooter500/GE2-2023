@@ -13,6 +13,10 @@ func _ready():
 	bullet_scene = load("Bullet1.tscn")
 	pass # Replace with function body.
 
+
+func get_class():
+	return "AttackState"
+
 var timer
 var can_fire = true
 

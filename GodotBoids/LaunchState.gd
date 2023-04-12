@@ -18,6 +18,8 @@ func _think():
 	if target.distance_to(boid.global_transform.origin) < 5:
 		boid.get_node("StateMachine").change_state(DefendState.new())
 
+func get_class():
+	return "LaunchState"
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():

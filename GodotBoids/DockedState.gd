@@ -4,6 +4,9 @@ onready var attacker = get_node("../../Attacker")
 
 var boid
 
+func get_class():
+	return "DockedState"
+
 func _enter():
 	pass
 	
