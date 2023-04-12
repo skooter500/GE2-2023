@@ -9,7 +9,7 @@ func _enter():
 	
 func _think():
 	var to_attacker = boid.global_transform.origin.distance_to(attacker.global_transform.origin)
-	if to_attacker < 50:
+	if to_attacker < 100:
 		boid.get_node("StateMachine").change_state(LaunchState.new())
 
 # Called when the node enters the scene tree for the first time.

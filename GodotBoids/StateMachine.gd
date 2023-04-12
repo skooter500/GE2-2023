@@ -11,16 +11,19 @@ var current_state:State
 var global_state:State
 var previous_state:State
 
+var boid
+
 func change_state(var new_state):
 	if current_state:
 		current_state._exit()
-		remove_child(current_state)
+		boid.remove_child(current_state)
 	current_state = new_state
 	if current_state:
-		add_child(current_state)
+		boid.add_child(current_state)
 		current_state._enter()
 	
 func _ready():
+	boid = get_parent()
 	if initial_state:
 		current_state = get_node(initial_state)
 		change_state(current_state)

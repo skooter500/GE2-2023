@@ -8,7 +8,7 @@ func draw_gizmos():
 	if target:
 		world_target = target.global_transform.origin
 	DebugDraw.draw_sphere(world_target, 3, Color.aqua)
-	DebugDraw.draw_line(boid.global_transform.origin, target.global_transform.origin, Color.aqua)
+	DebugDraw.draw_line(boid.global_transform.origin, world_target, Color.aqua)
 
 func calculate():
 	if target:		

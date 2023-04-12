@@ -38,8 +38,21 @@
 [node name="root" type="Spatial"]
 script = ExtResource( 15 )
 
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.665621, 0.373145, -0.646306, 3.26214e-08, 0.866025, 0.5, 0.74629, -0.332811, 0.576445, 69.4602, 13.4915, 133.332 )
+far = 10000.0
+script = ExtResource( 16 )
+speed = 50.0
+move = true
+
+[node name="Base" type="Spatial" parent="."]
+script = ExtResource( 14 )
+
+[node name="coriolis" parent="Base" instance=ExtResource( 9 )]
+transform = Transform( -8.74228e-05, 0, -2000, 0, 2000, 0, 2000, 0, -8.74228e-05, 0, 0, 0 )
+visible = false
+
 [node name="pig" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.42281, 0, 42.5677 )
 script = ExtResource( 17 )
 
 [node name="viper" parent="pig" instance=ExtResource( 10 )]
@@ -47,6 +60,7 @@ transform = Transform( 80, 0, 0, 0, 80, 0, 0, 0, 80, 0, 0, 0 )
 
 [node name="Pursue" type="Node" parent="pig"]
 script = ExtResource( 22 )
+enabled = false
 enemy_node_path = NodePath("../../Attacker")
 
 [node name="StateMachine" type="Node" parent="pig"]
@@ -56,12 +70,13 @@ initial_state = NodePath("../DockedState")
 [node name="DockedState" type="Node" parent="pig"]
 script = ExtResource( 33 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.665621, 0.373145, -0.646306, 3.26214e-08, 0.866025, 0.5, 0.74629, -0.332811, 0.576445, 69.4602, 13.4915, 133.332 )
-far = 10000.0
-script = ExtResource( 16 )
-speed = 50.0
-move = true
+[node name="Seek" type="Node" parent="pig"]
+script = ExtResource( 29 )
+enabled = false
+
+[node name="Wander" type="Node" parent="pig"]
+script = ExtResource( 26 )
+enabled = false
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.146447, -0.853553, 0.5, 0.5, 0.5, 0.707107, -0.853553, 0.146447, 0.5, 0, 0, 0 )
@@ -104,12 +119,6 @@ visible = false
 
 [node name="krait" parent="Spatial" instance=ExtResource( 1 )]
 visible = false
-
-[node name="Base" type="Spatial" parent="."]
-script = ExtResource( 14 )
-
-[node name="coriolis" parent="Base" instance=ExtResource( 9 )]
-transform = Transform( -8.74228e-05, 0, -2000, 0, 2000, 0, 2000, 0, -8.74228e-05, 0, 0, 0 )
 
 [node name="Attacker" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 54.8713, 0, 114.787 )

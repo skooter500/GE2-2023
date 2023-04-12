@@ -45,6 +45,11 @@ _global_script_classes=[ {
 "path": "res://Constrain.gd"
 }, {
 "base": "State",
+"class": "DefendState",
+"language": "GDScript",
+"path": "res://DefendState.gd"
+}, {
+"base": "State",
 "class": "DockedState",
 "language": "GDScript",
 "path": "res://DockedState.gd"
@@ -147,6 +152,7 @@ _global_script_class_icons={
 "Boid": "",
 "Cohesion": "",
 "Constrain": "",
+"DefendState": "",
 "DockedState": "",
 "Flee": "",
 "FollowPath": "",

@@ -23,6 +23,3 @@ func calculate():
 	var time = dist / boid.max_speed	
 	projected = enemy_boid.global_transform.origin + enemy_boid.velocity * time	
 	return boid.seek_force(projected)
-	
-
-	return boid.arrive_force(projected, 5)
