@@ -17,8 +17,8 @@ func _think():
 		
 		# See: https://www.reddit.com/r/godot/comments/hu213d/class_was_found_in_global_scope_but_its_script/		
 		# boid.get_node("StateMachine").change_state(AttackState.new())
-		var ass = load("AttackState.gd").instance()
-		boid.get_node("StateMachine").change_state(ass)
+		var AttackState = load("res://AttackState.gd")
+		boid.get_node("StateMachine").change_state(AttackState.new())
 		pass
 		
 func get_class():
