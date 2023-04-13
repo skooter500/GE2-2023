@@ -42,5 +42,6 @@ func _think():
 		get_tree().get_current_scene().add_child(bullet)
 		bullet.global_transform.origin = boid.global_transform.xform(Vector3.BACK * 1.25)
 		bullet.global_transform.basis = boid.global_transform.basis
-		can_fire = false	
+		can_fire = false
+	if to_enemy.length()
 		pass	

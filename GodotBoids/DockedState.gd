@@ -3,11 +3,18 @@ class_name DockedState extends State
 onready var attacker = get_node("../../Attacker")
 
 var boid
+var base
+var target
 
-func get_class():
+func _get_class():
 	return "DockedState"
 
 func _enter():
+	boid = get_parent()
+	base = get_node("../../Base")
+	target = base.global_transform.origin + base.global_transform.basis.z * 20
+	boid.get_node("Seek").world_target = target
+	boid.get_node("Seek").set_enabled(true)
 	pass
 	
 func _think():

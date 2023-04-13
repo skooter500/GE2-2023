@@ -58,12 +58,16 @@ script = ExtResource( 14 )
 
 [node name="coriolis" parent="Base" instance=ExtResource( 9 )]
 transform = Transform( -8.74228e-05, 0, -2000, 0, 2000, 0, 2000, 0, -8.74228e-05, 0, 0, 0 )
+visible = false
 
 [node name="pig" type="KinematicBody" parent="."]
 script = ExtResource( 17 )
 
 [node name="viper" parent="pig" instance=ExtResource( 10 )]
 transform = Transform( 80, 0, 0, 0, 80, 0, 0, 0, 80, 0, 0, 0 )
+
+[node name="Avoidance" type="Node" parent="pig"]
+script = ExtResource( 19 )
 
 [node name="Pursue" type="Node" parent="pig"]
 script = ExtResource( 22 )
@@ -84,6 +88,20 @@ enabled = false
 [node name="Wander" type="Node" parent="pig"]
 script = ExtResource( 26 )
 enabled = false
+
+[node name="TrailRenderer" type="Spatial" parent="pig"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.3, 0, -0.955383 )
+script = ExtResource( 23 )
+width = 0.4
+width_curve = ExtResource( 25 )
+material = ExtResource( 24 )
+
+[node name="TrailRenderer2" type="Spatial" parent="pig"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.3, 0, -0.955383 )
+script = ExtResource( 23 )
+width = 0.4
+width_curve = ExtResource( 25 )
+material = ExtResource( 24 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.146447, -0.853553, 0.5, 0.5, 0.5, 0.707107, -0.853553, 0.146447, 0.5, 0, 0, 0 )
