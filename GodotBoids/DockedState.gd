@@ -12,7 +12,7 @@ func get_class():
 func _enter():
 	boid = get_parent()
 	base = get_node("../../Base")
-	target = base.global_transform.origin + base.global_transform.basis.z * 20
+	target = base.global_transform.origin
 	boid.get_node("Seek").world_target = target
 	boid.get_node("Seek").set_enabled(true)
 	pass

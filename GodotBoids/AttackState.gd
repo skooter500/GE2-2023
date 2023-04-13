@@ -19,17 +19,19 @@ func get_class():
 
 var timer
 var can_fire = true
+var target
 
 func _enter():
 	boid.set_enabled_all(false)
 	boid.get_node("Wander").enabled = true
+	boid.get_node("Avoidance").enabled = true
 	
 	# seek target
 	var to_base = base.global_transform.origin - boid.global_transform.origin
 	to_base = to_base.normalized()
-	var target = base.global_transform.origin + (to_base * 50)	
+	target = base.global_transform.origin + (to_base * 100)	
 	boid.get_node("Seek").enabled = true
-	
+	boid.get_node("Seek").world_target = target
 	timer = Timer.new()
 	add_child(timer)	
 	timer.wait_time = 0.5
@@ -49,6 +51,7 @@ func _think():
 		bullet.global_transform.origin = boid.global_transform.xform(Vector3.BACK * 1.25)
 		bullet.global_transform.basis = boid.global_transform.basis
 		can_fire = false
-	if to_base.length() < 10:
+	var to_target = target - boid.global_transform.origin
+	if to_target.length() < 20:
 		boid.get_node("StateMachine").change_state(RetreatState.new())
 		pass	

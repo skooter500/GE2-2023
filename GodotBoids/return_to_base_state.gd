@@ -8,7 +8,7 @@ var target
 func _enter():
 	boid = get_parent()
 	base = get_node("../../Base")
-	target = base.global_transform.origin + base.global_transform.basis.z * 20
+	target = base.global_transform.origin + base.global_transform.basis.z * 50
 	boid.get_node("Seek").world_target = target
 	boid.get_node("Seek").set_enabled(true)
 
@@ -24,7 +24,7 @@ func _think():
 		var DockedState = load("res://DockedState.gd")
 		boid.get_node("StateMachine").change_state(DockedState.new())
 	var to_attacker = boid.global_transform.origin.distance_to(attacker.global_transform.origin)
-	if to_attacker < 100:
+	if to_attacker < 50:
 		var DefendState = load("res://DefendState.gd")
 		boid.get_node("StateMachine").change_state(DefendState.new())
 		pass
