@@ -43,7 +43,7 @@ func timeout():
 func _think():
 	var to_base = base.global_transform.origin - boid.global_transform.origin
 	var angle = boid.global_transform.basis.z.angle_to(to_base)
-	if can_fire and angle < deg2rad(45) and to_base.length() < 50:
+	if can_fire and angle < deg2rad(45) and to_base.length() < 100:
 		var bullet = bullet_scene.instance()
 		get_tree().get_current_scene().add_child(bullet)
 		bullet.global_transform.origin = boid.global_transform.xform(Vector3.BACK * 1.25)

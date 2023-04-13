@@ -27,7 +27,7 @@ func _ready():
 	boid = get_parent()
 	if initial_state:
 		current_state = get_node(initial_state)
-		change_state(current_state)
+		current_state._enter()
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
