@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Models/krait_out/krait.gltf" type="PackedScene" id=1]
 [ext_resource path="res://Models/sidewinder_out/sidewinder.gltf" type="PackedScene" id=2]
@@ -19,7 +19,6 @@
 [ext_resource path="res://Boid.gd" type="Script" id=17]
 [ext_resource path="res://PlayerSteering.gd" type="Script" id=18]
 [ext_resource path="res://Avoidance.gd" type="Script" id=19]
-[ext_resource path="res://Arrive.gd" type="Script" id=20]
 [ext_resource path="res://Flee.gd" type="Script" id=21]
 [ext_resource path="res://Pursue.gd" type="Script" id=22]
 [ext_resource path="res://TrailRender.gd" type="Script" id=23]
@@ -171,11 +170,6 @@ weight = 10.0
 draw_gizmos = false
 enabled = false
 
-[node name="Arrive" type="Node" parent="Attacker"]
-script = ExtResource( 20 )
-draw_gizmos = false
-enabled = false
-
 [node name="cobramk3" parent="Attacker" instance=ExtResource( 12 )]
 transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0 )
 
@@ -207,9 +201,8 @@ environment = ExtResource( 30 )
 [node name="camera follower" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -147.541, -5, 144.101 )
 script = ExtResource( 17 )
-max_speed = 20.0
-max_force = 30
-draw_gizmos = false
+max_speed = 5.0
+max_force = 5
 
 [node name="OffsetPursue" type="Node" parent="camera follower"]
 script = ExtResource( 32 )
