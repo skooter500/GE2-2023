@@ -21,7 +21,7 @@ func _think():
 		boid.get_node("StateMachine").change_state(AttackState.new())
 		pass
 		
-func _get_class():
+func get_class():
 	return "RetreatState"
 	
 func _ready():

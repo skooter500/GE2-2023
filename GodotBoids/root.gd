@@ -1,5 +1,7 @@
 extends Spatial
 
+export var custom_font : Font
+
 func draw_gizmos():
 	var size = 200
 	var sub_divisions = size / 20
@@ -13,10 +15,13 @@ func _ready():
 	var window_size = OS.get_window_size()
 	
 	OS.set_window_position(screen_size*0.5 - window_size*0.5) 	
-	
+	DebugDraw.text_custom_font = custom_font
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	draw_gizmos()
+	var g = _create_graph("FPS", true, false, DebugDraw.BlockPosition_LeftTop if Engine.editor_hint else DebugDraw.BlockPosition_RightTop, DebugDraw.GraphTextFlags_Current | DebugDraw.GraphTextFlags_Avarage | DebugDraw.GraphTextFlags_Max | DebugDraw.GraphTextFlags_Min, Vector2(200, 80), custom_font)
+	g.buffer_size = 300
 
 func _create_graph(title, is_fps, show_title, pos, flags, size = Vector2(256, 60), font = null) -> DebugDraw.GraphParameters:
 	var graph = DebugDraw.get_graph_config(title)

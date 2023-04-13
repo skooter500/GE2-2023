@@ -6,7 +6,7 @@ var boid
 var base
 var target
 
-func _get_class():
+func get_class():
 	return "DockedState"
 
 func _enter():

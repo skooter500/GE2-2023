@@ -32,7 +32,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	DebugDraw.set_text(get_parent().name, current_state.name)
+	DebugDraw.set_text(get_parent().get_name(), current_state.get_class())
 	if current_state:
 		current_state._think()
 	if global_state:

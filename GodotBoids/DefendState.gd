@@ -43,6 +43,6 @@ func _think():
 		bullet.global_transform.origin = boid.global_transform.xform(Vector3.BACK * 1.25)
 		bullet.global_transform.basis = boid.global_transform.basis
 		can_fire = false		
-	if to_enemy.length() < 150:
+	if to_enemy.length() < 200:
 		boid.get_node("StateMachine").change_state(ReturnToBase.new())
 		pass	
