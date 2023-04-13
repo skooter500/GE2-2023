@@ -1,12 +1,10 @@
-class_name LaunchState extends State
-
-var base 
+class_name RetreatState extends State
 
 var boid
 var target
 
 func _enter():
-	target = base.global_transform.origin + base.global_transform.basis.z * 20
+	target = get_tree().get_current_scene().find_node("AttackerBase").global_transform.origin
 	boid.get_node("Seek").world_target = target
 	boid.get_node("Seek").set_enabled(true)
 
@@ -16,12 +14,11 @@ func _exit():
 
 func _think():
 	if target.distance_to(boid.global_transform.origin) < 5:
-		boid.get_node("StateMachine").change_state(DefendState.new())
+		boid.get_node("StateMachine").change_state(AttackState.new())
 
 func get_class():
-	return "LaunchState"
+	return "RetreatState"
 	
 func _ready():
 	boid = get_parent()
-	base = get_node("../../Base")
-	pass # Replace with function body.
+	pass

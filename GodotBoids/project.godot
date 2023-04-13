@@ -94,6 +94,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Pursue.gd"
 }, {
+"base": "State",
+"class": "RetreatState",
+"language": "GDScript",
+"path": "res://RetreatState.gd"
+}, {
 "base": "Node",
 "class": "School",
 "language": "GDScript",
@@ -162,6 +167,7 @@ _global_script_class_icons={
 "OffsetPursue": "",
 "PlayerSteering": "",
 "Pursue": "",
+"RetreatState": "",
 "School": "",
 "Seek": "",
 "Separation": "",
