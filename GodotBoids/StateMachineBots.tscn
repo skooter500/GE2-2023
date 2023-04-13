@@ -58,7 +58,6 @@ script = ExtResource( 14 )
 
 [node name="coriolis" parent="Base" instance=ExtResource( 9 )]
 transform = Transform( -8.74228e-05, 0, -2000, 0, 2000, 0, 2000, 0, -8.74228e-05, 0, 0, 0 )
-visible = false
 
 [node name="pig" type="KinematicBody" parent="."]
 script = ExtResource( 17 )
@@ -220,3 +219,10 @@ updates_per_second = 10
 
 [node name="AttackerBase" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -152.432, 0, 90.0733 )
+
+[node name="Base" type="Spatial" parent="AttackerBase"]
+transform = Transform( -0.701668, 0, 0.712504, 0, 1, 0, -0.712504, 0, -0.701668, 0, 0, 0 )
+script = ExtResource( 14 )
+
+[node name="coriolis" parent="AttackerBase/Base" instance=ExtResource( 9 )]
+transform = Transform( -8.74228e-05, 0, -2000, 0, 2000, 0, 2000, 0, -8.74228e-05, 0, 0, 0 )
