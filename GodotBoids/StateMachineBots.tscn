@@ -50,11 +50,10 @@ script = ExtResource( 14 )
 transform = Transform( -8.74228e-05, 0, -2000, 5.96046e-05, 2000, 5.96046e-05, 2000, -5.96046e-05, -2.78182e-05, -7.62939e-06, -2.86102e-06, 3.12639e-13 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Base"]
-transform = Transform( -4.37114e-08, 1.3027e-15, -1, 2.98023e-08, 1, 0, 1, -2.98023e-08, -4.37114e-08, -7.62939e-06, -2.86102e-06, 3.12639e-13 )
 shape = SubResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.665621, 0.373145, -0.646306, 3.26214e-08, 0.866025, 0.5, 0.74629, -0.332811, 0.576445, 69.4602, 13.4915, 133.332 )
+transform = Transform( 0.665621, 0.373145, -0.646306, 3.26214e-08, 0.866025, 0.5, 0.74629, -0.332811, 0.576445, -152.933, 13.4915, 133.332 )
 far = 10000.0
 script = ExtResource( 16 )
 speed = 50.0
@@ -66,6 +65,7 @@ move = true
 script = ExtResource( 34 )
 boid_camera_path = NodePath("../../camera follower")
 boid_path = NodePath("../../Attacker")
+mode = 1
 
 [node name="pig" type="KinematicBody" parent="."]
 script = ExtResource( 17 )
@@ -75,6 +75,7 @@ transform = Transform( 80, 0, 0, 0, 80, 0, 0, 0, 80, 0, 0, 0 )
 
 [node name="Avoidance" type="Node" parent="pig"]
 script = ExtResource( 19 )
+feeler_length = 20
 
 [node name="Pursue" type="Node" parent="pig"]
 script = ExtResource( 22 )
