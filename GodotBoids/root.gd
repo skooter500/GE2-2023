@@ -8,7 +8,7 @@ func draw_gizmos():
 
 
 func _ready():
-	OS.set_current_screen(1)
+	OS.set_current_screen(0)
 	var screen_size = OS.get_screen_size()
 	var window_size = OS.get_window_size()
 	
@@ -17,7 +17,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	draw_gizmos()
-	
 
 func _create_graph(title, is_fps, show_title, pos, flags, size = Vector2(256, 60), font = null) -> DebugDraw.GraphParameters:
 	var graph = DebugDraw.get_graph_config(title)

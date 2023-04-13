@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Models/krait_out/krait.gltf" type="PackedScene" id=1]
 [ext_resource path="res://Models/sidewinder_out/sidewinder.gltf" type="PackedScene" id=2]
@@ -34,10 +34,24 @@
 [ext_resource path="res://DockedState.gd" type="Script" id=33]
 [ext_resource path="res://CameraController.gd" type="Script" id=34]
 
+[sub_resource type="SphereShape" id=3]
+radius = 50.0
+
 [sub_resource type="ConvexPolygonShape" id=2]
 
 [node name="root" type="Spatial"]
 script = ExtResource( 15 )
+
+[node name="Base" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 2.98023e-08, 1, -2.98023e-08, 2.98023e-08, 2.98023e-08, 1, 7.62939e-06, 2.86102e-06, 0 )
+script = ExtResource( 14 )
+
+[node name="coriolis" parent="Base" instance=ExtResource( 9 )]
+transform = Transform( -8.74228e-05, 0, -2000, 5.96046e-05, 2000, 5.96046e-05, 2000, -5.96046e-05, -2.78182e-05, -7.62939e-06, -2.86102e-06, 3.12639e-13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Base"]
+transform = Transform( -4.37114e-08, 1.3027e-15, -1, 2.98023e-08, 1, 0, 1, -2.98023e-08, -4.37114e-08, -7.62939e-06, -2.86102e-06, 3.12639e-13 )
+shape = SubResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 0.665621, 0.373145, -0.646306, 3.26214e-08, 0.866025, 0.5, 0.74629, -0.332811, 0.576445, 69.4602, 13.4915, 133.332 )
@@ -52,13 +66,6 @@ move = true
 script = ExtResource( 34 )
 boid_camera_path = NodePath("../../camera follower")
 boid_path = NodePath("../../Attacker")
-
-[node name="Base" type="Spatial" parent="."]
-script = ExtResource( 14 )
-
-[node name="coriolis" parent="Base" instance=ExtResource( 9 )]
-transform = Transform( -8.74228e-05, 0, -2000, 0, 2000, 0, 2000, 0, -8.74228e-05, 0, 0, 0 )
-visible = false
 
 [node name="pig" type="KinematicBody" parent="."]
 script = ExtResource( 17 )
