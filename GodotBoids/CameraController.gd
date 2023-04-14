@@ -23,7 +23,11 @@ func _ready():
 			camera.move = true
 		Mode.Follow:
 			camera.move = false
-	pass # Replace with function body.
+			boid_camera.global_transform.origin = camera.transform.origin
+			call_deferred("calculate_offset")
+
+func calculate_offset():
+	boid_camera.get_node("OffsetPursue").calculate_offset()
 	
 func _input(event):
 	if event is InputEventKey and event.scancode == KEY_C and event.pressed:

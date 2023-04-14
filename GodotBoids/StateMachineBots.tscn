@@ -46,8 +46,8 @@ script = ExtResource( 15 )
 custom_font = ExtResource( 35 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.665621, 0.373145, -0.646306, 3.26214e-08, 0.866025, 0.5, 0.74629, -0.332811, 0.576445, -319.223, 13.4912, 162.185 )
-far = 10000.0
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 3.35852, 460 )
+far = 100000.0
 script = ExtResource( 16 )
 speed = 10.0
 move = true
@@ -61,7 +61,7 @@ boid_path = NodePath("../../Attacker")
 mode = 1
 
 [node name="Attacker" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -315.688, -0.000213623, 173.138 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 450 )
 script = ExtResource( 17 )
 max_speed = 15.0
 banking = 0.5
@@ -128,7 +128,6 @@ width_curve = ExtResource( 25 )
 material = ExtResource( 24 )
 
 [node name="camera follower" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -312.684, -5.00005, 156.212 )
 script = ExtResource( 17 )
 max_speed = 15.0
 max_force = 50
@@ -253,4 +252,4 @@ environment = ExtResource( 30 )
 [node name="bullet" parent="." instance=ExtResource( 31 )]
 
 [node name="AttackerBase" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -152.432, 0, 90.0733 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -372.497, 0, 201.535 )
