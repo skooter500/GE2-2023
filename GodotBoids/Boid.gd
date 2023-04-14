@@ -177,7 +177,7 @@ func _physics_process(var delta):
 			# Damping
 			velocity -= velocity * delta * damping
 			
-			# move_and_slide(velocity)
+			move_and_slide(velocity)
 			
 			# Implement Banking as described:
 			# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/
