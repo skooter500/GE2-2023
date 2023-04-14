@@ -10,6 +10,7 @@ func _enter():
 	target = get_tree().get_current_scene().find_node("AttackerBase").global_transform.origin
 	boid.get_node("Seek").world_target = target
 	boid.get_node("Seek").set_enabled(true)
+	boid.get_node("Sounds").play_sound(1)
 
 func _exit():
 	boid.get_node("Seek").set_enabled(false)
@@ -21,6 +22,7 @@ func _think():
 		# boid.get_node("StateMachine").change_state(AttackState.new())
 		var AttackState = load("res://AttackState.gd")
 		boid.get_node("StateMachine").change_state(AttackState.new())
+
 		pass
 		
 func get_class():

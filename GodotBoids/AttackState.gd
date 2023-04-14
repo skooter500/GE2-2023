@@ -15,6 +15,7 @@ func get_class():
 	return "AttackState"
 
 func _enter():
+	print("Entering attack state")
 	boid.set_enabled_all(false)
 	boid.get_node("Wander").enabled = true
 	boid.get_node("Avoidance").enabled = true
@@ -22,9 +23,12 @@ func _enter():
 	# seek target
 	var to_base = base.global_transform.origin - boid.global_transform.origin
 	to_base = to_base.normalized()
-	target = base.global_transform.origin + (to_base * 100)	
+	target = base.global_transform.origin + (to_base * 300)	
+	target.y = 0
 	boid.get_node("Seek").enabled = true
 	boid.get_node("Seek").world_target = target
+	boid.get_node("Sounds").play_sound(0)
+
 
 func _think():
 	var to_target = target - boid.transform.origin 

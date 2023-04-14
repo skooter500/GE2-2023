@@ -18,6 +18,7 @@ func _enter():
 	# boid.get_node("Wander").set_enabled(true)
 	boid.get_node("Pursue").set_enabled(true)
 	boid.get_node("Pursue").enemy_boid = enemy
+	boid.get_node("Sounds").play_sound(1)
 
 func _exit():
 	boid.get_node("Pursue").set_enabled(false)

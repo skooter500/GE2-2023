@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Enemy Out of Range.mp3-e09d8b259e4456bca4894cfc84fba653.mp3str"
+
+[deps]
+
+source_file="res://sounds/Enemy Out of Range.mp3"
+dest_files=[ "res://.import/Enemy Out of Range.mp3-e09d8b259e4456bca4894cfc84fba653.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

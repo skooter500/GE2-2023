@@ -56,16 +56,16 @@ func feel(local_ray):
 		feeler.hit_target = result.position
 		feeler.normal = result.normal
 		var to_boid = boid.global_transform.origin - result.position 
-		var force_mag = 0.1
+		var force_mag = ((feeler_length - to_boid.length()) / feeler_length)
 		match direction:
 			ForceDirection.Normal:
 				feeler.force = result.normal * force_mag
 			ForceDirection.Incident:
-				feeler.force = to_boid.reflect(result.normal) * force_mag
+				feeler.force = to_boid.reflect(result.normal).normalized() * force_mag
 			ForceDirection.Up:
 				feeler.force = Vector3.UP * force_mag
 			ForceDirection.Braking:
-				feeler.force = to_boid * force_mag
+				feeler.force = to_boid.normalized() * force_mag
 		force += feeler.force
 	return feeler
 

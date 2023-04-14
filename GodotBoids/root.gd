@@ -37,6 +37,6 @@ func _create_graph(title, is_fps, show_title, pos, flags, size = Vector2(256, 60
 			graph.position = pos
 			graph.show_title = show_title
 			graph.show_text_flags = flags
-			graph.custom_font = font
-	
+			graph.custom_font = font			
+			graph.frame_time_mode = false
 	return graph

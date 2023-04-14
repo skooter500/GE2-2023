@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Defening the base.mp3-da77cfe34318dd210a98b0ee0c95c86a.mp3str"
+
+[deps]
+
+source_file="res://sounds/Defening the base.mp3"
+dest_files=[ "res://.import/Defening the base.mp3-da77cfe34318dd210a98b0ee0c95c86a.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

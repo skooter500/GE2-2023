@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/commencing docking.mp3-6e28987cc681f68f823c32890d40d595.mp3str"
+
+[deps]
+
+source_file="res://sounds/commencing docking.mp3"
+dest_files=[ "res://.import/commencing docking.mp3-6e28987cc681f68f823c32890d40d595.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

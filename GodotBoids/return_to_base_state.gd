@@ -11,6 +11,7 @@ func _enter():
 	target = base.global_transform.origin + base.global_transform.basis.z * 50
 	boid.get_node("Seek").world_target = target
 	boid.get_node("Seek").set_enabled(true)
+	boid.get_node("Sounds").play_sound(2)
 
 func _exit():
 	boid.get_node("Seek").set_enabled(false)

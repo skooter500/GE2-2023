@@ -28,7 +28,7 @@ func _ready():
 	if global_state_path:
 		global_state = get_node(global_state_path)
 		# Ready may not have been called!
-		current_state.call_deferred("_enter")
+		global_state.call_deferred("_enter")
 		# current_state._enter()
 	pass
 

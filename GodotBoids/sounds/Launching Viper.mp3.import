@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Launching Viper.mp3-78090d9b70fdb883d660f860c5bf6e53.mp3str"
+
+[deps]
+
+source_file="res://sounds/Launching Viper.mp3"
+dest_files=[ "res://.import/Launching Viper.mp3-78090d9b70fdb883d660f860c5bf6e53.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

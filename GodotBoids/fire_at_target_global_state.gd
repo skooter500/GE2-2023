@@ -40,9 +40,9 @@ func _think():
 
 		var dist = to_target.length()
 
-		if angle < 30 and dist < 200:
+		if angle < 30 and dist < 400:
 			var bullet = bullet_scene.instance()
 			get_tree().get_current_scene().add_child(bullet)
-			bullet.global_transform.origin = boid.global_transform.xform(Vector3.BACK * 1.25)
+			bullet.global_transform.origin = boid.global_transform.xform(Vector3.BACK * 1.3)
 			bullet.global_transform.basis = boid.global_transform.basis
 			can_fire = false
