@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Bullet.gd" type="Script" id=1]
 [ext_resource path="res://TrailRender.gd" type="Script" id=2]
 [ext_resource path="res://trail_width_curve.tres" type="Curve" id=3]
 [ext_resource path="res://Blue.tres" type="Material" id=4]
+[ext_resource path="res://sounds/Laser_Shoot26.wav" type="AudioStream" id=5]
 
 [sub_resource type="BoxShape" id=2]
 
@@ -34,5 +35,9 @@ width = 0.2
 width_curve = ExtResource( 3 )
 max_points = 50
 material = ExtResource( 4 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

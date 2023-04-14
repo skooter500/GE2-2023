@@ -6,6 +6,7 @@ class_name StateMachine extends Node
 # var b = "text"
 
 export var initial_state:NodePath
+export var global_state_path:NodePath
 
 var current_state:State
 var global_state:State
@@ -28,11 +29,14 @@ func _ready():
 	if initial_state:
 		current_state = get_node(initial_state)
 		current_state._enter()
+	if global_state_path:
+		global_state = get_node(global_state_path)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	DebugDraw.set_text(get_parent().get_name(), current_state.get_class())
+	DebugDraw.set_text(get_parent().get_name(), current_state.get_class() + (global_state.get_class() if global_state else ""))
+	
 	if current_state:
 		current_state._think()
 	if global_state:
