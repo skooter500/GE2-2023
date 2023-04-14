@@ -11,6 +11,8 @@
 [sub_resource type="CylinderMesh" id=3]
 
 [node name="bullet" type="KinematicBody"]
+collision_layer = 4
+collision_mask = 11
 script = ExtResource( 1 )
 speed = 50.0
 

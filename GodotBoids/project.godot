@@ -271,6 +271,13 @@ move_down={
  ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Attacker"
+3d_physics/layer_2="Base"
+3d_physics/layer_3="Bullets"
+3d_physics/layer_4="Pig"
+
 [mono]
 
 project/assembly_name="Experiments1"

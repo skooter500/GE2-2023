@@ -37,8 +37,7 @@
 
 [sub_resource type="ConvexPolygonShape" id=2]
 
-[sub_resource type="SphereShape" id=3]
-radius = 25.0
+[sub_resource type="ConvexPolygonShape" id=3]
 
 [node name="root" type="Spatial"]
 script = ExtResource( 15 )
@@ -62,6 +61,7 @@ mode = 1
 
 [node name="Attacker" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -450, -20, 450 )
+collision_mask = 14
 script = ExtResource( 17 )
 force = Vector3( 0, -10, 0 )
 max_speed = 15.0
@@ -180,7 +180,8 @@ updates_per_second = 10
 
 [node name="Base" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 2.98023e-08, 1, -2.98023e-08, 2.98023e-08, 2.98023e-08, 1, 0, 50, 0 )
-collision_layer = 65
+collision_layer = 2
+collision_mask = 13
 script = ExtResource( 14 )
 speed = -0.3
 
@@ -192,6 +193,8 @@ shape = SubResource( 3 )
 
 [node name="pig" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0 )
+collision_layer = 8
+collision_mask = 7
 script = ExtResource( 17 )
 
 [node name="viper" parent="pig" instance=ExtResource( 10 )]
@@ -280,3 +283,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -514.438, -125.307, 490.622 )
 transform = Transform( 3000, 0, 0, 0, 3000, 0, 0, 0, 3000, -276.272, 0, 0 )
 script = ExtResource( 14 )
 speed = -0.3
+
+[editable path="Base/coriolis"]
