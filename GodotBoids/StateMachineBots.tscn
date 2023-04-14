@@ -37,7 +37,8 @@
 
 [sub_resource type="ConvexPolygonShape" id=2]
 
-[sub_resource type="ConvexPolygonShape" id=3]
+[sub_resource type="SphereShape" id=3]
+radius = 22.031
 
 [node name="root" type="Spatial"]
 script = ExtResource( 15 )
@@ -61,7 +62,7 @@ mode = 1
 
 [node name="Attacker" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -450, -20, 450 )
-collision_mask = 14
+collision_mask = 10
 script = ExtResource( 17 )
 force = Vector3( 0, -10, 0 )
 max_speed = 15.0
@@ -92,7 +93,7 @@ enabled = false
 
 [node name="Wander" type="Node" parent="Attacker"]
 script = ExtResource( 26 )
-weight = 0.3
+weight = 0.5
 enabled = false
 jitter = 100.0
 

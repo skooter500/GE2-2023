@@ -13,7 +13,6 @@ export var updates_per_second = 5
 var force = Vector3.ZERO
 var feelers = []
 var space_state
-
 var needs_updating = true
 
 func draw_gizmos():
@@ -49,7 +48,7 @@ func _physics_process(var delta):
 func feel(local_ray):
 	var feeler = {}
 	var ray_end = boid.global_transform.xform(local_ray)
-	var result = space_state.intersect_ray(boid.global_transform.origin, ray_end)
+	var result = space_state.intersect_ray(boid.global_transform.origin, ray_end, [boid], boid.collision_mask)
 	feeler.end = ray_end
 	feeler.hit = result
 	if result:

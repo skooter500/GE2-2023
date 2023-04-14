@@ -36,13 +36,14 @@ func _physics_process(delta):
 	n = global_transform.basis.xform(n) * 0.05
 	# DebugDraw.draw_arrow_line(Vector3.ZERO, n * 50, Color.red, 0.1)
 	# I think this should return true when a collision happens, but it doesnt
-	# var collision = move_and_collide(v * delta)		
 	v += n
-	global_transform.origin += v
+	var collision = move_and_collide(v)	
+	if collision:
+		pass	
+	# 
+	# global_transform.origin += v
 	
-	look_at(global_transform.origin - v, global_transform.basis.y)
-	# if collision:
-	# 	print("Collision!!!!")
+	# look_at(global_transform.origin - v, global_transform.basis.y)
 	t += delta * 10
 
 func _on_Timer_timeout():
