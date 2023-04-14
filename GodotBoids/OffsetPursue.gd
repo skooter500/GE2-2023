@@ -7,6 +7,12 @@ var target:Vector3
 var world_target:Vector3
 var projected:Vector3
 
+func draw_gizmos():
+	DebugDraw.draw_sphere(world_target, 1, Color.green)
+	DebugDraw.draw_sphere(projected, 1, Color.green)
+	DebugDraw.draw_arrow_line(world_target, projected, Color.green, 0.1)	
+
+
 func calculate_offset():
 	leader_offset = boid.global_transform.origin - leader_boid.global_transform.origin
 	leader_offset = leader_boid.global_transform.basis.xform_inv(leader_offset)	

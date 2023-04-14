@@ -1,18 +1,9 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=28 format=2]
 
-[ext_resource path="res://Models/krait_out/krait.gltf" type="PackedScene" id=1]
-[ext_resource path="res://Models/sidewinder_out/sidewinder.gltf" type="PackedScene" id=2]
-[ext_resource path="res://Models/Shuttle_out/Shuttle.gltf" type="PackedScene" id=3]
-[ext_resource path="res://Models/cobramk1_out/cobramk1.gltf" type="PackedScene" id=4]
-[ext_resource path="res://Models/ferdelance_out/ferdelance.gltf" type="PackedScene" id=5]
-[ext_resource path="res://Models/monkey_out/monkey.gltf" type="PackedScene" id=6]
-[ext_resource path="res://Models/adder_out/adder.gltf" type="PackedScene" id=7]
-[ext_resource path="res://Models/python_out/python.gltf" type="PackedScene" id=8]
+[ext_resource path="res://Models/thargoid_out/thargoid.gltf" type="PackedScene" id=1]
 [ext_resource path="res://Models/coriolis_out/coriolis.gltf" type="PackedScene" id=9]
 [ext_resource path="res://Models/viper_out/viper.gltf" type="PackedScene" id=10]
-[ext_resource path="res://Models/boa_out/boa.gltf" type="PackedScene" id=11]
 [ext_resource path="res://Models/cobramk3_out/cobramk3.gltf" type="PackedScene" id=12]
-[ext_resource path="res://Models/anaconda_out/anaconda.gltf" type="PackedScene" id=13]
 [ext_resource path="res://Rotate.gd" type="Script" id=14]
 [ext_resource path="res://root.gd" type="Script" id=15]
 [ext_resource path="res://FPController.gd" type="Script" id=16]
@@ -30,7 +21,6 @@
 [ext_resource path="res://AttackState.gd" type="Script" id=28]
 [ext_resource path="res://Seek.gd" type="Script" id=29]
 [ext_resource path="res://default_environment.tres" type="Environment" id=30]
-[ext_resource path="res://bullet1.tscn" type="PackedScene" id=31]
 [ext_resource path="res://OffsetPursue.gd" type="Script" id=32]
 [ext_resource path="res://DockedState.gd" type="Script" id=33]
 [ext_resource path="res://CameraController.gd" type="Script" id=34]
@@ -46,7 +36,8 @@ script = ExtResource( 15 )
 custom_font = ExtResource( 35 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 3.35852, 460 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -452.836, 6.56303, 454.616 )
+fov = 80.0
 far = 100000.0
 script = ExtResource( 16 )
 speed = 10.0
@@ -61,8 +52,9 @@ boid_path = NodePath("../../Attacker")
 mode = 1
 
 [node name="Attacker" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -450, 0, 450 )
+transform = Transform( -0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866026, -450, 0, 450 )
 script = ExtResource( 17 )
+force = Vector3( 0, -10, 0 )
 max_speed = 15.0
 banking = 0.5
 
@@ -85,9 +77,9 @@ enabled = false
 
 [node name="Wander" type="Node" parent="Attacker"]
 script = ExtResource( 26 )
-weight = 0.1
-draw_gizmos = false
+weight = 0.3
 enabled = false
+jitter = 100.0
 
 [node name="Flee" type="Node" parent="Attacker"]
 script = ExtResource( 21 )
@@ -134,13 +126,11 @@ max_force = 50
 
 [node name="OffsetPursue" type="Node" parent="camera follower"]
 script = ExtResource( 32 )
-weight = 5.0
-draw_gizmos = false
 leader_node_path = NodePath("../../Attacker")
 
 [node name="Avoidance" type="Node" parent="camera follower"]
 script = ExtResource( 19 )
-weight = 10.0
+weight = 0.0
 draw_gizmos = false
 feeler_angle = 90
 feeler_length = 20
@@ -149,8 +139,10 @@ updates_per_second = 10
 [node name="SceneSwitcher" parent="." instance=ExtResource( 20 )]
 
 [node name="Base" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 2.98023e-08, 1, -2.98023e-08, 2.98023e-08, 2.98023e-08, 1, 7.62939e-06, 2.86102e-06, 0 )
+transform = Transform( 1, 0, 0, 2.98023e-08, 1, -2.98023e-08, 2.98023e-08, 2.98023e-08, 1, 0, 0, 0 )
+collision_layer = 65
 script = ExtResource( 14 )
+speed = -0.2
 
 [node name="coriolis" parent="Base" instance=ExtResource( 9 )]
 transform = Transform( -4.37114e-05, 1.3027e-12, -1000, 2.98023e-05, 1000, 0, 1000, -2.98023e-05, -4.37114e-05, -7.62939e-06, -2.86102e-06, 3.12639e-13 )
@@ -187,7 +179,7 @@ enabled = false
 
 [node name="Wander" type="Node" parent="pig"]
 script = ExtResource( 26 )
-weight = 0.1
+weight = 0.0
 enabled = false
 
 [node name="TrailRenderer" type="Spatial" parent="pig"]
@@ -207,48 +199,12 @@ material = ExtResource( 24 )
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.146447, -0.853553, 0.5, 0.5, 0.5, 0.707107, -0.853553, 0.146447, 0.5, 0, 0, 0 )
 
-[node name="Spatial" type="Spatial" parent="."]
-transform = Transform( 1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, 0 )
-
-[node name="monkey" parent="Spatial" instance=ExtResource( 6 )]
-visible = false
-
-[node name="sidewinder" parent="Spatial" instance=ExtResource( 2 )]
-visible = false
-
-[node name="sidewinder2" parent="Spatial" instance=ExtResource( 2 )]
-visible = false
-
-[node name="ferdelance" parent="Spatial" instance=ExtResource( 5 )]
-visible = false
-
-[node name="monkey2" parent="Spatial" instance=ExtResource( 6 )]
-visible = false
-
-[node name="python" parent="Spatial" instance=ExtResource( 8 )]
-visible = false
-
-[node name="Shuttle" parent="Spatial" instance=ExtResource( 3 )]
-visible = false
-
-[node name="adder" parent="Spatial" instance=ExtResource( 7 )]
-visible = false
-
-[node name="cobramk1" parent="Spatial" instance=ExtResource( 4 )]
-visible = false
-
-[node name="anaconda" parent="Spatial" instance=ExtResource( 13 )]
-visible = false
-
-[node name="boa" parent="Spatial" instance=ExtResource( 11 )]
-visible = false
-
-[node name="krait" parent="Spatial" instance=ExtResource( 1 )]
-visible = false
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 30 )
 
-[node name="bullet" parent="." instance=ExtResource( 31 )]
-
 [node name="AttackerBase" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -514.438, -10, 490.622 )
+
+[node name="thargoid" parent="AttackerBase" instance=ExtResource( 1 )]
+transform = Transform( 3000, 0, 0, 0, 3000, 0, 0, 0, 3000, -276.272, 0, 0 )
+script = ExtResource( 14 )

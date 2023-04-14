@@ -81,7 +81,7 @@ func draw_gizmos():
 	DebugDraw.draw_arrow_line(global_transform.origin,  global_transform.origin + transform.basis.z * 10.0 , Color(0, 0, 1), 0.1)
 	DebugDraw.draw_arrow_line(global_transform.origin,  global_transform.origin + transform.basis.x * 10.0 , Color(1, 0, 0), 0.1)
 	DebugDraw.draw_arrow_line(global_transform.origin,  global_transform.origin + transform.basis.y * 10.0 , Color(0, 1, 0), 0.1)
-	DebugDraw.draw_arrow_line(global_transform.origin,  global_transform.origin + force * 5, Color(1, 1, 0), 0.1)
+	DebugDraw.draw_arrow_line(global_transform.origin,  global_transform.origin + force, Color(1, 1, 0), 0.1)
 	
 	if school and count_neighbors:
 		DebugDraw.draw_sphere(global_transform.origin, school.neighbor_distance, Color.webpurple)
