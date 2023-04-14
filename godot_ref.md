@@ -9,6 +9,7 @@ Ctrl F
 Shift Ctrl F
 Ctrl C
 Ctrl V
+Ctrl Shift F11
 
 | Unity  C# | GDScript | Note |
 |----------|------|----|    

@@ -14,7 +14,6 @@ func _ready():
 
 func play_sound(i):
 	if i < sounds.size():
-		print("play sound: " + str(i))	
 		# sounds[i].pitch_scale = rand_range(0.5, 1.5)		
 		sounds[i].play()
 		pass

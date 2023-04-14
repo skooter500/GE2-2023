@@ -24,7 +24,6 @@ func _enter():
 	var to_base = base.global_transform.origin - boid.global_transform.origin
 	to_base = to_base.normalized()
 	target = base.global_transform.origin + (to_base * 300)	
-	target.y = 0
 	boid.get_node("Seek").enabled = true
 	boid.get_node("Seek").world_target = target
 	boid.get_node("Sounds").play_sound(0)

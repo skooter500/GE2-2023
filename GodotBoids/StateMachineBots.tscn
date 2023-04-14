@@ -45,7 +45,7 @@ script = ExtResource( 15 )
 custom_font = ExtResource( 35 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -449.962, -8.2812, 445.521 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -449.962, -8.2812, 445.521 )
 fov = 80.0
 far = 100000.0
 script = ExtResource( 16 )
@@ -179,7 +179,7 @@ updates_per_second = 10
 [node name="SceneSwitcher" parent="." instance=ExtResource( 20 )]
 
 [node name="Base" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 2.98023e-08, 1, -2.98023e-08, 2.98023e-08, 2.98023e-08, 1, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 2.98023e-08, 1, -2.98023e-08, 2.98023e-08, 2.98023e-08, 1, 0, 50, 0 )
 collision_layer = 65
 script = ExtResource( 14 )
 speed = -0.3
@@ -191,6 +191,7 @@ transform = Transform( -4.37114e-05, 1.3027e-12, -1000, 2.98023e-05, 1000, 0, 10
 shape = SubResource( 3 )
 
 [node name="pig" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0 )
 script = ExtResource( 17 )
 
 [node name="viper" parent="pig" instance=ExtResource( 10 )]
