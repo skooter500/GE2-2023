@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Models/thargoid_out/thargoid.gltf" type="PackedScene" id=1]
 [ext_resource path="res://fire_at_target_global_state.gd" type="Script" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://Models/viper_out/viper.gltf" type="PackedScene" id=10]
 [ext_resource path="res://sounds/lets get out of here.mp3" type="AudioStream" id=11]
 [ext_resource path="res://Models/cobramk3_out/cobramk3.gltf" type="PackedScene" id=12]
-[ext_resource path="res://addons/Trail/trail_3d.gd" type="Script" id=13]
 [ext_resource path="res://Rotate.gd" type="Script" id=14]
 [ext_resource path="res://root.gd" type="Script" id=15]
 [ext_resource path="res://FPController.gd" type="Script" id=16]
@@ -37,9 +36,6 @@
 
 [sub_resource type="ConvexPolygonShape" id=2]
 
-[sub_resource type="Gradient" id=4]
-colors = PoolColorArray( 0.780392, 0.984314, 0.0862745, 1, 1, 1, 1, 1 )
-
 [sub_resource type="SphereShape" id=3]
 radius = 25.0
 
@@ -48,7 +44,7 @@ script = ExtResource( 15 )
 custom_font = ExtResource( 35 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -452.836, 67.3653, 454.616 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -449.962, -8.2812, 445.521 )
 fov = 80.0
 far = 100000.0
 script = ExtResource( 16 )
@@ -83,7 +79,7 @@ target_path = NodePath("../../Base")
 [node name="Avoidance" type="Node" parent="Attacker"]
 script = ExtResource( 19 )
 weight = 30.0
-feeler_length = 30
+feeler_length = 40
 updates_per_second = 10
 
 [node name="AttackState" type="Node" parent="Attacker"]
@@ -146,15 +142,19 @@ stream = ExtResource( 8 )
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Attacker/Sounds"]
 stream = ExtResource( 11 )
 
-[node name="Trail1" type="ImmediateGeometry" parent="Attacker"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.242798, -0.0395985, -0.494904 )
-script = ExtResource( 13 )
-width_profile = ExtResource( 25 )
-color_gradient = SubResource( 4 )
+[node name="TrailRenderer3" type="Spatial" parent="Attacker"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.269, -0.043, -0.485001 )
+script = ExtResource( 23 )
+width = 0.4
+width_curve = ExtResource( 25 )
+material = ExtResource( 24 )
 
-[node name="Trail2" type="ImmediateGeometry" parent="Attacker"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24, -0.04, -0.495 )
-script = ExtResource( 13 )
+[node name="TrailRenderer4" type="Spatial" parent="Attacker"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.269387, -0.0434498, -0.485435 )
+script = ExtResource( 23 )
+width = 0.4
+width_curve = ExtResource( 25 )
+material = ExtResource( 24 )
 
 [node name="camera follower" type="KinematicBody" parent="."]
 script = ExtResource( 17 )
@@ -268,7 +268,7 @@ transform = Transform( 0.146447, -0.853553, 0.5, 0.5, 0.5, 0.707107, -0.853553, 
 environment = ExtResource( 30 )
 
 [node name="AttackerBase" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -514.438, -10, 490.622 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -514.438, -125.307, 490.622 )
 
 [node name="thargoid" parent="AttackerBase" instance=ExtResource( 1 )]
 transform = Transform( 3000, 0, 0, 0, 3000, 0, 0, 0, 3000, -276.272, 0, 0 )
