@@ -1,10 +1,5 @@
 class_name StateMachine extends Node
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 export var initial_state:NodePath
 export var global_state_path:NodePath
 
@@ -39,7 +34,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	DebugDraw.set_text(get_parent().get_name(), current_state.get_class() + (global_state.get_class() if global_state else ""))
+	DebugDraw.set_text(get_parent().get_name(), current_state.get_class() + " " + (global_state.get_class() if global_state else ""))
 	
 	if current_state:
 		current_state._think()

@@ -30,7 +30,7 @@
 [sub_resource type="ConvexPolygonShape" id=2]
 
 [sub_resource type="SphereShape" id=3]
-radius = 40.0
+radius = 25.0
 
 [node name="root" type="Spatial"]
 script = ExtResource( 15 )
@@ -70,8 +70,7 @@ target_path = NodePath("../../Base")
 
 [node name="Avoidance" type="Node" parent="Attacker"]
 script = ExtResource( 19 )
-weight = 20.0
-feeler_angle = 30
+weight = 30.0
 feeler_length = 50
 
 [node name="AttackState" type="Node" parent="Attacker"]
