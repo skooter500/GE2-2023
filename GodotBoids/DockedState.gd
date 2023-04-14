@@ -17,12 +17,15 @@ func _enter():
 	boid.get_node("Seek").set_enabled(true)
 	boid.get_node("Sounds").play_sound(3)
 	pass
+
+func _exit():
+	boid.get_node("Sounds").play_sound(4)
 	
 func _think():
-	var to_attacker = boid.global_transform.origin.distance_to(attacker.global_transform.origin)
-	if to_attacker < 300:
-		boid.get_node("StateMachine").change_state(LaunchState.new())
-
+	var to_base = boid.global_transform.origin.distance_to(base.global_transform.origin)
+	if to_base < 5:
+		boid.get_node("StateMachine").change_state(ReadyToLaunch.new())
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	boid = get_parent()
