@@ -79,7 +79,7 @@ target_path = NodePath("../../Base")
 [node name="Avoidance" type="Node" parent="Attacker"]
 script = ExtResource( 19 )
 weight = 30.0
-feeler_length = 40
+feeler_length = 50
 updates_per_second = 10
 
 [node name="AttackState" type="Node" parent="Attacker"]
