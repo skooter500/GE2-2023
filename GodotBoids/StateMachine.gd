@@ -28,9 +28,13 @@ func _ready():
 	boid = get_parent()
 	if initial_state:
 		current_state = get_node(initial_state)
-		current_state._enter()
+		current_state.call_deferred("_enter")
+		# current_state._enter()
 	if global_state_path:
 		global_state = get_node(global_state_path)
+		# Ready may not have been called!
+		current_state.call_deferred("_enter")
+		# current_state._enter()
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

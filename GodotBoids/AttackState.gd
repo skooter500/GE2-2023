@@ -27,7 +27,7 @@ func _enter():
 	boid.get_node("Seek").world_target = target
 
 func _think():
-	var to_target = target.global_transform.origin - boid.transform.origin 
+	var to_target = target - boid.transform.origin 
 	if to_target.length() < 20:
 		boid.get_node("StateMachine").change_state(RetreatState.new())
 		pass	

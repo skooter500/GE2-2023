@@ -15,6 +15,11 @@ func _ready():
 	bullet_scene = load("Bullet1.tscn")
 	pass # Replace with function body.
 
+func timeout():
+	can_fire = true
+	timer.wait_time = rand_range(0.2, 1)
+
+
 
 func get_class():
 	return "FireAtATargetGlobalState"	
