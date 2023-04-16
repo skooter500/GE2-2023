@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/taking enemy fire.mp3-61ebb837e7ed381de704c4cc223acc86.mp3str"
+
+[deps]
+
+source_file="res://sounds/taking enemy fire.mp3"
+dest_files=[ "res://.import/taking enemy fire.mp3-61ebb837e7ed381de704c4cc223acc86.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

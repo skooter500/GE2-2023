@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Our base has been hit.mp3-a4f82f0a7f0b95a4557bf583d184778a.mp3str"
+
+[deps]
+
+source_file="res://sounds/Our base has been hit.mp3"
+dest_files=[ "res://.import/Our base has been hit.mp3-a4f82f0a7f0b95a4557bf583d184778a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
