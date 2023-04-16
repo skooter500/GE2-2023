@@ -45,6 +45,7 @@ speed = 30.0
 script = ExtResource( 8 )
 boid_camera_path = NodePath("../../camera follower")
 boid_path = NodePath("../../creature/boid")
+mode = 1
 
 [node name="Listener" type="Listener" parent="Camera"]
 

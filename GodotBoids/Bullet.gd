@@ -38,11 +38,6 @@ func _physics_process(delta):
 	# I think this should return true when a collision happens, but it doesnt
 	v += n
 	var collision = move_and_collide(v)	
-	if collision:
-		print(collision.collider)
-		if collision.collider.name == "Base":
-			collision.collider.get_node("Sounds").play_sound(0)
-		pass	
 	# 
 	# global_transform.origin += v
 	
