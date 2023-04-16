@@ -10,7 +10,7 @@ func draw_gizmos():
 
 
 func _ready():
-	OS.set_current_screen(1)
+	OS.set_current_screen(0)
 	var screen_size = OS.get_screen_size()
 	var window_size = OS.get_window_size()
 	

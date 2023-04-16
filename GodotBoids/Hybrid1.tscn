@@ -78,13 +78,11 @@ transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Avoidance" parent="creature/boid" index="2"]
 weight = 5.0
-draw_gizmos = false
 direction = 2
 updates_per_second = 60
 
 [node name="Harmonic" parent="creature/boid" index="3"]
 weight = 5.0
-draw_gizmos = false
 frequency = 0.3
 distance = 20
 axis = 0
@@ -98,6 +96,7 @@ center_path = NodePath("../../../Center")
 enabled = false
 
 [node name="PathFollow" parent="creature/boid" index="6"]
+draw_gizmos = true
 enabled = true
 path_path = NodePath("../../../Path")
 waypoint_seek_distance = 7

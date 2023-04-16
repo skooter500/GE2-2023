@@ -45,10 +45,10 @@ func _input(event):
 		match mode:
 			Mode.Follow, Mode.Free:
 				camera.move = false
-				boid.get_node("MeshInstance").set_visible(false)
+				boid.find_node("MeshInstance").set_visible(false)
 				mode = Mode.Boid
 			Mode.Boid:
-				boid.get_node("MeshInstance").set_visible(true)				
+				boid.find_node("MeshInstance").set_visible(true)				
 				camera.move = true
 				mode = Mode.Free
 						

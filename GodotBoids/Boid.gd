@@ -98,7 +98,7 @@ func arrive_force(target:Vector3, slowingDistance:float):
 	var toTarget = target - global_transform.origin
 	var dist = toTarget.length()
 	
-	if dist == 0:
+	if dist < 2:
 		return Vector3.ZERO
 	
 	var ramped = (dist / slowingDistance) * max_speed

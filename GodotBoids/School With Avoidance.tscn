@@ -53,6 +53,7 @@ move = true
 [node name="Control" type="Node" parent="Camera"]
 script = ExtResource( 2 )
 boid_camera_path = NodePath("../../camera follower")
+mode = 1
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 12.0512, 0.23691 )

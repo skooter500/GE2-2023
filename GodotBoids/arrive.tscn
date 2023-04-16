@@ -83,7 +83,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -90.1317 )
 script = ExtResource( 13 )
 
 [node name="Timer" type="Timer" parent="CreatureTarget"]
-wait_time = 10.0
+wait_time = 20.0
 autostart = true
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
@@ -167,6 +167,8 @@ shape = SubResource( 14 )
 [node name="Ship" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 42.8709, 0, 0 )
 script = ExtResource( 2 )
+max_force = 50
+damping = 0.3
 
 [node name="cobramk3" parent="Ship" instance=ExtResource( 5 )]
 transform = Transform( 200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0 )
@@ -193,7 +195,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -90.1317 )
 script = ExtResource( 13 )
 
 [node name="Timer" type="Timer" parent="ShipTarget"]
-wait_time = 10.0
+wait_time = 20.0
 autostart = true
 
 [connection signal="timeout" from="CreatureTarget/Timer" to="CreatureTarget" method="_on_Timer_timeout"]
