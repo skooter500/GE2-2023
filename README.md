@@ -36,6 +36,9 @@
 - Lab test 25 April - 2 hours
 - Assignment - 2 May - In person demos 
 
+## Week 11 - Finite State Machines
+- [Recording](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EdnBi6rOjLJFlbymY3xmuPABZMO93jRCkygacrBEOBaQCg?e=dcEAxa)
+
 ## Week 9
 - [Recording of the class](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EUocszsvUHNMk6yyyObXZOgBmTjvZ5ZQ8X8mwscsW2eheg?e=gc5GPq)
 
