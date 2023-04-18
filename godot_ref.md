@@ -20,9 +20,7 @@
 | Ctrl V | |
 | Ctrl Shift F11 | |
 
-Groups are tags - strings
-Use Physics layers & masks
-
+## Unity to Godot Porting Guide
 
 | Unity C# Code                           | GDScript Equivalent                                            |
 |-----------------------------------------|----------------------------------------------------------------|
@@ -59,24 +57,17 @@ Use Physics layers & masks
 | Vector3.Angle(from, to)          | from.angle_to(to)                                        |
 | Vector3.ClampMagnitude(v, max)   | v.clamped(max)                                           |
 | Vector3.Lerp(a, b, t)            | a.linear_interpolate(b, t)                                |
-| Vector3.LerpUnclamped(a, b, t)   | a.linear_interpolate(b, t)                                |
-| Vector3.MoveTowards(current, target, maxDistanceDelta) | current.linear_interpolate(target, maxDistanceDelta) |
-| Vector3.Project(vector, onNormal) | vector.slide(onNormal)                                   |
-| Vector3.Reflect(inDirection, inNormal) | inDirection.bounce(inNormal)  
- Vector3.Up | The world up vector | Vector3.UP
+| Vector3.Reflect(inDirection, inNormal) | inDirection.reflect(inNormal)  | 
+| Vector3.Up | Vector3.UP
 | Vector3.Right | Vector3.RIGHT |
 | Vector3.Forward | Vector3.FORWARD *Note this is (0, 0, -1) in Godot* |
-| Random.Range | rand_range() |  In Godot, call randomize() once in your program to set the random seed |
-| Quaternion.Slerp |  Interpolates between 2 quaternions |
-| Quaternion.Identity | No rotation |
+| Random.Range | rand_range() *In Godot, call randomize() once in your program to set the random seed* |
+| Quaternion.Slerp |  basis.slerp or quat.slerp |
 | Quaternion.Euler | Make a quetarnion from euler angles |
 | Quaternion.Inverse | Quaternion in the opposite direction |
-| Quaternion.LookRotation | Makes a quaternion from a vector |
-| Quaternion * by a Vector3 | Rotates the vector by the quaternion |
-| Quaternion * by a Quaternion | Combines 2 quaternion rotations |
-| x, y, z, w | Components of the quaternion |
-| Gizmos.DrawSphere | |
-| Gizmos.DrawWireSphere | |
-| Gizmos.DrawCube | |
-| Gizmos.DrawLine | |
-| Gizmos.DrawRay | |
+| Quaternion * by a Vector3 | basis.xform() |
+| Gizmos.DrawSphere | DebugDraw.draw_sphere(target.global_transform.origin, slowing_radius, Color.aquamarine)
+	 |
+| Gizmos.DrawLine | DebugDraw.draw_line(boid.global_transform.origin, feeler.hit_target, Color.chartreuse) *or*
+			DebugDraw.draw_arrow_line(feeler.hit_target, feeler.hit_target + feeler.normal, Color.blue, 0.1)
+			|
