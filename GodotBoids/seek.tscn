@@ -7,7 +7,7 @@
 [ext_resource path="res://FPController.gd" type="Script" id=5]
 [ext_resource path="res://root.gd" type="Script" id=6]
 [ext_resource path="res://Avoidance.gd" type="Script" id=7]
-[ext_resource path="res://Tank Material.tres" type="Material" id=8]
+[ext_resource path="res://Tank Material.tres" type="Material" id=9]
 [ext_resource path="res://SceneSwitcher.tscn" type="PackedScene" id=10]
 [ext_resource path="res://CameraController.gd" type="Script" id=11]
 [ext_resource path="res://Boid.gd" type="Script" id=12]
@@ -71,7 +71,6 @@ draw_gizmos = false
 script = ExtResource( 3 )
 weight = 5.0
 draw_gizmos = false
-enabled = false
 leader_node_path = NodePath("../../Creature/boid")
 
 [node name="Avoidance" type="Node" parent="camera follower"]
@@ -110,7 +109,7 @@ damping = 0.3
 transform = Transform( 1, 0, 0, 0, -8.74228e-08, -1, 0, 2, -4.37114e-08, 0, 0, 0 )
 mesh = SubResource( 7 )
 skeleton = NodePath("../../..")
-material/0 = ExtResource( 8 )
+material/0 = ExtResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Creature/boid"]
 shape = SubResource( 8 )
@@ -125,7 +124,7 @@ target_path = NodePath("../../../CreatureTarget")
 transform = Transform( 1, 0, 0, 0, -8.74228e-08, 1, 0, -2, -4.37114e-08, 0, 0, -0.504121 )
 mesh = SubResource( 9 )
 skeleton = NodePath("")
-material/0 = ExtResource( 8 )
+material/0 = ExtResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Creature/tail"]
 shape = SubResource( 10 )
@@ -137,7 +136,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3 )
 [node name="MeshInstance2" type="MeshInstance" parent="Creature/body3"]
 mesh = SubResource( 11 )
 skeleton = NodePath("../../..")
-material/0 = ExtResource( 8 )
+material/0 = ExtResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Creature/body3"]
 shape = SubResource( 12 )
@@ -148,7 +147,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6 )
 [node name="MeshInstance3" type="MeshInstance" parent="Creature/body2"]
 mesh = SubResource( 11 )
 skeleton = NodePath("../../..")
-material/0 = ExtResource( 8 )
+material/0 = ExtResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Creature/body2"]
 shape = SubResource( 13 )
@@ -159,7 +158,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9 )
 [node name="MeshInstance4" type="MeshInstance" parent="Creature/body1"]
 mesh = SubResource( 11 )
 skeleton = NodePath("../../..")
-material/0 = ExtResource( 8 )
+material/0 = ExtResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Creature/body1"]
 shape = SubResource( 14 )

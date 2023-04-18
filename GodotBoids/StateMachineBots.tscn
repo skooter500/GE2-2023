@@ -80,6 +80,7 @@ target_path = NodePath("../../Base")
 [node name="Avoidance" type="Node" parent="Attacker"]
 script = ExtResource( 19 )
 weight = 20.0
+draw_gizmos = false
 feeler_angle = 30
 feeler_length = 70
 updates_per_second = 10
@@ -94,6 +95,7 @@ enabled = false
 [node name="Wander" type="Node" parent="Attacker"]
 script = ExtResource( 26 )
 weight = 0.5
+draw_gizmos = false
 enabled = false
 jitter = 100.0
 

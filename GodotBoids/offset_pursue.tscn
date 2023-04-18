@@ -72,6 +72,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.8865 )
 script = ExtResource( 9 )
 max_speed = 20.0
 max_force = 15
+damping = 0.3
 
 [node name="MeshInstance" parent="Leader" instance=ExtResource( 6 )]
 transform = Transform( 200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0 )
@@ -96,13 +97,16 @@ updates_per_second = 20
 [node name="NoiseWander" type="Node" parent="Leader"]
 script = ExtResource( 2 )
 weight = 5.0
-frequency = 0.2
-amplitude = 100
+enabled = false
+frequency = 0.5
+amplitude = 200
 distance = 10
 axis = 1
 
 [node name="Wander" type="Node" parent="Leader"]
 script = ExtResource( 12 )
+draw_gizmos = false
+enabled = false
 distance = 50.0
 
 [node name="ShipTarget" type="Position3D" parent="."]

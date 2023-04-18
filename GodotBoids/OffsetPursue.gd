@@ -35,4 +35,4 @@ func calculate():
 	projected = world_target + leader_boid.velocity * time
 	
 
-	return boid.arrive_force(projected, 5)
+	return boid.arrive_force(projected, 30)
