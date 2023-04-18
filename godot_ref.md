@@ -42,8 +42,7 @@
 | transform.position                      | global_translation *or* global_transform.origin                                                      |
 | transform.rotation                      | var basis = global_transform.basis *or* var rot = Quat(global_transform.basis) *or* var rot = global_transform.basis.rotation_quat()                                       |
 | transform.localScale                    | global_transform.basis.scale                                                 |
-| transform.localScale | transform.basis.get_scale() transform.basis.scaled |  Relative to the parent |
-| transform.localPosition | transform.origin | transform is the local transform |
+| transform.localPosition | transform.origin |
 | transform.localRotation | transform.basis |
 | Time.deltaTime | delta *or* get_process_delta_time() |
 | transform.Translate() | global_transform.translate() *or* transform.translate() |
@@ -63,11 +62,6 @@
 | Vector3.Forward | Vector3.FORWARD *Note this is (0, 0, -1) in Godot* |
 | Random.Range | rand_range() *In Godot, call randomize() once in your program to set the random seed* |
 | Quaternion.Slerp |  basis.slerp or quat.slerp |
-| Quaternion.Euler | Make a quetarnion from euler angles |
-| Quaternion.Inverse | Quaternion in the opposite direction |
 | Quaternion * by a Vector3 | basis.xform() |
-| Gizmos.DrawSphere | DebugDraw.draw_sphere(target.global_transform.origin, slowing_radius, Color.aquamarine)
-	 |
-| Gizmos.DrawLine | DebugDraw.draw_line(boid.global_transform.origin, feeler.hit_target, Color.chartreuse) *or*
-			DebugDraw.draw_arrow_line(feeler.hit_target, feeler.hit_target + feeler.normal, Color.blue, 0.1)
-			|
+| Gizmos.DrawSphere | DebugDraw.draw_sphere(target.global_transform.origin, slowing_radius, Color.aquamarine) |
+| Gizmos.DrawLine | DebugDraw.draw_line(boid.global_transform.origin, feeler.hit_target, Color.chartreuse) *or* DebugDraw.draw_arrow_line(feeler.hit_target, feeler.hit_target + feeler.normal, Color.blue, 0.1) |
