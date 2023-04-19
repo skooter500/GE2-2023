@@ -37,7 +37,8 @@
 - Assignment - 2 May - In person demos 
 
 ## Week 11 - Finite State Machines
-- [Recording](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EdnBi6rOjLJFlbymY3xmuPABZMO93jRCkygacrBEOBaQCg?e=dcEAxa)
+- [Tuesday](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EdnBi6rOjLJFlbymY3xmuPABZMO93jRCkygacrBEOBaQCg?e=dcEAxa)
+- [Wednesday](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EQWinH9_Pb9AqqcCPkRi6s0BaXxkO8goJntAr6O2jYFGzg?e=PX7lRz)
 
 ## Week 9
 - [Recording of the class](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EUocszsvUHNMk6yyyObXZOgBmTjvZ5ZQ8X8mwscsW2eheg?e=gc5GPq)
