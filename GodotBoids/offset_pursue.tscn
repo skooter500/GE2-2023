@@ -97,7 +97,6 @@ updates_per_second = 20
 [node name="NoiseWander" type="Node" parent="Leader"]
 script = ExtResource( 2 )
 weight = 5.0
-enabled = false
 frequency = 0.5
 amplitude = 200
 distance = 10
@@ -105,8 +104,6 @@ axis = 1
 
 [node name="Wander" type="Node" parent="Leader"]
 script = ExtResource( 12 )
-draw_gizmos = false
-enabled = false
 distance = 50.0
 
 [node name="ShipTarget" type="Position3D" parent="."]
