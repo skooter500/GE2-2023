@@ -36,6 +36,13 @@
 - Lab test 25 April - 2 hours
 - Assignment - 2 May - In person demos 
 
+## Week 13 - A*, End of year stuff
+- [Tuesday](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EeTQsnZ2_BxAkZ5-jt_TmdEBOOyohZh6LbABbzQPrBC-_A?e=s9gEq4)
+
+## Week 12 - Flocking
+- [Tuesday](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EY1DMhfKiZxCqEYqsTo8lYEBcBy4ch9MMkPbHJpi9P7ogA?e=PaNRxo)
+- [Wednesday](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EXMQenyq22FEuTZMsLx0GCIBozVRS-3MB1BSkRv1QxAeAg?e=8TSwpi)  
+
 ## Week 11 - Finite State Machines
 - [Tuesday](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EdnBi6rOjLJFlbymY3xmuPABZMO93jRCkygacrBEOBaQCg?e=dcEAxa)
 - [Wednesday](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EQWinH9_Pb9AqqcCPkRi6s0BaXxkO8goJntAr6O2jYFGzg?e=PX7lRz)

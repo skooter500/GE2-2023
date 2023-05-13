@@ -1,4 +1,4 @@
-extends Camera
+extends Spatial
 
 
 # Declare member variables here. Examples:
@@ -25,6 +25,7 @@ func _input(event):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("Hello")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pass # Replace with function body.
 
@@ -32,6 +33,7 @@ export var move:bool = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):	
+	print(move)
 	if move:
 		var mult = 1
 		if Input.is_key_pressed(KEY_SHIFT):
