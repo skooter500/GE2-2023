@@ -40,7 +40,7 @@ cell_size = 20
 grid_size = 1000
 center_path = NodePath("../Center")
 
-[node name="School Config" type="Node" parent="School"]
+[node name="SchoolConfig" type="Node" parent="School"]
 script = ExtResource( 6 )
 
 [node name="Player" type="KinematicBody" parent="."]

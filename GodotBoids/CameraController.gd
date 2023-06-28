@@ -16,7 +16,7 @@ export var mode = Mode.Free
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	boid = get_node(boid_player_path)
+	boid = get_node(boid_path)
 	boid_player = get_node(boid_player_path)
 	match mode:
 		Mode.Free:
