@@ -61,7 +61,7 @@ func _physics_process(delta):
 		Mode.Follow:	
 			player.global_transform.origin = lerp(player.global_transform.origin, boid_player.global_transform.origin, delta * 10.0)
 			var desired = player.global_transform.looking_at(boid.global_transform.origin, Vector3.UP)		
-			player.global_transform.basis = desired.basis # player.global_transform.basis.slerp(desired.basis, delta * 2).orthonormalized()
+			player.global_transform.basis = player.global_transform.basis.slerp(desired.basis, delta * 2).orthonormalized()
 		Mode.Boid:
 			player.global_transform.origin = lerp(player.global_transform.origin, boid.global_transform.origin, delta * 5.0)
 			var desired = player.global_transform.looking_at(boid.global_transform.origin + boid.global_transform.basis.z , Vector3.UP)
