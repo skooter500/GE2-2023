@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://FPController.gd" type="Script" id=1]
 [ext_resource path="res://Boid.gd" type="Script" id=2]
@@ -14,7 +14,9 @@
 [ext_resource path="res://SpineAnimator.gd" type="Script" id=12]
 [ext_resource path="res://FollowPath.gd" type="Script" id=14]
 
-[sub_resource type="Environment" id=6]
+[sub_resource type="SphereShape" id=18]
+
+[sub_resource type="Environment" id=19]
 background_mode = 1
 ambient_light_color = Color( 0.392157, 0.392157, 0.392157, 1 )
 ambient_light_energy = 2.0
@@ -52,20 +54,24 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.998893, 0 ), 0.0, 0.0, 0, 
 [node name="root2" type="Spatial"]
 script = ExtResource( 10 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.13334, -19.3311, 39.7214 )
-environment = SubResource( 6 )
-far = 10000.0
+[node name="Player" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.13334, 11.8629, 33.382 )
 script = ExtResource( 1 )
-speed = 30.0
+speed = 10.0
 
-[node name="Camera Controller" type="Node" parent="Camera"]
+[node name="CollisionShape" type="CollisionShape" parent="Player"]
+shape = SubResource( 18 )
+
+[node name="Camera" type="Camera" parent="Player"]
+environment = SubResource( 19 )
+far = 10000.0
+
+[node name="Listener" type="Listener" parent="Player/Camera"]
+
+[node name="Camera Controller" type="Node" parent="Player/Camera"]
 script = ExtResource( 3 )
-boid_camera_path = NodePath("../../camera follower")
-boid_path = NodePath("../../Creature/boid")
-mode = 1
-
-[node name="Listener" type="Listener" parent="Camera"]
+boid_player_path = NodePath("../../../camera follower")
+boid_path = NodePath("../../../Creature/boid")
 
 [node name="camera follower" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.973738, -15.0557, 41.7624 )
