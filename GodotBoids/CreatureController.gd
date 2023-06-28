@@ -11,10 +11,10 @@ func _input(event):
 		in_pod = false
 		boid.get_node("Harmonic").set_enabled(true)
 		boid.get_node("NoiseWander").set_enabled(true)
-		boid.get_node("PathFollow").set_enabled(true)
 		boid.get_node("UserSteering").set_enabled(false)
 		boid.get_node("Constrain").set_enabled(true)
-		player.move = true
+		print("setting plahyer move")
+		player.can_move = true
 
 func _physics_process(delta):
 	if in_pod:
@@ -42,9 +42,8 @@ func _on_Pod_body_entered(body):
 		in_pod = true
 		boid.get_node("Harmonic").set_enabled(false)
 		boid.get_node("NoiseWander").set_enabled(false)
-		boid.get_node("PathFollow").set_enabled(false)
 		boid.get_node("Constrain").set_enabled(true)
 		boid.get_node("UserSteering").set_enabled(true)
 	
-		player.move = false
+		player.can_move = false
 		pass # Replace with function body.

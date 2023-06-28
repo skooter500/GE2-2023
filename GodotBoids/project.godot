@@ -212,8 +212,6 @@ DebugDraw="*res://addons/debug_draw_3d/debug_draw.gd"
 
 window/size/height=768
 window/size/resizable=false
-window/size/borderless=true
-window/size/fullscreen=true
 
 [editor_plugins]
 

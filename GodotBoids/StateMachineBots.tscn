@@ -50,13 +50,11 @@ fov = 80.0
 far = 100000.0
 script = ExtResource( 16 )
 speed = 10.0
-move = true
 
 [node name="Listener" type="Listener" parent="Camera"]
 
 [node name="Control" type="Node" parent="Camera"]
 script = ExtResource( 34 )
-boid_camera_path = NodePath("../../camera follower")
 boid_path = NodePath("../../Attacker")
 mode = 1
 

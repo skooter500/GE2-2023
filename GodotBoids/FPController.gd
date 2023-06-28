@@ -25,16 +25,15 @@ func _input(event):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("Hello")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pass # Replace with function body.
 
-export var move:bool = false
+export var can_move:bool = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):	
-	print(move)
-	if move:
+func _process(delta):
+
+	if can_move:
 		var mult = 1
 		if Input.is_key_pressed(KEY_SHIFT):
 			mult = 3
@@ -42,9 +41,9 @@ func _process(delta):
 		if abs(turn) > 0:     
 			global_translate(global_transform.basis.x * speed * turn * mult * delta)
 		
-		var move = Input.get_axis("move_forward", "move_back")
-		if abs(move) > 0:     
-			global_translate(global_transform.basis.z * speed * move * mult * delta)
+		var movef = Input.get_axis("move_forward", "move_back")
+		if abs(movef) > 0:     
+			global_translate(global_transform.basis.z * speed * movef * mult * delta)
 		
 		var upanddown = Input.get_axis("move_up", "move_down")
 		if abs(upanddown) > 0:     
