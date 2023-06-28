@@ -36,7 +36,7 @@ func _input(event):
 				boid_player.transform.origin = player.transform.origin
 				boid_player.get_node("OffsetPursue").calculate_offset()
 			Mode.Follow:
-				player.move = true
+				player.can_move = true
 				mode = Mode.Free
 
 	if event is InputEventKey and event.scancode == KEY_B and event.pressed:

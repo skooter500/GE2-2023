@@ -55,7 +55,6 @@ speed = 30.0
 
 [node name="Camera Controller" type="Node" parent="Camera"]
 script = ExtResource( 3 )
-boid_camera_path = NodePath("../../camera follower")
 boid_path = NodePath("../../Creature/boid")
 mode = 1
 

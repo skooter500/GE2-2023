@@ -103,6 +103,7 @@ obstacle_scene = ExtResource( 11 )
 radius = 30
 
 [node name="SceneSwitcher" parent="." instance=ExtResource( 10 )]
+scenes = [ "StateMachineBots.tscn", "Seek.tscn", "Arrive.tscn", "FollowPath.tscn", "Wander.tscn", "PlayerSteering.tscn", "Hybrid1.tscn", "offset_pursue.tscn", "School With Avoidance.tscn", "take_control.tscn" ]
 
 [node name="creature" type="Spatial" parent="."]
 

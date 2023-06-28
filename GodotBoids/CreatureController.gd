@@ -13,7 +13,6 @@ func _input(event):
 		boid.get_node("NoiseWander").set_enabled(true)
 		boid.get_node("UserSteering").set_enabled(false)
 		boid.get_node("Constrain").set_enabled(true)
-		print("setting plahyer move")
 		player.can_move = true
 
 func _physics_process(delta):
