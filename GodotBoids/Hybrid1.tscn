@@ -285,7 +285,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.5154 )
 script = ExtResource( 9 )
 max_force = 50
 damping = 0.3
-draw_gizmos = false
 
 [node name="MeshInstance" type="MeshInstance" parent="creature/boid"]
 transform = Transform( 1, 0, 0, 0, -8.74228e-08, -1, 0, 2, -4.37114e-08, 0, 0, 0 )
@@ -320,6 +319,8 @@ distance = 100
 [node name="PathFollow" type="Node" parent="creature/boid"]
 script = ExtResource( 14 )
 weight = 3.0
+path_path = NodePath("../../../Path")
+waypoint_seek_distance = 5
 
 [node name="Seek" type="Node" parent="creature/boid"]
 script = ExtResource( 17 )
