@@ -41,7 +41,7 @@ ambient_light_energy = 2.0
 script = ExtResource( 6 )
 
 [node name="Player" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.13334, 11.8629, 33.382 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.609414, 11.8629, -45.8701 )
 script = ExtResource( 12 )
 speed = 10.0
 
@@ -58,6 +58,7 @@ far = 10000.0
 script = ExtResource( 13 )
 boid_player_path = NodePath("../../../camera follower")
 boid_path = NodePath("../../../Creature/boid")
+mode = 1
 
 [node name="camera follower" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.534, -40.9348 )

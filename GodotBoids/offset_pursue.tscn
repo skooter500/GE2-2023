@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://root.gd" type="Script" id=1]
 [ext_resource path="res://NoiseWander.gd" type="Script" id=2]
@@ -13,7 +13,9 @@
 [ext_resource path="res://MoveTarget.gd" type="Script" id=11]
 [ext_resource path="res://Wander.gd" type="Script" id=12]
 
-[sub_resource type="Environment" id=6]
+[sub_resource type="SphereShape" id=18]
+
+[sub_resource type="Environment" id=19]
 background_mode = 1
 ambient_light_color = Color( 0.392157, 0.392157, 0.392157, 1 )
 ambient_light_energy = 2.0
@@ -29,23 +31,28 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.998893, 0 ), 0.0, 0.0, 0, 
 [node name="root" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.176902, 38.2258, 85.0778 )
-environment = SubResource( 6 )
-far = 10000.0
+[node name="Player" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40.5501, 20, 50 )
 script = ExtResource( 10 )
-speed = 30.0
+speed = 10.0
 
-[node name="Camera Controller" type="Node" parent="Camera"]
+[node name="CollisionShape" type="CollisionShape" parent="Player"]
+shape = SubResource( 18 )
+
+[node name="Camera" type="Camera" parent="Player"]
+environment = SubResource( 19 )
+far = 10000.0
+
+[node name="Listener" type="Listener" parent="Player/Camera"]
+
+[node name="Camera Controller" type="Node" parent="Player/Camera"]
 script = ExtResource( 8 )
-boid_camera_path = NodePath("../../camera follower")
-boid_path = NodePath("../../Leader")
+boid_player_path = NodePath("../../../camera follower")
+boid_path = NodePath("../../../Leader")
 mode = 1
 
-[node name="Listener" type="Listener" parent="Camera"]
-
 [node name="camera follower" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.973738, 12.5344, 41.7624 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.973738, 12.5344, 142.615 )
 script = ExtResource( 9 )
 max_speed = 30.0
 max_force = 30

@@ -15,6 +15,13 @@
 [ext_resource path="res://NoiseWander.gd" type="Script" id=14]
 [ext_resource path="res://Constrain.gd" type="Script" id=15]
 
+[sub_resource type="SphereShape" id=18]
+
+[sub_resource type="Environment" id=19]
+background_mode = 1
+ambient_light_color = Color( 0.392157, 0.392157, 0.392157, 1 )
+ambient_light_energy = 2.0
+
 [sub_resource type="PrismMesh" id=7]
 
 [sub_resource type="BoxShape" id=8]
@@ -39,15 +46,27 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.998893, 0 ), 0.0, 0.0, 0, 
 
 [sub_resource type="BoxShape" id=15]
 
-[sub_resource type="SphereShape" id=18]
-
-[sub_resource type="Environment" id=19]
-background_mode = 1
-ambient_light_color = Color( 0.392157, 0.392157, 0.392157, 1 )
-ambient_light_energy = 2.0
-
 [node name="root" type="Spatial"]
 script = ExtResource( 6 )
+
+[node name="Player" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.13334, 11.8629, 33.382 )
+script = ExtResource( 11 )
+speed = 10.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Player"]
+shape = SubResource( 18 )
+
+[node name="Camera" type="Camera" parent="Player"]
+environment = SubResource( 19 )
+far = 10000.0
+
+[node name="Listener" type="Listener" parent="Player/Camera"]
+
+[node name="Camera Controller" type="Node" parent="Player/Camera"]
+script = ExtResource( 12 )
+boid_player_path = NodePath("../../../camera follower")
+boid_path = NodePath("../../../Creature/boid")
 
 [node name="camera follower" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.973738, 12.5344, 41.7624 )
@@ -178,22 +197,3 @@ script = ExtResource( 15 )
 center_path = NodePath("../../Position3D")
 
 [node name="Position3D" type="Position3D" parent="."]
-
-[node name="Player" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.13334, 11.8629, 33.382 )
-script = ExtResource( 11 )
-speed = 10.0
-
-[node name="CollisionShape" type="CollisionShape" parent="Player"]
-shape = SubResource( 18 )
-
-[node name="Camera" type="Camera" parent="Player"]
-environment = SubResource( 19 )
-far = 10000.0
-
-[node name="Listener" type="Listener" parent="Player/Camera"]
-
-[node name="Camera Controller" type="Node" parent="Player/Camera"]
-script = ExtResource( 12 )
-boid_player_path = NodePath("../../../camera follower")
-boid_path = NodePath("../../../Creature/boid")

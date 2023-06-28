@@ -5,10 +5,10 @@ extends Node
 
 onready var player = get_node("../..")
 export var boid_player_path:NodePath
-onready var boid_player = get_node(boid_player_path) 
+var boid_player 
 
 export var boid_path:NodePath
-onready var boid = get_node(boid_path) 
+var boid
 
 enum Mode { Free, Follow, Boid}
 
@@ -16,6 +16,8 @@ export var mode = Mode.Free
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	boid = get_node(boid_player_path)
+	boid_player = get_node(boid_player_path)
 	match mode:
 		Mode.Free:
 			player.can_move = true
@@ -41,7 +43,11 @@ func _input(event):
 
 	if event is InputEventKey and event.scancode == KEY_B and event.pressed:
 		match mode:
-			Mode.Follow, Mode.Free:
+			Mode.Follow:
+				player.can_move = false
+				boid.find_node("MeshInstance").set_visible(false)
+				mode = Mode.Free				
+			Mode.Free:
 				player.can_move = false
 				boid.find_node("MeshInstance").set_visible(false)
 				mode = Mode.Boid
@@ -55,7 +61,7 @@ func _physics_process(delta):
 		Mode.Follow:	
 			player.global_transform.origin = lerp(player.global_transform.origin, boid_player.global_transform.origin, delta * 10.0)
 			var desired = player.global_transform.looking_at(boid.global_transform.origin, Vector3.UP)		
-			player.global_transform.basis = player.global_transform.basis.slerp(desired.basis, delta * 2).orthonormalized()
+			player.global_transform.basis = desired.basis # player.global_transform.basis.slerp(desired.basis, delta * 2).orthonormalized()
 		Mode.Boid:
 			player.global_transform.origin = lerp(player.global_transform.origin, boid.global_transform.origin, delta * 5.0)
 			var desired = player.global_transform.looking_at(boid.global_transform.origin + boid.global_transform.basis.z , Vector3.UP)

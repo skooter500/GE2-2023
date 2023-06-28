@@ -29,6 +29,20 @@ albedo_color = Color( 0.960784, 0.717647, 0, 1 )
 [node name="root" type="Spatial"]
 script = ExtResource( 7 )
 
+[node name="School" type="Spatial" parent="."]
+script = ExtResource( 8 )
+fish_scene = ExtResource( 4 )
+count = 200
+radius = 150
+neighbor_distance = 25
+max_neighbors = 5
+cell_size = 20
+grid_size = 1000
+center_path = NodePath("../Center")
+
+[node name="School Config" type="Node" parent="School"]
+script = ExtResource( 6 )
+
 [node name="Player" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.13334, 11.8629, 33.382 )
 script = ExtResource( 12 )
@@ -46,21 +60,6 @@ far = 10000.0
 [node name="Camera Controller" type="Node" parent="Player/Camera"]
 script = ExtResource( 2 )
 boid_player_path = NodePath("../../../camera follower")
-boid_path = NodePath("../../../Creature/boid")
-
-[node name="School" type="Spatial" parent="."]
-script = ExtResource( 8 )
-fish_scene = ExtResource( 4 )
-count = 200
-radius = 150
-neighbor_distance = 25
-max_neighbors = 5
-cell_size = 20
-grid_size = 1000
-center_path = NodePath("../Center")
-
-[node name="config" type="Node" parent="."]
-script = ExtResource( 6 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 12.0512, 0.23691 )
@@ -90,6 +89,7 @@ draw_gizmos = false
 script = ExtResource( 10 )
 weight = 5.0
 draw_gizmos = false
+leader_node_path = NodePath("../../School")
 
 [node name="Avoidance" type="Node" parent="camera follower"]
 script = ExtResource( 11 )

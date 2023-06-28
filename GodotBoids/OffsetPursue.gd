@@ -14,6 +14,7 @@ func draw_gizmos():
 
 
 func calculate_offset():
+	leader_boid = get_node(leader_node_path)
 	leader_offset = boid.global_transform.origin - leader_boid.global_transform.origin
 	leader_offset = leader_boid.global_transform.basis.xform_inv(leader_offset)	
 
