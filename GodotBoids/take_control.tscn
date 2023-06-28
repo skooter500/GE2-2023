@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://root.gd" type="Script" id=1]
 [ext_resource path="res://FPController.gd" type="Script" id=2]
@@ -18,10 +18,11 @@
 [ext_resource path="res://NoiseWander.gd" type="Script" id=16]
 [ext_resource path="res://Tank Material.tres" type="Material" id=17]
 [ext_resource path="res://Dodecahedron.tscn" type="PackedScene" id=18]
+[ext_resource path="res://CameraController.gd" type="Script" id=19]
 
-[sub_resource type="SphereShape" id=13]
+[sub_resource type="SphereShape" id=23]
 
-[sub_resource type="Environment" id=6]
+[sub_resource type="Environment" id=24]
 background_mode = 1
 ambient_light_color = Color( 0.392157, 0.392157, 0.392157, 1 )
 ambient_light_energy = 2.0
@@ -60,13 +61,18 @@ script = ExtResource( 2 )
 speed = 10.0
 
 [node name="CollisionShape" type="CollisionShape" parent="Player"]
-shape = SubResource( 13 )
+shape = SubResource( 23 )
 
 [node name="Camera" type="Camera" parent="Player"]
-environment = SubResource( 6 )
+environment = SubResource( 24 )
 far = 10000.0
 
 [node name="Listener" type="Listener" parent="Player/Camera"]
+
+[node name="Camera Controller" type="Node" parent="Player/Camera"]
+script = ExtResource( 19 )
+boid_player_path = NodePath("../../../camera follower")
+boid_path = NodePath("../../../creature/boid")
 
 [node name="camera follower" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.973738, -15.0557, 41.7624 )
@@ -103,7 +109,6 @@ obstacle_scene = ExtResource( 11 )
 radius = 30
 
 [node name="SceneSwitcher" parent="." instance=ExtResource( 10 )]
-scenes = [ "StateMachineBots.tscn", "Seek.tscn", "Arrive.tscn", "FollowPath.tscn", "Wander.tscn", "PlayerSteering.tscn", "Hybrid1.tscn", "offset_pursue.tscn", "School With Avoidance.tscn", "take_control.tscn" ]
 
 [node name="creature" type="Spatial" parent="."]
 

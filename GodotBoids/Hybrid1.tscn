@@ -308,7 +308,6 @@ axis = 1
 
 [node name="Constrain" type="Node" parent="creature/boid"]
 script = ExtResource( 13 )
-weight = 0.1
 center_path = NodePath("../../../Center")
 
 [node name="NoiseWander" type="Node" parent="creature/boid"]
@@ -321,8 +320,6 @@ distance = 100
 [node name="PathFollow" type="Node" parent="creature/boid"]
 script = ExtResource( 14 )
 weight = 3.0
-draw_gizmos = false
-enabled = false
 
 [node name="Seek" type="Node" parent="creature/boid"]
 script = ExtResource( 17 )
