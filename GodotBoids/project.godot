@@ -210,8 +210,10 @@ DebugDraw="*res://addons/debug_draw_3d/debug_draw.gd"
 
 [display]
 
-window/size/height=768
+window/size/width=1000
+window/size/height=800
 window/size/resizable=false
+window/size/fullscreen=true
 
 [editor_plugins]
 

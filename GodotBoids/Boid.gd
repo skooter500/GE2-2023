@@ -160,6 +160,7 @@ func _process(var delta):
 			count_neighbors()
 			
 func _physics_process(var delta):
+	# pause = false
 	# lerp in the new forces
 	if should_calculate:
 		new_force = calculate()
