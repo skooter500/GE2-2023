@@ -65,6 +65,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.13334, 11.8629, 33.382 )
 script = ExtResource( 10 )
 speed = 10.0
 
+[node name="ARVROrigin" type="ARVROrigin" parent="Player"]
+
+[node name="ARVRCamera" type="ARVRCamera" parent="Player/ARVROrigin"]
+
 [node name="CollisionShape" type="CollisionShape" parent="Player"]
 shape = SubResource( 12 )
 

@@ -3,14 +3,14 @@ extends Node
 # var a = 2
 # var b = "text"
 
-onready var player = get_node("../..")
+onready var player = get_node("../../")
 export var boid_player_path:NodePath
 var boid_player 
 
 export var boid_path:NodePath
 var boid
 
-enum Mode { Free, Follow, Boid}
+enum Mode { 	Free, Follow, Boid}
 
 export var mode = Mode.Free
 

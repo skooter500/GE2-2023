@@ -6,7 +6,7 @@ var cam
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	target = get_parent().find_node("CamTarget", true)
+	target = get_parent().find_node("camTarget", true)
 	cam = get_parent().find_node("Camera", true)
 
 

@@ -11,13 +11,13 @@ func draw_gizmos():
 
 
 func _ready():
-	OS.set_current_screen(0)
+	OS.set_current_screen(1)
 	var screen_size = OS.get_screen_size()
 	var window_size = OS.get_window_size()
 	
 	OS.set_window_position(screen_size*0.5 - window_size*0.5) 	
 	DebugDraw.text_custom_font = custom_font
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
 	draw_gizmos()
 	var g = _create_graph("FPS", true, false, DebugDraw.BlockPosition_LeftTop if Engine.editor_hint else DebugDraw.BlockPosition_RightTop, DebugDraw.GraphTextFlags_Current | DebugDraw.GraphTextFlags_Avarage | DebugDraw.GraphTextFlags_Max | DebugDraw.GraphTextFlags_Min, Vector2(200, 80), custom_font)

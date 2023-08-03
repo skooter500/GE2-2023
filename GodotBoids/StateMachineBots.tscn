@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Models/thargoid_out/thargoid.gltf" type="PackedScene" id=1]
 [ext_resource path="res://fire_at_target_global_state.gd" type="Script" id=2]
@@ -35,6 +35,13 @@
 [ext_resource path="res://CameraController.gd" type="Script" id=34]
 [ext_resource path="res://debug_draw_examples/Roboto_Bold_16.tres" type="DynamicFont" id=35]
 
+[sub_resource type="SphereShape" id=4]
+
+[sub_resource type="Environment" id=5]
+background_mode = 1
+ambient_light_color = Color( 0.392157, 0.392157, 0.392157, 1 )
+ambient_light_energy = 2.0
+
 [sub_resource type="ConvexPolygonShape" id=2]
 
 [sub_resource type="SphereShape" id=3]
@@ -44,22 +51,28 @@ radius = 22.031
 script = ExtResource( 15 )
 custom_font = ExtResource( 35 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -449.962, -8.2812, 445.521 )
-fov = 80.0
-far = 100000.0
+[node name="Player" type="KinematicBody" parent="."]
+transform = Transform( 0.478569, 4.36795e-08, -0.87805, 1.60111e-08, 1, 5.84727e-08, 0.87805, -4.20418e-08, 0.478569, -759.793, -126.817, 474.271 )
 script = ExtResource( 16 )
-speed = 10.0
+speed = 100.0
 
-[node name="Listener" type="Listener" parent="Camera"]
+[node name="CollisionShape" type="CollisionShape" parent="Player"]
+shape = SubResource( 4 )
 
-[node name="Control" type="Node" parent="Camera"]
+[node name="Camera" type="Camera" parent="Player"]
+environment = SubResource( 5 )
+far = 10000.0
+
+[node name="Listener" type="Listener" parent="Player/Camera"]
+
+[node name="Camera Controller" type="Node" parent="Player/Camera"]
 script = ExtResource( 34 )
-boid_path = NodePath("../../Attacker")
+boid_player_path = NodePath("../../../camera follower")
+boid_path = NodePath("../../../Attacker")
 mode = 1
 
 [node name="Attacker" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -450, -20, 450 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -789.449, -122.581, 491.032 )
 collision_mask = 10
 script = ExtResource( 17 )
 force = Vector3( 0, -10, 0 )
@@ -284,5 +297,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -514.438, -125.307, 490.622 )
 transform = Transform( 3000, 0, 0, 0, 3000, 0, 0, 0, 3000, -276.272, 0, 0 )
 script = ExtResource( 14 )
 speed = -0.3
+
+[node name="Node" type="Node" parent="AttackerBase"]
 
 [editable path="Base/coriolis"]
