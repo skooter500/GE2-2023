@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://root.gd" type="Script" id=1]
 [ext_resource path="res://FPController.gd" type="Script" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Tank Material.tres" type="Material" id=17]
 [ext_resource path="res://Dodecahedron.tscn" type="PackedScene" id=18]
 [ext_resource path="res://CameraController.gd" type="Script" id=19]
+[ext_resource path="res://addons/godot-openxr/scenes/first_person_controller_vr.tscn" type="PackedScene" id=20]
 
 [sub_resource type="SphereShape" id=23]
 
@@ -73,6 +74,8 @@ far = 10000.0
 script = ExtResource( 19 )
 boid_player_path = NodePath("../../../camera follower")
 boid_path = NodePath("../../../creature/boid")
+
+[node name="FPController" parent="Player/Camera" instance=ExtResource( 20 )]
 
 [node name="camera follower" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.973738, -15.0557, 41.7624 )

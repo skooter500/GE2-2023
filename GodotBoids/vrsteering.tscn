@@ -95,7 +95,6 @@ mesh = SubResource( 9 )
 transform = Transform( 0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, -2.28415, 12.9662 )
 targetNodePath = NodePath("../Position3D")
 banking = 0.5
-controllerSteeringEnabled = true
 power = 10
 
 [node name="camTarget" type="Spatial" parent="Leader"]

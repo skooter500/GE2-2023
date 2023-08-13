@@ -51,6 +51,10 @@ speed = 10.0
 [node name="CollisionShape" type="CollisionShape" parent="Player"]
 shape = SubResource( 12 )
 
+[node name="ARVROrigin" type="ARVROrigin" parent="Player"]
+
+[node name="ARVRCamera" type="ARVRCamera" parent="Player/ARVROrigin"]
+
 [node name="Camera" type="Camera" parent="Player"]
 environment = SubResource( 13 )
 far = 10000.0

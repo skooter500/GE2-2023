@@ -4,15 +4,16 @@ importer="texture"
 type="StreamTexture"
 path.s3tc="res://.import/right_hand_file2.png-823e609769891ddd791a1bb45707b32e.s3tc.stex"
 path.etc2="res://.import/right_hand_file2.png-823e609769891ddd791a1bb45707b32e.etc2.stex"
+path.etc="res://.import/right_hand_file2.png-823e609769891ddd791a1bb45707b32e.etc.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc2" ],
+"imported_formats": [ "s3tc", "etc2", "etc" ],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/godot-openxr/assets/valve_hand_models/right_hand_file2.png"
-dest_files=[ "res://.import/right_hand_file2.png-823e609769891ddd791a1bb45707b32e.s3tc.stex", "res://.import/right_hand_file2.png-823e609769891ddd791a1bb45707b32e.etc2.stex" ]
+dest_files=[ "res://.import/right_hand_file2.png-823e609769891ddd791a1bb45707b32e.s3tc.stex", "res://.import/right_hand_file2.png-823e609769891ddd791a1bb45707b32e.etc2.stex", "res://.import/right_hand_file2.png-823e609769891ddd791a1bb45707b32e.etc.stex" ]
 
 [params]
 
