@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://behaviors/Boid.gd" type="Script" id=1]
+[ext_resource path="res://behaviors/Tank Material.tres" type="Material" id=2]
+[ext_resource path="res://behaviors/SpineAnimator.gd" type="Script" id=3]
+[ext_resource path="res://behaviors/Harmonic.gd" type="Script" id=4]
+[ext_resource path="res://behaviors/FPController.gd" type="Script" id=5]
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="PrismMesh" id=1]
+
+[sub_resource type="PrismMesh" id=3]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+script = ExtResource( 5 )
+
+[node name="creature" type="Node" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="creature"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.28161 )
+mesh = SubResource( 2 )
+material/0 = ExtResource( 2 )
+
+[node name="boid" type="KinematicBody" parent="creature"]
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="creature/boid"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="Node" type="Node" parent="creature/boid"]
+script = ExtResource( 4 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="creature"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.91298 )
+mesh = SubResource( 2 )
+material/0 = ExtResource( 2 )
+
+[node name="MeshInstance4" type="MeshInstance" parent="creature"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.45038 )
+mesh = SubResource( 2 )
+material/0 = ExtResource( 2 )
+
+[node name="MeshInstance5" type="MeshInstance" parent="creature"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.0818 )
+mesh = SubResource( 2 )
+material/0 = ExtResource( 2 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="creature"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.28161 )
+mesh = SubResource( 2 )
+material/0 = ExtResource( 2 )
+
+[node name="tail" type="Spatial" parent="creature"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.2102 )
+
+[node name="MeshInstance6" type="MeshInstance" parent="creature/tail"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 3 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 2 )
+
+[node name="spineAnimator" type="Node" parent="creature"]
+script = ExtResource( 3 )
+bonePaths = [ NodePath("../boid"), NodePath("../MeshInstance2"), NodePath("../MeshInstance3"), NodePath("../MeshInstance4"), NodePath("../MeshInstance5"), NodePath("../tail") ]
+
+[node name="target" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37.2479 )

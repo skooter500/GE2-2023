@@ -1,0 +1,98 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://behaviors/Wander.gd" type="Script" id=1]
+[ext_resource path="res://behaviors/Avoidance.gd" type="Script" id=2]
+[ext_resource path="res://behaviors/Separation.gd" type="Script" id=3]
+[ext_resource path="res://behaviors/Cohesion.gd" type="Script" id=4]
+[ext_resource path="res://behaviors/Alignment.gd" type="Script" id=5]
+[ext_resource path="res://behaviors/Boid.gd" type="Script" id=6]
+[ext_resource path="res://behaviors/Constrain.gd" type="Script" id=7]
+[ext_resource path="res://behaviors/Tank Material.tres" type="Material" id=8]
+[ext_resource path="res://behaviors/Harmonic.gd" type="Script" id=9]
+[ext_resource path="res://behaviors/SpineAnimator.gd" type="Script" id=10]
+[ext_resource path="res://behaviors/NoiseWander.gd" type="Script" id=11]
+
+[sub_resource type="PrismMesh" id=1]
+
+[sub_resource type="CubeMesh" id=3]
+
+[sub_resource type="BoxShape" id=2]
+
+[node name="Fish" type="Spatial"]
+
+[node name="SpineAnimator" type="Node" parent="."]
+script = ExtResource( 10 )
+bonePaths = [ NodePath("../Boid"), NodePath("../Body"), NodePath("../Tail") ]
+angular_damping = 5.0
+
+[node name="Tail" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.9908 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="Tail"]
+transform = Transform( 1, 0, 0, 0, -8.74228e-08, 1, 0, -2, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 1 )
+skeleton = NodePath("")
+material/0 = ExtResource( 8 )
+
+[node name="Body" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.4954 )
+mesh = SubResource( 3 )
+skeleton = NodePath("")
+material/0 = ExtResource( 8 )
+
+[node name="Boid" type="KinematicBody" parent="."]
+script = ExtResource( 6 )
+max_force = 100
+draw_gizmos = false
+
+[node name="MeshInstance" type="MeshInstance" parent="Boid"]
+transform = Transform( 1, 0, 0, 0, -8.74228e-08, -1, 0, 2, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 1 )
+skeleton = NodePath("")
+material/0 = ExtResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Boid"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="Avoidance" type="Node" parent="Boid"]
+script = ExtResource( 2 )
+weight = 100.0
+draw_gizmos = false
+feeler_angle = 60
+feeler_length = 30
+
+[node name="Separation" type="Node" parent="Boid"]
+script = ExtResource( 3 )
+weight = 20.0
+draw_gizmos = false
+
+[node name="Alignment" type="Node" parent="Boid"]
+script = ExtResource( 5 )
+weight = 70.0
+draw_gizmos = false
+
+[node name="Cohesion" type="Node" parent="Boid"]
+script = ExtResource( 4 )
+weight = 8.0
+draw_gizmos = false
+
+[node name="Wander" type="Node" parent="Boid"]
+script = ExtResource( 1 )
+draw_gizmos = false
+enabled = false
+
+[node name="Constrain" type="Node" parent="Boid"]
+script = ExtResource( 7 )
+draw_gizmos = false
+
+[node name="Harmonic" type="Node" parent="Boid"]
+script = ExtResource( 9 )
+weight = 10.0
+draw_gizmos = false
+distance = 20
+axis = 1
+
+[node name="NoiseWander" type="Node" parent="Boid"]
+script = ExtResource( 11 )
+distance = 20

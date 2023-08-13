@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://behaviors/Ground.tres" type="Material" id=1]
+[ext_resource path="res://behaviors/CudeRotate.gd" type="Script" id=2]
+
+[sub_resource type="CubeMesh" id=3]
+
+[sub_resource type="SpatialMaterial" id=2]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+material_override = ExtResource( 1 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 2 )
+script = ExtResource( 2 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.91048 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]

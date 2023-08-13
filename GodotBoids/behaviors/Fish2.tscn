@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://behaviors/Boid.gd" type="Script" id=1]
+[ext_resource path="res://behaviors/Separation.gd" type="Script" id=2]
+[ext_resource path="res://behaviors/Alignment.gd" type="Script" id=3]
+[ext_resource path="res://behaviors/Cohesion.gd" type="Script" id=4]
+[ext_resource path="res://behaviors/Tank Material.tres" type="Material" id=5]
+[ext_resource path="res://behaviors/Constrain.gd" type="Script" id=6]
+[ext_resource path="res://behaviors/Wander.gd" type="Script" id=7]
+[ext_resource path="res://behaviors/Avoidance.gd" type="Script" id=8]
+
+[sub_resource type="PrismMesh" id=1]
+
+[sub_resource type="BoxShape" id=2]
+
+[node name="Boid" type="KinematicBody"]
+script = ExtResource( 1 )
+max_speed = 30.0
+max_force = 200
+damping = 0.3
+draw_gizmos = false
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -8.74228e-08, -1, 0, 2, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="Avoidance" type="Node" parent="."]
+script = ExtResource( 8 )
+weight = 2.0
+draw_gizmos = false
+feeler_angle = 60
+feeler_length = 30
+
+[node name="Separation" type="Node" parent="."]
+script = ExtResource( 2 )
+weight = 20.0
+draw_gizmos = false
+
+[node name="Alignment" type="Node" parent="."]
+script = ExtResource( 3 )
+weight = 20.0
+draw_gizmos = false
+
+[node name="Cohesion" type="Node" parent="."]
+script = ExtResource( 4 )
+weight = 8.0
+draw_gizmos = false
+
+[node name="Wander" type="Node" parent="."]
+script = ExtResource( 7 )
+draw_gizmos = false
+
+[node name="Constrain" type="Node" parent="."]
+script = ExtResource( 6 )
+draw_gizmos = false

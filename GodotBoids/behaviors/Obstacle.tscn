@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://behaviors/Boid.gd" type="Script" id=1]
+[ext_resource path="res://behaviors/Wander.gd" type="Script" id=2]
+[ext_resource path="res://behaviors/Constrain.gd" type="Script" id=3]
+
+[sub_resource type="SphereShape" id=13]
+
+[sub_resource type="SphereMesh" id=14]
+
+[sub_resource type="SpatialMaterial" id=12]
+flags_transparent = true
+albedo_color = Color( 0.537255, 0.988235, 0, 1 )
+metallic_specular = 0.9
+
+[node name="Obstacle2" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0681, 0, -0.06809 )
+script = ExtResource( 1 )
+max_speed = 3.0
+draw_gizmos = false
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 13 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 14 )
+material/0 = SubResource( 12 )
+
+[node name="Wander" type="Node" parent="."]
+script = ExtResource( 2 )
+draw_gizmos = false
+radius = 20.0
+jitter = 100.0
+
+[node name="Constrain" type="Node" parent="."]
+script = ExtResource( 3 )
+draw_gizmos = false
+radius = 30.0
