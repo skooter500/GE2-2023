@@ -578,7 +578,7 @@ XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd
 [display]
 
 window/size/width=1000
-window/size/height=800
+window/size/height=1000
 window/size/resizable=false
 
 [editor_plugins]
